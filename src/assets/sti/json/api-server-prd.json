@@ -1,0 +1,9 @@
+{
+    "meta" : {
+        "api-baseurl" : "https://www.biztreats.ph",
+        "cdn-baseurl" : "https://www.biztreats.ph",
+        "nas-baseurl" : "https://www.biztreats.ph"
+    },
+    "uris" : {
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "meta" : {
+        "api-baseurl" : "http://localhost:61163",
+        "cdn-baseurl" : "https://stg-v3.biztreats.ph",
+        "nas-baseurl" : "https://stg-v3.biztreats.ph"
+    },
+    "uris" : {
+        "post-sign-in" : "/open-api/v3/sign/sign-in",
+        "get-sign-on" : "/open-api/v3/sign/sign-on",
+        "post-sign-out": "/open-api/v3/sign/sign-out"
+    }
+}

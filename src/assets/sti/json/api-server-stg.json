@@ -1,0 +1,9 @@
+{
+    "meta" : {
+        "api-baseurl" : "https://stg-v3.biztreats.ph",
+        "cdn-baseurl" : "https://stg-v3.biztreats.ph",
+        "nas-baseurl" : "https://stg-v3.biztreats.ph"
+    },
+    "uris" : {
+    }
+}
