@@ -18,7 +18,7 @@ npm run build // for production build
 - [X] npm
 - [X] node 20 version
 - [X] 들여쓰기는 탭 X, 공백 4칸 O
-- [ ] Project Structure: Multi page application (MPA)
+- [X] Project Structure: Multi page application (MPA)
 - [X] [tailwind](https://tailwindcss.com/docs/installation) 사용 O
 - [X] [moment](https://momentjs.com/) 사용 O
 - [ ] type="date" 사용 O

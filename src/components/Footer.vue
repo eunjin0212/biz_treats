@@ -50,7 +50,7 @@ export default {
 </script>
 
 <template>
-    <footer class="relative bottom-0 left-0 bg-neutral-100 w-full px-[111px]">
+    <footer class="relative bottom-0 left-0 bg-white w-full px-[111px] border-t border-t-separate">
         <aside class="flex pb-16 pt-20">
             <div class="mr-[283px]">
                 <img

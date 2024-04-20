@@ -2,44 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.form {
-    width: 100%;
-    max-width: 450px;
-    padding-left: 44px;
-    padding-right: 44px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 4px;
-    box-shadow: 0px 12px 24px 0px #00000014;
-    margin-right: 150px;
-    > img {
-        width: 87px;
-        height: 44;
-    }
-    > h3 {
-        font-family: 'Roboto';
-        font-weight: 700;
-        font-size: 26px;
-        line-height: 41px;
-        letter-spacing: 0.15px;
-        color: #29ABE2;
-        margin-top: 8.5px;
-    }
-    p {
-        font-family: 'Roboto';
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 22.4px;
-        letter-spacing: 0.15px;
-        color: #29ABE2;
-        margin-top: 15.5px;
-    }
-}
-.form-button {
+.form-btn {
   @apply bg-main text-white w-full h-12 rounded-lg
-}
-
-.label-input {
 }
