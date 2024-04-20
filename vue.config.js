@@ -1,16 +1,17 @@
-import { defineConfig } from '@vue/cli-service';
-import routes from './src/routes';
+const { defineConfig } = require('@vue/cli-service')
 
 function loadPages() {
   const outPage = {};
-  const appPages = routes;
-  const pageEnum = Object.keys(appPages);
+  const routes = require('./src/routes');
+  const pageEnum = Object.keys(routes);
 
   pageEnum.forEach((pEnum) => {
-    const pageInfo = appPages[pEnum];
+    const pageInfo = routes[pEnum];
+    const pEnums = pEnum.split('/')
+    const lastPage = pEnums[pEnums.length - 1]
     outPage[pEnum] = {
-      entry: pEnum === 'index' ? './src/main.js' : `./src/pages/${pEnum}/main.js`,
-      template: pageInfo.template || 'public/templates/default.html',
+      entry: pEnum === 'index' ? './src/main.js' : `./src/pages/${pEnum}/${lastPage}.js`,
+      template: pageInfo.template || 'public/default.html',
       title: pageInfo.title || 'BizTreats',
       chunks: ['chunk-vendors', 'chunk-common', pEnum],
     };
@@ -18,7 +19,10 @@ function loadPages() {
   return outPage;
 }
 const importPages = loadPages();
-export default defineConfig({
+console.log(importPages)
+
+module.exports = defineConfig({
   transpileDependencies: true,
   pages: importPages,
-});
+})
+

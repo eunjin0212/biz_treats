@@ -3,7 +3,7 @@
  * @description title is the same menu name
  * @description path is a route alias
  */
-const routes = {
+module.exports = {
     index: {
         title: 'Home',
         path: '/'
@@ -25,5 +25,3 @@ const routes = {
         path: '/inquiry'
     },
 }
-
-export default routes
