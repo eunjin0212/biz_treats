@@ -1,24 +1,28 @@
-# biz-treats
+# bizTreats
 
-## Project setup
-```
-yarn install
-```
+## 기한
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+2024.04.17 - 2024.04.23 영업일 5일 이내
 
-### Compiles and minifies for production
-```
-yarn build
+## ⚙️ 실행 방법
+
+```cmd
+npm install
+npm run dev // for development
+npm run build // for production build
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+### 🚧 요구사항
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [X] Vue 3 version Options API
+- [X] npm
+- [X] node 20 version
+- [X] 들여쓰기는 탭 X, 공백 4칸 O
+- [ ] Project Structure: Multi page application (MPA)
+- [X] [tailwind](https://tailwindcss.com/docs/installation) 사용 O
+- [X] [moment](https://momentjs.com/) 사용 O
+- [ ] type="date" 사용 O
+- [ ] z-index 최소한으로 (0 ~ 20, tailwindCSS 기준)
+- [ ] component 자체 컴포넌트 X, 기본적인 html tag O
+- [X] 자바스크립트 쿠키 X
+- [X] 불필요한 추가 패키지는 사용 X
