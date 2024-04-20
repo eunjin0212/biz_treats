@@ -1,21 +1,15 @@
 <script>
 import Header from '@/components/Header.vue';
+import Background from '@/components/Background.vue';
+
 export default {
     components: {
-        Header
+        Header,
+        Background,
     }
 }
 </script>
 <template>
     <Header />
-    <main>
-        <a
-          href="inquiry"
-          target="_self"
-        >
-            Main
-        </a>
-    </main>
+    <Background></Background>
 </template>
-
-<style scoped></style>
