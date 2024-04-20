@@ -24,4 +24,9 @@ module.exports = {
         title: 'Inquiry',
         path: '/inquiry'
     },
+    'login': {
+        title: 'Login',
+        path: '/login',
+        hide: true,
+    },
 }
