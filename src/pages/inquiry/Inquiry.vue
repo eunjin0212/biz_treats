@@ -37,7 +37,7 @@ export default {
                     value: formModel.companyName,
                     placeholder: 'Enter the Company Name',
                     type: 'text',
-                    classes: 'mt-[6px]'
+                    class: 'mt-[6px]'
                 },
                 {
                     label: 'PIC Name',
@@ -82,14 +82,14 @@ export default {
                     name: 'municipality',
                     value: formModel.municipality,
                     type: 'text',
-                    classes: 'mt-3'
+                    class: 'mt-3'
                 },
                 {
                     label: 'Inquiry',
                     name: 'inquiry',
                     value: formModel.inquiry,
                     type: 'textarea',
-                    classes: 'mb-3'
+                    class: 'mb-3'
                 },
             ]
         }
@@ -110,7 +110,7 @@ export default {
                   v-if="form.type === 'text'"
                   :label="form.label"
                   :name="form.name"
-                  :classes="form?.classes"
+                  :class="form?.class"
                   :placeholder="form.placeholder"
                   v-model="form.value"
                 />
@@ -118,7 +118,7 @@ export default {
                   v-if="form.type === 'select'"
                   :label="form.label"
                   :name="form.name"
-                  :classes="form?.classes"
+                  :class="form?.class"
                   :placeholder="form?.placeholder"
                   :option="form?.option"
                   :defaultSelected="form?.defaultSelected"
@@ -128,7 +128,7 @@ export default {
                   v-if="form.type === 'textarea'"
                   :label="form.label"
                   :name="form.name"
-                  :classes="form?.classes"
+                  :class="form?.class"
                   :placeholder="form.placeholder"
                   v-model="form.value"
                 />

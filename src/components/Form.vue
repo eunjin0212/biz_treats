@@ -13,10 +13,6 @@ export default {
             type: String,
             default: '/assets/images/biz_treats_log.png',
         },
-        classes: {
-            type: String,
-            default: '',
-        }
     }
 }
 </script>
@@ -27,7 +23,6 @@ export default {
         $emit('submit');
     }"
       class="py-7 px-[46px] w-full gap-1 mr-[150px] max-w-[450px] bg-white flex flex-col items-center rounded shadow-[0px_12px_24px_0px_#00000014]"
-      :class="classes"
     >
         <div class="flex flex-col items-center w-full">
             <img

@@ -22,10 +22,6 @@ export default {
             type: String,
             default: '',
         },
-        classes: {
-            type: String,
-            default: '',
-        }
     },
     data(props) {
         return {
@@ -35,7 +31,7 @@ export default {
 }
 </script>
 <template>
-    <label class="flex flex-col w-full" :class="classes">
+    <label class="flex flex-col w-full">
         <span class="text-label font-medium text-xs leading-[18px] font-roboto block">
             {{ label }}
         </span>

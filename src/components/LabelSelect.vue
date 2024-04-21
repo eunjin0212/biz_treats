@@ -18,10 +18,6 @@ export default {
             type: String,
             default: '',
         },
-        classes: {
-            type: String,
-            default: '',
-        },
         defaultSelected: {
             type: String,
             default: '',
@@ -41,7 +37,6 @@ export default {
 <template>
     <label
       class="flex flex-col w-full"
-      :class="classes"
     >
         <span class="text-label font-medium text-xs leading-[18px] font-roboto block">
             {{ label }}
