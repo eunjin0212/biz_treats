@@ -2,13 +2,17 @@
 import routes from '../routes';
 
 export default {
-    // eslint-disable-next-line vue/multi-word-component-names
     name: 'Header',
     data() {
         return {
             routes: Object.values(routes).flat(),
         };
     },
+    methods: {
+        handleClick() {
+            window.location.href = '/login'
+        }
+    }
 };
 </script>
 
@@ -31,7 +35,7 @@ export default {
                 {{ menu.title }}
             </a>
         </nav>
-        <button class="text-main text-base font-medium -tracking-[0.2px] rounded-md border border-gray w-40 h-12">
+        <button @click="handleClick" class="text-main text-base font-medium -tracking-[0.2px] rounded-md border border-gray w-40 h-12">
             Log in
         </button>
     </header>
