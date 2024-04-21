@@ -51,12 +51,14 @@ export default {
         <Form
           title="Log In"
           description="Join Biz Treats now! You can treat your with bulk at once."
+          class="gap-3"
         >
             <template v-for="form in formData">
                 <LabelInput
                   :label="form.label"
                   :name="form.name"
                   :placeholder="form.placeholder"
+                  :type="form.type"
                   v-model="form.value"
                 />
             </template>
@@ -64,10 +66,11 @@ export default {
               label="Remember this account"
               v-model="rememberAccount"
               name="remember"
-              class="mt-7"
+              class="my-5"
             />
-            <Recaptcha />
+            <Recaptcha class="mb-5" />
             <button class="form-btn">Login</button>
+            <a href="/forgot_password" class="text-subLink text-sm tracking-[0.1px] mt-3">Forgot your password? Click here!</a>
         </Form>
     </Background>
     <Footer />

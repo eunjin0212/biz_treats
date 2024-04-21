@@ -40,6 +40,7 @@ export default {
           :type="type"
           :name="name"
           :placeholder="placeholder"
+          autocomplete
           class="border border-input-border placeholder:text-placeholder rounded-lg h-10 px-4 font-normal tracking-[0.5px] text-xs leading-[26px]"
         />
     </label>
