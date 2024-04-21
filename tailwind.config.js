@@ -17,6 +17,7 @@ module.exports = {
                 label: '#858587',
                 'input-border': '#E0E0E2',
                 placeholder: '#BBBBBB',
+                'subLink': '#898989'
             },
             fontFamily: {
                 'roboto': ['Roboto', 'sans-serif'],

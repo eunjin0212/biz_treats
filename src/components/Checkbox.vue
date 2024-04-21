@@ -49,7 +49,7 @@ export default {
         </span>
         <label
           :for="name"
-          class="font-roboto text-[13px] leading-5 text-[#898989]"
+          class="font-roboto text-[13px] leading-5 text-subLink"
         >
             {{ label }}
         </label>
