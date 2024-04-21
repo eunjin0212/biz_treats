@@ -12,6 +12,10 @@ export default {
         img: {
             type: String,
             default: '/assets/images/biz_treats_log.png',
+        },
+        classes: {
+            type: String,
+            default: '',
         }
     }
 }
@@ -22,9 +26,10 @@ export default {
         e.preventDefault();
         $emit('submit');
     }"
-      class="py-7 w-full gap-3 mr-[150px] max-w-[450px] px-11 bg-white flex flex-col items-center rounded shadow-[0px 12px 24px 0px #00000014]"
+      class="py-7 px-[46px] w-full gap-1 mr-[150px] max-w-[450px] bg-white flex flex-col items-center rounded shadow-[0px_12px_24px_0px_#00000014]"
+      :class="classes"
     >
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center w-full">
             <img
               v-if="img"
               :src="img"
@@ -36,7 +41,7 @@ export default {
             </h3>
             <p
               v-if="description"
-              class="font-roboto text-sm leading-[22px] tracking-[0.15px] text-main mt-[15.5px]"
+              class="font-roboto w-full text-sm leading-[22px] tracking-[0.3px] text-main mt-[15.5px]"
             >
                 {{ description }}
             </p>
