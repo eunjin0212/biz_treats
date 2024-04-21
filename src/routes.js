@@ -24,14 +24,14 @@ module.exports = {
         title: 'Inquiry',
         path: '/inquiry'
     },
+    'password': {
+        title: 'Forgot Password',
+        path: '/password',
+        hide: true,
+    },
     'login': {
         title: 'Login',
         path: '/login',
-        hide: true,
-    },
-    'forgotPassword': {
-        title: 'ForgotPassword',
-        path: '/forgot_password',
         hide: true,
     },
 }

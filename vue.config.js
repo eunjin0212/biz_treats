@@ -19,7 +19,6 @@ function loadPages() {
   return outPage;
 }
 const importPages = loadPages();
-console.log(importPages)
 
 module.exports = defineConfig({
   transpileDependencies: true,

@@ -31,7 +31,8 @@ export default {
                     name: 'company_email',
                     value: formModel.companyEmail,
                     placeholder: 'Enter the email',
-                    type: 'text',
+                    type: 'email',
+                    key: 'companyEmail',
                 },
                 {
                     label: 'Password',
@@ -39,9 +40,18 @@ export default {
                     value: formModel.password,
                     placeholder: 'Password',
                     type: 'password',
+                    key: 'password',
                 },
-            ]
-        }
+            ],
+        };
+    },
+    methods: {
+        handleUpdate(key, value) {
+            this.formModel[key] = value
+        },
+        handleCheck(val) {
+            this.rememberAccount = val
+        },
     }
 }
 </script>
@@ -50,7 +60,6 @@ export default {
     <Background>
         <Form
           title="Log In"
-          description="Join Biz Treats now! You can treat your with bulk at once."
           class="gap-3"
         >
             <template v-for="form in formData">
@@ -59,7 +68,8 @@ export default {
                   :name="form.name"
                   :placeholder="form.placeholder"
                   :type="form.type"
-                  v-model="form.value"
+                  v-model="formModel[form.key]"
+                  @update:modelValue="(val) => handleUpdate(form.key, val)"
                 />
             </template>
             <Checkbox
@@ -67,10 +77,11 @@ export default {
               v-model="rememberAccount"
               name="remember"
               class="my-5"
+              @update:modelValue="handleCheck"
             />
             <Recaptcha class="mb-5" />
-            <button class="form-btn">Login</button>
-            <a href="/forgot_password" class="text-subLink text-sm tracking-[0.1px] mt-3">Forgot your password? Click here!</a>
+            <button class="form-btn" type="submit">Login</button>
+            <a href="/password" class="text-subLink text-sm tracking-[0.1px] mt-3">Forgot your password? Click here!</a>
         </Form>
     </Background>
     <Footer />

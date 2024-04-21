@@ -40,6 +40,7 @@ export default {
           :type="type"
           :name="name"
           :placeholder="placeholder"
+          @input="$emit('update:modelValue', model)"
           class="border border-input-border placeholder:text-placeholder rounded-lg min-h-40 max-h-40 h-40 px-4 font-normal tracking-[0.5px] text-xs leading-[26px]"
         />
     </label>

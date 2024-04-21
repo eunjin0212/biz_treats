@@ -18,6 +18,10 @@ export default {
             type: String,
             default: '',
         },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
         placeholder: {
             type: String,
             default: '',
@@ -40,8 +44,10 @@ export default {
           :type="type"
           :name="name"
           :placeholder="placeholder"
+          :disabled="disabled"
+          @input="$emit('update:modelValue', model)"
           autocomplete
-          class="border border-input-border placeholder:text-placeholder rounded-lg h-10 px-4 font-normal tracking-[0.5px] text-xs leading-[26px]"
+          class="border border-input-border placeholder:text-placeholder rounded-lg h-10 px-4 font-normal tracking-[0.5px] text-xs leading-[26px] disabled:bg-disabled"
         />
     </label>
 </template>

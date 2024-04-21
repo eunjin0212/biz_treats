@@ -45,6 +45,7 @@ export default {
           v-model="model"
           :name="name"
           :placeholder="placeholder"
+          @change="$emit('update:modelValue', model)"
           class="border border-input-border placeholder:text-placeholder rounded-lg h-10 pl-4 pr-2 font-normal tracking-[0.5px] text-xs leading-[26px] appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_arrow.svg')]"
         >
             <option disabled :value="defaultSelected">
