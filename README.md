@@ -22,7 +22,7 @@ npm run build // for production build
 - [X] [tailwind](https://tailwindcss.com/docs/installation) 사용 O
 - [X] [moment](https://momentjs.com/) 사용 O
 - [ ] type="date" 사용 O
-- [ ] z-index 최소한으로 (0 ~ 20, tailwindCSS 기준)
+- [X] z-index 최소한으로 (0 ~ 20, tailwindCSS 기준)
 - [ ] component 자체 컴포넌트 X, 기본적인 html tag O
 - [X] 자바스크립트 쿠키 X
 - [X] 불필요한 추가 패키지는 사용 X
