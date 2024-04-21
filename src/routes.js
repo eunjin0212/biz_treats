@@ -1,6 +1,6 @@
 /**
- * @description key is the same folder name
- * @description title is the same menu name
+ * @description key is folder name
+ * @description title is menu name
  * @description path is a route alias
  */
 module.exports = {
@@ -27,6 +27,11 @@ module.exports = {
     'login': {
         title: 'Login',
         path: '/login',
+        hide: true,
+    },
+    'forgotPassword': {
+        title: 'ForgotPassword',
+        path: '/forgot_password',
         hide: true,
     },
 }
