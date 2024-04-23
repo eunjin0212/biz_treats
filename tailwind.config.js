@@ -2,8 +2,8 @@
 
 module.exports = {
     content: [
-    "/index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
+        "/index.html",
+        "./src/**/*.{vue,js,ts,jsx,tsx}",
     ],
     theme: {
         container: {},
@@ -23,7 +23,19 @@ module.exports = {
                     600: '#764DFB',
                     700: '#602FFF'
                 },
+                main: '#29ABE2',
+                secondary: '#333333',
+                title: '#171719',
+                link: '#777E90',
+                separate: '#E6E8EC',
+                sns: '#EEF1F3',
+                label: '#858587',
+                'input-border': '#E0E0E2',
+                placeholder: '#BBBBBB',
+                'subLink': '#898989',
+                'disabled': '#F0F0F0',
                 'gray' :{
+                    50: '#E7E7E7',
                     100: '#E9E9E9',
                     200: '#D0D0D0',
                     500: '#898989',
@@ -32,6 +44,7 @@ module.exports = {
                 }
             },
             fontFamily: {
+                'roboto': ['Roboto', 'sans-serif'],
                 inter: ["inter", "sans-serif"],
                 nanum: ["NanumSquareRound", "sans-serif"],
             },

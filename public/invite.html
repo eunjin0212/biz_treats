@@ -1,0 +1,67 @@
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        >
+        <title>Welcome to Biz Treats!</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            bg: '#F8F8FC',
+                            main: '#29ABE2',
+                            gray: '#787878',
+                            description: '#8D8D8D'
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <main class="w-[640px] h-[656px] bg-bg px-6 font-inter pt-[30px]">
+            <img
+              class="w-[150px] h-[74px]"
+              src="/assets/images/biz_treats_log.png"
+              alt="logo"
+            />
+            <section class="border border-[#E8E8E8] mt-5 border-t-[3px] border-b-0 border-t-main p-[30px] pb-16 bg-white">
+                <h1 class="font-bold text-2xl text-main mb-10">
+                    Welcome to Biz Treats!
+                </h1>
+
+                <div class="text-base tracking-[0.2px] text-gray mb-12">
+                    <p>
+                        Hello {Name}!
+                    </p>
+                    <p>
+                        Your company{company name}invited you!
+                    </p>
+                </div>
+                <button class="w-[304px] h-14 rounded-lg bg-main text-white">
+                    Accept Invite
+                </button>
+            </section>
+            <section class="bg-[#F6F6F8] border border-[#E8E8E8] border-t-0 pt-[22px] pb-[26px] text-center">
+                <p class="text-description text-sm leading-[21px] tracking-[0.2px] font-normal mb-7">
+                    Need help? <a class="text-[#2969FF] underline decoration-solid">(biztreats@sharetreats.com)</a>
+                </p>
+                <div class="text-description text-xs tracking-[0.2px] font-normal">
+                    <span class="block">
+                        ©SHARE TREATS. All rights reserved.
+                    </span>
+                    <span class="block">
+                        This email was sent from SHARE TREATS.
+                    </span>
+                </div>
+            </section>
+        </main>
+    </body>
+
+</html>

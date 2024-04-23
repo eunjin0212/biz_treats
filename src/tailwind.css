@@ -16,3 +16,7 @@ body {
     margin: 0 auto;
     padding-top: 3rem;
 } */
+
+.form-btn {
+  @apply bg-main text-white w-full h-12 rounded-lg
+}

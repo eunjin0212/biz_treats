@@ -1,11 +1,12 @@
+/**
+ * @description key is folder name
+ * @description title is menu name
+ * @description path is a route alias
+ */
 module.exports = {
     index: {
-        template: 'public/templates/default.html',
-        title: 'Biz Treats'
-    },
-    'home' : {
-        template: 'public/templates/default.html',
-        title: 'Biz Treats'
+        title: 'Home',
+        path: '/'
     },
     'about': {
         title: 'About us',
