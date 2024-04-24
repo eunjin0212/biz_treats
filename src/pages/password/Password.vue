@@ -1,10 +1,10 @@
 <script>
-import Recaptcha from '@/components/Recaptcha.vue';
+import CheckSvg from '@/assets/icons/Check.vue'
 import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
     components: {
-        Recaptcha,
+        CheckSvg,
     },
     data() {
         const formModel = {
@@ -14,6 +14,7 @@ export default {
             navMenu,
             snsMenu,
             menus,
+            reCaptcha: false,
             formModel,
             formData: {
                 label: 'Company Email',
@@ -89,7 +90,33 @@ export default {
                   autocomplete
                 />
             </label>
-            <Recaptcha />
+            <div class="recaptcha mb-5">
+                <div
+                class="checkbox"
+                  @click.prevent="() => {
+                    reCaptcha = !reCaptcha;
+                  }"
+                >
+                    <input
+                      id="reCaptcha"
+                      type="checkbox"
+                      :value="reCaptcha"
+                      name="reCaptcha"
+                    />
+                    <span :class="reCaptcha ? 'border-blue-600 bg-blue-600' : 'border-neutral-300 bg-white'">
+                        <CheckSvg :class="reCaptcha ? 'text-white' : 'hidden'" />
+                    </span>
+                    <label
+                      for="reCaptcha"
+                    >
+                        I'm not a robot
+                    </label>
+                </div>
+                <img
+                  src="/assets/icons/reCAPTCHA_logo.svg"
+                  alt="reCAPTCHA_logo"
+                />
+            </div>
             <button
               class="form-btn"
               type="submit"

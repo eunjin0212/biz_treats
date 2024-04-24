@@ -1,12 +1,10 @@
 <script>
-import Checkbox from '@/components/Checkbox.vue';
-import Recaptcha from '@/components/Recaptcha.vue';
+import CheckSvg from '@/assets/icons/Check.vue'
 import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
     components: {
-        Checkbox,
-        Recaptcha,
+        CheckSvg,
     },
     data() {
         const formModel = {
@@ -17,6 +15,7 @@ export default {
             navMenu,
             snsMenu,
             menus,
+            reCaptcha: false,
             rememberAccount: false,
             formModel,
             formData: [
@@ -115,14 +114,51 @@ export default {
                   autocomplete
                 />
             </label>
-            <Checkbox
-              label="Remember this account"
-              v-model="rememberAccount"
-              name="remember"
-              class="my-5"
-              @update:modelValue="handleCheck"
-            />
-            <Recaptcha class="mb-5" />
+            <div
+              class="checkbox my-5"
+              @click.prevent="() => {
+                rememberAccount = !rememberAccount;
+            }"
+            >
+                <input
+                  id="remember"
+                  type="checkbox"
+                  :value="rememberAccount"
+                  name="remember"
+                  class="hidden"
+                />
+                <span :class="rememberAccount ? 'border-blue-600 bg-blue-600' : 'border-neutral-300 bg-white'">
+                    <CheckSvg :class="rememberAccount ? 'text-white' : 'hidden'" />
+                </span>
+                <label for="remember">
+                    Remember this account
+                </label>
+            </div>
+            <div class="recaptcha mb-5">
+                <div
+                  class="checkbox"
+                  @click.prevent="() => {
+                    reCaptcha = !reCaptcha;
+                  }"
+                >
+                    <input
+                      id="reCaptcha"
+                      type="checkbox"
+                      :value="reCaptcha"
+                      name="reCaptcha"
+                    />
+                    <span :class="reCaptcha ? 'border-blue-600 bg-blue-600' : 'border-neutral-300 bg-white'">
+                        <CheckSvg :class="reCaptcha ? 'text-white' : 'hidden'" />
+                    </span>
+                    <label for="reCaptcha">
+                        I'm not a robot
+                    </label>
+                </div>
+                <img
+                  src="/assets/icons/reCAPTCHA_logo.svg"
+                  alt="reCAPTCHA_logo"
+                />
+            </div>
             <button type="submit">Login</button>
             <a
               href="/password"

@@ -156,3 +156,35 @@ body {
         @apply min-h-40 max-h-40
     }
 }
+
+/* checkbox */
+@layer components {
+    div.checkbox {
+        @apply flex items-center w-full cursor-pointer
+    }
+    div.checkbox > input {
+        @apply hidden
+    }
+    div.checkbox > span {
+        @apply mr-[6px] border rounded-sm block w-6 h-6
+    }
+    div.checkbox > label {
+        @apply font-[theme(fontFamily.roboto)] text-[13px] leading-5 text-[theme(colors.subLink)]
+    }
+}
+
+/* recaptcha */
+@layer components {
+    div.recaptcha {
+        @apply h-14 w-full rounded-lg bg-[#F9F9F9] border border-[#E0E0E0] flex justify-between items-center px-[30px]
+    }
+    div.recaptcha > div > span {
+        @apply mr-2 border rounded-sm block !w-4 !h-4
+    }
+    div.recaptcha > div > label {
+        @apply !text-xs !leading-4 text-gray-950
+    }
+    div.recaptcha img {
+        @apply h-8
+    }
+}
