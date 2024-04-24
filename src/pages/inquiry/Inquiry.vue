@@ -124,19 +124,10 @@ export default {
             Log in
         </button>
     </header>
-    <main class="background">
-        <section>
-            <p>
-                Digital Treats For Your Business
-            </p>
-            <span>
-                Foster Relationships with your Employees and Customers
-            </span>
-            <img src="/assets/images/bg.png" />
-        </section>
+    <main>
         <form
           @submit="handleSubmit"
-          class="form mb-12 mt-7"
+          class="form !mx-auto !w-[637px] !max-w-[637px] !py-7 mt-7 mb-12"
         >
             <div>
                 <img
@@ -146,7 +137,7 @@ export default {
                 <h3>
                     Inquiry
                 </h3>
-                <p>
+                <p class="text-center">
                     Join Biz Treats now! You can treat your with bulk at once.
                 </p>
             </div>
@@ -155,7 +146,7 @@ export default {
               :key="form.label"
             >
                 <label
-                  class="select"
+                  class="select !gap-1"
                   :class="form?.class"
                   v-if="form.type === 'select'"
                 >
@@ -184,7 +175,7 @@ export default {
                     </select>
                 </label>
                 <label
-                  class="textarea"
+                  class="textarea !gap-1"
                   v-else-if="form.type === 'textarea'"
                 >
                     <span>
@@ -197,10 +188,10 @@ export default {
                     />
                 </label>
                 <label
-                  class="input"
+                  class="input !gap-1"
                   v-else
                 >
-                    <span class="">
+                    <span>
                         {{ form.label }}
                     </span>
                     <input
@@ -215,7 +206,7 @@ export default {
                     />
                 </label>
             </template>
-            <button class="mt-2">Inquiry</button>
+            <button class="mt-4">Inquiry</button>
         </form>
     </main>
     <footer class="footer">
