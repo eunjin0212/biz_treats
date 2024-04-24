@@ -1,21 +1,14 @@
 <script>
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
-import Form from '@/components/Form.vue';
-import Background from '@/components/Background.vue';
 import LabelInput from '@/components/LabelInput.vue';
 import Checkbox from '@/components/Checkbox.vue';
 import Recaptcha from '@/components/Recaptcha.vue';
+import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
     components: {
-        Header,
-        Footer,
-        Form,
         LabelInput,
         Checkbox,
         Recaptcha,
-        Background,
     },
     data() {
         const formModel = {
@@ -23,6 +16,9 @@ export default {
             password: '',
         }
         return {
+            navMenu,
+            snsMenu,
+            menus,
             rememberAccount: false,
             formModel,
             formData: [
@@ -52,17 +48,61 @@ export default {
         handleCheck(val) {
             this.rememberAccount = val
         },
+        handleClick() {
+            window.location.href = '/login'
+        },
+        handleSubmit(e) {
+            e.preventDefault();
+        },
     }
 }
 </script>
 <template>
-    <Header />
-    <Background>
-        <Form
-          title="Log In"
-          class="gap-3"
+    <header class="header">
+        <nav>
+            <a href="/">
+                <img src="/assets/images/biz_treats_log.png" />
+            </a>
+            <a
+              v-for="menu in navMenu"
+              :href="menu.path"
+              :key="menu.title"
+              v-show="!menu?.hide"
+            >
+                {{ menu.title }}
+            </a>
+        </nav>
+        <button @click="handleClick">
+            Log in
+        </button>
+    </header>
+    <main class="background">
+        <section>
+            <p>
+                Digital Treats For Your Business
+            </p>
+            <span>
+                Foster Relationships with your Employees and Customers
+            </span>
+            <img src="/assets/images/bg.png" />
+        </section>
+        <form
+          class="form !gap-3"
+          @submit="handleSubmit"
         >
-            <template v-for="form in formData">
+            <div>
+                <img
+                  src="/assets/images/biz_treats_log.png"
+                  alt="header-log"
+                />
+                <h3>
+                    Log In
+                </h3>
+            </div>
+            <template
+              v-for="form in formData"
+              :key="form.label"
+            >
                 <LabelInput
                   :label="form.label"
                   :name="form.name"
@@ -80,9 +120,58 @@ export default {
               @update:modelValue="handleCheck"
             />
             <Recaptcha class="mb-5" />
-            <button class="form-btn" type="submit">Login</button>
-            <a href="/password" class="text-subLink text-sm tracking-[0.1px] mt-3">Forgot your password? Click here!</a>
-        </Form>
-    </Background>
-    <Footer />
+            <button type="submit">Login</button>
+            <a
+              href="/password"
+              class="text-subLink text-xs tracking-[0.1px] mt-3"
+            >Forgot your password? Click here!</a>
+        </form>
+    </main>
+    <footer class="footer">
+        <aside>
+            <div>
+                <img
+                  src="/assets/images/biz_treats_log.png"
+                  alt="footer-log"
+                />
+                <h4>
+                    {{ snsMenu.title }}
+                </h4>
+                <div>
+                    <a
+                      v-for="sns in snsMenu.children"
+                      :key="sns.name"
+                    >
+                        <img
+                          :src="sns.icon"
+                          :alt="sns.name"
+                        />
+                    </a>
+                </div>
+            </div>
+            <div
+              v-for="menu in menus"
+              :key="menu.title"
+            >
+                <h4>
+                    {{ menu.title }}
+                </h4>
+                <template
+                  v-for="sub in menu.children"
+                  :key="sub.title"
+                >
+                    <a
+                      :href="sub.link"
+                      :target="sub.target"
+                      :alt="sub.name"
+                    >
+                        {{ sub.name }}
+                    </a>
+                </template>
+            </div>
+        </aside>
+        <p>
+            Copyright © SHARE TREATS. All rights reserved.
+        </p>
+    </footer>
 </template>

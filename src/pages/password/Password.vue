@@ -1,25 +1,21 @@
 <script>
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
-import Form from '@/components/Form.vue';
-import Background from '@/components/Background.vue';
 import LabelInput from '@/components/LabelInput.vue';
 import Recaptcha from '@/components/Recaptcha.vue';
+import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
     components: {
-        Header,
-        Footer,
-        Form,
         LabelInput,
         Recaptcha,
-        Background,
     },
     data() {
         const formModel = {
             companyEmail: '',
         }
         return {
+            navMenu,
+            snsMenu,
+            menus,
             formModel,
             forgetPwFormData: {
                 label: 'Company Email',
@@ -33,23 +29,55 @@ export default {
     },
     methods: {
         handleClick() {
-            // 이메일 보내기
+            window.location.href = '/login'
+        },
+        handleSubmit(e) {
+            e.preventDefault();
         },
         handleUpdate(key, value) {
             this.formModel[key] = value
-        }
+        },
     }
 }
 </script>
 <template>
-    <Header />
-    <Background>
-        <Form
-          title="Forgot Password"
-          img=""
-          class="gap-6"
-          @submit="handleClick"
+    <header class="header">
+        <nav>
+            <a href="/">
+                <img src="/assets/images/biz_treats_log.png" />
+            </a>
+            <a
+              v-for="menu in navMenu"
+              :href="menu.path"
+              :key="menu.title"
+              v-show="!menu?.hide"
+            >
+                {{ menu.title }}
+            </a>
+        </nav>
+        <button @click="handleClick">
+            Log in
+        </button>
+    </header>
+    <main class="background">
+        <section>
+            <p>
+                Digital Treats For Your Business
+            </p>
+            <span>
+                Foster Relationships with your Employees and Customers
+            </span>
+            <img src="/assets/images/bg.png" />
+        </section>
+        <form
+          @submit="handleSubmit"
+          class="form mb-12 mt-7 !gap-6"
         >
+            <div>
+                <h3>
+                    Forgot Password
+                </h3>
+            </div>
             <LabelInput
               :label="forgetPwFormData.label"
               :name="forgetPwFormData.name"
@@ -67,11 +95,57 @@ export default {
             </button>
             <a
               href="/login"
-              class="text-main mt-2"
+              class="text-main mt-2 text-xs"
             >
                 Back to Login
             </a>
-        </Form>
-    </Background>
-    <Footer />
+        </form>
+    </main>
+    <footer class="footer">
+        <aside>
+            <div>
+                <img
+                  src="/assets/images/biz_treats_log.png"
+                  alt="footer-log"
+                />
+                <h4>
+                    {{ snsMenu.title }}
+                </h4>
+                <div>
+                    <a
+                      v-for="sns in snsMenu.children"
+                      :key="sns.name"
+                    >
+                        <img
+                          :src="sns.icon"
+                          :alt="sns.name"
+                        />
+                    </a>
+                </div>
+            </div>
+            <div
+              v-for="menu in menus"
+              :key="menu.title"
+            >
+                <h4>
+                    {{ menu.title }}
+                </h4>
+                <template
+                  v-for="sub in menu.children"
+                  :key="sub.title"
+                >
+                    <a
+                      :href="sub.link"
+                      :target="sub.target"
+                      :alt="sub.name"
+                    >
+                        {{ sub.name }}
+                    </a>
+                </template>
+            </div>
+        </aside>
+        <p>
+            Copyright © SHARE TREATS. All rights reserved.
+        </p>
+    </footer>
 </template>

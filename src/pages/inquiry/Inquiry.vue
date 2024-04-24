@@ -1,21 +1,14 @@
 <script>
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
-import Form from '@/components/Form.vue';
 import LabelInput from '@/components/LabelInput.vue';
 import LabelSelect from '@/components/LabelSelect.vue';
 import LabelTextArea from '@/components/LabelTextArea.vue';
-import Background from '@/components/Background.vue';
+import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
     components: {
-        Header,
-        Footer,
-        Form,
         LabelInput,
         LabelSelect,
         LabelTextArea,
-        Background,
     },
     data() {
         const formModel = {
@@ -29,6 +22,9 @@ export default {
             inquiry: '',
         }
         return {
+            navMenu,
+            snsMenu,
+            menus,
             formModel,
             formData: [
                 {
@@ -99,26 +95,71 @@ export default {
                     class: 'mb-3',
                     key: 'inquiry',
                 },
-            ]
-        }
-
+            ],
+        };
     },
     methods: {
         handleUpdate(key, value) {
             this.formModel[key] = value
-        }
+        },
+        handleClick() {
+            window.location.href = '/login'
+        },
+        handleSubmit(e) {
+            e.preventDefault();
+        },
     }
 }
 </script>
 <template>
-    <Header />
-    <Background>
-        <Form
-          title="Inquiry"
-          class="mb-12 mt-7"
-          description="Join Biz Treats now! You can treat your with bulk at once."
+    <header class="header">
+        <nav>
+            <a href="/">
+                <img src="/assets/images/biz_treats_log.png" />
+            </a>
+            <a
+              v-for="menu in navMenu"
+              :href="menu.path"
+              :key="menu.title"
+              v-show="!menu?.hide"
+            >
+                {{ menu.title }}
+            </a>
+        </nav>
+        <button @click="handleClick">
+            Log in
+        </button>
+    </header>
+    <main class="background">
+        <section>
+            <p>
+                Digital Treats For Your Business
+            </p>
+            <span>
+                Foster Relationships with your Employees and Customers
+            </span>
+            <img src="/assets/images/bg.png" />
+        </section>
+        <form
+          @submit="handleSubmit"
+          class="form mb-12 mt-7"
         >
-            <template v-for="form in formData">
+            <div>
+                <img
+                  src="/assets/images/biz_treats_log.png"
+                  alt="header-log"
+                />
+                <h3>
+                    Inquiry
+                </h3>
+                <p>
+                    Join Biz Treats now! You can treat your with bulk at once.
+                </p>
+            </div>
+            <template
+              v-for="form in formData"
+              :key="form.label"
+            >
                 <LabelSelect
                   v-if="form.type === 'select'"
                   :label="form.label"
@@ -149,8 +190,54 @@ export default {
                   @update:modelValue="(val) => handleUpdate(form.key, val)"
                 />
             </template>
-            <button class="form-btn">Inquiry</button>
-        </Form>
-    </Background>
-    <Footer />
+            <button>Inquiry</button>
+        </form>
+    </main>
+    <footer class="footer">
+        <aside>
+            <div>
+                <img
+                  src="/assets/images/biz_treats_log.png"
+                  alt="footer-log"
+                />
+                <h4>
+                    {{ snsMenu.title }}
+                </h4>
+                <div>
+                    <a
+                      v-for="sns in snsMenu.children"
+                      :key="sns.name"
+                    >
+                        <img
+                          :src="sns.icon"
+                          :alt="sns.name"
+                        />
+                    </a>
+                </div>
+            </div>
+            <div
+              v-for="menu in menus"
+              :key="menu.title"
+            >
+                <h4>
+                    {{ menu.title }}
+                </h4>
+                <template
+                  v-for="sub in menu.children"
+                  :key="sub.title"
+                >
+                    <a
+                      :href="sub.link"
+                      :target="sub.target"
+                      :alt="sub.name"
+                    >
+                        {{ sub.name }}
+                    </a>
+                </template>
+            </div>
+        </aside>
+        <p>
+            Copyright © SHARE TREATS. All rights reserved.
+        </p>
+    </footer>
 </template>

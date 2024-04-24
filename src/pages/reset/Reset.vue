@@ -1,19 +1,10 @@
 <script>
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
-import Form from '@/components/Form.vue';
-import Background from '@/components/Background.vue';
 import LabelInput from '@/components/LabelInput.vue';
-import Recaptcha from '@/components/Recaptcha.vue';
+import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
     components: {
-        Header,
-        Footer,
-        Form,
         LabelInput,
-        Recaptcha,
-        Background,
     },
     data() {
         const formModel = {
@@ -22,6 +13,9 @@ export default {
             confirmPw: '',
         }
         return {
+            navMenu,
+            snsMenu,
+            menus,
             formModel,
             setupPwFormData: [
                 {
@@ -54,26 +48,58 @@ export default {
         }
     },
     methods: {
-        handleClick() {
-            console.log(window.location)
-            // 새 비밀번호 등록
-        },
         handleUpdate(key, value) {
             this.formModel[key] = value
-        }
+        },
+        handleSubmit(e) {
+            e.preventDefault();
+            // 새 비밀번호 등록
+        },
     }
 }
 </script>
 <template>
-    <Header />
-    <Background>
-        <Form
-          title="Welcome to Biz Treats!"
-          description="Please set your password in order to access the service."
-          class="gap-3"
-          @submit="handleClick"
+    <header class="header">
+        <nav class="!gap-2">
+            <a href="/">
+                <img src="/assets/images/biz_treats_log.png" />
+            </a>
+            <strong class="text-base leading-[22px] font-semibold text-[#4E4E4E]">
+                Password set up
+
+            </strong>
+        </nav>
+    </header>
+    <main class="background">
+        <section>
+            <p>
+                Digital Treats For Your Business
+            </p>
+            <span>
+                Foster Relationships with your Employees and Customers
+            </span>
+            <img src="/assets/images/bg.png" />
+        </section>
+        <form
+          class="form !gap-3"
+          @submit="handleSubmit"
         >
-        <template v-for="form in setupPwFormData">
+            <div>
+                <img
+                  src="/assets/images/biz_treats_log.png"
+                  alt="header-log"
+                />
+                <h3>
+                    Welcome to Biz Treats!
+                </h3>
+                <p>
+                    Please set your password in order to access the service.
+                </p>
+            </div>
+            <template
+              v-for="form in setupPwFormData"
+              :key="form.label"
+            >
                 <LabelInput
                   :label="form.label"
                   :name="form.name"
@@ -85,12 +111,58 @@ export default {
                 />
             </template>
             <button
-              class="form-btn mt-10"
+              class="mt-10"
               type="submit"
             >
                 Submit
             </button>
-        </Form>
-    </Background>
-    <Footer />
+        </form>
+    </main>
+    <footer class="footer">
+        <aside>
+            <div>
+                <img
+                  src="/assets/images/biz_treats_log.png"
+                  alt="footer-log"
+                />
+                <h4>
+                    {{ snsMenu.title }}
+                </h4>
+                <div>
+                    <a
+                      v-for="sns in snsMenu.children"
+                      :key="sns.name"
+                    >
+                        <img
+                          :src="sns.icon"
+                          :alt="sns.name"
+                        />
+                    </a>
+                </div>
+            </div>
+            <div
+              v-for="menu in menus"
+              :key="menu.title"
+            >
+                <h4>
+                    {{ menu.title }}
+                </h4>
+                <template
+                  v-for="sub in menu.children"
+                  :key="sub.title"
+                >
+                    <a
+                      :href="sub.link"
+                      :target="sub.target"
+                      :alt="sub.name"
+                    >
+                        {{ sub.name }}
+                    </a>
+                </template>
+            </div>
+        </aside>
+        <p>
+            Copyright © SHARE TREATS. All rights reserved.
+        </p>
+    </footer>
 </template>

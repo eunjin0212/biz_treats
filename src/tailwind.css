@@ -12,15 +12,6 @@ html {
 body {
     background-color: rgb(249 249 249);
 }
-/* #app {
-    position: relative;
-    margin: 0 auto;
-    padding-top: 3rem;
-} */
-
-.form-btn {
-  @apply bg-main text-white w-full h-12 rounded-lg
-}
 
 /* background */
 @layer components {
@@ -50,7 +41,7 @@ body {
         @apply flex justify-start items-center gap-4
     }
     header.header nav a {
-      @apply block w-[120px] text-center text-base font-medium -tracking-[0.2px] text-secondary
+      @apply block w-[120px] text-center text-base font-medium -tracking-[0.2px] text-[theme(colors.secondary)]
     }
     header.header nav a:first-of-type img {
         @apply h-[2.938rem]
@@ -74,7 +65,7 @@ body {
         @apply w-40 mr-[108px] last-of-type:mr-0
     }
     footer.footer aside div h4 {
-        @apply text-base font-medium text-title font-[theme(fontFamily.inter)] mb-5
+        @apply text-base font-medium text-[theme(colors.title)] font-[theme(fontFamily.inter)] mb-5
     }
     footer.footer aside > div a {
         @apply block text-xs font-medium text-[theme(colors.link)] mb-6 last-of-type:mb-0
@@ -86,7 +77,7 @@ body {
         @apply w-[117px] h-[59px]
     }
     footer.footer aside > div:first-of-type h4 {
-        @apply text-base font-medium text-title font-inter mt-6
+        @apply text-base font-medium text-[theme(colors.title)] font-[theme(fontFamily.inter)] mt-6
     }
     footer.footer aside > div:first-of-type div {
         @apply flex gap-2 mt-2
@@ -98,6 +89,28 @@ body {
         @apply text-xs
     }
     footer.footer p {
-        @apply font-inter text-sm font-medium text-[theme(colors.link)] pt-[30px] pb-[34px] border-t border-t-[theme(colors.separate)]
+        @apply font-[theme(fontFamily.inter)] text-sm font-medium text-[theme(colors.link)] pt-[30px] pb-[34px] border-t border-t-[theme(colors.separate)]
+    }
+}
+
+/* form */
+@layer components {
+    form.form {
+        @apply py-7 px-[46px] w-full gap-1 mr-[150px] max-w-[450px] bg-white flex flex-col items-center rounded shadow-[0px_12px_24px_0px_#00000014]
+    }
+    form.form > div:first-of-type {
+        @apply flex flex-col items-center w-full
+    }
+    form.form > div:first-of-type img {
+        @apply w-[87px] h-11
+    }
+    form.form > div:first-of-type h3 {
+        @apply font-[theme(fontFamily.roboto)] font-bold text-[26px] leading-[41px] tracking-[0.15px] text-[theme(colors.main)] mt-[8.5px]
+    }
+    form.form > div:first-of-type p {
+        @apply font-[theme(fontFamily.roboto)] w-full text-sm leading-[22px] tracking-[0.3px] text-[theme(colors.main)] mt-[15.5px]
+    }
+    form.form button {
+        @apply bg-[theme(colors.main)] text-white w-full h-12 rounded-lg
     }
 }
