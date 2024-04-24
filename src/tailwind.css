@@ -54,6 +54,7 @@ body {
     }
 }
 
+/* footer */
 @layer components {
     footer.footer {
         @apply relative bottom-0 left-0 bg-white w-full px-[111px] border-t border-t-[theme(colors.separate)]
@@ -112,5 +113,46 @@ body {
     }
     form.form button {
         @apply bg-[theme(colors.main)] text-white w-full h-12 rounded-lg
+    }
+}
+
+/* input, select, textarea */
+@layer components {
+    label.input, 
+    label.select, 
+    label.textarea {
+        @apply flex flex-col w-full gap-2
+    }
+    label.input span, 
+    label.select span, 
+    label.textarea span {
+        @apply text-[theme(colors.label)] font-medium text-xs leading-[18px] font-[theme(fontFamily.roboto)] block
+    }
+
+    label.input input, 
+    label.select select, 
+    label.textarea textarea {
+        @apply border border-[theme(colors.input-border)] placeholder:text-[theme(colors.placeholder)] rounded-lg h-10 px-4 font-normal tracking-[0.5px] text-xs leading-[26px]
+    }
+}
+
+/* input */
+@layer components {
+    label.input input {
+        @apply  disabled:bg-disabled
+    }
+}
+
+/* select */
+@layer components {
+    label.select select {
+        @apply appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_arrow.svg')]
+    }
+}
+
+/* select */
+@layer components {
+    label.textarea textarea {
+        @apply min-h-40 max-h-40
     }
 }

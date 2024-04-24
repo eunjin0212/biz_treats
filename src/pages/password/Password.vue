@@ -1,11 +1,9 @@
 <script>
-import LabelInput from '@/components/LabelInput.vue';
 import Recaptcha from '@/components/Recaptcha.vue';
 import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
     components: {
-        LabelInput,
         Recaptcha,
     },
     data() {
@@ -17,7 +15,7 @@ export default {
             snsMenu,
             menus,
             formModel,
-            forgetPwFormData: {
+            formData: {
                 label: 'Company Email',
                 name: 'company_email',
                 value: formModel.companyEmail,
@@ -78,14 +76,19 @@ export default {
                     Forgot Password
                 </h3>
             </div>
-            <LabelInput
-              :label="forgetPwFormData.label"
-              :name="forgetPwFormData.name"
-              :placeholder="forgetPwFormData.placeholder"
-              :type="forgetPwFormData.type"
-              v-model="formModel[forgetPwFormData.key]"
-              @update:modelValue="(val) => handleUpdate(forgetPwFormData.key, val)"
-            />
+            <label class="input">
+                <span>
+                    {{ formData.label }}
+                </span>
+                <input
+                  :name="formData.name"
+                  :placeholder="formData.placeholder"
+                  :type="formData.type"
+                  v-model="formModel[formData.key]"
+                  @input="(e) => handleUpdate(formData.key, e.target.value)"
+                  autocomplete
+                />
+            </label>
             <Recaptcha />
             <button
               class="form-btn"

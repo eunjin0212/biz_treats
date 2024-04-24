@@ -1,11 +1,7 @@
 <script>
-import LabelInput from '@/components/LabelInput.vue';
 import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
-    components: {
-        LabelInput,
-    },
     data() {
         const formModel = {
             companyEmail: window.location.href.split('=')[1],
@@ -17,7 +13,7 @@ export default {
             snsMenu,
             menus,
             formModel,
-            setupPwFormData: [
+            formData: [
                 {
                     label: 'Company Email',
                     name: 'company_email',
@@ -96,20 +92,24 @@ export default {
                     Please set your password in order to access the service.
                 </p>
             </div>
-            <template
-              v-for="form in setupPwFormData"
+            <label
+              v-for="form in formData"
               :key="form.label"
+              class="input"
             >
-                <LabelInput
-                  :label="form.label"
+                <span class="">
+                    {{ form.label }}
+                </span>
+                <input
+                  :type="form.type"
                   :name="form.name"
                   :placeholder="form.placeholder"
-                  :type="form.type"
-                  :disabled="form.disabled"
                   v-model="formModel[form.key]"
-                  @update:modelValue="(val) => handleUpdate(form.key, val)"
+                  :disabled="form.disabled"
+                  @input="(e) => handleUpdate(form.key, e.target.value)"
+                  autocomplete
                 />
-            </template>
+            </label>
             <button
               class="mt-10"
               type="submit"

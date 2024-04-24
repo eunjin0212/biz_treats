@@ -1,14 +1,8 @@
 <script>
-import LabelInput from '@/components/LabelInput.vue';
-import LabelSelect from '@/components/LabelSelect.vue';
-import LabelTextArea from '@/components/LabelTextArea.vue';
 import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
     components: {
-        LabelInput,
-        LabelSelect,
-        LabelTextArea,
     },
     data() {
         const formModel = {
@@ -84,7 +78,7 @@ export default {
                     name: 'municipality',
                     value: formModel.municipality,
                     type: 'text',
-                    class: 'mt-3',
+                    class: 'mt-1',
                     key: 'municipality',
                 },
                 {
@@ -160,37 +154,68 @@ export default {
               v-for="form in formData"
               :key="form.label"
             >
-                <LabelSelect
+                <label
+                  class="select"
+                  :class="form?.class"
                   v-if="form.type === 'select'"
-                  :label="form.label"
-                  :name="form.name"
-                  :class="form?.class"
-                  :placeholder="form?.placeholder"
-                  :option="form?.option"
-                  :defaultSelected="form?.defaultSelected"
-                  v-model="formModel[form.key]"
-                  @update:modelValue="(val) => handleUpdate(form.key, val)"
-                />
-                <LabelTextArea
+                >
+                    <span>
+                        {{ form.label }}
+                    </span>
+                    <select
+                      v-model="formModel[form.key]"
+                      :name="form.name"
+                      :placeholder="form.placeholder"
+                      @change="(e) => handleUpdate(form.key, e.target.value)"
+                    >
+                        <option
+                          disabled
+                          :value="form?.defaultSelected"
+                        >
+                            {{ form?.defaultSelected }}
+                        </option>
+                        <option
+                          v-for="opt in form?.option"
+                          :key="opt"
+                          :value="opt?.value || opt"
+                        >
+                            {{ opt?.label || opt }}
+                        </option>
+                    </select>
+                </label>
+                <label
+                  class="textarea"
                   v-else-if="form.type === 'textarea'"
-                  :label="form.label"
-                  :name="form.name"
-                  :class="form?.class"
-                  :placeholder="form.placeholder"
-                  v-model="formModel[form.key]"
-                  @update:modelValue="(val) => handleUpdate(form.key, val)"
-                />
-                <LabelInput
+                >
+                    <span>
+                        {{ form.label }}
+                    </span>
+                    <textarea
+                      v-model="formModel[form.key]"
+                      :name="form.name"
+                      @input="(e) => handleUpdate(form.key, e.target.value)"
+                    />
+                </label>
+                <label
+                  class="input"
                   v-else
-                  :label="form.label"
-                  :name="form.name"
-                  :class="form?.class"
-                  :placeholder="form.placeholder"
-                  v-model="formModel[form.key]"
-                  @update:modelValue="(val) => handleUpdate(form.key, val)"
-                />
+                >
+                    <span class="">
+                        {{ form.label }}
+                    </span>
+                    <input
+                      :type="form.type"
+                      :label="form.label"
+                      :name="form.name"
+                      :class="form?.class"
+                      :placeholder="form.placeholder"
+                      v-model="formModel[form.key]"
+                      @input="(e) => handleUpdate(form.key, e.target.value)"
+                      autocomplete
+                    />
+                </label>
             </template>
-            <button>Inquiry</button>
+            <button class="mt-2">Inquiry</button>
         </form>
     </main>
     <footer class="footer">

@@ -1,12 +1,10 @@
 <script>
-import LabelInput from '@/components/LabelInput.vue';
 import Checkbox from '@/components/Checkbox.vue';
 import Recaptcha from '@/components/Recaptcha.vue';
 import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
     components: {
-        LabelInput,
         Checkbox,
         Recaptcha,
     },
@@ -99,19 +97,24 @@ export default {
                     Log In
                 </h3>
             </div>
-            <template
+            <label
               v-for="form in formData"
               :key="form.label"
+              class="input"
             >
-                <LabelInput
+                <span class="">
+                    {{ form.label }}
+                </span>
+                <input
+                  :type="form.type"
                   :label="form.label"
                   :name="form.name"
                   :placeholder="form.placeholder"
-                  :type="form.type"
                   v-model="formModel[form.key]"
-                  @update:modelValue="(val) => handleUpdate(form.key, val)"
+                  @input="(e) => handleUpdate(form.key, e.target.value)"
+                  autocomplete
                 />
-            </template>
+            </label>
             <Checkbox
               label="Remember this account"
               v-model="rememberAccount"
