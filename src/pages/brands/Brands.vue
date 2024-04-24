@@ -20,7 +20,7 @@ export default {
 </script>
 <template>
     <header class="header">
-        <nav class="">
+        <nav>
             <a href="/">
                 <img src="/assets/images/biz_treats_log.png" />
             </a>

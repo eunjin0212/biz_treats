@@ -101,7 +101,7 @@ export default {
               :key="form.label"
               class="input"
             >
-                <span class="">
+                <span>
                     {{ form.label }}
                 </span>
                 <input
