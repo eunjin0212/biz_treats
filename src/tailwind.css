@@ -7,6 +7,7 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 16px;
 }
 body {
     background-color: rgb(249 249 249);
@@ -19,4 +20,84 @@ body {
 
 .form-btn {
   @apply bg-main text-white w-full h-12 rounded-lg
+}
+
+/* background */
+@layer components {
+  main.background {
+    @apply flex bg-gradient-to-t to-[#7ACFF3] from-[#259DD0] min-h-[calc(100vh-93px)]  min-w-[1440px] justify-between items-center
+  }
+  main.background section {
+    @apply flex flex-col items-center justify-center w-2/4 ml-28
+  }
+  main.background section p {
+    @apply font-extrabold text-4xl text-white
+  }
+  main.background section span {
+    @apply text-base font-normal text-white
+  }
+  main.background section img {
+    @apply mt-5 w-[586px] h-48
+  }
+}
+
+/* header */
+@layer components {
+    header.header {
+        @apply flex justify-between items-center py-1 pl-12 pr-14 border-b border-b-[theme(colors.gray.50)]
+    }
+    header.header nav {
+        @apply flex justify-start items-center gap-4
+    }
+    header.header nav a {
+      @apply block w-[120px] text-center text-base font-medium -tracking-[0.2px] text-secondary
+    }
+    header.header nav a:first-of-type img {
+        @apply h-[2.938rem]
+    }
+    header.header button {
+        @apply text-[theme(colors.main)] text-base font-medium -tracking-[0.2px] rounded-md border border-[theme(colors.gray.50)] w-[120px] h-10
+    }
+    header.header button:hover {
+        @apply bg-[#E7E7E745]
+    }
+}
+
+@layer components {
+    footer.footer {
+        @apply relative bottom-0 left-0 bg-white w-full px-[111px] border-t border-t-[theme(colors.separate)]
+    }
+    footer.footer aside {
+        @apply flex pb-16 pt-20
+    }
+    footer.footer aside > div {
+        @apply w-40 mr-[108px] last-of-type:mr-0
+    }
+    footer.footer aside div h4 {
+        @apply text-base font-medium text-title font-[theme(fontFamily.inter)] mb-5
+    }
+    footer.footer aside > div a {
+        @apply block text-xs font-medium text-[theme(colors.link)] mb-6 last-of-type:mb-0
+    }
+    footer.footer aside > div:first-of-type {
+        @apply mr-[283px]
+    }
+    footer.footer aside > div:first-of-type > img {
+        @apply w-[117px] h-[59px]
+    }
+    footer.footer aside > div:first-of-type h4 {
+        @apply text-base font-medium text-title font-inter mt-6
+    }
+    footer.footer aside > div:first-of-type div {
+        @apply flex gap-2 mt-2
+    }
+    footer.footer aside > div:first-of-type div a {
+        @apply inline-flex items-center justify-center w-10 h-10 bg-[theme(colors.sns)] text-center rounded-full
+    }
+    footer.footer aside > div:first-of-type div a img {
+        @apply text-xs
+    }
+    footer.footer p {
+        @apply font-inter text-sm font-medium text-[theme(colors.link)] pt-[30px] pb-[34px] border-t border-t-[theme(colors.separate)]
+    }
 }
