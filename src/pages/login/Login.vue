@@ -115,7 +115,7 @@ export default {
                 />
             </label>
             <div
-              class="checkbox my-[10px]"
+              class="checkbox my-2.5"
               @click.prevent="() => {
                 rememberAccount = !rememberAccount;
             }"

@@ -12,6 +12,12 @@ module.exports = {
                 'height': 'height',
                 'spacing': 'margin, padding',
             },
+            spacing: {
+                '1.5': '0.375rem', // 6px
+                '2.5': '0.625rem', // 10px
+                '3.5': '0.875rem', // 14px
+                '4.5': '1.125rem', // 18px
+            },
             colors : {
                 'top-menu-blue' : '#29AAE3',
                 'primary' :{
@@ -33,7 +39,12 @@ module.exports = {
                 'input-border': '#E0E0E2',
                 placeholder: '#BBBBBB',
                 'subLink': '#898989',
+                neutral: '#888888',
                 'disabled': '#F0F0F0',
+                'search-border': '#ECECEC',
+                'search-bg': '#FDFDFD',
+                'header-btn-border': '#EFEFEF',
+                'badge': '#FF6363',
                 'gray' :{
                     50: '#E7E7E7',
                     100: '#E9E9E9',

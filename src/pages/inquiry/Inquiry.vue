@@ -27,7 +27,7 @@ export default {
                     value: formModel.companyName,
                     placeholder: 'Enter the Company Name',
                     type: 'text',
-                    class: 'mt-[6px]',
+                    class: 'mt-1.5',
                     key: 'companyName',
                 },
                 {
