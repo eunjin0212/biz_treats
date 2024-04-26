@@ -1,5 +1,5 @@
 <script>
-import CheckSvg from '@/assets/icons/Check.vue'
+import CheckSvg from '@/assets/icons/CheckSvg.vue'
 import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
