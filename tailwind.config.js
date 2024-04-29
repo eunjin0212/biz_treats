@@ -46,6 +46,13 @@ module.exports = {
                 'bg': '#F9F9F9',
                 'header-btn-border': '#EFEFEF',
                 'badge': '#FF6363',
+                'lnb-hover': '#F4F4F4',
+                'lnb-hover-text': '#1A1D1F',
+                'dropdown-hover-bg': '#F3F3F3',
+                'dropdown-text': '#6F767E',
+                'alert-description': '#B4B4B4',
+                'alert-hr': '#F1F1F1',
+                'alert-border': '#F6F6F6',
                 'gray' :{
                     50: '#E7E7E7',
                     100: '#E9E9E9',

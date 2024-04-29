@@ -255,13 +255,69 @@ body {
         @apply inline-block
     }
     div.dropdown .dropdown-opts {
-        @apply bg-white text-secondary absolute z-20 w-full drop-shadow-md
+        @apply bg-white absolute right-0 mt-[theme(spacing[2.5])] z-20 drop-shadow-md w-64 py-[theme(spacing[3.5])] px-2 rounded-2xl;
+        box-shadow: 0px 32px 48px -8px #0000001A;
+        box-shadow: 0px 0px 14px -4px #0000000D;
+        box-shadow: 0px 40px 64px -12px #00000014;
     }
     div.dropdown .dropdown-opts > span {
-        @apply block p-1 hover:bg-slate-50 cursor-pointer
+        @apply cursor-pointer px-[theme(spacing[3.5])] py-[15px] rounded-[theme(spacing[2.5])] text-[theme(colors.dropdown-text)] text-sm leading-6 flex items-center gap-[theme(spacing[1.5])] font-[theme(fontFamily.inter)] hover:bg-[theme(colors.dropdown-hover-bg)] hover:bg-slate-50
     }
 }
 
+/* alert wrapper */
+@layer components {
+    aside.alert-wrapper {
+        @apply absolute bg-white top-12 right-0 mt-1.5 w-[660px] h-[636px] rounded-2xl;
+        box-shadow: 0px 32px 48px -8px #0000001A;
+        box-shadow: 0px 0px 14px -4px #0000000D;
+        box-shadow: 0px 40px 64px -12px #00000014;
+    }
+    aside.alert-wrapper .alert-header {
+        @apply px-6 pt-3 flex flex-col
+    }
+    aside.alert-wrapper .alert-header h1 {
+        @apply text-[theme(colors.lnb-hover-text)] leading-8 text-left text-xl font-[theme(fontFamily.inter)] font-semibold 
+    }
+    aside.alert-wrapper .alert-header > p {
+        @apply flex justify-between items-center
+    }
+    aside.alert-wrapper .alert-header > p span, aside.alert-wrapper .alert-header > p button {
+        @apply text-[theme(colors.alert-description)] text-xs font-normal leading-6 font-[theme(fontFamily.inter)]
+    }
+    aside.alert-wrapper hr {
+        @apply border-[theme(colors.alert-hr)]
+    }
+    aside.alert-wrapper ul {
+    }
+    aside.alert-wrapper ul li {
+        @apply py-2 px-3 border-t border-t-[theme(colors.alert-border)] first-of-type:border-t-0
+    }
+    aside.alert-wrapper > ul li > div {
+        @apply flex items-center relative hover:bg-[theme(colors.dropdown-hover-bg)] p-3 rounded-[theme(spacing[2.5])]
+    }
+    aside.alert-wrapper > ul li > div > span:first-of-type { /* alert icon */
+        @apply rounded-full inline-block p-4
+    }
+    aside.alert-wrapper > ul li > div > span:last-of-type.alert-check { /* alert check icon */
+        @apply bg-[#29ABE2] absolute right-3 rounded-full py-[7px] px-[theme(spacing[1.5])]
+    }
+    aside.alert-wrapper > ul li > div > div {
+        @apply flex flex-col items-start gap-1 ml-3
+    }
+    aside.alert-wrapper > ul li > div > div > span { /* alert title, description */
+        @apply text-[theme(colors.alert-description)] text-xs font-medium leading-6 font-[theme(fontFamily.inter)]
+    }
+    aside.alert-wrapper > ul li > div > div > p > span:first-of-type {
+        @apply inline-block text-[theme(colors.dropdown-text)] text-sm leading-6 font-bold font-[theme(fontFamily.inter)] mr-1
+    }
+    aside.alert-wrapper > ul li > div > div > p > span:last-of-type {
+        @apply inline-block text-[theme(colors.alert-description)] font-normal text-xs leading-6
+    }
+
+}
+
+/* LNB */
 @layer components {
     aside.lnb {
         @apply bg-white pt-[13px] pb-[theme(spacing[4.5])] px-2 rounded-xl w-[266px] mt-[37px] mb-[57px] ml-[83px]
@@ -270,10 +326,10 @@ body {
         @apply flex flex-col
     }
     aside.lnb ul li {
-      @apply flex flex-col text-[#B4B4B4] mb-[theme(spacing[3.5])]
+      @apply flex flex-col text-[theme(colors.alert-description)] mb-[theme(spacing[3.5])]
     }
     aside.lnb ul li hr {
-        @apply bg-[theme(colors.header-btn-border)] rounded-[1px] mb-3
+        @apply border-[theme(colors.header-btn-border)] rounded-[1px] mb-3
     }
     aside.lnb ul li div,
     aside.lnb ul li a {
@@ -283,6 +339,6 @@ body {
         @apply py-3
     }
     aside.lnb ul li a {
-        @apply text-[#6F767E] mx-[1px] p-3 rounded-lg hover:bg-[#F4F4F4] hover:text-[#1A1D1F] active:bg-[#F4F4F4] active:text-[#1A1D1F]
+        @apply text-[theme(colors.dropdown-text)] mx-[1px] p-3 rounded-lg hover:bg-[theme(colors.lnb-hover)] hover:text-[theme(colors.lnb-hover-text)] active:bg-[theme(colors.lnb-hover)] active:text-[theme(colors.lnb-hover-text)]
     }
 }
