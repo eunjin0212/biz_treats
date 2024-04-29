@@ -336,9 +336,22 @@ body {
         @apply font-semibold font-[theme(fontFamily.inter)] text-[15px] leading-6 -tracking-[0.323px]
     }
     aside.lnb ul li div {
-        @apply py-3
+        @apply py-3 px-1
     }
     aside.lnb ul li a {
         @apply text-[theme(colors.dropdown-text)] mx-[1px] p-3 rounded-lg hover:bg-[theme(colors.lnb-hover)] hover:text-[theme(colors.lnb-hover-text)] active:bg-[theme(colors.lnb-hover)] active:text-[theme(colors.lnb-hover-text)]
+    }
+}
+
+/* section card */
+@layer components {
+    div.section-card {
+      @apply bg-white rounded-xl w-full pt-6 pb-3 px-3 ml-[30px] mt-[37px]
+    }
+    div.section-card h2 { /* section card header */
+        @apply ml-3 text-[theme(colors.lnb-hover-text)] text-xl font-semibold leading-8 font-[theme(fontFamily.inter)] flex items-center
+    }
+    div.section-card h2 span { /* section card header */
+        @apply bg-[#B1E5FC] rounded w-4 h-8 inline-block mr-4
     }
 }

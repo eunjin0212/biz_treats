@@ -62,4 +62,44 @@ module.exports = {
         title: 'Company Website',
         path: '/companyWebsite'
     },
+    'myWallet': {
+        title: 'My Wallet',
+        path: '/myWallet'
+    },
+    // 'treatsHistory': {
+    //     title: 'Treats History',
+    //     path: '/treatsHistory'
+    // },
+    // 'accountInfo': {
+    //     title: 'Account Info',
+    //     path: '/accountInfo'
+    // },
+    // 'campaignInfo': {
+    //     title: 'Campaign Info',
+    //     path: '/campaignInfo'
+    // },
+    // 'treatsHistory': {
+    //     title: 'Member Management',
+    //     path: '/treatsHistory'
+    // },
+    // 'pointsTopUpManagement': {
+    //     title: 'Points Top-up Management',
+    //     path: '/pointsTopUpManagement'
+    // },
+    // 'pointsTransfer': {
+    //     title: 'Points Transfer/Retrieve',
+    //     path: '/pointsTransfer'
+    // },
+    // 'monthlyReport': {
+    //     title: 'Monthly Report',
+    //     path: '/monthlyReport'
+    // },
+    // 'permissionSettings': {
+    //     title: 'Permission Settings',
+    //     path: '/permissionSettings'
+    // },
+    // 'systemSettings': {
+    //     title: 'System Settings',
+    //     path: '/systemSettings'
+    // },
 }

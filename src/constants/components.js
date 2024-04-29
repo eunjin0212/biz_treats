@@ -125,3 +125,56 @@ export const lnbMenu = [
         ],
     },
 ]
+
+export const myPageLnbMenu = [
+    {
+        title: 'My Treats',
+        children: [
+            {
+                title: 'My Wallet',
+                path: '/myWallet'
+            },
+            {
+                title: 'Treats History',
+                path: '/treatsHistory'
+            },
+            {
+                title: 'Account Info',
+                path: '/accountInfo'
+            },
+        ],
+    },
+    {
+        title: 'My Campaign',
+        children: [
+            {
+                title: 'Campaign Info',
+                path: '/campaignInfo'
+            },
+            {
+                title: 'Member Management',
+                path: '/treatsHistory'
+            },
+            {
+                title: 'Points Top-up Management',
+                path: '/pointsTopUpManagement'
+            },
+            {
+                title: 'Points Transfer/Retrieve',
+                path: '/pointsTransfer'
+            },
+            {
+                title: 'Monthly Report',
+                path: '/monthlyReport'
+            },
+            {
+                title: 'Permission Settings',
+                path: '/permissionSettings'
+            },
+            {
+                title: 'System Settings',
+                path: '/systemSettings'
+            },
+        ],
+    },
+]
