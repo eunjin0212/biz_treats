@@ -79,3 +79,49 @@ const headerNav = {
 }
 
 export const navMenu = Object.values(headerNav).flat()
+
+export const lnbMenu = [
+    {
+        title: 'Help',
+        children: [
+            {
+                title: 'FAQS',
+                path: '/faqs'
+            },
+            {
+                title: 'Customer Service',
+                path: '/customerService'
+            },
+        ],
+    },
+    {
+        title: 'Terms',
+        children: [
+            {
+                title: 'Terms and Service',
+                path: '/termsService'
+            },
+            {
+                title: 'Privacy Policy',
+                path: '/privacyPolicy'
+            },
+        ],
+    },
+    {
+        title: 'Links',
+        children: [
+            {
+                title: 'About Us',
+                path: '/about'
+            },
+            {
+                title: 'Merchant Partnership',
+                path: '/merchantPartnership'
+            },
+            {
+                title: 'Company Website',
+                path: '/companyWebsite'
+            },
+        ],
+    },
+]

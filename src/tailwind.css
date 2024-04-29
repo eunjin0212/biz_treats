@@ -226,7 +226,7 @@ body {
 /* badge */
 @layer components {
     span.badge {
-        @apply text-sm leading-4 -tracking-[0.323px] font-bold font-[theme(fontFamily.inter)] text-white bg-[theme(colors.badge)] px-2 py-1 rounded-[10px]
+        @apply absolute -top-2 -right-3 text-sm leading-4 -tracking-[0.323px] font-bold font-[theme(fontFamily.inter)] text-white bg-[theme(colors.badge)] px-2 py-1 rounded-[10px]
     }
 }
 

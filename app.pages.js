@@ -38,4 +38,28 @@ module.exports = {
         path: '/login',
         hide: true,
     },
+    'faqs': {
+        title: 'FAQS',
+        path: '/faqs'
+    },
+    'customerService': {
+        title: 'Customer Service',
+        path: '/customerService'
+    },
+    'termsService': {
+        title: 'Terms and Service',
+        path: '/termsService'
+    },
+    'privacyPolicy': {
+      title: 'Privacy Policy',
+      path: '/privacyPolicy'
+    },
+    'merchantPartnership': {
+        title: 'Merchant Partnership',
+        path: '/merchantPartnership'
+    },
+    'companyWebsite': {
+        title: 'Company Website',
+        path: '/companyWebsite'
+    },
 }
