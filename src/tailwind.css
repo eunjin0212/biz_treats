@@ -176,7 +176,7 @@ body {
 /* recaptcha */
 @layer components {
     div.recaptcha {
-        @apply h-14 w-full rounded-lg bg-[#F9F9F9] border border-[#E0E0E0] flex justify-between items-center px-[30px]
+        @apply h-14 w-full rounded-lg bg-[theme(colors.bg)] border border-[#E0E0E0] flex justify-between items-center px-[30px]
     }
     div.recaptcha > div > span {
         @apply mr-2 border rounded-sm block !w-4 !h-4
@@ -193,7 +193,7 @@ body {
 
 @layer components {
     header.service-header {
-        @apply py-[11px] pr-[61px] pl-[103px] bg-white min-w-[1440px]
+        @apply py-[11px] pr-[61px] pl-[103px] bg-white min-w-[1440px] border-b border-b-[#E1E3E1]
     }
     header.service-header nav {
         @apply flex items-center
@@ -255,9 +255,34 @@ body {
         @apply inline-block
     }
     div.dropdown .dropdown-opts {
-        @apply bg-white text-secondary absolute z-20 w-full 
+        @apply bg-white text-secondary absolute z-20 w-full drop-shadow-md
     }
     div.dropdown .dropdown-opts > span {
         @apply block p-1 hover:bg-slate-50 cursor-pointer
+    }
+}
+
+@layer components {
+    aside.lnb {
+        @apply bg-white pt-[13px] pb-[theme(spacing[4.5])] px-2 rounded-xl w-[266px] mt-[37px] mb-[57px] ml-[83px]
+    }
+    aside.lnb ul {
+        @apply flex flex-col
+    }
+    aside.lnb ul li {
+      @apply flex flex-col text-[#B4B4B4] mb-[theme(spacing[3.5])]
+    }
+    aside.lnb ul li hr {
+        @apply bg-[theme(colors.header-btn-border)] rounded-[1px] mb-3
+    }
+    aside.lnb ul li div,
+    aside.lnb ul li a {
+        @apply font-semibold font-[theme(fontFamily.inter)] text-[15px] leading-6 -tracking-[0.323px]
+    }
+    aside.lnb ul li div {
+        @apply py-3
+    }
+    aside.lnb ul li a {
+        @apply text-[#6F767E] mx-[1px] p-3 rounded-lg hover:bg-[#F4F4F4] hover:text-[#1A1D1F] active:bg-[#F4F4F4] active:text-[#1A1D1F]
     }
 }

@@ -43,6 +43,7 @@ module.exports = {
                 'disabled': '#F0F0F0',
                 'search-border': '#ECECEC',
                 'search-bg': '#FDFDFD',
+                'bg': '#F9F9F9',
                 'header-btn-border': '#EFEFEF',
                 'badge': '#FF6363',
                 'gray' :{
