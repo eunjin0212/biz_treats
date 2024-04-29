@@ -91,7 +91,7 @@ export default {
                   @click="alert = !alert"
                 >
                     <BellSvg />
-                    <span class="badge">12</span>
+                    <span class="badge">{{ alertData.length }}</span>
                 </button>
                 <aside
                   class="alert-wrapper"
@@ -146,7 +146,7 @@ export default {
                 <div class="dropdown border-l border-l-[#60D0FF]">
                     <button @click="dropdown = !dropdown">
                         <span>
-                            10000 points
+                            10000 points    
                         </span>
                         <DropdownSvg />
                     </button>

@@ -91,7 +91,7 @@ export default {
                   @click="alert = !alert"
                 >
                     <BellSvg />
-                    <span class="badge">12</span>
+                    <span class="badge">{{ alertData.length }}</span>
                 </button>
                 <aside
                   class="alert-wrapper"
