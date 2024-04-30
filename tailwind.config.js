@@ -53,6 +53,8 @@ module.exports = {
                 'alert-description': '#B4B4B4',
                 'alert-hr': '#F1F1F1',
                 'alert-border': '#F6F6F6',
+                'info-wrapper': '#FBFBFB',
+                'info-content': '#676767',
                 'gray' :{
                     50: '#E7E7E7',
                     100: '#E9E9E9',
@@ -66,6 +68,7 @@ module.exports = {
                 'roboto': ['Roboto', 'sans-serif'],
                 inter: ["inter", "sans-serif"],
                 nanum: ["NanumSquareRound", "sans-serif"],
+                poppins: ["Poppins", "sans-serif"],
             },
         },
         screens: {

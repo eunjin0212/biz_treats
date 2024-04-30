@@ -10,6 +10,10 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
+import MessageSvg from '@/assets/icons/MessageSvg.vue';
+import PhoneSvg from '@/assets/icons/PhoneSvg.vue';
+import BookmarkSvg from '@/assets/icons/BookmarkSvg.vue';
+import PinSvg from '@/assets/icons/PinSvg.vue';
 
 export default {
     components: {
@@ -23,6 +27,10 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
+        MessageSvg,
+        PhoneSvg,
+        BookmarkSvg,
+        PinSvg,
     },
     data() {
         return {
@@ -188,9 +196,60 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section class="w-[calc(100%-266px)] mr-[106px]">
+        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] flex flex-col">
             <div class="section-card">
                 <h2><span></span>My Wallet</h2>
+                <ul class="bg-info-wrapper px-4 py-2.5 rounded-xl flex items-center gap-[22px]">
+                    <li class="wallet-info__card">
+                        <h3 class="wallet-info__card-header">
+                            <span class="">Account Info</span>
+                            <a href="/accountInfo">Edit Info ></a>
+                        </h3>
+                        <hr />
+                        <ul class="wallet-info__card-content">
+                            <li>
+                                <span><MessageSvg /></span>sena@sharetreats.com
+                            </li>
+                            <li>
+                                <span><PhoneSvg /></span>09123456789
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="wallet-info__card">
+                        <h3 class="wallet-info__card-header">
+                            <span class="">Campaign Info</span>
+                            <a href="/campaignInfo">Edit Info ></a>
+                        </h3>
+                        <hr />
+                        <ul class="wallet-info__card-content">
+                            <li>
+                                <span><BookmarkSvg /></span>Share Treats Marketing
+                            </li>
+                            <li class="!leading-[14px]">
+                                <span><PinSvg /></span>Unit 501, BDO Equitable Tower, 8751Paseo De Roxas, Makati City, 1209
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="wallet-info__card">
+                        <h3 class="wallet-info__card-header">
+                            <span class="">Wallet Name</span>
+                            <a href="/walletName">Edit Info ></a>
+                        </h3>
+                        <hr class="border-gray100" />
+                        <ul class="wallet-info__card-content ml-2.5 !pt-2.5">
+                            <li class="!text-[#A3A3A3] !text-sm leading-5 !font-bold !font-poppins !items-center">
+                                <i class="!text-[#4D4D4D] font-semibold font-inter leading-[48px] text-4xl">100,000</i>
+                                Points
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="section-card">
+                <h2><span></span>Summary of March</h2>
+            </div>
+            <div class="section-card">
+                <h2><span></span>Point History</h2>
             </div>
         </section>
     </main>
