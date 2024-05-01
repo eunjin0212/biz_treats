@@ -66,10 +66,10 @@ module.exports = {
         title: 'My Wallet',
         path: '/myWallet'
     },
-    // 'treatsHistory': {
-    //     title: 'Treats History',
-    //     path: '/treatsHistory'
-    // },
+    'treatsHistory': {
+        title: 'Treats History',
+        path: '/treatsHistory'
+    },
     // 'accountInfo': {
     //     title: 'Account Info',
     //     path: '/accountInfo'

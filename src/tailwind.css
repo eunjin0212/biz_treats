@@ -347,7 +347,7 @@ body {
 /* section card */
 @layer components {
     div.section-card {
-      @apply bg-white rounded-xl w-full pt-6 pb-3 px-3 ml-[30px] mt-[37px]
+      @apply bg-white rounded-xl w-full pt-6 pb-3 px-3 ml-[30px] first-of-type:mt-[37px]
     }
     div.section-card h2 { /* section card header */
         @apply ml-3 mb-6 text-[theme(colors.lnb-hover-text)] text-xl font-semibold leading-8 font-[theme(fontFamily.inter)] flex items-center
@@ -389,21 +389,79 @@ body {
 /* table function bar */
 @layer components {
     div.table-function-bar {
-        @apply px-6 py-[9px] flex items-center border border-[theme(colors.header-btn-border)] border-l-0 border-r-0
+        @apply px-6 py-[9px] flex justify-between items-center border border-[theme(colors.header-btn-border)] border-l-0 border-r-0
+    }
+    div.table-function-bar form {
+        @apply flex items-center gap-2
+    }
+    div.table-function-bar form button[type="submit"] {
+        @apply border border-[theme(colors.main)] w-20 h-10 py-2 px-4 rounded text-[#5EC0E9] text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)]
+    }
+    div.table-function-bar button[type="button"] {
+        @apply flex gap-2 items-center h-10 px-3 py-2 border border-[theme(colors.btn-border)] rounded text-[theme(colors.download-btn-text)] text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)] float-right
     }
 }
 
+/* date-picker */
 @layer components {
     label.date-picker {
         @apply flex items-center justify-center gap-1 relative border border-[theme(colors.date-picker-border)] w-[114px] h-10 bg-white rounded text-sm leading-5 font-medium text-[theme(colors.date-picker-text)] font-[theme(fontFamily.manrope)]
     }
     label.date-picker input {
-        @apply p-0 opacity-0 absolute z-10 w-full h-full
+        @apply p-0 opacity-0 absolute top-0 z-10 w-full h-full
     }
-    label.date-picker input::-webkit-calendar-picker-indicator {
+    label.date-picker input[type="date"]::-webkit-calendar-picker-indicator {
         @apply w-full h-full
     }
     span.date-range-symbol {
-        @apply bg-[#D9D9D9] rounded-[3px] h-[2px] w-[theme(spacing[2.5])] mx-[theme(spacing[1.5])]
+        @apply bg-[#D9D9D9] rounded-[3px] h-[2px] w-[theme(spacing[2.5])] -mx-[2px]
+    }
+}
+
+/* table search input */
+@layer components {
+    label.search-input {
+        @apply px-4 py-2 h-10 w-64 rounded border border-[theme(colors.header-btn-border)] flex items-center
+    }
+    label.search-input input {
+        @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full text-[theme(colors.gray.800)] placeholder:text-[theme(colors.date-picker-textl)] text-xs font-medium leading-[theme(spacing[2.5])] bg-transparent
+    }
+}
+
+/* table search select */
+@layer components {
+    select.search-select {
+        @apply w-[104px] h-10 p-3 rounded border border-[theme(colors.header-btn-border)] focus:border-[theme(colors.header-btn-border)] focus-visible:border-[theme(colors.header-btn-border)] focus:ring-0 text-[theme(colors.gray.800)] placeholder:text-[theme(colors.date-picker-textl)] text-xs font-medium leading-[theme(spacing[2.5])] appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_icon.svg')]
+    }
+}
+
+/* table */
+@layer components {
+    table.data-table {
+        @apply w-full font-[theme(fontFamily.manrope)] text-xs text-[theme(colors.dropdown-text)]
+    }
+    table.data-table thead {
+        @apply border-b border-b-[theme(colors.header-btn-border)] h-12
+    }
+    table.data-table thead tr th {
+        @apply font-medium leading-3 -tracking-tight text-left first-of-type:pl-6 
+    }
+    table.data-table tbody {
+        @apply scroll-auto
+    }
+    table.data-table tbody tr {
+        @apply even:bg-[theme(colors.info-wrapper)] h-14
+    }
+    table.data-table tbody tr td {
+        @apply py-2 first-of-type:pl-6 last-of-type:pr-6
+    }
+}
+/* table pagination */
+@layer components {
+    div.pagination-wrapper {
+        @apply flex items-center justify-center gap-[2px] mx-auto w-[256px]
+    }
+    div.pagination-wrapper button {
+        @apply w-[34px] h-[34px] rounded px-2 py-1 bg-[#F1F2F6] inline-flex justify-center items-center
     }
 }
