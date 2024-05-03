@@ -162,7 +162,7 @@ export default {
             <button type="submit">Login</button>
             <a
               href="/password"
-              class="text-subLink text-xs tracking-[0.1px] mt-3"
+              class="text-gray-500 text-xs tracking-[0.1px] mt-3"
             >Forgot your password? Click here!</a>
         </form>
     </main>

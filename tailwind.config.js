@@ -45,7 +45,6 @@ module.exports = {
                 'info-content': '#676767',
                 'dropdown-text': '#6F767E',
                 link: '#777E90',
-                'subLink': '#898989',
                 neutral: {
                     default: '#888888'
                 },
