@@ -70,6 +70,10 @@ module.exports = {
         title: 'Treats History',
         path: '/treatsHistory'
     },
+    'chooseWallet': {
+        title: 'Choose Wallet',
+        path: '/chooseWallet'
+    },
     // 'accountInfo': {
     //     title: 'Account Info',
     //     path: '/accountInfo'
