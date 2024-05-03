@@ -45,7 +45,7 @@ export default {
         const filters = {
             fromDate: moment(new Date()).format('DD/MM/YYYY'),
             toDate: moment(new Date()).format('DD/MM/YYYY'),
-            type: '',
+            status: '',
         }
         return {
             navMenu,
@@ -80,23 +80,26 @@ export default {
             ],
             tableColumns: [
                 { label: 'Order ID', field: 'order_id', class: '' },
-                { label: 'Trans Info', field: 'trans_info', class: '' },
+                { label: 'Trans Info', field: 'trans_info', class: 'w-[122px]' },
                 { label: 'Quantity', field: 'quantity', class: '' },
                 { label: 'Points', field: 'points', class: '' },
-                { label: 'Notes', field: 'notes', class: '' },
+                { label: 'Notes', field: 'notes', class: 'w-[140px]' },
                 { label: 'Order Date', field: 'order_date', class: '' },
-                { label: 'Sent Date', field: 'sent_date', class: '' },
+                { label: 'Sent Date', field: 'sent_date', class: '!text-center' },
                 { label: 'Status', field: 'status', class: '' },
-                { label: 'Recipient List', field: 'recipient_list', class: '' },
+                { label: 'Recipient List', field: 'recipient_list', class: '!text-center' },
             ],
             data: doneRows.slice(pagination.page - 1, rowPerPage),
             moment,
             filters,
             pagination,
+            statusOptions: ['Completed'],
             formatDate: {
                 to: moment(new Date()).format('YYYY-MM-DD'),
                 from: moment(new Date()).format('YYYY-MM-DD'),
-            }
+            },
+            tab: 'Done',
+            tabOptions: ['Done', 'Reserved Schedule']
         }
     },
     methods: {
@@ -121,6 +124,9 @@ export default {
         handleToDate(event) {
             this.filters.toDate = moment(event.target.value).format('DD/MM/YYYY')
             this.formatDate.to = moment(event.target.value).format('YYYY-MM-DD')
+        },
+        handleTab(value) {
+            this.tab = value
         }
     },
     computed: {
@@ -263,8 +269,20 @@ export default {
             </ul>
         </aside>
         <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] flex flex-col">
-            <div class="section-card !px-0 mb-11 mt-4.5">
-                <h2 class="px-3"><span></span>Point History</h2>
+            <div class="section-card !px-0 mb-11 mt-4.5 h-[815px]">
+                <h2 class="px-3 !mb-4"><span></span>Treats History</h2>
+                <div class="tab mb-3.5 pl-6">
+                    <ul class="gap-6">
+                        <li
+                          v-for="opt in tabOptions"
+                          :key="opt"
+                          :class="{ 'border-b-4 border-b-main !text-main': opt === tab }"
+                          @click="() => handleTab(opt)"
+                        >
+                            <span class="inline-block px-1 py-2">{{ opt }}</span>
+                        </li>
+                    </ul>
+                </div>
                 <div class="table-function-bar">
                     <form @submit="handleSubmit">
                         <label class="date-picker">
@@ -288,18 +306,18 @@ export default {
                         </label>
                         <select
                           class="search-select"
-                          v-model="filters.type"
+                          v-model="filters.status"
                           placeholder="Type"
-                          @change="(event) => filters.type = event.target.value"
+                          @change="(event) => filters.status = event.target.value"
                         >
                             <option
                               disabled
                               value=""
                             >
-                                Type
+                                Status
                             </option>
                             <option
-                              v-for="opt in typeOptions"
+                              v-for="opt in statusOptions"
                               :key="opt"
                               :value="opt"
                             >
@@ -323,45 +341,59 @@ export default {
                         <FileDownloadSvg /> Excel Download
                     </button>
                 </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th
-                              v-for="column in tableColumns"
-                              :key="column.field"
-                            >
-                                {{ column.label }}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                          v-for="row in data"
-                          :key="row.order_id"
-                        >
-                            <td
-                              v-for="column in tableColumns"
-                              :key="column.field"
-                            >
-                                <div
-                                  v-if="column.field === 'recipient_list'"
-                                  class="flex justify-between items-center"
+                <div class="data-table__wrapper h-[495px]">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th
+                                  v-for="column in tableColumns"
+                                  :key="column.field"
+                                  :class="column.class"
                                 >
-                                    {{ row[column.field] }}
-                                    <button
-                                      class="border border-btn-border rounded-lg bg-white px-[34px] py-2 text-main font-semibold leading-6"
+                                    {{ column.label }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                              v-for="row in data"
+                              :key="row.order_id"
+                            >
+                                <td
+                                  v-for="column in tableColumns"
+                                  :key="column.field"
+                                  :class="column.class"
+                                >
+                                    <div
+                                      v-if="column.field === 'sent_date'"
+                                      class="flex justify-between items-center"
                                     >
-                                        Download
-                                    </button>
-                                </div>
-                                <template v-else>
-                                    {{ row[column.field] }}
-                                </template>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="pagination-wrapper mt-9 mb-8">
+                                        <button
+                                          class="border border-btn-border rounded-lg bg-white px-[31px] py-1.5 text-point-down font-semibold leading-6"
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                    <div
+                                      v-else-if="column.field === 'recipient_list'"
+                                      class="flex justify-between items-center"
+                                    >
+                                        {{ row[column.field] }}
+                                        <button
+                                          class="border border-btn-border rounded-lg bg-white px-[21px] py-1.5 text-main font-semibold leading-6"
+                                        >
+                                            Download
+                                        </button>
+                                    </div>
+                                    <template v-else>
+                                        {{ row[column.field] }}
+                                    </template>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination-wrapper mt-14 mb-[31px]">
                     <button
                       class="page-left"
                       @click="() => handlePage('prev')"
@@ -373,7 +405,7 @@ export default {
                       v-for="page in displayedPageNumbers"
                       :key="page"
                       :aria-current="page === pagination.page && 'page'"
-                      :class="{ '!bg-main text-white': page === pagination.page }"
+                      :class="{ '!bg-main !text-white': page === pagination.page }"
                       @click="() => updatePage(page)"
                     >
                         {{ page }}

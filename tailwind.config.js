@@ -46,7 +46,9 @@ module.exports = {
                 'dropdown-text': '#6F767E',
                 link: '#777E90',
                 'subLink': '#898989',
-                neutral: '#888888',
+                neutral: {
+                    default: '#888888'
+                },
                 label: '#858587',
 
                 separate: '#E6E8EC',

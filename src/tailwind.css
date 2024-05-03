@@ -215,7 +215,7 @@ body {
         @apply py-[13px] pl-[13px] pr-5 mr-[133px] flex items-center justify-between h-12 w-full max-w-[500px] border-2 border-[theme(search-border)] bg-[theme(search-bg)] rounded-[9px]
     }
     div.search-input input {
-        @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full placeholder:text-[theme(colors.neutral)] bg-transparent
+        @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full placeholder:text-[theme(colors.neutral.default)] bg-transparent
     }
 }
 
@@ -321,7 +321,7 @@ body {
 /* LNB */
 @layer components {
     aside.lnb {
-        @apply bg-white pt-[13px] pb-[theme(spacing[4.5])] px-2 rounded-xl w-[266px] mt-[37px] mb-[57px] ml-[83px]
+        @apply bg-white pt-[13px] pb-[theme(spacing[4.5])] px-2 rounded-xl w-[266px] h-fit mt-[37px] mb-[57px] ml-[83px]
     }
     aside.lnb ul {
         @apply flex flex-col
@@ -386,6 +386,19 @@ body {
     }
 }
 
+/* tab */
+@layer components {
+    div.tab {
+        @apply text-center border-b border-b-neutral-300
+    }
+    div.tab ul {
+        @apply flex
+    }
+    div.tab ul li {
+        @apply px-4 font-medium leading-6 text-lg text-[#79808F] cursor-pointer hover:text-main hover:border-b-main
+    }
+}
+
 /* table function bar */
 @layer components {
     div.table-function-bar {
@@ -437,23 +450,23 @@ body {
 
 /* table */
 @layer components {
+    div.data-table__wrapper {
+        @apply w-full overflow-scroll
+    }
     table.data-table {
-        @apply w-full font-[theme(fontFamily.manrope)] text-xs text-[theme(colors.dropdown-text)]
+        @apply w-max min-w-full font-[theme(fontFamily.manrope)] text-xs -tracking-[0.223px] text-[theme(colors.dropdown-text)]
     }
     table.data-table thead {
         @apply border-b border-b-[theme(colors.header-btn-border)] h-12
     }
     table.data-table thead tr th {
-        @apply font-medium leading-3 -tracking-tight text-left first-of-type:pl-6 
-    }
-    table.data-table tbody {
-        @apply scroll-auto
+        @apply font-medium leading-3 -tracking-tight text-left px-2 first-of-type:pl-6 last-of-type:pr-6
     }
     table.data-table tbody tr {
         @apply even:bg-[theme(colors.info-wrapper)] h-14
     }
     table.data-table tbody tr td {
-        @apply py-2 first-of-type:pl-6 last-of-type:pr-6
+        @apply py-2 px-2 first-of-type:pl-6 last-of-type:pr-6
     }
 }
 /* table pagination */
@@ -462,6 +475,6 @@ body {
         @apply flex items-center justify-center gap-[2px] mx-auto w-[256px]
     }
     div.pagination-wrapper button {
-        @apply w-[34px] h-[34px] rounded px-2 py-1 bg-[#F1F2F6] inline-flex justify-center items-center
+        @apply w-[34px] h-[34px] rounded px-2 py-1 bg-[#F1F2F6] text-[#8B909A] inline-flex justify-center items-center font-normal text-[13px]
     }
 }

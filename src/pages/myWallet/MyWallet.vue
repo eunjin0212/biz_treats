@@ -438,50 +438,52 @@ export default {
                         <FileDownloadSvg /> Excel Download
                     </button>
                 </div>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th
-                              v-for="column in tableColumns"
-                              :key="column.field"
-                            >
-                                {{ column.label }}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                          v-for="row in data"
-                          :key="row.order_id"
-                        >
-                            <td
-                              v-for="column in tableColumns"
-                              :key="column.field"
-                            >
-                                <div
-                                  :class="typeStyle[row[column.field]]"
-                                  v-if="column.field === 'type'"
-                                  class="py-[2px] px-2 rounded-md text-[#4E4E4E] leading-6 font-semibold w-fit"
+                <div class="data-table__wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th
+                                  v-for="column in tableColumns"
+                                  :key="column.field"
                                 >
-                                    {{ row[column.field] }}
-                                </div>
-                                <div
-                                  v-else-if="column.field === 'notes'"
-                                  class="flex justify-between items-center"
+                                    {{ column.label }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                              v-for="row in data"
+                              :key="row.order_id"
+                            >
+                                <td
+                                  v-for="column in tableColumns"
+                                  :key="column.field"
                                 >
-                                    {{ row[column.field] }}
-                                    <a
-                                      class="border border-btn-border rounded-lg bg-white px-[34px] py-2 text-main font-semibold leading-6">
-                                        Detail
-                                    </a>
-                                </div>
-                                <template v-else>
-                                    {{ row[column.field] }}
-                                </template>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                    <div
+                                      :class="typeStyle[row[column.field]]"
+                                      v-if="column.field === 'type'"
+                                      class="py-[2px] px-2 rounded-md text-[#4E4E4E] leading-6 font-semibold w-fit"
+                                    >
+                                        {{ row[column.field] }}
+                                    </div>
+                                    <div
+                                      v-else-if="column.field === 'notes'"
+                                      class="flex justify-between items-center"
+                                    >
+                                        {{ row[column.field] }}
+                                        <a
+                                          class="border border-btn-border rounded-lg bg-white px-[34px] py-2 text-main font-semibold leading-6">
+                                            Detail
+                                        </a>
+                                    </div>
+                                    <template v-else>
+                                        {{ row[column.field] }}
+                                    </template>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="pagination-wrapper mt-9 mb-8">
                     <button
                       class="page-left"
@@ -494,7 +496,7 @@ export default {
                       v-for="page in displayedPageNumbers"
                       :key="page"
                       :aria-current="page === pagination.page && 'page'"
-                      :class="{ '!bg-main text-white': page === pagination.page }"
+                      :class="{ '!bg-main !text-white': page === pagination.page }"
                       @click="() => updatePage(page)"
                     >
                         {{ page }}

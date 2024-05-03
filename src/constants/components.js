@@ -153,7 +153,7 @@ export const myPageLnbMenu = [
             },
             {
                 title: 'Member Management',
-                path: '/treatsHistory'
+                path: '/memberManagement'
             },
             {
                 title: 'Points Top-up Management',
