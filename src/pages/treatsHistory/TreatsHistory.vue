@@ -42,10 +42,11 @@ export default {
             rowPerPage, // 테이블 row 수
             lastPage: Math.ceil(doneRows.length / rowPerPage), // 마지막 페이지
         }
-        const filters = {
+        const initFilters = {
             fromDate: moment(new Date()).format('DD/MM/YYYY'),
             toDate: moment(new Date()).format('DD/MM/YYYY'),
             status: '',
+            tableSearch: '',
         }
         return {
             navMenu,
@@ -91,7 +92,8 @@ export default {
             ],
             data: doneRows.slice(pagination.page - 1, rowPerPage),
             moment,
-            filters,
+            filters: { ...initFilters },
+            initFilters,
             pagination,
             statusOptions: ['Completed'],
             formatDate: {
@@ -127,6 +129,7 @@ export default {
         },
         handleTab(value) {
             this.tab = value
+            this.filters = { ...this.initFilters }
         }
     },
     computed: {
@@ -308,6 +311,7 @@ export default {
                           class="search-select"
                           v-model="filters.status"
                           placeholder="Type"
+                          v-if="tab === 'Done'"
                           @change="(event) => filters.status = event.target.value"
                         >
                             <option
@@ -329,7 +333,7 @@ export default {
                               type="text"
                               placeholder="Search for Treats"
                               name="search"
-                              v-model="search"
+                              v-model="filters.tableSearch"
                             />
                             <SearchSvg />
                         </label>
