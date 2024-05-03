@@ -365,7 +365,7 @@ export default {
                                   :class="column.class"
                                 >
                                     <div
-                                      v-if="column.field === 'sent_date'"
+                                      v-if="column.field === 'sent_date' && tab === 'Reserved Schedule'"
                                       class="flex justify-between items-center"
                                     >
                                         <button
