@@ -1,5 +1,6 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
+import { alertData } from '@/mock/alertData.js'
 import { doneRows } from '@/mock/treatsHistory.js'
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
@@ -56,29 +57,7 @@ export default {
             search: '',
             dropdown: false,
             alert: false,
-            alertData: [
-                {
-                    title: 'Reserve sending was Complete!',
-                    date: '04/21/2024',
-                    type: 'alert',
-                    description: 'Order ID 20240226000 was successfully sent.',
-                    read: true,
-                },
-                {
-                    title: 'Points Transfer',
-                    date: '04/21/2024',
-                    type: 'point',
-                    description: 'You received the N Points from(Sender). Check your wallet balance.',
-                    read: true,
-                },
-                {
-                    title: 'Reserve sending was Complete!',
-                    date: '04/21/2024',
-                    type: 'alert',
-                    description: 'Order ID 20240226000 was successfully sent.',
-                    read: false,
-                },
-            ],
+            alertData,
             tableColumns: [
                 { label: 'Order ID', field: 'order_id', class: '' },
                 { label: 'Trans Info', field: 'trans_info', class: 'w-[122px]' },

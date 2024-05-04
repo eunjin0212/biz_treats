@@ -1,5 +1,6 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
+import { alertData } from '@/mock/alertData.js'
 import { rows } from '@/mock/pointHistory.js'
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
@@ -51,29 +52,7 @@ export default {
             search: '',
             dropdown: false,
             alert: false,
-            alertData: [
-                {
-                    title: 'Reserve sending was Complete!',
-                    date: '04/21/2024',
-                    type: 'alert',
-                    description: 'Order ID 20240226000 was successfully sent.',
-                    read: true,
-                },
-                {
-                    title: 'Points Transfer',
-                    date: '04/21/2024',
-                    type: 'point',
-                    description: 'You received the N Points from(Sender). Check your wallet balance.',
-                    read: true,
-                },
-                {
-                    title: 'Reserve sending was Complete!',
-                    date: '04/21/2024',
-                    type: 'alert',
-                    description: 'Order ID 20240226000 was successfully sent.',
-                    read: false,
-                },
-            ],
+            alertData,
             tableColumns: [
                 { label: 'Date', field: 'date', class: '' },
                 { label: 'Type', field: 'type', class: '' },
@@ -252,7 +231,9 @@ export default {
                 <li class="text-[#1211278F] text-sm font-normal leading-6">Create a wallet for eachPurpose and use it!</li>
             </ul>
             <!-- box-shadow: 0px 20px 50px 0px #12112714; -->
-            <div class="grid"></div>
+            <div class="grid">
+                
+            </div>
             <div class="pagination-wrapper mt-9 mb-8">
                 <button
                     class="page-left"
