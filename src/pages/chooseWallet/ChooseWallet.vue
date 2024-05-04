@@ -1,6 +1,7 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
+import { wallets } from '@/mock/wallets.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -13,6 +14,7 @@ import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ChevronLeftSvg from '@/assets/icons/ChevronLeftSvg.vue';
 import ChevronRightSvg from '@/assets/icons/ChevronRightSvg.vue';
+import CardWalletSvg from '@/assets/icons/CardWalletSvg.vue';
 
 export default {
     components: {
@@ -28,14 +30,15 @@ export default {
         ReadSvg,
         ChevronLeftSvg,
         ChevronRightSvg,
+        CardWalletSvg,
     },
     data() {
-        const rowPerPage = 6
+        const rowPerPage = 4
         const pagination = {
             total: 0,
             page: 1, // 현재 페이지
             rowPerPage, // 테이블 row 수
-            lastPage: 1, // 마지막 페이지
+            lastPage: Math.ceil(wallets.length / rowPerPage), // 마지막 페이지
         }
         return {
             navMenu,
@@ -47,12 +50,11 @@ export default {
             alertOpen: false,
             alertData,
             pagination,
+            wallets,
+            selected: {}
         }
     },
     methods: {
-        handleSubmit(event) {
-            event.preventDefault();
-        },
         handlePage(direction) {
             if (direction === 'next') {
                 this.pagination.page++;
@@ -185,41 +187,65 @@ export default {
         </nav>
     </header>
     <main class="bg-bg">
-        <section class="w-[940px] h-[752px] mx-auto mt-7 mb-11 flex flex-col bg-white rounded-xl">
-            <ul class="font-inter text-center mt-[52px] mb-4">
+        <section class="w-[940px] mx-auto mt-7 mb-11 flex flex-col bg-white rounded-xl">
+            <ul class="font-inter text-center mt-[52px] mb-9">
                 <li class="text-main text-[28px] font-bold leading-10 mb-1">Choose your Wallet type</li>
-                <li class="text-[#1211278F] text-sm font-normal leading-6">It can access each campaign wallet and manage each balance.</li>
-                <li class="text-[#1211278F] text-sm font-normal leading-6">Create a wallet for eachPurpose and use it!</li>
+                <li class="text-[#1211278F] text-sm font-normal leading-6">It can access each campaign wallet and manage
+                    each balance.</li>
+                <li class="text-[#1211278F] text-sm font-normal leading-6">Create a wallet for eachPurpose and use it!
+                </li>
             </ul>
-            <!-- box-shadow: 0px 20px 50px 0px #12112714; -->
-            <div class="grid">
-                
+            <div class="grid grid-rows-2 grid-cols-2 gap-6 w-[684px] h-[322px] mx-auto">
+                <div
+                  v-for="wallet in wallets"
+                  :key="wallet.id"
+                  class="card"
+                  @click="selected = wallet"
+                  :class="{'before:!border-4 before:!border-main shadow-[0_20px_50px_0_#12112714] -translate-y-1': selected.id === wallet.id}"
+                >
+                    <input type="hidden" name="card" :value="selected" />
+                    <div class="card-title__wrapper">
+                        <span>
+                            <CardWalletSvg />
+                        </span>
+                        <p>
+                            <strong>{{ wallet.title }}</strong>
+                            <span>{{ wallet.description }}</span>
+                        </p>
+                    </div>
+                    <p class="card-content__wrapper">
+                        <strong>{{ wallet.point.toLocaleString() }}</strong>
+                        <span>Points</span>
+                    </p>
+                </div>
             </div>
-            <div class="pagination-wrapper mt-9 mb-8">
+            <div class="pagination-wrapper my-6">
                 <button
-                    class="page-left"
-                    @click="() => handlePage('prev')"
-                    :disabled="pagination.page === 1"
+                  class="page-left"
+                  @click="() => handlePage('prev')"
+                  :disabled="pagination.page === 1"
                 >
                     <ChevronLeftSvg />
                 </button>
                 <button
-                    v-for="page in displayedPageNumbers"
-                    :key="page"
-                    :aria-current="page === pagination.page && 'page'"
-                    :class="{ '!bg-main !text-white': page === pagination.page }"
-                    @click="() => updatePage(page)"
+                  v-for="page in displayedPageNumbers"
+                  :key="page"
+                  :aria-current="page === pagination.page && 'page'"
+                  :class="{ '!bg-main !text-white': page === pagination.page }"
+                  @click="() => updatePage(page)"
                 >
                     {{ page }}
                 </button>
                 <button
-                    class="page-right"
-                    @click="() => handlePage('next')"
-                    :disabled="pagination.page === pagination.lastPage"
+                  class="page-right"
+                  @click="() => handlePage('next')"
+                  :disabled="pagination.page === pagination.lastPage"
                 >
                     <ChevronRightSvg />
                 </button>
             </div>
+            <button class="rounded-lg py-3.5 w-[684px] h-[60px] mx-auto text-lg font-medium font-poppins bg-main text-white mb-1.5">Start</button>
+            <button class="rounded-lg py-3.5 w-[684px] h-[60px] mx-auto text-lg font-medium font-poppins border border-[#C5C5C5] text-[#8C8C8C] mb-[46px]">Back</button>
         </section>
     </main>
     <footer class="footer">

@@ -478,3 +478,43 @@ body {
         @apply w-[34px] h-[34px] rounded px-2 py-1 bg-[#F1F2F6] text-[#8B909A] inline-flex justify-center items-center font-normal text-[13px]
     }
 }
+
+/* wallet card */
+@layer components {
+    div.card {
+        @apply transition-all cursor-pointer pt-4 px-3.5 pb-3 relative before:top-0 before:left-0 before:w-full before:h-full before:absolute before:border before:border-separate before:rounded-xl
+    }
+    div.card > .card-title__wrapper {
+        @apply flex items-center gap-[theme(spacing[2.5])] font-[theme(fontFamily.inter)]
+    }
+    div.card > .card-title__wrapper > span {
+        @apply rounded-full w-[46px] h-[46px] inline-flex items-center justify-center
+    }
+    div.card > .card-title__wrapper > p > strong {
+        @apply block leading-7 text-xl
+    }
+    div.card > .card-title__wrapper > p > span {
+        @apply font-normal text-sm leading-6 text-[#1211277A]
+    }
+    div.card:nth-of-type(odd) > .card-title__wrapper > span {
+        @apply bg-[#9757D7]
+    }
+    div.card:nth-of-type(odd) > .card-title__wrapper > p > strong {
+        @apply text-[#9757D7]
+    }
+    div.card:nth-of-type(even) > .card-title__wrapper > span {
+        @apply bg-[#EF466F]
+    }
+    div.card:nth-of-type(even) > .card-title__wrapper > p > strong {
+        @apply text-[#EF466F]
+    }
+    div.card > .card-content__wrapper {
+        @apply text-[theme(colors.main)] !leading-[42px] mt-[theme(spacing[4.5])]
+    }
+    div.card > .card-content__wrapper > strong {
+        @apply text-3xl inline-block
+    }
+    div.card > .card-content__wrapper > span {
+        @apply ml-1 text-base leading-7 font-semibold
+    }
+}
