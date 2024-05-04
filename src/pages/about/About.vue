@@ -33,7 +33,7 @@ export default {
             lnbMenu,
             search: '',
             dropdown: false,
-            alert: false,
+            alertOpen: false,
             alertData,
         }
     },
@@ -67,14 +67,14 @@ export default {
             <div class="relative">
                 <button
                   class="header-btn"
-                  @click="alert = !alert"
+                  @click="alertOpen = !alertOpen"
                 >
                     <BellSvg />
                     <span class="badge">{{ alertData.length }}</span>
                 </button>
                 <aside
                   class="alert-wrapper"
-                  :class="alert ? 'block' : 'hidden'"
+                  :class="alertOpen ? 'block' : 'hidden'"
                 >
                     <div class="alert-header">
                         <h1>Notification</h1>

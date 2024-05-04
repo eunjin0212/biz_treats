@@ -264,7 +264,7 @@ body {
         box-shadow: 0px 40px 64px -12px #00000014;
     }
     div.dropdown .dropdown-opts > a {
-        @apply whitespace-nowrap px-[theme(spacing[3.5])] py-[15px] rounded-[theme(spacing[2.5])] text-[theme(colors.dropdown-text)] text-sm leading-6 flex items-center gap-[theme(spacing[1.5])] font-[theme(fontFamily.inter)] hover:bg-[theme(colors.dropdown-hover-bg)] hover:bg-slate-50
+        @apply whitespace-nowrap w-full m-0 px-[theme(spacing[3.5])] py-[15px] rounded-[theme(spacing[2.5])] text-[theme(colors.dropdown-text)] text-sm leading-6 flex items-center gap-[theme(spacing[1.5])] font-[theme(fontFamily.inter)] hover:bg-[theme(colors.dropdown-hover-bg)] hover:bg-slate-50
     }
 }
 

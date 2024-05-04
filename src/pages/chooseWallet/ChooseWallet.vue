@@ -1,8 +1,6 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
-import { rows } from '@/mock/pointHistory.js'
-import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -32,17 +30,12 @@ export default {
         ChevronRightSvg,
     },
     data() {
-        const rowPerPage = 4
+        const rowPerPage = 6
         const pagination = {
-            total: rows.length,
+            total: 0,
             page: 1, // 현재 페이지
             rowPerPage, // 테이블 row 수
-            lastPage: Math.ceil(rows.length / rowPerPage), // 마지막 페이지
-        }
-        const filters = {
-            fromDate: moment(new Date()).format('DD/MM/YYYY'),
-            toDate: moment(new Date()).format('DD/MM/YYYY'),
-            type: '',
+            lastPage: 1, // 마지막 페이지
         }
         return {
             navMenu,
@@ -51,33 +44,9 @@ export default {
             myPageLnbMenu,
             search: '',
             dropdown: false,
-            alert: false,
+            alertOpen: false,
             alertData,
-            tableColumns: [
-                { label: 'Date', field: 'date', class: '' },
-                { label: 'Type', field: 'type', class: '' },
-                { label: 'Points', field: 'points', class: '' },
-                { label: 'Top-up ID', field: 'top_up_id', class: '' },
-                { label: 'Order ID', field: 'order_id', class: '' },
-                { label: 'Sender/Requester', field: 'sender', class: '' },
-                { label: 'Balance', field: 'balance', class: '' },
-                { label: 'Notes', field: 'notes', class: '' },
-            ],
-            data: rows.slice(pagination.page - 1, rowPerPage),
-            typeStyle: {
-                Canceled: 'bg-canceled',
-                Transfer: 'bg-transfer',
-                Deduct: 'bg-primary-450',
-                Topup: 'bg-topup',
-            },
-            moment,
-            typeOptions: ['Canceled', 'Transfer', 'Deduct', 'Topup',],
-            filters,
             pagination,
-            formatDate: {
-                to: moment(new Date()).format('YYYY-MM-DD'),
-                from: moment(new Date()).format('YYYY-MM-DD'),
-            }
         }
     },
     methods: {
@@ -95,14 +64,6 @@ export default {
         updatePage(page) {
             this.pagination = { ...this.pagination, page }
         },
-        handleFromDate(event) {
-            this.filters.fromDate = moment(event.target.value).format('DD/MM/YYYY')
-            this.formatDate.from = moment(event.target.value).format('YYYY-MM-DD')
-        },
-        handleToDate(event) {
-            this.filters.toDate = moment(event.target.value).format('DD/MM/YYYY')
-            this.formatDate.to = moment(event.target.value).format('YYYY-MM-DD')
-        }
     },
     computed: {
         matchPath: () => {
@@ -143,14 +104,14 @@ export default {
             <div class="relative">
                 <button
                   class="header-btn"
-                  @click="alert = !alert"
+                  @click="alertOpen = !alertOpen"
                 >
                     <BellSvg />
                     <span class="badge">{{ alertData.length }}</span>
                 </button>
                 <aside
                   class="alert-wrapper"
-                  :class="alert ? 'block' : 'hidden'"
+                  :class="alertOpen ? 'block' : 'hidden'"
                 >
                     <div class="alert-header">
                         <h1>Notification</h1>
