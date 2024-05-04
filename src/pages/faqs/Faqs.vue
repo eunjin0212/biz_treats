@@ -248,7 +248,7 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px]">
+        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] mb-5">
             <div class="main-section pb-[50px]">
                 <h2>FAQS</h2>
                 <div
