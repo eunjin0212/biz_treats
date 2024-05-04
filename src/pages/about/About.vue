@@ -154,15 +154,15 @@ export default {
                       class="dropdown-opts"
                       :class="dropdown ? 'block' : 'hidden'"
                     >
-                        <span>
+                        <a href="/myWallet">
                             <WalletSvg />My Wallet
-                        </span>
-                        <span>
+                        </a>
+                        <a href="/chooseWallet">
                             <SwitchSvg />Switching Wallet
-                        </span>
-                        <span>
+                        </a>
+                        <a href="/login">
                             <SignOutSvg />Log out
-                        </span>
+                        </a>
                     </div>
                 </div>
             </div>
