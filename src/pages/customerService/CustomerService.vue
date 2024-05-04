@@ -11,6 +11,7 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
+import CheckRoundSvg from '@/assets/icons/CheckRoundSvg.vue';
 
 export default {
     components: {
@@ -24,6 +25,7 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
+        CheckRoundSvg,
     },
     data() {
         return {
@@ -35,6 +37,34 @@ export default {
             dropdown: false,
             alertOpen: false,
             alertData,
+            hotline: [
+                {
+                    title: 'Telephone number',
+                    content: '+63)917-712-4921',
+                },
+                {
+                    title: 'Email',
+                    content: 'biztreats@sharetreats.com',
+                },
+                {
+                    title: 'Business Hours',
+                    content: '10AM - 5PM (Monday-Friday)',
+                },
+            ],
+            noticeData: [
+                {
+                    title: 'Response',
+                    content: ['Our CS will contact the customers within 2 business days via email or phone.'],
+                },
+                {
+                    title: 'Resolution',
+                    content: ['Our CS will resolve the issue and contact the customers within 10 business days once the inquiry is received.', 'In any special case that more investigation is required, our CS will answer the customers for an estimated timeline.'],
+                },
+                {
+                    title: 'Refund',
+                    content: ['Refund will be made approximately within 10 business days depending on the payment issuer’s process once <br /> the refund is confirmed by our CS.'],
+                },
+            ],
         }
     },
     methods: {
@@ -147,7 +177,7 @@ export default {
             </div>
         </nav>
     </header>
-    <main class="bg-bg">
+    <main class="bg-bg flex">
         <aside class="lnb">
             <ul>
                 <li
@@ -167,7 +197,41 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section>
+        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] mb-32">
+            <div class="main-section pb-24">
+                <h2>Customer Service</h2>
+                <div class="ml-2.5 mt-[30px]">
+                    <h3 class="text-2xl font-bold leading-8 text-[#595959]">Customer Service hotline</h3>
+                    <p
+                      v-for="data in hotline"
+                      :key="data.title"
+                      class="text-base leading-7 font-normal mt-3.5"
+                    >
+                        <span class="text-list-title">{{ data.title }}</span> :
+                        <span class="text-[#1211278F]">{{ data.content }}</span>
+                    </p>
+                    <h3 class="mt-8 flex items-center text-main font-semibold text-sm leading-6 tracking-wider mb-5">
+                        NOTICE
+                        <hr class="flex-1 ml-3.5 border-t-[#1211271F]" />
+                    </h3>
+                    <div
+                      v-for="notice in noticeData"
+                      :key="notice.title"
+                    >
+                        <h4 class="text-sm leading-[25px] font-normal text-list-title inline-flex items-center">
+                            <CheckRoundSvg class="mr-3" /> {{ notice.title }}
+                        </h4>
+                        <ul class="mt-3 list-disc ml-10 mb-9">
+                            <li
+                              v-for="(item, idx) in notice.content"
+                              :key="idx"
+                              class="text-[#1211278F] text-sm leading-6 font-medium"
+                              v-html="item"
+                            ></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="footer">

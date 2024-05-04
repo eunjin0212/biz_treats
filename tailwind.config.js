@@ -34,6 +34,7 @@ module.exports = {
                 'topup': '#62D0FF',
 
                 title: '#171719',
+                'list-title': '#121127',
                 'lnb-hover-text': '#1A1D1F',
                 secondary: '#333333',
                 'point-unit': '#A3A3A3',
