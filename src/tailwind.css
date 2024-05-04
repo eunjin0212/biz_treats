@@ -357,6 +357,17 @@ body {
     }
 }
 
+/* main section */
+@layer components {
+    div.main-section {
+      @apply bg-white rounded-xl w-full pt-5 px-6 ml-[30px] first-of-type:mt-[37px] font-[theme(fontFamily.inter)]
+    }
+    div.main-section h2 { /* section card header */
+        @apply pl-2 pb-6 text-[theme(colors.main)] text-xl font-bold leading-8 border-b border-b-[#EEEEEE]
+    }
+}
+
+
 /* wallet info */
 @layer components {
     li.wallet-info__card {
@@ -469,6 +480,7 @@ body {
         @apply py-2 px-2 first-of-type:pl-6 last-of-type:pr-6
     }
 }
+
 /* table pagination */
 @layer components {
     div.pagination-wrapper {
@@ -518,3 +530,4 @@ body {
         @apply ml-1 text-base leading-7 font-semibold
     }
 }
+

@@ -39,6 +39,7 @@ module.exports = {
                 'point-unit': '#A3A3A3',
                 'download-btn-text': '#A9A9A9',
                 placeholder: '#BBBBBB',
+                'accordion-border': '#BEBEBE',
                 'alert-description': '#B4B4B4',
                 'date-picker-text': '#B6B6B6',
                 'point': '#4D4D4D',

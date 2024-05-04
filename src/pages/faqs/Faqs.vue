@@ -11,6 +11,7 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
+import AccordionSvg from '@/assets/icons/AccordionSvg.vue';
 
 export default {
     components: {
@@ -24,6 +25,7 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
+        AccordionSvg,
     },
     data() {
         return {
@@ -35,11 +37,90 @@ export default {
             dropdown: false,
             alertOpen: false,
             alertData,
+            accordionData: [
+                {
+                    title: 'About BIZ TREATS',
+                    children: [
+                        {
+                            title: 'What is BIZ TREATS?',
+                            content: "BIZ TREATS is a gifting service that allows Smart, Talk 'N Text, & SUN Prepaid Subscribers to send instant gifts to friends and loved ones. The service allows the use of airtime load as payment channel for purchasing gift items. It has two items for users, STICKER and FREEBIE. Sticker can be downloaded directly to the user’s mobile phone while the Freebie can be claimed by presenting the SMS notification with freebie code to our partner merchant/s nationwide.",
+                            active: false,
+                        },
+                        {
+                            title: 'Are there any contacts for additional inquiries?',
+                            content: "BIZ TREATS is a gifting service that allows Smart, Talk 'N Text, & SUN Prepaid Subscribers to send instant gifts to friends and loved ones. The service allows the use of airtime load as payment channel for purchasing gift items. It has two items for users, STICKER and FREEBIE. Sticker can be downloaded directly to the user’s mobile phone while the Freebie can be claimed by presenting the SMS notification with freebie code to our partner merchant/s nationwide.",
+                            active: false,
+                        },
+                    ],
+                },
+                {
+                    title: 'Sign Up / Sign In',
+                    children: [
+                        {
+                            title: 'How can we tie-up to Biz Treats?',
+                            content: "BIZ TREATS is a gifting service that allows Smart, Talk 'N Text, & SUN Prepaid Subscribers to send instant gifts to friends and loved ones. The service allows the use of airtime load as payment channel for purchasing gift items. It has two items for users, STICKER and FREEBIE. Sticker can be downloaded directly to the user’s mobile phone while the Freebie can be claimed by presenting the SMS notification with freebie code to our partner merchant/s nationwide.",
+                            active: false,
+                        },
+                    ],
+                },
+                {
+                    title: 'Merchant / Redemption',
+                    children: [
+                        {
+                            title: 'How to redeem?',
+                            content: "BIZ TREATS is a gifting service that allows Smart, Talk 'N Text, & SUN Prepaid Subscribers to send instant gifts to friends and loved ones. The service allows the use of airtime load as payment channel for purchasing gift items. It has two items for users, STICKER and FREEBIE. Sticker can be downloaded directly to the user’s mobile phone while the Freebie can be claimed by presenting the SMS notification with freebie code to our partner merchant/s nationwide.",
+                            active: false,
+                        },
+                    ],
+                },
+                {
+                    title: 'Treats Code',
+                    children: [
+                        {
+                            title: 'Code Validity',
+                            content: "BIZ TREATS is a gifting service that allows Smart, Talk 'N Text, & SUN Prepaid Subscribers to send instant gifts to friends and loved ones. The service allows the use of airtime load as payment channel for purchasing gift items. It has two items for users, STICKER and FREEBIE. Sticker can be downloaded directly to the user’s mobile phone while the Freebie can be claimed by presenting the SMS notification with freebie code to our partner merchant/s nationwide.",
+                            active: false,
+                        },
+                        {
+                            title: 'What if I need technical help?',
+                            content: "BIZ TREATS is a gifting service that allows Smart, Talk 'N Text, & SUN Prepaid Subscribers to send instant gifts to friends and loved ones. The service allows the use of airtime load as payment channel for purchasing gift items. It has two items for users, STICKER and FREEBIE. Sticker can be downloaded directly to the user’s mobile phone while the Freebie can be claimed by presenting the SMS notification with freebie code to our partner merchant/s nationwide.",
+                            active: false,
+                        },
+                        {
+                            title: 'What if I sent the treat to wrong number?',
+                            content: "BIZ TREATS is a gifting service that allows Smart, Talk 'N Text, & SUN Prepaid Subscribers to send instant gifts to friends and loved ones. The service allows the use of airtime load as payment channel for purchasing gift items. It has two items for users, STICKER and FREEBIE. Sticker can be downloaded directly to the user’s mobile phone while the Freebie can be claimed by presenting the SMS notification with freebie code to our partner merchant/s nationwide.",
+                            active: false,
+                        },
+                        {
+                            title: 'What if my recipient did not receive the voucher code?',
+                            content: "BIZ TREATS is a gifting service that allows Smart, Talk 'N Text, & SUN Prepaid Subscribers to send instant gifts to friends and loved ones. The service allows the use of airtime load as payment channel for purchasing gift items. It has two items for users, STICKER and FREEBIE. Sticker can be downloaded directly to the user’s mobile phone while the Freebie can be claimed by presenting the SMS notification with freebie code to our partner merchant/s nationwide.",
+                            active: false,
+                        },
+                    ],
+                },
+            ],
         }
     },
     methods: {
         handleClick() {
             window.location.href = '/login'
+        },
+        handleToggle(content) {
+            const index = this.accordionData.findIndex((data) => data.children.some((item) => content.title === item.title))
+            const activeItem = this.accordionData[index].children.find((item) => item.title === content.title)
+            // 단일 아코디언
+            this.accordionData.forEach((data) => {
+                data.children.forEach((item) => {
+                    if (item.title !== content.title) {
+                      item.active = false
+                    }
+                })
+            })
+            activeItem.active = !activeItem.active
+
+            // 다중 아코디언
+            // activeItem.active = !activeItem.active
+
         },
     },
     computed: {
@@ -147,7 +228,7 @@ export default {
             </div>
         </nav>
     </header>
-    <main class="bg-bg">
+    <main class="bg-bg flex">
         <aside class="lnb">
             <ul>
                 <li
@@ -167,7 +248,37 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section>
+        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px]">
+            <div class="main-section pb-[50px]">
+                <h2>FAQS</h2>
+                <div
+                  class="accordion"
+                  v-for="accordion in accordionData"
+                  :key="accordion.title"
+                >
+                    <h3
+                      class="accordion__section-title text-main font-bold text-base leading-5 mt-6 pb-3 border-b border-b-accordion-border"
+                    >{{ accordion.title }}</h3>
+                    <div
+                      class="accordion__section-content"
+                      v-for="content in accordion.children"
+                      :key="content.title"
+                    >
+                        <h4
+                          @click="() => handleToggle(content)"
+                          class="py-4 cursor-pointer text-[#495057] border-b border-b-[#F0F2F4] inline-flex items-center justify-between w-full pr-5"
+                        >{{ content.title }}
+                            <AccordionSvg />
+                        </h4>
+                        <div
+                          class="px-3 pt-3.5 pb-8 font-normal leading-3.4 text-[13px] text-neutral-500 bg-info-wrapper hidden h-0 transition-all"
+                          :class="{ '!h-auto !block': content.active }"
+                        >
+                            {{ content.content }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="footer">
