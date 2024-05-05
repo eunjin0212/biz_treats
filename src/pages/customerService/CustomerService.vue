@@ -140,6 +140,7 @@ export default {
                     </button>
                     <aside
                       class="alert-wrapper"
+                      ref="alertWrapperRef"
                       :class="alertOpen ? 'block' : 'hidden'"
                     >
                         <div class="alert-header">
@@ -189,7 +190,7 @@ export default {
                 <div class="btn-group ml-4">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
-                        <button @click="handleDropdown">
+                        <button @click="handleDropdown" ref="dropdownRef">
                             <span>
                                 10000 points
                             </span>
@@ -215,7 +216,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg flex w-[1440px] mx-auto">
+    <main class="bg-bg flex w-[1228px] mx-auto">
         <aside class="lnb service-lnb">
             <ul>
                 <li
@@ -235,7 +236,7 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] mb-32">
+        <section class="w-[calc(100%-266px)] max-w-[932px] mb-32">
             <div class="main-section pb-24">
                 <h2>Customer Service</h2>
                 <div class="ml-2.5 mt-[30px]">

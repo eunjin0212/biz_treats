@@ -21,7 +21,7 @@ body {
 /* background */
 @layer components {
   main.background {
-    @apply flex bg-gradient-to-t to-[#7ACFF3] from-[#259DD0] min-h-[calc(100vh-93px)]  min-w-[1440px] justify-between items-center
+    @apply flex bg-gradient-to-t to-[#7ACFF3] from-[#259DD0] min-h-[calc(100vh-93px)]  min-w-[1228px] justify-between items-center
   }
   main.background section {
     @apply flex flex-col items-center justify-center w-2/4 ml-28
@@ -197,10 +197,10 @@ body {
 /* service header */
 @layer components {
     header.service-header {
-        @apply py-[11px] pl-[106px] bg-white border-b border-b-[#E1E3E1] w-full
+        @apply py-[11px] bg-white border-b border-b-[#E1E3E1] w-full
     }
     header.service-header > div {
-        @apply w-[1440px] mx-auto
+        @apply w-[1228px] mx-auto
     }
     header.service-header > div nav {
         @apply flex items-center
@@ -219,7 +219,7 @@ body {
         @apply relative bottom-0 left-0 bg-white w-full border-t border-t-[theme(colors.separate)]
     }
     footer.service-footer > div {
-        @apply w-[1440px] mx-auto pl-[52px]
+        @apply w-[1228px] mx-auto pl-[52px]
     }
     footer.service-footer > div aside {
         @apply flex pb-16 pt-20
@@ -256,7 +256,7 @@ body {
 
     }
     footer.service-footer > p {
-        @apply w-[1440px] pl-[52px] mx-auto font-[theme(fontFamily.inter)] text-sm font-medium text-[theme(colors.link)] pt-[30px] pb-[34px]
+        @apply w-[1228px] pl-[52px] mx-auto font-[theme(fontFamily.inter)] text-sm font-medium text-[theme(colors.link)] pt-[30px] pb-[34px]
     }
 }
 
@@ -372,10 +372,7 @@ body {
 /* LNB */
 @layer components {
     aside.lnb {
-        @apply bg-white pt-[13px] pb-[theme(spacing[4.5])] px-2 rounded-xl w-[266px] h-fit mt-[37px] mb-[57px] ml-[83px]
-    }
-    aside.lnb.service-lnb  {
-        @apply bg-white pt-[13px] pb-[theme(spacing[4.5])] px-2 rounded-xl w-[266px] h-fit mt-[37px] mb-[57px] ml-[52px]
+        @apply bg-white pt-[13px] pb-[theme(spacing[4.5])] px-2 rounded-xl w-[266px] min-w-[266px] h-fit mt-[37px] mb-[57px]
     }
     aside.lnb ul {
         @apply flex flex-col

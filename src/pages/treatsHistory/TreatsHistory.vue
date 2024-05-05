@@ -269,7 +269,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg flex w-[1440px] mx-auto">
+    <main class="bg-bg flex w-[1228px] mx-auto">
         <aside class="lnb service-lnb">
             <ul>
                 <li
