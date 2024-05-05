@@ -41,6 +41,40 @@ export default {
         handleClick() {
             window.location.href = '/login'
         },
+        handleDropdown() {
+            this.dropdown = !this.dropdown
+        },
+        handleAlert() {
+            this.alertOpen = !this.alertOpen
+        },
+        handleGlobalDropdown(e) {
+          const { parentNode } = e.target
+            if (parentNode !== this.$refs.dropdownRef && !this.$refs.dropdownOptsRef.contains(parentNode)) {
+                this.dropdown = false
+            }
+        },
+        handleGlobalAlert(e) {
+          const { parentNode } = e.target
+            if (parentNode !== this.$refs.alertRef && !this.$refs.alertWrapperRef.contains(parentNode)) {
+                this.alertOpen = false
+            }
+        },
+    },
+    watch:{
+        dropdown(){
+            if (this.dropdown) {
+                window.addEventListener('click', this.handleGlobalDropdown)
+                return
+            }
+            window.removeEventListener('click', this.handleGlobalDropdown)
+        },
+        alertOpen(){
+            if (this.alertOpen) {
+                window.addEventListener('click', this.handleGlobalAlert)
+                return
+            }
+            window.removeEventListener('click', this.handleGlobalAlert)
+        },
     },
     computed: {
         matchPath: () => {
@@ -68,7 +102,8 @@ export default {
                 <div class="relative">
                     <button
                       class="header-btn"
-                      @click="alertOpen = !alertOpen"
+                      ref="alertRef"
+                      @click="handleAlert"
                     >
                         <BellSvg />
                         <span class="badge">{{ alertData.length }}</span>
@@ -124,7 +159,7 @@ export default {
                 <div class="btn-group ml-4">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
-                        <button @click="dropdown = !dropdown">
+                        <button @click="handleDropdown">
                             <span>
                                 10000 points
                             </span>
@@ -132,6 +167,7 @@ export default {
                         </button>
                         <div
                           class="dropdown-opts"
+                          ref="dropdownOptsRef"
                           :class="dropdown ? 'block' : 'hidden'"
                         >
                             <a href="/myWallet">

@@ -270,10 +270,10 @@ body {
     }
 }
 
-/* header button */
+/* header bell button */
 @layer components {
     button.header-btn {
-        @apply py-3 px-3.5 rounded-xl border-2 border-[theme(colors.header-btn-border)]
+        @apply py-3 px-3.5 rounded-xl border-2 border-[theme(colors.header-btn-border)] hover:bg-[theme(colors.header-btn-border)]
     }
 }
 
@@ -322,7 +322,7 @@ body {
 /* alert wrapper */
 @layer components {
     aside.alert-wrapper {
-        @apply absolute bg-white top-12 right-0 mt-1.5 w-[660px] h-[636px] rounded-2xl;
+        @apply absolute bg-white top-12 right-0 mt-1.5 w-[660px] h-[636px] rounded-2xl z-20;
         box-shadow: 0px 32px 48px -8px #0000001A;
         box-shadow: 0px 0px 14px -4px #0000000D;
         box-shadow: 0px 40px 64px -12px #00000014;

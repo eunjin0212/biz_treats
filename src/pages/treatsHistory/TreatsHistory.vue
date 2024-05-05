@@ -80,7 +80,7 @@ export default {
                 from: moment(new Date()).format('YYYY-MM-DD'),
             },
             tab: 'Done',
-            tabOptions: ['Done', 'Reserved Schedule']
+            tabOptions: ['Done', 'Reserved Schedule'],
         }
     },
     methods: {
@@ -109,7 +109,41 @@ export default {
         handleTab(value) {
             this.tab = value
             this.filters = { ...this.initFilters }
-        }
+        },
+        handleDropdown() {
+            this.dropdown = !this.dropdown
+        },
+        handleAlert() {
+            this.alertOpen = !this.alertOpen
+        },
+        handleGlobalDropdown(e) {
+          const { parentNode } = e.target
+            if (parentNode !== this.$refs.dropdownRef && !this.$refs.dropdownOptsRef.contains(parentNode)) {
+                this.dropdown = false
+            }
+        },
+        handleGlobalAlert(e) {
+          const { parentNode } = e.target
+            if (parentNode !== this.$refs.alertRef && !this.$refs.alertWrapperRef.contains(parentNode)) {
+                this.alertOpen = false
+            }
+        },
+    },
+    watch:{
+        dropdown(){
+            if (this.dropdown) {
+                window.addEventListener('click', this.handleGlobalDropdown)
+                return
+            }
+            window.removeEventListener('click', this.handleGlobalDropdown)
+        },
+        alertOpen(){
+            if (this.alertOpen) {
+                window.addEventListener('click', this.handleGlobalAlert)
+                return
+            }
+            window.removeEventListener('click', this.handleGlobalAlert)
+        },
     },
     computed: {
         matchPath: () => {
@@ -151,7 +185,8 @@ export default {
                 <div class="relative">
                     <button
                       class="header-btn"
-                      @click="alertOpen = !alertOpen"
+                      @click="handleAlert"
+                      ref="alertRef"
                     >
                         <BellSvg />
                         <span class="badge">{{ alertData.length }}</span>
@@ -159,6 +194,7 @@ export default {
                     <aside
                       class="alert-wrapper"
                       :class="alertOpen ? 'block' : 'hidden'"
+                      ref="alertWrapperRef"
                     >
                         <div class="alert-header">
                             <h1>Notification</h1>
@@ -207,7 +243,7 @@ export default {
                 <div class="btn-group ml-4">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
-                        <button @click="dropdown = !dropdown">
+                        <button @click="handleDropdown" ref="dropdownRef">
                             <span>
                                 10000 points
                             </span>
@@ -215,6 +251,7 @@ export default {
                         </button>
                         <div
                           class="dropdown-opts"
+                          ref="dropdownOptsRef"
                           :class="dropdown ? 'block' : 'hidden'"
                         >
                             <a href="/myWallet">
