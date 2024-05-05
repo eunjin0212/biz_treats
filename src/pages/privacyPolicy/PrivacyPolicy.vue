@@ -147,7 +147,7 @@ export default {
             </div>
         </nav>
     </header>
-    <main class="bg-bg">
+    <main class="bg-bg flex">
         <aside class="lnb">
             <ul>
                 <li
@@ -167,7 +167,66 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section>
+        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] flex flex-col">
+            <div class="main-section pb-[50px] text-secondary text-xs leading-5 mb-7">
+                <h2>Privacy Policy</h2>
+                <strong class="mt-6 leading-3.5 block">Use of Information</strong>
+                <p class="w-[848px] mb-5">
+                    Share Treats Innovation Corp. will not collect any information about you unless you knowingly and
+                    voluntarily provide your personal information. Personal Identifiable information shall include but
+                    not limited to your name, e-mail address, phone number, and other specific information about you.
+                </p>
+                <p class="w-[848px] mb-5">
+                    Share Treats Innovation Corp. however, may share the non-personal aggregate, or summary of
+                    information regarding users of the site or the participants of the programs (“The Users”) with
+                    partners or other third parties solely for the purpose of improving its site and its programs.
+                </p>
+                <p class="w-[848px] mb-5">
+                    Share Treats Innovation Corp. does not sell, share or disclose any personal identifiable
+                    information.
+                </p>
+                <p class="w-[848px] mb-5">
+                    From time to time, Share Treats may use your personal identifiable information in order to notify
+                    you and other users of any news and updates in the site or in any of its programs. You may, however,
+                    unsubscribe yourself from receiving Site and Programs’ news and updates from Share Treats and any
+                    time by sending an email to biztreats@sharetreats.com requesting that your email address be removed
+                    from the mailing list of site and programs’ news and updates.
+                </p>
+                <strong class="leading-3.5">Transfer of user benefits and materials.</strong>
+                <p class="w-[848px] mb-[30px]">
+                    Except as otherwise prohibited herein, the benefits and materials, including but not limited to API
+                    documentation, software tools and development kits, instruction manual, software, technical support
+                    incidents, and application keys, provided to you as part of your access to this site and programs
+                    may not be transferred. You agree that you will not otherwise transfer, publish, copy, or
+                    disseminate such materials.
+                </p>
+                <strong class="leading-3.5">Accuracy of published site content information.</strong>
+                <p class="w-[848px] mb-[30px]">
+                    It is your responsibility to evaluate the accuracy completeness and usefulness of any opinion,
+                    advice, services or other information provided. The information of this site may be changed or
+                    updated without notice. Share Treats may also make improvement and/or changes in the site and
+                    programs at any time without notice. Information provided on this site is believed to be reliable
+                    when posted. However, Share Treats cannot guarantee that information will be accurate, complete and
+                    current at all times. All information on this site is subject to modification from time to time
+                    without notice. Every time you access this site, make sure that you check this page. Share Treats
+                    has used its discretion, best judgement and all reasonable efforts in collecting and preparing the
+                    information, documents (incl. copy, graphics, pictures, etc.) or other items provided or available
+                    herein, but any such information, document or other item is provided or available without any
+                    warrant of any kind, either express or implied, including but not limited to, the warranties of
+                    completeness, accuracy, fitness for a particular purpose, or non-infringement of any intellectual
+                    property rights.
+                </p>
+                <strong class="leading-3.5">Data protection Officer Information</strong>
+                <p class="w-[848px] mb-[30px]">
+                    SHARE TREATS INNOVATION CORPORATION<br>
+                    Unit 501 BDO Equitable tower, 8751 Paseo De Roxas, Makati City<br>
+                    Email : dpo.ph@sharetreats.com
+                </p>
+                <div class="text-center w-fit">
+                  <img src="/assets/images/validity_period.webp" alt="validity_period" />
+                  <em>Validity Period : May 4, 2024</em>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="footer">
