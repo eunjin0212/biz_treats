@@ -62,7 +62,7 @@ export default {
                 },
                 {
                     title: 'Refund',
-                    content: ['Refund will be made approximately within 10 business days depending on the payment issuer’s process once <br /> the refund is confirmed by our CS.'],
+                    content: ['Refund will be made approximately within 10 business days depending on the payment issuer’s process once <br> the refund is confirmed by our CS.'],
                 },
             ],
         }
