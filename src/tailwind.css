@@ -195,16 +195,15 @@ body {
 }
 
 /* service header */
-
 @layer components {
     header.service-header {
-        @apply py-[11px] bg-white border-b border-b-[#E1E3E1] w-full
+        @apply py-[11px] pl-[106px] bg-white border-b border-b-[#E1E3E1] w-full
     }
     header.service-header > div {
         @apply w-[1440px] mx-auto
     }
     header.service-header > div nav {
-        @apply flex items-center justify-center
+        @apply flex items-center
     }
     header.service-header > div nav a {
         @apply mr-[77px]
@@ -214,10 +213,57 @@ body {
     }
 }
 
+/* service footer */
+@layer components {
+    footer.service-footer {
+        @apply relative bottom-0 left-0 bg-white w-full border-t border-t-[theme(colors.separate)]
+    }
+    footer.service-footer > div {
+        @apply w-[1440px] mx-auto pl-[52px]
+    }
+    footer.service-footer > div aside {
+        @apply flex pb-16 pt-20
+    }
+    footer.service-footer > div aside > div {
+        @apply w-40 mr-[108px] last-of-type:mr-0
+    }
+    footer.service-footer > div aside div h4 {
+        @apply text-base font-medium text-[theme(colors.title)] font-[theme(fontFamily.inter)] mb-5
+    }
+    footer.service-footer > div aside > div a {
+        @apply block text-xs font-medium text-[theme(colors.link)] mb-6 last-of-type:mb-0
+    }
+    footer.service-footer > div aside > div:first-of-type {
+        @apply mr-[283px]
+    }
+    footer.service-footer > div aside > div:first-of-type > img {
+        @apply w-[117px] h-[59px]
+    }
+    footer.service-footer > div aside > div:first-of-type h4 {
+        @apply text-base font-medium text-[theme(colors.title)] font-[theme(fontFamily.inter)] mt-6
+    }
+    footer.service-footer > div aside > div:first-of-type div {
+        @apply flex gap-2 mt-2
+    }
+    footer.service-footer > div aside > div:first-of-type div a {
+        @apply inline-flex items-center justify-center w-10 h-10 bg-[theme(colors.sns)] text-center rounded-full
+    }
+    footer.service-footer > div aside > div:first-of-type div a img {
+        @apply text-xs
+    }
+    footer.service-footer > div hr {
+      @apply border-t-[theme(colors.separate)]
+
+    }
+    footer.service-footer > p {
+        @apply w-[1440px] pl-[52px] mx-auto font-[theme(fontFamily.inter)] text-sm font-medium text-[theme(colors.link)] pt-[30px] pb-[34px]
+    }
+}
+
 /* search input */
 @layer components {
     div.search-input {
-        @apply py-[13px] pl-[13px] pr-5 mr-[133px] flex items-center justify-between h-12 w-full max-w-[500px] border-2 border-[theme(colors.search-border)] bg-[theme(colors.search-bg)] rounded-[9px]
+        @apply py-[13px] pl-[13px] pr-5 mr-[82px] flex items-center justify-between h-12 w-full max-w-[500px] border-2 border-[theme(colors.search-border)] bg-[theme(colors.search-bg)] rounded-[9px]
     }
     div.search-input input {
         @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full placeholder:text-[theme(colors.neutral.default)] bg-transparent
@@ -327,6 +373,9 @@ body {
 @layer components {
     aside.lnb {
         @apply bg-white pt-[13px] pb-[theme(spacing[4.5])] px-2 rounded-xl w-[266px] h-fit mt-[37px] mb-[57px] ml-[83px]
+    }
+    aside.lnb.service-lnb  {
+        @apply bg-white pt-[13px] pb-[theme(spacing[4.5])] px-2 rounded-xl w-[266px] h-fit mt-[37px] mb-[57px] ml-[52px]
     }
     aside.lnb ul {
         @apply flex flex-col

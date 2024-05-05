@@ -149,8 +149,8 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg flex justify-center">
-        <aside class="lnb">
+    <main class="bg-bg flex w-[1440px] mx-auto">
+        <aside class="lnb service-lnb">
             <ul>
                 <li
                   v-for="lnb in lnbMenu"
@@ -234,49 +234,52 @@ export default {
             </div>
         </section>
     </main>
-    <footer class="footer">
-        <aside>
-            <div>
-                <img
-                  src="/assets/images/biz_treats_log.png"
-                  alt="footer-log"
-                />
-                <h4>
-                    {{ snsMenu.title }}
-                </h4>
+    <footer class="service-footer">
+        <div>
+            <aside>
                 <div>
-                    <a
-                      v-for="sns in snsMenu.children"
-                      :key="sns.name"
-                    >
-                        <img
-                          :src="sns.icon"
-                          :alt="sns.name"
-                        />
-                    </a>
+                    <img
+                      src="/assets/images/biz_treats_log.png"
+                      alt="footer-log"
+                    />
+                    <h4>
+                        {{ snsMenu.title }}
+                    </h4>
+                    <div>
+                        <a
+                          v-for="sns in snsMenu.children"
+                          :key="sns.name"
+                        >
+                            <img
+                              :src="sns.icon"
+                              :alt="sns.name"
+                            />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div
-              v-for="menu in menus"
-              :key="menu.title"
-            >
-                <h4>
-                    {{ menu.title }}
-                </h4>
-                <template
-                  v-for="sub in menu.children"
-                  :key="sub.title"
+                <div
+                  v-for="menu in menus"
+                  :key="menu.title"
                 >
-                    <a
-                      :href="sub.link"
-                      :target="sub.target"
-                      :alt="sub.name"
+                    <h4>
+                        {{ menu.title }}
+                    </h4>
+                    <template
+                      v-for="sub in menu.children"
+                      :key="sub.title"
                     >
-                        {{ sub.name }}
-                    </a>
-                </template>
-            </div>
-        </aside>
+                        <a
+                          :href="sub.link"
+                          :target="sub.target"
+                          :alt="sub.name"
+                        >
+                            {{ sub.name }}
+                        </a>
+                    </template>
+                </div>
+            </aside>
+        </div>
+        <hr />
         <p>
             Copyright © SHARE TREATS. All rights reserved.
         </p>
