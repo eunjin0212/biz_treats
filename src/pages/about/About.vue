@@ -51,101 +51,103 @@ export default {
 </script>
 <template>
     <header class="service-header">
-        <nav>
-            <a href="/">
-                <img src="/assets/images/biz_treats_log.png" />
-            </a>
-            <div class="search-input">
-                <input
-                  type="text"
-                  placeholder="Search for Treats"
-                  name="search"
-                  v-model="search"
-                />
-                <SearchSvg />
-            </div>
-            <div class="relative">
-                <button
-                  class="header-btn"
-                  @click="alertOpen = !alertOpen"
-                >
-                    <BellSvg />
-                    <span class="badge">{{ alertData.length }}</span>
-                </button>
-                <aside
-                  class="alert-wrapper"
-                  :class="alertOpen ? 'block' : 'hidden'"
-                >
-                    <div class="alert-header">
-                        <h1>Notification</h1>
-                        <p>
-                            <span>
-                                That’s all your notifications from the last 14days.
-                            </span>
-                            <button>
-                                Mark all as read
-                            </button>
-                        </p>
-                    </div>
-                    <hr />
-                    <ul>
-                        <li
-                          v-for="(alert, idx) in alertData"
-                          :key="idx"
-                        >
-                            <div>
-                                <span :class="alert.type === 'alert' ? 'bg-[#FCB1E7]' : 'bg-[#A7E5FF]'">
-                                    <AlertSvg v-if="alert.type === 'alert'" />
-                                    <PointSvg v-else />
-                                </span>
-                                <div>
-                                    <p>
-                                        <span>{{ alert.title }}</span>
-                                        <span>({{ alert.date }})</span>
-                                    </p>
-                                    <span>{{ alert.description }}</span>
-                                </div>
-                                <span
-                                  v-if="alert.read"
-                                  class="alert-check"
-                                >
-                                    <ReadSvg />
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
-                </aside>
-            </div>
-            <button class="header-btn inline-flex ml-4.5">
-                <CartSvg />
-                <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
-            </button>
-            <div class="btn-group ml-4">
-                <button class="border-r border-r-[#197298]">Wallet Name</button>
-                <div class="dropdown border-l border-l-[#60D0FF]">
-                    <button @click="dropdown = !dropdown">
-                        <span>
-                            10000 points    
-                        </span>
-                        <DropdownSvg />
-                    </button>
-                    <div
-                      class="dropdown-opts"
-                      :class="dropdown ? 'block' : 'hidden'"
+        <div>
+            <nav>
+                <a href="/">
+                    <img src="/assets/images/biz_treats_log.png" />
+                </a>
+                <div class="search-input">
+                    <input
+                      type="text"
+                      placeholder="Search for Treats"
+                      name="search"
+                      v-model="search"
+                    />
+                    <SearchSvg />
+                </div>
+                <div class="relative">
+                    <button
+                      class="header-btn"
+                      @click="alertOpen = !alertOpen"
                     >
-                        <a href="/myWallet">
-                            <WalletSvg />My Wallet
-                        </a>
-                        <a href="/chooseWallet">
-                            <SwitchSvg />Switching Wallet
-                        </a>
-                        <a href="/login">
-                            <SignOutSvg />Log out
-                        </a>
+                        <BellSvg />
+                        <span class="badge">{{ alertData.length }}</span>
+                    </button>
+                    <aside
+                      class="alert-wrapper"
+                      :class="alertOpen ? 'block' : 'hidden'"
+                    >
+                        <div class="alert-header">
+                            <h1>Notification</h1>
+                            <p>
+                                <span>
+                                    That’s all your notifications from the last 14days.
+                                </span>
+                                <button>
+                                    Mark all as read
+                                </button>
+                            </p>
+                        </div>
+                        <hr />
+                        <ul>
+                            <li
+                              v-for="(alert, idx) in alertData"
+                              :key="idx"
+                            >
+                                <div>
+                                    <span :class="alert.type === 'alert' ? 'bg-[#FCB1E7]' : 'bg-[#A7E5FF]'">
+                                        <AlertSvg v-if="alert.type === 'alert'" />
+                                        <PointSvg v-else />
+                                    </span>
+                                    <div>
+                                        <p>
+                                            <span>{{ alert.title }}</span>
+                                            <span>({{ alert.date }})</span>
+                                        </p>
+                                        <span>{{ alert.description }}</span>
+                                    </div>
+                                    <span
+                                      v-if="alert.read"
+                                      class="alert-check"
+                                    >
+                                        <ReadSvg />
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+                <button class="header-btn inline-flex ml-4.5">
+                    <CartSvg />
+                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
+                </button>
+                <div class="btn-group ml-4">
+                    <button class="border-r border-r-[#197298]">Wallet Name</button>
+                    <div class="dropdown border-l border-l-[#60D0FF]">
+                        <button @click="dropdown = !dropdown">
+                            <span>
+                                10000 points
+                            </span>
+                            <DropdownSvg />
+                        </button>
+                        <div
+                          class="dropdown-opts"
+                          :class="dropdown ? 'block' : 'hidden'"
+                        >
+                            <a href="/myWallet">
+                                <WalletSvg />My Wallet
+                            </a>
+                            <a href="/chooseWallet">
+                                <SwitchSvg />Switching Wallet
+                            </a>
+                            <a href="/login">
+                                <SignOutSvg />Log out
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
     <main class="bg-bg">
         <aside class="lnb">

@@ -198,15 +198,18 @@ body {
 
 @layer components {
     header.service-header {
-        @apply py-[11px] pr-[61px] pl-[103px] bg-white min-w-[1440px] border-b border-b-[#E1E3E1]
+        @apply py-[11px] bg-white border-b border-b-[#E1E3E1] w-full
     }
-    header.service-header nav {
-        @apply flex items-center
+    header.service-header > div {
+        @apply w-[1440px] mx-auto
     }
-    header.service-header nav a {
+    header.service-header > div nav {
+        @apply flex items-center justify-center
+    }
+    header.service-header > div nav a {
         @apply mr-[77px]
     }
-    header.service-header nav a img {
+    header.service-header > div nav a img {
         @apply w-[85px] h-[42px]
     }
 }
