@@ -391,7 +391,7 @@ export default {
                                       class="flex justify-between items-center"
                                     >
                                         <button
-                                          class="border border-btn-border rounded-lg bg-white px-[31px] py-1.5 text-point-down font-semibold leading-6"
+                                          class="border border-btn-border rounded-lg bg-white px-[31px] py-1.5 text-point-down font-semibold leading-6 hover:bg-[#E3E3E320]"
                                         >
                                             Cancel
                                         </button>
@@ -402,7 +402,7 @@ export default {
                                     >
                                         {{ row[column.field] }}
                                         <button
-                                          class="border border-btn-border rounded-lg bg-white px-[21px] py-1.5 text-main font-semibold leading-6"
+                                          class="border border-btn-border rounded-lg bg-white px-[21px] py-1.5 text-main font-semibold leading-6 hover:bg-[#E3E3E320]"
                                         >
                                             Download
                                         </button>

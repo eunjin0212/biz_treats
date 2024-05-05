@@ -489,7 +489,7 @@ export default {
                                     >
                                         {{ row[column.field] }}
                                         <a
-                                          class="border border-btn-border rounded-lg bg-white px-[34px] py-2 text-main font-semibold leading-6">
+                                          class="border border-btn-border rounded-lg bg-white px-[34px] py-2 text-main font-semibold leading-6 hover:bg-[#E3E3E320]">
                                             Detail
                                         </a>
                                     </div>

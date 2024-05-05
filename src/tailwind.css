@@ -270,10 +270,10 @@ body {
     }
 }
 
-/* header bell button */
+/* header bell, cart button */
 @layer components {
     button.header-btn {
-        @apply py-3 px-3.5 rounded-xl border-2 border-[theme(colors.header-btn-border)] hover:bg-[theme(colors.header-btn-border)]
+        @apply py-3 px-3.5 rounded-xl border-2 border-[theme(colors.header-btn-border)] hover:bg-[#6F767E10]
     }
 }
 
@@ -472,17 +472,17 @@ body {
         @apply flex items-center gap-2
     }
     div.table-function-bar form button[type="submit"] {
-        @apply border border-[theme(colors.main)] w-20 h-10 py-2 px-4 rounded text-[#5EC0E9] text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)]
+        @apply border border-[theme(colors.main)] w-20 h-10 py-2 px-4 rounded text-[#5EC0E9] hover:bg-[#29ABE220]  text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)]
     }
     div.table-function-bar button[type="button"] {
-        @apply flex gap-2 items-center h-10 px-3 py-2 border border-[theme(colors.btn-border)] rounded text-[theme(colors.download-btn-text)] text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)] float-right
+        @apply flex gap-2 items-center h-10 px-3 py-2 border border-[theme(colors.btn-border)] rounded text-[theme(colors.download-btn-text)] hover:bg-[#A9A9A920] text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)] float-right
     }
 }
 
 /* date-picker */
 @layer components {
     label.date-picker {
-        @apply flex items-center justify-center gap-1 relative border border-[theme(colors.date-picker-border)] w-[114px] h-10 bg-white rounded text-sm leading-5 font-medium text-[theme(colors.date-picker-text)] font-[theme(fontFamily.manrope)]
+        @apply flex items-center justify-center gap-1 relative border border-[theme(colors.date-picker-border)] w-[114px] h-10 bg-white rounded text-sm leading-5 font-medium text-[theme(colors.date-picker-text)] font-[theme(fontFamily.manrope)] hover:border-[theme(colors.date-picker-text)] focus-within:border-[theme(colors.date-picker-text)]
     }
     label.date-picker input {
         @apply p-0 opacity-0 absolute top-0 z-10 w-full h-full
@@ -498,7 +498,7 @@ body {
 /* table search input */
 @layer components {
     label.search-input {
-        @apply px-4 py-2 h-10 w-64 rounded border border-[theme(colors.header-btn-border)] flex items-center
+        @apply px-4 py-2 h-10 w-64 rounded border border-[theme(colors.header-btn-border)] flex items-center hover:border-[theme(colors.date-picker-text)] focus-within:border-[theme(colors.date-picker-text)]
     }
     label.search-input input {
         @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full text-[theme(colors.gray.800)] placeholder:text-[theme(colors.date-picker-textl)] text-xs font-medium leading-[theme(spacing[2.5])] bg-transparent
@@ -508,7 +508,7 @@ body {
 /* table search select */
 @layer components {
     select.search-select {
-        @apply w-[104px] h-10 p-3 rounded border border-[theme(colors.header-btn-border)] focus:border-[theme(colors.header-btn-border)] focus-visible:border-[theme(colors.header-btn-border)] focus:ring-0 text-[theme(colors.gray.800)] placeholder:text-[theme(colors.date-picker-textl)] text-xs font-medium leading-[theme(spacing[2.5])] appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_icon.svg')]
+        @apply w-[104px] h-10 p-3 rounded border border-[theme(colors.header-btn-border)] hover:border-[theme(colors.date-picker-text)] focus-within:border-[theme(colors.date-picker-text)] focus-visible:border-[theme(colors.date-picker-text)] focus:ring-0 text-[theme(colors.gray.800)] placeholder:text-[theme(colors.date-picker-textl)] text-xs font-medium leading-[theme(spacing[2.5])] appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_icon.svg')]
     }
 }
 
