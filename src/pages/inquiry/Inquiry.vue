@@ -2,8 +2,6 @@
 import { snsMenu, menus, navMenu } from '@/constants/components.js';
 
 export default {
-    components: {
-    },
     data() {
         const formModel = {
             companyName: '',
@@ -90,6 +88,7 @@ export default {
                     key: 'inquiry',
                 },
             ],
+            isOpen: false,
         };
     },
     methods: {
@@ -100,8 +99,16 @@ export default {
             window.location.href = '/login'
         },
         handleSubmit(e) {
-            e.preventDefault();
+            e.preventDefault()
+            this.isOpen = true
+            const body = document.getElementsByTagName('body')[0]
+            body.className = 'overflow-hidden'
         },
+        handleModal() {
+            this.isOpen = false
+            const body = document.getElementsByTagName('body')[0]
+            body.className = ''
+        }
     }
 }
 </script>
@@ -256,4 +263,26 @@ export default {
             Copyright © SHARE TREATS. All rights reserved.
         </p>
     </footer>
+    <Teleport to="body">
+        <aside
+          class="modal__wrapper"
+          v-if="isOpen"
+        >
+            <div
+              class="rounded-[20px] bg-[#FCFCFD] w-[420px] h-[244px] mx-auto mt-7 pt-6 pb-5 px-4.5 flex flex-col items-center"
+            >
+                <h1 class="text-main font-bold text-[22px] leading-10 -tracking-wider mb-3">Thanks for reaching out.
+                </h1>
+                <p class="text-center font-poppins text-sm leading-6 font-normal text-link">
+                    Our CS team will contact you as soonest.<br>
+                    When your account creation is complete,<br>
+                    you can receive an alert by email.
+                </p>
+                <button
+                @click="handleModal"
+                  class="w-full bg-main text-white font-bold text-base leading-4 font-dmsans py-4 mt-7 rounded-[10px]"
+                >Confirm</button>
+            </div>
+        </aside>
+    </Teleport>
 </template>

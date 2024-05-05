@@ -90,7 +90,8 @@ module.exports = {
                 inter: ["inter", "sans-serif"],
                 nanum: ["NanumSquareRound", "sans-serif"],
                 poppins: ["Poppins", "sans-serif"],
-                manrope: ["Manrope", "sans-serif"]
+                manrope: ["Manrope", "sans-serif"],
+                dmsans: ["DM Sans", "sans-serif"],
             },
         },
         screens: {
