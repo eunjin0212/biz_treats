@@ -219,7 +219,7 @@ body {
         @apply relative bottom-0 left-0 bg-white w-full border-t border-t-[theme(colors.separate)]
     }
     footer.service-footer > div {
-        @apply w-[1228px] mx-auto pl-[52px]
+        @apply w-[1228px] mx-auto
     }
     footer.service-footer > div aside {
         @apply flex pb-16 pt-20
