@@ -11,6 +11,9 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
+import MailSvg from '@/assets/icons/MailSvg.vue';
+import MapSvg from '@/assets/icons/MapSvg.vue';
+import SmartphoneSvg from '@/assets/icons/SmartphoneSvg.vue';
 
 export default {
     components: {
@@ -24,6 +27,9 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
+        MailSvg,
+        MapSvg,
+        SmartphoneSvg,
     },
     data() {
         return {
@@ -48,27 +54,27 @@ export default {
             this.alertOpen = !this.alertOpen
         },
         handleGlobalDropdown(e) {
-          const { parentNode } = e.target
+            const { parentNode } = e.target
             if (parentNode !== this.$refs.dropdownRef && !this.$refs.dropdownOptsRef.contains(parentNode)) {
                 this.dropdown = false
             }
         },
         handleGlobalAlert(e) {
-          const { parentNode } = e.target
+            const { parentNode } = e.target
             if (parentNode !== this.$refs.alertRef && !this.$refs.alertWrapperRef.contains(parentNode)) {
                 this.alertOpen = false
             }
         },
     },
-    watch:{
-        dropdown(){
+    watch: {
+        dropdown() {
             if (this.dropdown) {
                 window.addEventListener('click', this.handleGlobalDropdown)
                 return
             }
             window.removeEventListener('click', this.handleGlobalDropdown)
         },
-        alertOpen(){
+        alertOpen() {
             if (this.alertOpen) {
                 window.addEventListener('click', this.handleGlobalAlert)
                 return
@@ -160,7 +166,10 @@ export default {
                 <div class="btn-group ml-4">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
-                        <button @click="handleDropdown" ref="dropdownRef">
+                        <button
+                          @click="handleDropdown"
+                          ref="dropdownRef"
+                        >
                             <span>
                                 10000 points
                             </span>
@@ -206,7 +215,57 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section>
+        <section class="w-[calc(100%-266px)] max-w-[932px] flex flex-col">
+            <div class="section-card">
+                <h1>Merchant Partnership</h1>
+                <hr />
+                <h2 class="!mb-4.5"><span class="!bg-[#FFBC99]"></span>Overview</h2>
+                <div
+                  class="py-4.5 px-4 mb-6 ml-3 bg-info-wrapper rounded text-sm font-normal tracking-normal leading-6 text-[#33383F]"
+                >
+                    Be a part of our partner merchants who have found new customers, increased brand awareness and
+                    secured profitable<br>
+                    marketing with no upfront cost.
+                </div>
+                <h2 class="!mb-[30px]"><span></span>Let’s work together as partners with ShareTreats!
+                </h2>
+                <div class="flex items-center ml-12 mb-24 gap-7">
+                    <div class="flex items-start gap-3">
+                        <span
+                          class="w-8 h-8 border border-date-picker-border rounded-full inline-flex justify-center items-center"
+                        >
+                            <MailSvg />
+                        </span>
+                        <p class="flex flex-col">
+                            <span class="text-[#B6B4BA] font-normal text-xs leading-4.5 font-manrope">Email</span>
+                            <span class="text-[#626262] font-medium text-xs leading-5">Partner@sharetreats.com</span>
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span
+                          class="w-8 h-8 border border-date-picker-border rounded-full inline-flex justify-center items-center"
+                        >
+                            <SmartphoneSvg />
+                        </span>
+                        <p class="flex flex-col">
+                            <span class="text-[#B6B4BA] font-normal text-xs leading-4.5 font-manrope">Phone</span>
+                            <span class="text-[#626262] font-medium text-xs leading-5">02-8994-0446</span>
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span
+                          class="w-8 h-8 border border-date-picker-border rounded-full inline-flex justify-center items-center"
+                        >
+                            <MapSvg />
+                        </span>
+                        <p class="flex flex-col">
+                            <span class="text-[#B6B4BA] font-normal text-xs leading-4.5 font-manrope">Location</span>
+                            <span class="text-[#626262] font-medium text-xs leading-3">Unit 501 BDO Equitable tower,<br>
+                                8751 Paseo De Roxas, Makati City</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="service-footer">

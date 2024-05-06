@@ -221,7 +221,7 @@ export default {
                 <hr />
                 <h2 class="!mb-4.5"><span class="!bg-[#FFBC99]"></span>Overview</h2>
                 <div
-                  class="py-4.5 px-4 mb-6 bg-info-wrapper rounded text-sm font-normal tracking-normal leading-6 text-[#33383F]"
+                  class="py-4.5 px-4 mb-6 ml-3 bg-info-wrapper rounded text-sm font-normal tracking-normal leading-6 text-[#33383F]"
                 >
                     The first in the country to introduce the power of Gifticon, Share Treats Innovation Corporation
                     (STIC) provides its clients cutting<br>
