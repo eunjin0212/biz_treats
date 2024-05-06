@@ -48,14 +48,15 @@ module.exports = {
                 'dropdown-text': '#6F767E',
                 link: '#777E90',
                 neutral: {
-                    default: '#888888'
+                  default: '#888888'
                 },
                 label: '#858587',
-
+                
                 separate: '#E6E8EC',
                 sns: '#EEF1F3',
                 'date-picker-border': '#EBEAED',
                 'search-border': '#ECECEC',
+                'hr-border': '#EEEEEE',
                 'header-btn-border': '#EFEFEF',
                 'input-border': '#E0E0E2',
                 'btn-border': '#E3E3E3',

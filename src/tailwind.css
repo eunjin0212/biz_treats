@@ -400,6 +400,12 @@ body {
     div.section-card {
       @apply bg-white rounded-xl w-full pt-6 pb-3 px-3 ml-[30px] first-of-type:mt-[37px]
     }
+    div.section-card h1 {
+        @apply font-bold text-[26px] leading-[30px] text-[theme(colors.main)] mt-5 ml-3
+    }
+    div.section-card > hr {
+        @apply border-[theme(colors.hr-border)] mt-[22px] mb-[30px] mx-3
+    }
     div.section-card h2 { /* section card header */
         @apply ml-3 mb-6 text-[theme(colors.lnb-hover-text)] text-xl font-semibold leading-8 font-[theme(fontFamily.inter)] flex items-center
     }
@@ -414,7 +420,7 @@ body {
       @apply bg-white rounded-xl w-full pt-5 px-6 ml-[30px] first-of-type:mt-[37px] font-[theme(fontFamily.inter)]
     }
     div.main-section h2 { /* section card header */
-        @apply pl-2 pb-6 text-[theme(colors.main)] text-xl font-bold leading-8 border-b border-b-[#EEEEEE]
+        @apply pl-2 pb-6 text-[theme(colors.main)] text-xl font-bold leading-8 border-b border-b-[theme(colors.hr-border)]
     }
 }
 
