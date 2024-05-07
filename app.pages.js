@@ -74,10 +74,10 @@ module.exports = {
         title: 'Choose Wallet',
         path: '/chooseWallet'
     },
-    // 'accountInfo': {
-    //     title: 'Account Info',
-    //     path: '/accountInfo'
-    // },
+    'accountInfo': {
+        title: 'Account Info',
+        path: '/accountInfo'
+    },
     // 'campaignInfo': {
     //     title: 'Campaign Info',
     //     path: '/campaignInfo'

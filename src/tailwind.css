@@ -593,3 +593,16 @@ body {
         @apply bg-[#00000080] w-full h-full fixed top-0 left-0 overflow-hidden
     }
 }
+
+/* form input -> account info, campaign Info */
+@layer components {
+    label.form__label-input {
+        @apply flex items-center
+    }
+    label.form__label-input > span {
+        @apply w-32 min-w-32 mr-5 text-sm leading-6 font-semibold text-[theme(colors.dropdown-text)] -tracking-[0.1px]
+    }
+    label.form__label-input > input {
+        @apply py-3 px-5 border border-[theme(colors.header-btn-border)] text-[theme(colors.lnb-hover-text)] placeholder:text-[#9A9FA5] disabled:bg-[theme(colors.lnb-hover)] disabled:text-[theme(colors.lnb-hover-text)] font-medium text-xs leading-6 rounded-lg w-full
+    }
+}
