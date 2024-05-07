@@ -287,7 +287,7 @@ body {
 /* button group */
 @layer components {
     div.btn-group {
-        @apply bg-main text-white rounded-xl inline-flex items-center
+        @apply bg-[theme(colors.main)] text-white rounded-xl inline-flex items-center
     }
     div.btn-group > button {
         @apply py-3 px-5 whitespace-nowrap
@@ -352,7 +352,7 @@ body {
         @apply rounded-full inline-block p-4
     }
     aside.alert-wrapper > ul li > div > span:last-of-type.alert-check { /* alert check icon */
-        @apply bg-[#29ABE2] absolute right-3 rounded-full py-[7px] px-[theme(spacing[1.5])]
+        @apply bg-[theme(colors.main)] absolute right-3 rounded-full py-[7px] px-[theme(spacing[1.5])]
     }
     aside.alert-wrapper > ul li > div > div {
         @apply flex flex-col items-start gap-1 ml-3
@@ -462,7 +462,7 @@ body {
         @apply flex
     }
     div.tab ul li {
-        @apply px-4 font-medium leading-6 text-lg text-[#79808F] cursor-pointer hover:text-main hover:border-b-main
+        @apply px-4 font-medium leading-6 text-lg text-[#79808F] cursor-pointer hover:text-[theme(colors.main)] hover:border-b-[theme(colors.main)]
     }
 }
 
@@ -475,7 +475,7 @@ body {
         @apply flex items-center gap-2
     }
     div.table-function-bar form button[type="submit"] {
-        @apply border border-[theme(colors.main)] w-20 h-10 py-2 px-4 rounded text-[#5EC0E9] hover:bg-[#29ABE220]  text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)]
+        @apply border border-[theme(colors.main)] w-20 h-10 py-2 px-4 rounded text-[#5EC0E9] hover:bg-[#29ABE220] text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)]
     }
     div.table-function-bar button[type="button"] {
         @apply flex gap-2 items-center h-10 px-3 py-2 border border-[theme(colors.btn-border)] rounded text-[theme(colors.download-btn-text)] hover:bg-[#A9A9A920] text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)] float-right
@@ -485,7 +485,7 @@ body {
 /* date-picker */
 @layer components {
     label.date-picker {
-        @apply flex items-center justify-center gap-1 relative border border-[theme(colors.date-picker-border)] w-[114px] h-10 bg-white rounded text-sm leading-5 font-medium text-[theme(colors.date-picker-text)] font-[theme(fontFamily.manrope)] hover:border-[theme(colors.date-picker-text)] focus-within:border-[theme(colors.date-picker-text)]
+        @apply flex items-center justify-center gap-1 relative border border-[theme(colors.date-picker-border)] w-[114px] h-10 bg-white rounded text-sm leading-5 font-medium text-[theme(colors.date-picker-text)] font-[theme(fontFamily.manrope)] hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
     }
     label.date-picker input {
         @apply p-0 opacity-0 absolute top-0 z-10 w-full h-full
@@ -501,17 +501,17 @@ body {
 /* table search input */
 @layer components {
     label.search-input {
-        @apply px-4 py-2 h-10 w-64 rounded border border-[theme(colors.header-btn-border)] flex items-center hover:border-[theme(colors.date-picker-text)] focus-within:border-[theme(colors.date-picker-text)]
+        @apply px-4 py-2 h-10 w-64 rounded border border-[theme(colors.header-btn-border)] flex items-center hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
     }
     label.search-input input {
-        @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full text-[theme(colors.gray.800)] placeholder:text-[theme(colors.date-picker-textl)] text-xs font-medium leading-[theme(spacing[2.5])] bg-transparent
+        @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full text-[theme(colors.gray.800)] placeholder:text-[theme(colors.date-picker-text)] text-xs font-medium leading-[theme(spacing[2.5])] bg-transparent
     }
 }
 
 /* table search select */
 @layer components {
     select.search-select {
-        @apply w-[104px] h-10 p-3 rounded border border-[theme(colors.header-btn-border)] hover:border-[theme(colors.date-picker-text)] focus-within:border-[theme(colors.date-picker-text)] focus-visible:border-[theme(colors.date-picker-text)] focus:ring-0 text-[theme(colors.gray.800)] placeholder:text-[theme(colors.date-picker-textl)] text-xs font-medium leading-[theme(spacing[2.5])] appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_icon.svg')]
+        @apply w-[104px] h-10 p-3 rounded border border-[theme(colors.header-btn-border)] hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)] focus-visible:border-[theme(colors.main)] focus:ring-0 text-[theme(colors.gray.800)] placeholder:text-[theme(colors.date-picker-text)] text-xs font-medium leading-[theme(spacing[2.5])] appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_icon.svg')]
     }
 }
 
