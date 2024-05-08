@@ -128,7 +128,7 @@ export default {
                   class="hidden"
                 />
                 <span :class="rememberAccount ? 'border-blue-600 bg-blue-600' : 'border-neutral-300 bg-white'">
-                    <CheckSvg :class="rememberAccount ? 'text-white' : 'hidden'" />
+                    <CheckSvg :class="rememberAccount ? 'text-white-20' : 'hidden'" />
                 </span>
                 <label for="remember">
                     Remember this account
@@ -148,7 +148,7 @@ export default {
                       name="reCaptcha"
                     />
                     <span :class="reCaptcha ? 'border-blue-600 bg-blue-600' : 'border-neutral-300 bg-white'">
-                        <CheckSvg :class="reCaptcha ? 'text-white' : 'hidden'" />
+                        <CheckSvg :class="reCaptcha ? 'text-white-20' : 'hidden'" />
                     </span>
                     <label for="reCaptcha">
                         I'm not a robot

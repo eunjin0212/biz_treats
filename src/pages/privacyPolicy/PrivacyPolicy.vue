@@ -186,7 +186,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg flex w-[1228px] mx-auto">
+    <main class="bgwhite-17 flex w-[1228px] mx-auto">
         <aside class="lnb service-lnb">
             <ul>
                 <li
@@ -199,7 +199,7 @@ export default {
                       v-for="children in lnb.children"
                       :key="children.title"
                       :href="children.path"
-                      :class="{ 'bg-lnb-hover !text-lnb-hover-text': matchPath(children.path) }"
+                      :class="{ 'bg-white-15 !text-black-200': matchPath(children.path) }"
                     >
                         {{ children.title }}
                     </a>
@@ -207,7 +207,7 @@ export default {
             </ul>
         </aside>
         <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] flex flex-col">
-            <div class="main-section pb-[50px] text-secondary text-xs leading-5 mb-7">
+            <div class="main-section pb-[50px] text-black-100 text-xs leading-5 mb-7">
                 <h2>Privacy Policy</h2>
                 <strong class="mt-6 leading-3.5 block">Use of Information</strong>
                 <p class="w-[848px] mb-5">

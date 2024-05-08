@@ -189,7 +189,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg flex w-[1228px] mx-auto">
+    <main class="bgwhite-17 flex w-[1228px] mx-auto">
         <aside class="lnb service-lnb">
             <ul>
                 <li
@@ -202,7 +202,7 @@ export default {
                       v-for="children in lnb.children"
                       :key="children.title"
                       :href="children.path"
-                      :class="{ 'bg-lnb-hover !text-lnb-hover-text': matchPath(children.path) }"
+                      :class="{ 'bg-white-15 !text-black-200': matchPath(children.path) }"
                     >
                         {{ children.title }}
                     </a>
@@ -259,8 +259,8 @@ export default {
                 </form>
                 <hr class="!mx-0 !mb-0" />
                 <div class="flex justify-end items-center gap-2 pt-3 pr-6">
-                    <button class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-point-chip border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-header-btn-border">Cancel</button>
-                    <button class="w-[180px] h-12 bg-main text-white rounded-lg text-[15px] leading-6 font-bold hover:bg-[#299bd9]">Save</button>
+                    <button class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10">Cancel</button>
+                    <button class="w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-[#299bd9]">Save</button>
                 </div>
             </div>
         </section>

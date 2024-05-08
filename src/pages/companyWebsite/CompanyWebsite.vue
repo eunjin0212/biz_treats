@@ -186,7 +186,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg flex w-[1228px] mx-auto">
+    <main class="bgwhite-17 flex w-[1228px] mx-auto">
         <aside class="lnb service-lnb">
             <ul>
                 <li
@@ -199,7 +199,7 @@ export default {
                       v-for="children in lnb.children"
                       :key="children.title"
                       :href="children.path"
-                      :class="{ 'bg-lnb-hover !text-lnb-hover-text': matchPath(children.path) }"
+                      :class="{ 'bg-white-15 !text-black-200': matchPath(children.path) }"
                     >
                         {{ children.title }}
                     </a>

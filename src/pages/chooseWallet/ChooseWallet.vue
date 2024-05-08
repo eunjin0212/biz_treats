@@ -225,7 +225,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg">
+    <main class="bgwhite-17">
         <section class="w-[940px] mx-auto mt-7 mb-11 flex flex-col bg-white rounded-xl">
             <ul class="font-inter text-center mt-[52px] mb-9">
                 <li class="text-main text-[28px] font-bold leading-10 mb-1">Choose your Wallet type</li>
@@ -274,7 +274,7 @@ export default {
                   v-for="page in displayedPageNumbers"
                   :key="page"
                   :aria-current="page === pagination.page && 'page'"
-                  :class="{ '!bg-main !text-white': page === pagination.page }"
+                  :class="{ '!bg-main !text-white-20': page === pagination.page }"
                   @click="() => updatePage(page)"
                 >
                     {{ page }}
@@ -288,7 +288,7 @@ export default {
                 </button>
             </div>
             <button
-              class="rounded-lg py-3.5 w-[684px] h-[60px] mx-auto text-lg font-medium font-poppins bg-main text-white mb-1.5"
+              class="rounded-lg py-3.5 w-[684px] h-[60px] mx-auto text-lg font-medium font-poppins bg-main text-white-20 mb-1.5"
             >Start</button>
             <button
               class="rounded-lg py-3.5 w-[684px] h-[60px] mx-auto text-lg font-medium font-poppins border border-[#C5C5C5] text-[#8C8C8C] mb-[46px]"

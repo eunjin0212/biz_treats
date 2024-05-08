@@ -269,7 +269,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg flex w-[1228px] mx-auto">
+    <main class="bgwhite-17 flex w-[1228px] mx-auto">
         <aside class="lnb service-lnb">
             <ul>
                 <li
@@ -282,7 +282,7 @@ export default {
                       v-for="children in lnb.children"
                       :key="children.title"
                       :href="children.path"
-                      :class="{ 'bg-lnb-hover !text-lnb-hover-text': matchPath(children.path) }"
+                      :class="{ 'bg-white-15 !text-black-200': matchPath(children.path) }"
                     >
                         {{ children.title }}
                     </a>
@@ -391,7 +391,7 @@ export default {
                                       class="flex justify-between items-center"
                                     >
                                         <button
-                                          class="border border-btn-border rounded-lg bg-white px-[31px] py-1.5 text-point-down font-semibold leading-6 hover:bg-[#E3E3E320]"
+                                          class="border border-white-02 rounded-lg bg-white px-[31px] py-1.5 text-red-200 font-semibold leading-6 hover:bg-white-02-light"
                                         >
                                             Cancel
                                         </button>
@@ -402,7 +402,7 @@ export default {
                                     >
                                         {{ row[column.field] }}
                                         <button
-                                          class="border border-btn-border rounded-lg bg-white px-[21px] py-1.5 text-main font-semibold leading-6 hover:bg-[#E3E3E320]"
+                                          class="border border-white-02 rounded-lg bg-white px-[21px] py-1.5 text-main font-semibold leading-6 hover:bg-white-02-light"
                                         >
                                             Download
                                         </button>
@@ -427,7 +427,7 @@ export default {
                       v-for="page in displayedPageNumbers"
                       :key="page"
                       :aria-current="page === pagination.page && 'page'"
-                      :class="{ '!bg-main !text-white': page === pagination.page }"
+                      :class="{ '!bg-main !text-white-20': page === pagination.page }"
                       @click="() => updatePage(page)"
                     >
                         {{ page }}

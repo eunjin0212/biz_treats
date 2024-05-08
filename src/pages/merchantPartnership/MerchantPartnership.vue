@@ -195,7 +195,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg flex w-[1228px] mx-auto">
+    <main class="bgwhite-17 flex w-[1228px] mx-auto">
         <aside class="lnb service-lnb">
             <ul>
                 <li
@@ -208,7 +208,7 @@ export default {
                       v-for="children in lnb.children"
                       :key="children.title"
                       :href="children.path"
-                      :class="{ 'bg-lnb-hover !text-lnb-hover-text': matchPath(children.path) }"
+                      :class="{ 'bg-white-15 !text-black-200': matchPath(children.path) }"
                     >
                         {{ children.title }}
                     </a>
@@ -221,7 +221,7 @@ export default {
                 <hr />
                 <h2 class="!mb-4.5"><span class="!bg-[#FFBC99]"></span>Overview</h2>
                 <div
-                  class="py-4.5 px-4 mb-6 ml-3 bg-info-wrapper rounded text-sm font-normal tracking-normal leading-6 text-[#33383F]"
+                  class="py-4.5 px-4 mb-6 ml-3 bg-white-18 rounded text-sm font-normal tracking-normal leading-6 text-[#33383F]"
                 >
                     Be a part of our partner merchants who have found new customers, increased brand awareness and
                     secured profitable<br>
@@ -232,7 +232,7 @@ export default {
                 <div class="flex items-center ml-12 mb-24 gap-7">
                     <div class="flex items-start gap-3">
                         <span
-                          class="w-8 h-8 border border-date-picker-border rounded-full inline-flex justify-center items-center"
+                          class="w-8 h-8 border border-white-07 rounded-full inline-flex justify-center items-center"
                         >
                             <MailSvg />
                         </span>
@@ -243,7 +243,7 @@ export default {
                     </div>
                     <div class="flex items-start gap-3">
                         <span
-                          class="w-8 h-8 border border-date-picker-border rounded-full inline-flex justify-center items-center"
+                          class="w-8 h-8 border border-white-07 rounded-full inline-flex justify-center items-center"
                         >
                             <SmartphoneSvg />
                         </span>
@@ -254,7 +254,7 @@ export default {
                     </div>
                     <div class="flex items-start gap-3">
                         <span
-                          class="w-8 h-8 border border-date-picker-border rounded-full inline-flex justify-center items-center"
+                          class="w-8 h-8 border border-white-07 rounded-full inline-flex justify-center items-center"
                         >
                             <MapSvg />
                         </span>

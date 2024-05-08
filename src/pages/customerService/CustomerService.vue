@@ -216,7 +216,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg flex w-[1228px] mx-auto">
+    <main class="bgwhite-17 flex w-[1228px] mx-auto">
         <aside class="lnb service-lnb">
             <ul>
                 <li
@@ -229,7 +229,7 @@ export default {
                       v-for="children in lnb.children"
                       :key="children.title"
                       :href="children.path"
-                      :class="{ 'bg-lnb-hover !text-lnb-hover-text': matchPath(children.path) }"
+                      :class="{ 'bg-white-15 !text-black-200': matchPath(children.path) }"
                     >
                         {{ children.title }}
                     </a>
@@ -246,7 +246,7 @@ export default {
                       :key="data.title"
                       class="text-base leading-7 font-normal mt-3.5"
                     >
-                        <span class="text-list-title">{{ data.title }}</span> :
+                        <span class="text-black-400">{{ data.title }}</span> :
                         <span class="text-[#1211278F]">{{ data.content }}</span>
                     </p>
                     <h3 class="mt-8 flex items-center text-main font-semibold text-sm leading-6 tracking-wider mb-5">
@@ -257,7 +257,7 @@ export default {
                       v-for="notice in noticeData"
                       :key="notice.title"
                     >
-                        <h4 class="text-sm leading-[25px] font-normal text-list-title inline-flex items-center">
+                        <h4 class="text-sm leading-[25px] font-normal text-black-400 inline-flex items-center">
                             <CheckRoundSvg class="mr-3" /> {{ notice.title }}
                         </h4>
                         <ul class="mt-3 list-disc ml-10 mb-9">

@@ -267,7 +267,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg flex w-[1228px] mx-auto">
+    <main class="bgwhite-17 flex w-[1228px] mx-auto">
         <aside class="lnb service-lnb">
             <ul>
                 <li
@@ -280,7 +280,7 @@ export default {
                       v-for="children in lnb.children"
                       :key="children.title"
                       :href="children.path"
-                      :class="{ 'bg-lnb-hover !text-lnb-hover-text': matchPath(children.path) }"
+                      :class="{ 'bg-white-15 !text-black-200': matchPath(children.path) }"
                     >
                         {{ children.title }}
                     </a>
@@ -310,7 +310,7 @@ export default {
                             <AccordionSvg />
                         </h4>
                         <div
-                          class="px-3 pt-3.5 pb-8 font-normal leading-3.4 text-[13px] text-neutral-500 bg-info-wrapper hidden h-0 transition-all"
+                          class="px-3 pt-3.5 pb-8 font-normal leading-3.4 text-[13px] text-neutral-500 bg-white-18 hidden h-0 transition-all"
                           :class="{ '!h-auto !block': content.active }"
                         >
                             {{ content.content }}

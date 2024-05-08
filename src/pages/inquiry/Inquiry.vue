@@ -280,7 +280,7 @@ export default {
                 </p>
                 <button
                 @click="handleModal"
-                  class="w-full bg-main text-white font-bold text-base leading-4 font-dmsans py-4 mt-7 rounded-[10px]"
+                  class="w-full bg-main text-white-20 font-bold text-base leading-4 font-dmsans py-4 mt-7 rounded-[10px]"
                 >Confirm</button>
             </div>
         </aside>

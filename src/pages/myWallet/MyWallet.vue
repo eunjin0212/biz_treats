@@ -81,10 +81,10 @@ export default {
             ],
             data: rows.slice(pagination.page - 1, rowPerPage),
             typeStyle: {
-                Canceled: 'bg-canceled',
-                Transfer: 'bg-transfer',
+                Canceled: 'bg-red-100',
+                Transfer: 'bg-blue-400',
                 Deduct: 'bg-primary-450',
-                Topup: 'bg-topup',
+                Topup: 'bg-blue-200',
             },
             moment,
             typeOptions: ['Canceled', 'Transfer', 'Deduct', 'Topup',],
@@ -278,7 +278,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-bg flex w-[1228px] mx-auto">
+    <main class="bgwhite-17 flex w-[1228px] mx-auto">
         <aside class="lnb service-lnb">
             <ul>
                 <li
@@ -291,7 +291,7 @@ export default {
                       v-for="children in lnb.children"
                       :key="children.title"
                       :href="children.path"
-                      :class="{ 'bg-lnb-hover !text-lnb-hover-text': matchPath(children.path) }"
+                      :class="{ 'bg-white-15 !text-black-200': matchPath(children.path) }"
                     >
                         {{ children.title }}
                     </a>
@@ -301,7 +301,7 @@ export default {
         <section class="w-[calc(100%-266px)] max-w-[932px] flex flex-col">
             <div class="section-card">
                 <h2><span></span>My Wallet</h2>
-                <ul class="bg-info-wrapper px-4 py-2.5 rounded-xl flex items-center gap-[22px]">
+                <ul class="bg-white-18 px-4 py-2.5 rounded-xl flex items-center gap-[22px]">
                     <li class="wallet-info__card">
                         <h3 class="wallet-info__card-header">
                             <span class="">Account Info</span>
@@ -345,7 +345,7 @@ export default {
                             <span class="">Wallet Name</span>
                             <a href="/walletName">Edit Info ></a>
                         </h3>
-                        <hr class="border-gray100" />
+                        <hr class="border-white-04" />
                         <ul class="wallet-info__card-content ml-2.5 !pt-2.5">
                             <li class="!text-point-unit !text-sm leading-5 !font-bold !font-poppins !items-center">
                                 <i class="!text-point font-semibold font-inter leading-[48px] text-4xl">100,000</i>
@@ -365,7 +365,7 @@ export default {
                             <span class="text-point-unit font-bold text-sm leading-5 font-poppins">Points</span>
                         </div>
                         <span
-                          class="bg-point-chip p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-point-up rounded -tracking-wide"
+                          class="bg-white-19 p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-point-up rounded -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -377,7 +377,7 @@ export default {
                             <span class="text-point-unit font-bold text-sm leading-5 font-poppins">Points</span>
                         </div>
                         <span
-                          class="bg-point-chip p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-point-down rounded -tracking-wide"
+                          class="bg-white-19 p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-red-200 rounded -tracking-wide"
                         >
                             <DownSvg /> 37.8%
                         </span>
@@ -389,7 +389,7 @@ export default {
                             <span class="text-point-unit font-bold text-sm leading-5 font-poppins">Points</span>
                         </div>
                         <span
-                          class="bg-point-chip p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-point-up rounded -tracking-wide"
+                          class="bg-white-19 p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-point-up rounded -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -490,7 +490,7 @@ export default {
                                     >
                                         {{ row[column.field] }}
                                         <a
-                                          class="border border-btn-border rounded-lg bg-white px-[34px] py-2 text-main font-semibold leading-6 hover:bg-[#E3E3E320]">
+                                          class="border border-white-02 rounded-lg bg-white px-[34px] py-2 text-main font-semibold leading-6 hover:bg-white-02-light">
                                             Detail
                                         </a>
                                     </div>
@@ -514,7 +514,7 @@ export default {
                       v-for="page in displayedPageNumbers"
                       :key="page"
                       :aria-current="page === pagination.page && 'page'"
-                      :class="{ '!bg-main !text-white': page === pagination.page }"
+                      :class="{ '!bg-main !text-white-20': page === pagination.page }"
                       @click="() => updatePage(page)"
                     >
                         {{ page }}
