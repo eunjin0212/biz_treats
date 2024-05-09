@@ -37,6 +37,7 @@ export default {
             dropdown: false,
             alertOpen: false,
             alertData,
+            colorPicker: '#ffffff',
         }
     },
     methods: {
@@ -60,6 +61,10 @@ export default {
             if (parentNode !== this.$refs.alertRef && !this.$refs.alertWrapperRef.contains(parentNode)) {
                 this.alertOpen = false
             }
+        },
+        handleColorPicker(e) {
+            this.colorPicker = e.target.value
+            console.log(e.target.value)
         },
     },
     watch: {
@@ -240,11 +245,21 @@ export default {
                             Campaign Color
                         </span>
                         <div class="inline-flex items-center gap-6.5">
-                            <span class="inline-block w-9 h-9 border-2 rounded-md border-[#D7D7D7]"></span>
+                            <span
+                              :style="{ backgroundColor: colorPicker }"
+                              class="inline-block w-9 h-9 border-2 rounded-md border-[#D7D7D7]"
+                            ></span>
                             <button
                               type="button"
-                              class="py-3 px-5 rounded-xl border border-white-02 text-blue-300 text-xs leading-6 font-bold hover:bg-white-02-light"
-                            >Select Color</button>
+                              class="relative py-3 px-5 rounded-xl border border-white-02 text-blue-300 text-xs leading-6 font-bold hover:bg-white-02-light"
+                            >
+                                <input
+                                  type="color"
+                                  :value="colorPicker"
+                                  class="w-full h-full absolute top-0 left-0 opacity-0"
+                                  @input="handleColorPicker"
+                                />
+                                Select Color</button>
                         </div>
                     </label>
                     <label class="form__label-input">
@@ -265,12 +280,12 @@ export default {
                                     Upload
                                 </button>
                                 <p class="inline-flex flex-col">
-                                  <span class="text-xs leading-3.5 font-medium text-[#5E5D5D]">
-                                      Click to upload
-                                  </span>
-                                  <span class="text-xs leading-3.5 font-normal text-[#5E5D5D]">
-                                    PNG, JPG(max 5MB)  
-                                  </span>
+                                    <span class="text-xs leading-3.5 font-medium text-[#5E5D5D]">
+                                        Click to upload
+                                    </span>
+                                    <span class="text-xs leading-3.5 font-normal text-[#5E5D5D]">
+                                        PNG, JPG(max 5MB)
+                                    </span>
                                 </p>
                             </div>
                         </div>
