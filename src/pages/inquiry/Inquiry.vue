@@ -273,7 +273,7 @@ export default {
             >
                 <h1 class="text-main font-bold text-[22px] leading-10 -tracking-wider mb-3">Thanks for reaching out.
                 </h1>
-                <p class="text-center font-poppins text-sm leading-6 font-normal text-link">
+                <p class="text-center font-poppins text-sm leading-6 font-normal text-slate-02">
                     Our CS team will contact you as soonest.<br>
                     When your account creation is complete,<br>
                     you can receive an alert by email.

@@ -296,7 +296,7 @@ export default {
                   :key="accordion.title"
                 >
                     <h3
-                      class="accordion__section-title text-main font-bold text-base leading-5 mt-6 pb-3 border-b border-b-accordion-border"
+                      class="accordion__section-title text-main font-bold text-base leading-5 mt-6 pb-3 border-b border-b-gray-02"
                     >{{ accordion.title }}</h3>
                     <div
                       class="accordion__section-content"

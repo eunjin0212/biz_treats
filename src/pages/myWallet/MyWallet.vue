@@ -347,8 +347,8 @@ export default {
                         </h3>
                         <hr class="border-white-04" />
                         <ul class="wallet-info__card-content ml-2.5 !pt-2.5">
-                            <li class="!text-point-unit !text-sm leading-5 !font-bold !font-poppins !items-center">
-                                <i class="!text-point font-semibold font-inter leading-[48px] text-4xl">100,000</i>
+                            <li class="!text-gray-06 !text-sm leading-5 !font-bold !font-poppins !items-center">
+                                <i class="!text-stone-02 font-semibold font-inter leading-[48px] text-4xl">100,000</i>
                                 Points
                             </li>
                         </ul>
@@ -361,11 +361,11 @@ export default {
                     <li class="pt-5 pb-[9px] px-8 bg-[#B5E4CA40] rounded-xl flex-1">
                         <p class="font-inter text-[#33383F] font-semibold text-[13px] leading-4">Top-up</p>
                         <div class="flex items-end mb-3 mt-1">
-                            <i class="text-point font-inter font-bold text-5xl leading-[48px]">10,000</i>
-                            <span class="text-point-unit font-bold text-sm leading-5 font-poppins">Points</span>
+                            <i class="text-stone-02 font-inter font-bold text-5xl leading-[48px]">10,000</i>
+                            <span class="text-gray-06 font-bold text-sm leading-5 font-poppins">Points</span>
                         </div>
                         <span
-                          class="bg-white-19 p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-point-up rounded -tracking-wide"
+                          class="bg-white-19 p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-green-01 rounded -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -373,8 +373,8 @@ export default {
                     <li class="pt-5 pb-[9px] px-8 bg-[#B1E5FC40] rounded-xl flex-1">
                         <p class="font-inter text-[#33383F] font-semibold text-[13px] leading-4">Transfer</p>
                         <div class="flex items-end mb-3 mt-1">
-                            <i class="text-point font-inter font-bold text-5xl leading-[48px]">-5,000</i>
-                            <span class="text-point-unit font-bold text-sm leading-5 font-poppins">Points</span>
+                            <i class="text-stone-02 font-inter font-bold text-5xl leading-[48px]">-5,000</i>
+                            <span class="text-gray-06 font-bold text-sm leading-5 font-poppins">Points</span>
                         </div>
                         <span
                           class="bg-white-19 p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-red-200 rounded -tracking-wide"
@@ -385,11 +385,11 @@ export default {
                     <li class="pt-5 pb-[9px] px-8 bg-[#CABDFF40] rounded-xl flex-1">
                         <p class="font-inter text-[#33383F] font-semibold text-[13px] leading-4">Used</p>
                         <div class="flex items-end mb-3 mt-1">
-                            <i class="text-point font-inter font-bold text-5xl leading-[48px]">6,000</i>
-                            <span class="text-point-unit font-bold text-sm leading-5 font-poppins">Points</span>
+                            <i class="text-stone-02 font-inter font-bold text-5xl leading-[48px]">6,000</i>
+                            <span class="text-gray-06 font-bold text-sm leading-5 font-poppins">Points</span>
                         </div>
                         <span
-                          class="bg-white-19 p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-point-up rounded -tracking-wide"
+                          class="bg-white-19 p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-green-01 rounded -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
