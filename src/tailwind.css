@@ -28,10 +28,8 @@ body {
   }
   main.background section p {
     @apply font-extrabold text-4xl text-[theme(colors.white.20)]
-    @apply font-extrabold text-4xl text-[theme(colors.white.20)]
   }
   main.background section span {
-    @apply text-base font-normal text-[theme(colors.white.20)]
     @apply text-base font-normal text-[theme(colors.white.20)]
   }
   main.background section img {
@@ -43,20 +41,17 @@ body {
 @layer components {
     header.header {
         @apply flex justify-between items-center py-1 pl-12 pr-14 border-b border-b-[theme(colors.white.03)]
-        @apply flex justify-between items-center py-1 pl-12 pr-14 border-b border-b-[theme(colors.white.03)]
     }
     header.header nav {
         @apply flex justify-start items-center gap-4
     }
     header.header nav a {
       @apply block w-[120px] text-center text-base font-medium -tracking-[0.2px] text-[theme(colors.black.100)]
-      @apply block w-[120px] text-center text-base font-medium -tracking-[0.2px] text-[theme(colors.black.100)]
     }
     header.header nav a:first-of-type img {
         @apply h-[2.938rem]
     }
     header.header button {
-        @apply text-[theme(colors.main)] text-base font-medium -tracking-[0.2px] rounded-md border border-[theme(colors.white.03)] w-[120px] h-10
         @apply text-[theme(colors.main)] text-base font-medium -tracking-[0.2px] rounded-md border border-[theme(colors.white.03)] w-[120px] h-10
     }
     header.header button:hover {
@@ -68,7 +63,6 @@ body {
 @layer components {
     footer.footer {
         @apply relative bottom-0 left-0 bg-[theme(colors.white.20)] w-full px-[111px] border-t border-t-[theme(colors.white.05)]
-        @apply relative bottom-0 left-0 bg-[theme(colors.white.20)] w-full px-[111px] border-t border-t-[theme(colors.white.05)]
     }
     footer.footer aside {
         @apply flex pb-16 pt-20
@@ -77,7 +71,6 @@ body {
         @apply w-40 mr-[108px] last-of-type:mr-0
     }
     footer.footer aside div h4 {
-        @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mb-5
         @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mb-5
     }
     footer.footer aside > div a {
@@ -91,13 +84,11 @@ body {
     }
     footer.footer aside > div:first-of-type h4 {
         @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mt-6
-        @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mt-6
     }
     footer.footer aside > div:first-of-type div {
         @apply flex gap-2 mt-2
     }
     footer.footer aside > div:first-of-type div a {
-        @apply inline-flex items-center justify-center w-10 h-10 bg-[theme(colors.white.06)] text-center rounded-full
         @apply inline-flex items-center justify-center w-10 h-10 bg-[theme(colors.white.06)] text-center rounded-full
     }
     footer.footer aside > div:first-of-type div a img {
@@ -111,7 +102,6 @@ body {
 /* form */
 @layer components {
     form.form {
-        @apply py-7 px-[46px] w-full gap-1 mr-[150px] max-w-[450px] bg-[theme(colors.white.20)] flex flex-col items-center rounded shadow-[0px_12px_24px_0px_#00000014]
         @apply py-7 px-[46px] w-full gap-1 mr-[150px] max-w-[450px] bg-[theme(colors.white.20)] flex flex-col items-center rounded shadow-[0px_12px_24px_0px_#00000014]
     }
     form.form > div:first-of-type {
@@ -128,7 +118,6 @@ body {
     }
     form.form button {
         @apply bg-[theme(colors.main)] text-[theme(colors.white.20)] w-full h-12 rounded-lg
-        @apply bg-[theme(colors.main)] text-[theme(colors.white.20)] w-full h-12 rounded-lg
     }
 }
 
@@ -143,13 +132,11 @@ body {
     label.select span, 
     label.textarea span {
         @apply text-[theme(colors.secondary.01)] font-medium text-xs leading-[theme(spacing[4.5])] font-[theme(fontFamily.roboto)] block
-        @apply text-[theme(colors.secondary.01)] font-medium text-xs leading-[theme(spacing[4.5])] font-[theme(fontFamily.roboto)] block
     }
 
     label.input input, 
     label.select select, 
     label.textarea textarea {
-        @apply border border-[theme(colors.white.01)] placeholder:text-[theme(colors.gray.01)] rounded-lg h-10 px-4 font-normal tracking-[0.5px] text-xs leading-[26px]
         @apply border border-[theme(colors.white.01)] placeholder:text-[theme(colors.gray.01)] rounded-lg h-10 px-4 font-normal tracking-[0.5px] text-xs leading-[26px]
     }
 }
@@ -157,7 +144,6 @@ body {
 /* input */
 @layer components {
     label.input input {
-        @apply  disabled:bg-[theme(colors.white.12)]
         @apply  disabled:bg-[theme(colors.white.12)]
     }
 }
@@ -189,14 +175,12 @@ body {
     }
     div.checkbox > label {
         @apply font-[theme(fontFamily.roboto)] text-[13px] leading-5 text-secondary-03
-        @apply font-[theme(fontFamily.roboto)] text-[13px] leading-5 text-secondary-03
     }
 }
 
 /* recaptcha */
 @layer components {
     div.recaptcha {
-        @apply h-14 w-full rounded-lg bg-[theme(colors.white.17)] border border-[theme(colors.white.00)] flex justify-between items-center px-[30px]
         @apply h-14 w-full rounded-lg bg-[theme(colors.white.17)] border border-[theme(colors.white.00)] flex justify-between items-center px-[30px]
     }
     div.recaptcha > div > span {
@@ -213,7 +197,6 @@ body {
 /* service header */
 @layer components {
     header.service-header {
-        @apply py-[11px] bg-[theme(colors.white.20)] border-b border-b-[#E1E3E1] w-full
         @apply py-[11px] bg-[theme(colors.white.20)] border-b border-b-[#E1E3E1] w-full
     }
     header.service-header > div {
@@ -234,7 +217,6 @@ body {
 @layer components {
     footer.service-footer {
         @apply relative bottom-0 left-0 bg-[theme(colors.white.20)] w-full border-t border-t-[theme(colors.white.05)]
-        @apply relative bottom-0 left-0 bg-[theme(colors.white.20)] w-full border-t border-t-[theme(colors.white.05)]
     }
     footer.service-footer > div {
         @apply w-[1228px] mx-auto
@@ -246,7 +228,6 @@ body {
         @apply w-40 mr-[108px] last-of-type:mr-0
     }
     footer.service-footer > div aside div h4 {
-        @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mb-5
         @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mb-5
     }
     footer.service-footer > div aside > div a {
@@ -260,20 +241,17 @@ body {
     }
     footer.service-footer > div aside > div:first-of-type h4 {
         @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mt-6
-        @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mt-6
     }
     footer.service-footer > div aside > div:first-of-type div {
         @apply flex gap-2 mt-2
     }
     footer.service-footer > div aside > div:first-of-type div a {
         @apply inline-flex items-center justify-center w-10 h-10 bg-[theme(colors.white.06)] text-center rounded-full
-        @apply inline-flex items-center justify-center w-10 h-10 bg-[theme(colors.white.06)] text-center rounded-full
     }
     footer.service-footer > div aside > div:first-of-type div a img {
         @apply text-xs
     }
     footer.service-footer > div hr {
-      @apply border-t-[theme(colors.white.05)]
       @apply border-t-[theme(colors.white.05)]
 
     }
@@ -286,10 +264,8 @@ body {
 @layer components {
     div.search-input {
         @apply py-[13px] pl-[13px] pr-5 mr-[82px] flex items-center justify-between h-12 w-full max-w-[500px] border-2 border-[theme(colors.white.08)] bg-[theme(colors.white.11)] rounded-[9px]
-        @apply py-[13px] pl-[13px] pr-5 mr-[82px] flex items-center justify-between h-12 w-full max-w-[500px] border-2 border-[theme(colors.white.08)] bg-[theme(colors.white.11)] rounded-[9px]
     }
     div.search-input input {
-        @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full placeholder:text-[theme(colors.secondary.02)] bg-transparent
         @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full placeholder:text-[theme(colors.secondary.02)] bg-transparent
     }
 }
@@ -298,14 +274,12 @@ body {
 @layer components {
     button.header-btn {
         @apply py-3 px-3.5 rounded-xl border-2 border-[theme(colors.white.10)] hover:bg-[#6F767E10]
-        @apply py-3 px-3.5 rounded-xl border-2 border-[theme(colors.white.10)] hover:bg-[#6F767E10]
     }
 }
 
 /* badge */
 @layer components {
     span.badge {
-        @apply absolute -top-2 -right-3 text-sm leading-4 -tracking-[0.323px] font-bold font-[theme(fontFamily.inter)] text-[theme(colors.white.20)] bg-[theme(colors.red.300)] px-2 py-1 rounded-[10px]
         @apply absolute -top-2 -right-3 text-sm leading-4 -tracking-[0.323px] font-bold font-[theme(fontFamily.inter)] text-[theme(colors.white.20)] bg-[theme(colors.red.300)] px-2 py-1 rounded-[10px]
     }
 }
@@ -314,10 +288,8 @@ body {
 @layer components {
     div.btn-group {
         @apply bg-[theme(colors.main)] text-[theme(colors.white.20)] rounded-xl inline-flex items-center
-        @apply bg-[theme(colors.main)] text-[theme(colors.white.20)] rounded-xl inline-flex items-center
     }
     div.btn-group > button {
-        @apply py-3 px-5 whitespace-nowrap hover:bg-[theme(colors.blue.400)] rounded-l-xl
         @apply py-3 px-5 whitespace-nowrap hover:bg-[theme(colors.blue.400)] rounded-l-xl
     }
 }
@@ -325,7 +297,6 @@ body {
 /* dropdown */
 @layer components {
     div.dropdown {
-        @apply relative hover:bg-[theme(colors.blue.400)] rounded-r-xl
         @apply relative hover:bg-[theme(colors.blue.400)] rounded-r-xl
     }
     div.dropdown > button {
@@ -338,7 +309,6 @@ body {
         @apply inline-block
     }
     div.dropdown .dropdown-opts {
-        @apply bg-[theme(colors.white.20)] absolute right-0 mt-[theme(spacing[2.5])] z-20 drop-shadow-md w-64 py-[theme(spacing[3.5])] px-2 rounded-2xl;
         @apply bg-[theme(colors.white.20)] absolute right-0 mt-[theme(spacing[2.5])] z-20 drop-shadow-md w-64 py-[theme(spacing[3.5])] px-2 rounded-2xl;
         box-shadow: 0px 32px 48px -8px #0000001A;
         box-shadow: 0px 0px 14px -4px #0000000D;
@@ -353,7 +323,6 @@ body {
 @layer components {
     aside.alert-wrapper {
         @apply absolute bg-[theme(colors.white.20)] top-12 right-0 mt-1.5 w-[660px] h-[636px] rounded-2xl z-20;
-        @apply absolute bg-[theme(colors.white.20)] top-12 right-0 mt-1.5 w-[660px] h-[636px] rounded-2xl z-20;
         box-shadow: 0px 32px 48px -8px #0000001A;
         box-shadow: 0px 0px 14px -4px #0000000D;
         box-shadow: 0px 40px 64px -12px #00000014;
@@ -363,25 +332,20 @@ body {
     }
     aside.alert-wrapper .alert-header h1 {
         @apply text-[theme(colors.black.200)] leading-8 text-left text-xl font-[theme(fontFamily.inter)] font-semibold 
-        @apply text-[theme(colors.black.200)] leading-8 text-left text-xl font-[theme(fontFamily.inter)] font-semibold 
     }
     aside.alert-wrapper .alert-header > p {
         @apply flex justify-between items-center
     }
     aside.alert-wrapper .alert-header > p span, aside.alert-wrapper .alert-header > p button {
         @apply text-[theme(colors.gray.03)] text-xs font-normal leading-6 font-[theme(fontFamily.inter)]
-        @apply text-[theme(colors.gray.03)] text-xs font-normal leading-6 font-[theme(fontFamily.inter)]
     }
     aside.alert-wrapper hr {
-        @apply border-[theme(colors.white.13)]
         @apply border-[theme(colors.white.13)]
     }
     aside.alert-wrapper ul li {
         @apply py-2 px-3 border-t border-t-[theme(colors.white.16)] first-of-type:border-t-0
-        @apply py-2 px-3 border-t border-t-[theme(colors.white.16)] first-of-type:border-t-0
     }
     aside.alert-wrapper > ul li > div {
-        @apply flex items-center relative hover:bg-[theme(colors.white.14)] p-3 rounded-[theme(spacing[2.5])]
         @apply flex items-center relative hover:bg-[theme(colors.white.14)] p-3 rounded-[theme(spacing[2.5])]
     }
     aside.alert-wrapper > ul li > div > span:first-of-type { /* alert icon */
@@ -395,13 +359,11 @@ body {
     }
     aside.alert-wrapper > ul li > div > div > span { /* alert title, description */
         @apply text-[theme(colors.gray.03)] text-xs font-medium leading-6 font-[theme(fontFamily.inter)]
-        @apply text-[theme(colors.gray.03)] text-xs font-medium leading-6 font-[theme(fontFamily.inter)]
     }
     aside.alert-wrapper > ul li > div > div > p > span:first-of-type {
         @apply inline-block text-[theme(colors.slate.01)] text-sm leading-6 font-bold font-[theme(fontFamily.inter)] mr-1
     }
     aside.alert-wrapper > ul li > div > div > p > span:last-of-type {
-        @apply inline-block text-[theme(colors.gray.03)] font-normal text-xs leading-6
         @apply inline-block text-[theme(colors.gray.03)] font-normal text-xs leading-6
     }
 
@@ -411,17 +373,14 @@ body {
 @layer components {
     aside.lnb {
         @apply bg-[theme(colors.white.20)] pt-[13px] pb-[theme(spacing[4.5])] px-2 rounded-xl w-[266px] min-w-[266px] h-fit mt-[37px] mb-[57px]
-        @apply bg-[theme(colors.white.20)] pt-[13px] pb-[theme(spacing[4.5])] px-2 rounded-xl w-[266px] min-w-[266px] h-fit mt-[37px] mb-[57px]
     }
     aside.lnb ul {
         @apply flex flex-col
     }
     aside.lnb ul li {
       @apply flex flex-col text-[theme(colors.gray.03)] mb-[theme(spacing[3.5])]
-      @apply flex flex-col text-[theme(colors.gray.03)] mb-[theme(spacing[3.5])]
     }
     aside.lnb ul li hr {
-        @apply border-[theme(colors.white.10)] rounded-[1px] mb-3
         @apply border-[theme(colors.white.10)] rounded-[1px] mb-3
     }
     aside.lnb ul li div,
@@ -440,17 +399,14 @@ body {
 @layer components {
     div.section-card {
       @apply bg-[theme(colors.white.20)] rounded-xl w-full pt-6 pb-3 px-3 ml-[30px] first-of-type:mt-[37px]
-      @apply bg-[theme(colors.white.20)] rounded-xl w-full pt-6 pb-3 px-3 ml-[30px] first-of-type:mt-[37px]
     }
     div.section-card h1 {
         @apply font-bold text-[26px] leading-[30px] text-[theme(colors.main)] mt-5 ml-3
     }
     div.section-card > hr {
         @apply border-[theme(colors.white.09)] mt-[22px] mb-[30px] mx-3
-        @apply border-[theme(colors.white.09)] mt-[22px] mb-[30px] mx-3
     }
     div.section-card h2 { /* section card header */
-        @apply ml-3 mb-6 text-[theme(colors.black.200)] text-xl font-semibold leading-8 font-[theme(fontFamily.inter)] flex items-center
         @apply ml-3 mb-6 text-[theme(colors.black.200)] text-xl font-semibold leading-8 font-[theme(fontFamily.inter)] flex items-center
     }
     div.section-card h2 span { /* section card header */
@@ -462,10 +418,8 @@ body {
 @layer components {
     div.main-section {
       @apply bg-[theme(colors.white.20)] rounded-xl w-full pt-5 px-6 ml-[30px] first-of-type:mt-[37px] font-[theme(fontFamily.inter)]
-      @apply bg-[theme(colors.white.20)] rounded-xl w-full pt-5 px-6 ml-[30px] first-of-type:mt-[37px] font-[theme(fontFamily.inter)]
     }
     div.main-section h2 { /* section card header */
-        @apply pl-2 pb-6 text-[theme(colors.main)] text-xl font-bold leading-8 border-b border-b-[theme(colors.white.09)]
         @apply pl-2 pb-6 text-[theme(colors.main)] text-xl font-bold leading-8 border-b border-b-[theme(colors.white.09)]
     }
 }
@@ -473,7 +427,6 @@ body {
 /* wallet info */
 @layer components {
     li.wallet-info__card {
-        @apply bg-[theme(colors.white.20)] rounded-xl flex-1 min-h-[108px];
         @apply bg-[theme(colors.white.20)] rounded-xl flex-1 min-h-[108px];
         box-shadow: 0px 4px 8px -4px #00000040;
     }
@@ -488,17 +441,14 @@ body {
     }
     li.wallet-info__card hr {
         @apply bg-[theme(colors.white.04)]
-        @apply bg-[theme(colors.white.04)]
     }
     li.wallet-info__card .wallet-info__card-content {
         @apply flex flex-col gap-1 px-[theme(spacing[2.5])] py-[theme(spacing[1.5])]
     }
     li.wallet-info__card .wallet-info__card-content li {
         @apply min-h-[22px] leading-[22px] flex items-start gap-2 text-[theme(colors.zinc.02)] text-xs font-normal font-[theme(fontFamily.inter)]
-        @apply min-h-[22px] leading-[22px] flex items-start gap-2 text-[theme(colors.zinc.02)] text-xs font-normal font-[theme(fontFamily.inter)]
     }
     li.wallet-info__card .wallet-info__card-content li span {
-        @apply w-[22px] min-w-[22px] h-[22px] bg-[theme(colors.white.15)] rounded inline-flex justify-center items-center
         @apply w-[22px] min-w-[22px] h-[22px] bg-[theme(colors.white.15)] rounded inline-flex justify-center items-center
     }
 }
@@ -520,7 +470,6 @@ body {
 @layer components {
     div.table-function-bar {
         @apply px-6 py-[9px] flex justify-between items-center border border-[theme(colors.white.10)] border-l-0 border-r-0
-        @apply px-6 py-[9px] flex justify-between items-center border border-[theme(colors.white.10)] border-l-0 border-r-0
     }
     div.table-function-bar form {
         @apply flex items-center gap-2
@@ -530,14 +479,12 @@ body {
     }
     div.table-function-bar button[type="button"] {
         @apply flex gap-2 items-center h-10 px-3 py-2 border border-[theme(colors.white.02)] rounded text-[theme(colors.gray.05)] hover:bg-[#A9A9A920] text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)] float-right
-        @apply flex gap-2 items-center h-10 px-3 py-2 border border-[theme(colors.white.02)] rounded text-[theme(colors.gray.05)] hover:bg-[#A9A9A920] text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)] float-right
     }
 }
 
 /* date-picker */
 @layer components {
     label.date-picker {
-        @apply flex items-center justify-center gap-1 relative border border-[theme(colors.white.07)] w-[114px] h-10 bg-[theme(colors.white.20)] rounded text-sm leading-5 font-medium text-[theme(colors.gray.04)] font-[theme(fontFamily.manrope)] hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
         @apply flex items-center justify-center gap-1 relative border border-[theme(colors.white.07)] w-[114px] h-10 bg-[theme(colors.white.20)] rounded text-sm leading-5 font-medium text-[theme(colors.gray.04)] font-[theme(fontFamily.manrope)] hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
     }
     label.date-picker input {
@@ -555,10 +502,8 @@ body {
 @layer components {
     label.search-input {
         @apply px-4 py-2 h-10 w-64 rounded border border-[theme(colors.white.10)] flex items-center hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
-        @apply px-4 py-2 h-10 w-64 rounded border border-[theme(colors.white.10)] flex items-center hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
     }
     label.search-input input {
-        @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full text-[theme(colors.stone.01)] placeholder:text-[theme(colors.gray.04)] text-xs font-medium leading-[theme(spacing[2.5])] bg-transparent
         @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full text-[theme(colors.stone.01)] placeholder:text-[theme(colors.gray.04)] text-xs font-medium leading-[theme(spacing[2.5])] bg-transparent
     }
 }
@@ -566,7 +511,6 @@ body {
 /* table search select */
 @layer components {
     select.search-select {
-        @apply w-[104px] h-10 p-3 rounded border border-[theme(colors.white.10)] hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)] focus-visible:border-[theme(colors.main)] focus:ring-0 text-[theme(colors.stone.01)] placeholder:text-[theme(colors.gray.04)] text-xs font-medium leading-[theme(spacing[2.5])] appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_icon.svg')]
         @apply w-[104px] h-10 p-3 rounded border border-[theme(colors.white.10)] hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)] focus-visible:border-[theme(colors.main)] focus:ring-0 text-[theme(colors.stone.01)] placeholder:text-[theme(colors.gray.04)] text-xs font-medium leading-[theme(spacing[2.5])] appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_icon.svg')]
     }
 }
@@ -581,13 +525,11 @@ body {
     }
     table.data-table thead {
         @apply border-b border-b-[theme(colors.white.10)] h-12
-        @apply border-b border-b-[theme(colors.white.10)] h-12
     }
     table.data-table thead tr th {
         @apply font-medium leading-3 -tracking-tight text-left px-2 first-of-type:pl-6 last-of-type:pr-6
     }
     table.data-table tbody tr {
-        @apply even:bg-[theme(colors.white.18)] h-14
         @apply even:bg-[theme(colors.white.18)] h-14
     }
     table.data-table tbody tr td {
@@ -608,7 +550,6 @@ body {
 /* wallet card */
 @layer components {
     div.card {
-        @apply transition-all cursor-pointer pt-4 px-3.5 pb-3 relative before:top-0 before:left-0 before:w-full before:h-full before:absolute before:border before:border-[theme(colors.white.05)] before:rounded-xl
         @apply transition-all cursor-pointer pt-4 px-3.5 pb-3 relative before:top-0 before:left-0 before:w-full before:h-full before:absolute before:border before:border-[theme(colors.white.05)] before:rounded-xl
     }
     div.card > .card-title__wrapper {
@@ -662,7 +603,6 @@ body {
         @apply w-32 min-w-32 mr-5 text-sm leading-6 font-semibold text-[theme(colors.slate.01)] -tracking-[0.1px]
     }
     label.form__label-input > input {
-        @apply py-3 px-5 border border-[theme(colors.white.10)] text-[theme(colors.black.200)] placeholder:text-[#9A9FA5] disabled:bg-[theme(colors.white.15)] disabled:text-[theme(colors.black.200)] font-medium text-xs leading-6 rounded-lg w-full
         @apply py-3 px-5 border border-[theme(colors.white.10)] text-[theme(colors.black.200)] placeholder:text-[#9A9FA5] disabled:bg-[theme(colors.white.15)] disabled:text-[theme(colors.black.200)] font-medium text-xs leading-6 rounded-lg w-full
     }
 }
