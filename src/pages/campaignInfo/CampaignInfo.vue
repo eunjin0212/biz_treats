@@ -38,6 +38,7 @@ export default {
             alertOpen: false,
             alertData,
             colorPicker: '#ffffff',
+            preview: null,
         }
     },
     methods: {
@@ -64,7 +65,14 @@ export default {
         },
         handleColorPicker(e) {
             this.colorPicker = e.target.value
-            console.log(e.target.value)
+        },
+        handleFilePicker(e) {
+            if (!e.target.files.length) return
+            const reader = new FileReader()
+            reader.onload = (event) => {
+                this.preview = event.target.result
+            }
+            reader.readAsDataURL(e.target.files[0])
         },
     },
     watch: {
@@ -249,9 +257,8 @@ export default {
                               :style="{ backgroundColor: colorPicker }"
                               class="inline-block w-9 h-9 border-2 rounded-md border-[#D7D7D7]"
                             ></span>
-                            <button
-                              type="button"
-                              class="relative py-3 px-5 rounded-xl border border-white-02 text-blue-300 text-xs leading-6 font-bold hover:bg-white-02-light"
+                            <div
+                              class="cursor-pointer relative py-3 px-5 rounded-xl border border-white-02 text-blue-300 text-xs leading-6 font-bold hover:bg-white-02-light"
                             >
                                 <input
                                   type="color"
@@ -259,7 +266,8 @@ export default {
                                   class="w-full h-full absolute top-0 left-0 opacity-0"
                                   @input="handleColorPicker"
                                 />
-                                Select Color</button>
+                                Select Color
+                            </div>
                         </div>
                     </label>
                     <label class="form__label-input">
@@ -269,16 +277,22 @@ export default {
                         <div class="flex gap-3.5">
                             <img
                               class="border border-white-10 rounded-lg w-52 h-[116px] object-none"
-                              src="@/assets/icons/img_placeholder.svg"
+                              :src="preview ?? '/assets/icons/img_placeholder.svg'"
+                              alt=""
                             />
                             <div class="flex flex-col gap-1.5">
-                                <button
-                                  type="button"
-                                  class="inline-flex items-center gap-1 py-3 pl-7 pr-[42px] rounded-xl border border-white-02 text-blue-300 text-xs leading-6 font-bold hover:bg-white-02-light"
+                                <label
+                                  class="cursor-pointer inline-flex relative items-center gap-1 py-3 pl-7 pr-[42px] rounded-xl border border-white-02 text-blue-300 text-xs leading-6 font-bold hover:bg-white-02-light"
                                 >
+                                    <input
+                                      type="file"
+                                      accept="image/*"
+                                      class="opacity-0 absolute top-0 left-0 w-full h-full"
+                                      @change="handleFilePicker"
+                                    />
                                     <UploadSvg />
                                     Upload
-                                </button>
+                                </label>
                                 <p class="inline-flex flex-col">
                                     <span class="text-xs leading-3.5 font-medium text-[#5E5D5D]">
                                         Click to upload
