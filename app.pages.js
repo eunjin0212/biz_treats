@@ -78,10 +78,10 @@ module.exports = {
         title: 'Account Info',
         path: '/accountInfo'
     },
-    // 'campaignInfo': {
-    //     title: 'Campaign Info',
-    //     path: '/campaignInfo'
-    // },
+    'campaignInfo': {
+        title: 'Campaign Info',
+        path: '/campaignInfo'
+    },
     // 'treatsHistory': {
     //     title: 'Member Management',
     //     path: '/treatsHistory'

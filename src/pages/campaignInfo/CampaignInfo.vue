@@ -11,6 +11,7 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
+import UploadSvg from '@/assets/icons/UploadSvg.vue';
 
 export default {
     components: {
@@ -24,6 +25,7 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
+        UploadSvg,
     },
     data() {
         return {
@@ -211,56 +213,86 @@ export default {
         </aside>
         <section class="w-[calc(100%-266px)] max-w-[932px] flex flex-col">
             <div class="section-card !px-0">
-                <h2 class="!mb-4.5 px-3"><span></span>Account Info</h2>
+                <h2 class="!mb-4.5 px-3"><span></span>Campaign Info</h2>
                 <hr class="!mx-0" />
                 <form class="px-6 font-inter flex flex-col gap-[26px] pb-7">
                     <label class="form__label-input">
                         <span>
-                            Name
+                            Campaign No.
                         </span>
-                        <input type="text" />
+                        <input
+                          type="text"
+                          disabled
+                          value="T120435"
+                        />
                     </label>
                     <label class="form__label-input">
                         <span>
-                            Email
+                            Campaign Name
                         </span>
-                        <input type="text" />
+                        <input
+                          type="text"
+                          placeholder="Enter the Campaign Name"
+                        />
                     </label>
                     <label class="form__label-input">
                         <span>
-                            Phone number
+                            Campaign Color
                         </span>
-                        <input type="text" />
+                        <div class="inline-flex items-center gap-6.5">
+                            <span class="inline-block w-9 h-9 border-2 rounded-md border-[#D7D7D7]"></span>
+                            <button
+                              type="button"
+                              class="py-3 px-5 rounded-xl border border-white-02 text-blue-300 text-xs leading-6 font-bold hover:bg-white-02-light"
+                            >Select Color</button>
+                        </div>
                     </label>
                     <label class="form__label-input">
                         <span>
-                            Wallet No.
+                            Campaign Logo
                         </span>
-                        <input type="text" />
+                        <div class="flex gap-3.5">
+                            <img
+                              class="border border-white-10 rounded-lg w-52 h-[116px] object-none"
+                              src="@/assets/icons/img_placeholder.svg"
+                            />
+                            <div class="flex flex-col gap-1.5">
+                                <button
+                                  type="button"
+                                  class="inline-flex items-center gap-1 py-3 pl-7 pr-[42px] rounded-xl border border-white-02 text-blue-300 text-xs leading-6 font-bold hover:bg-white-02-light"
+                                >
+                                    <UploadSvg />
+                                    Upload
+                                </button>
+                                <p class="inline-flex flex-col">
+                                  <span class="text-xs leading-3.5 font-medium text-[#5E5D5D]">
+                                      Click to upload
+                                  </span>
+                                  <span class="text-xs leading-3.5 font-normal text-[#5E5D5D]">
+                                    PNG, JPG(max 5MB)  
+                                  </span>
+                                </p>
+                            </div>
+                        </div>
                     </label>
                     <label class="form__label-input">
                         <span>
-                            Wallet Nickname
+                            Campaign Address
                         </span>
-                        <input type="text" />
-                    </label>
-                    <label class="form__label-input">
-                        <span>
-                            New Password
-                        </span>
-                        <input type="text" />
-                    </label>
-                    <label class="form__label-input">
-                        <span>
-                            Confirm Password
-                        </span>
-                        <input type="text" />
+                        <input
+                          type="text"
+                          placeholder="Enter the Campaign Address"
+                        />
                     </label>
                 </form>
                 <hr class="!mx-0 !mb-0" />
                 <div class="flex justify-end items-center gap-2 pt-3 pr-6">
-                    <button class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10">Cancel</button>
-                    <button class="w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-[#299bd9]">Save</button>
+                    <button
+                      class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
+                    >Cancel</button>
+                    <button
+                      class="w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-[#299bd9]"
+                    >Save</button>
                 </div>
             </div>
         </section>
