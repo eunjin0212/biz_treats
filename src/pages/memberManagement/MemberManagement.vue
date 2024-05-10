@@ -78,7 +78,7 @@ export default {
                 canceled: 'Invite Cancelled',
                 active: 'Active',
             },
-            statusOptions: [{ label: 'Resigned', value: 'resigned' }],
+            statusOptions: [{ label: 'Resigned', value: 'resigned' }, { label: 'Active', value: 'active' }],
         }
     },
     methods: {
@@ -116,6 +116,10 @@ export default {
             if (parentNode !== this.$refs.alertRef && !this.$refs.alertWrapperRef.contains(parentNode)) {
                 this.alertOpen = false
             }
+        },
+        handleInvite(e) {
+            window.alert('popup open!')
+            // popup
         },
     },
     watch: {
@@ -361,6 +365,11 @@ export default {
                                         <select
                                           class="w-28 appearance-none bg-no-repeat bg-[right_10px_center] bg-[url('@/assets/icons/table_select.svg')] border border-white-02 text-xs leading-6 rounded-lg bg-white-20 py-2 pl-4 pr-2.5 focus:ring-0 focus-visible:border-white-02 focus-within:border-white-02"
                                           v-else-if="row.button === 'save'"
+                                          :value="row[column.field]"
+                                          @change="(e) => {
+                                              row[column.field] = e.target.value
+                                              row[column.field] === 'resigned' && handleInvite(e)
+                                          }"
                                         >
                                             <option
                                               v-for="opt in statusOptions"
@@ -368,6 +377,9 @@ export default {
                                               :key="opt.value"
                                             >{{ opt.label }}</option>
                                         </select>
+                                        <Teleport to="body">
+                                            모달
+                                        </Teleport>
                                     </div>
                                     <!-- edit, save, cancel button -->
                                     <div
