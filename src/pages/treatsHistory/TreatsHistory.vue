@@ -304,7 +304,7 @@ export default {
                         </li>
                     </ul>
                 </div>
-                <div class="table-function-bar">
+                <div class="table-filter-bar">
                     <form @submit="handleSubmit">
                         <label class="date-picker">
                             <CalendarSvg />

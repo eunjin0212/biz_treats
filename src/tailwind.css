@@ -155,7 +155,7 @@ body {
     }
 }
 
-/* select */
+/* textarea */
 @layer components {
     label.textarea textarea {
         @apply min-h-40 max-h-40
@@ -468,16 +468,16 @@ body {
 
 /* table function bar */
 @layer components {
-    div.table-function-bar {
+    div.table-filter-bar {
         @apply px-6 py-[9px] flex justify-between items-center border border-[theme(colors.white.10)] border-l-0 border-r-0
     }
-    div.table-function-bar form {
+    div.table-filter-bar form {
         @apply flex items-center gap-2
     }
-    div.table-function-bar form button[type="submit"] {
+    div.table-filter-bar form button[type="submit"] {
         @apply border border-[theme(colors.main)] w-20 h-10 py-2 px-4 rounded text-[#5EC0E9] hover:bg-[#29ABE220] text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)]
     }
-    div.table-function-bar button[type="button"] {
+    div.table-filter-bar button[type="button"] {
         @apply flex gap-2 items-center h-10 px-3 py-2 border border-[theme(colors.white.02)] rounded text-[theme(colors.gray.05)] hover:bg-[#A9A9A920] text-sm leading-5 font-semibold font-[theme(fontFamily.manrope)] float-right
     }
 }

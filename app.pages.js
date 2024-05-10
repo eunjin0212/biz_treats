@@ -82,10 +82,10 @@ module.exports = {
         title: 'Campaign Info',
         path: '/campaignInfo'
     },
-    // 'treatsHistory': {
-    //     title: 'Member Management',
-    //     path: '/treatsHistory'
-    // },
+    'memberManagement': {
+        title: 'Member Management',
+        path: '/memberManagement'
+    },
     // 'pointsTopUpManagement': {
     //     title: 'Points Top-up Management',
     //     path: '/pointsTopUpManagement'
