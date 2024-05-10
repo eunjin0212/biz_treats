@@ -338,16 +338,19 @@ export default {
                                           class="px-2 py-3 border border-white-02 text-xs leading-6 rounded-lg bg-white-20 focus:ring-0 focus-visible:border-white-02 focus-within:border-white-02"
                                         />
                                     </div>
+                                    <!-- balance -->
                                     <div
                                       v-else-if="column.field === 'balance'"
                                       class="flex justify-between items-center"
                                     >
                                         {{ row[column.field].toLocaleString() }}P
                                     </div>
+                                    <!-- status -->
                                     <div
                                       v-else-if="column.field === 'status'"
                                       class="flex justify-between items-center"
                                     >
+                                        <!-- 초대 취소 된 행 제외 -->
                                         <span
                                           class="text-stone-04 text-xs leading-6 font-semibold rounded-md px-3 py-[2px]"
                                           :class="statusClass[row[column.field]]"
@@ -365,8 +368,8 @@ export default {
                                               :key="opt.value"
                                             >{{ opt.label }}</option>
                                         </select>
-
                                     </div>
+                                    <!-- edit, save, cancel button -->
                                     <div
                                       v-else-if="column.field === 'button'"
                                       class="flex justify-between items-center"
@@ -390,6 +393,7 @@ export default {
                                           class="rounded-lg bg-white-20 border border-white-02 py-2 px-3.5 text-xs leading-6 font-semibold text-red-300"
                                         >Invited Cancel</button>
                                     </div>
+                                    <!-- ...rest -->
                                     <template v-else>
                                         {{ row[column.field] }}
                                     </template>
