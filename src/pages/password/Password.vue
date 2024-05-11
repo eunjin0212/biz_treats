@@ -87,7 +87,7 @@ export default {
                   :type="formData.type"
                   v-model="formModel[formData.key]"
                   @input="(e) => handleUpdate(formData.key, e.target.value)"
-                  autocomplete
+                  autocomplete="on"
                 />
             </label>
             <div class="recaptcha mb-5">

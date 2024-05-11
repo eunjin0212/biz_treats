@@ -26,6 +26,15 @@ export default {
         ReadSvg,
     },
     data() {
+        const formModel = {
+            name: '',
+            email: 'sena@sharetreats.com',
+            phone: '',
+            wallet_no: 'T12043580000001',
+            wallet_name: '',
+            password: '',
+            confirm_password: '',
+        }
         return {
             navMenu,
             snsMenu,
@@ -35,9 +44,72 @@ export default {
             dropdown: false,
             alertOpen: false,
             alertData,
+            formModel,
+            modalForm: [
+                {
+                    label: 'Name',
+                    name: 'name',
+                    value: formModel.name,
+                    placeholder: 'Enter your name',
+                    type: 'text',
+                    key: 'PICName',
+                },
+                {
+                    label: 'Email',
+                    name: 'email',
+                    value: formModel.email,
+                    placeholder: 'Enter Work Email',
+                    type: 'email',
+                    key: 'email',
+                    disabled: true,
+                },
+                {
+                    label: 'Phone Number',
+                    name: 'phone',
+                    value: formModel.phone,
+                    type: 'text',
+                    key: 'phone',
+                    placeholder: 'Enter your phone number',
+                },
+                {
+                    label: 'Wallet No.',
+                    name: 'wallet_name',
+                    value: formModel.wallet_no,
+                    type: 'text',
+                    key: 'wallet_no',
+                    disabled: true,
+                },
+                {
+                    label: 'Wallet Nickname',
+                    name: 'wallet_name',
+                    value: formModel.wallet_name,
+                    type: 'text',
+                    key: 'wallet_name',
+                    placeholder: 'Enter your wallet nickname',
+                },
+                {
+                    label: 'New Password',
+                    name: 'password',
+                    value: formModel.password,
+                    type: 'password',
+                    key: 'password',
+                    placeholder: 'Enter password',
+                },
+                {
+                    label: 'Confirm Password',
+                    name: 'confirm_password',
+                    value: formModel.confirm_password,
+                    type: 'password',
+                    key: 'confirm_password',
+                    placeholder: 'Confirm password'
+                },
+            ],
         }
     },
     methods: {
+        handleUpdate(key, value) {
+            this.formModel[key] = value
+        },
         handleClick() {
             window.location.href = '/login'
         },
@@ -214,53 +286,33 @@ export default {
                 <h2 class="!mb-4.5 px-3"><span></span>Account Info</h2>
                 <hr class="!mx-0" />
                 <form class="px-6 font-inter flex flex-col gap-[26px] pb-7">
-                    <label class="form__label-input">
+                    <label
+                      class="form__label-input"
+                      v-for="form in modalForm"
+                      :key="form.key"
+                    >
                         <span>
-                            Name
+                            {{ form.label }}
                         </span>
-                        <input type="text" />
-                    </label>
-                    <label class="form__label-input">
-                        <span>
-                            Email
-                        </span>
-                        <input type="text" />
-                    </label>
-                    <label class="form__label-input">
-                        <span>
-                            Phone number
-                        </span>
-                        <input type="text" />
-                    </label>
-                    <label class="form__label-input">
-                        <span>
-                            Wallet No.
-                        </span>
-                        <input type="text" />
-                    </label>
-                    <label class="form__label-input">
-                        <span>
-                            Wallet Nickname
-                        </span>
-                        <input type="text" />
-                    </label>
-                    <label class="form__label-input">
-                        <span>
-                            New Password
-                        </span>
-                        <input type="text" />
-                    </label>
-                    <label class="form__label-input">
-                        <span>
-                            Confirm Password
-                        </span>
-                        <input type="text" />
+                        <input
+                          autocomplete="on"
+                          :type="form.type"
+                          :name="form.name"
+                          :disabled="form.disabled"
+                          :placeholder="form.placeholder"
+                          v-model="formModel[form.key]"
+                          @input="(e) => handleUpdate(form.key, e.target.value)"
+                        />
                     </label>
                 </form>
                 <hr class="!mx-0 !mb-0" />
                 <div class="flex justify-end items-center gap-2 pt-3 pr-6">
-                    <button class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10">Cancel</button>
-                    <button class="w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-[#299bd9]">Save</button>
+                    <button
+                      class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
+                    >Cancel</button>
+                    <button
+                      class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-400"
+                    >Save</button>
                 </div>
             </div>
         </section>

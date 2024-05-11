@@ -7,7 +7,7 @@ export default {
             companyName: '',
             PICName: '',
             email: '',
-            phone: '+63',
+            phone: '',
             province: '선택',
             city: '선택',
             municipality: '',
@@ -25,7 +25,6 @@ export default {
                     value: formModel.companyName,
                     placeholder: 'Enter the Company Name',
                     type: 'text',
-                    class: 'mt-1.5',
                     key: 'companyName',
                 },
                 {
@@ -48,7 +47,7 @@ export default {
                     label: 'Phone',
                     name: 'phone',
                     value: formModel.phone,
-                    type: 'tel',
+                    type: 'text',
                     key: 'phone',
                 },
                 {
@@ -201,15 +200,35 @@ export default {
                     <span>
                         {{ form.label }}
                     </span>
+                    <div
+                      v-if="form.key === 'phone'"
+                      class="flex items-center w-full gap-2.5"
+                    >
+                        <input
+                          class="disabled:bg-white-16 disabled:text-stone-05 w-[60px]"
+                          disabled
+                          type="text"
+                          value="+63"
+                        />
+                        <input
+                          :type="form.type"
+                          :name="form.name"
+                          :class="form?.class"
+                          v-model="formModel[form.key]"
+                          @input="(e) => handleUpdate(form.key, e.target.value)"
+                          autocomplete="on"
+                          class="flex-grow"
+                        />
+                    </div>
                     <input
+                      v-else
                       :type="form.type"
-                      :label="form.label"
                       :name="form.name"
                       :class="form?.class"
                       :placeholder="form.placeholder"
                       v-model="formModel[form.key]"
                       @input="(e) => handleUpdate(form.key, e.target.value)"
-                      autocomplete
+                      autocomplete="on"
                     />
                 </label>
             </template>
@@ -279,7 +298,7 @@ export default {
                     you can receive an alert by email.
                 </p>
                 <button
-                @click="handleModal"
+                  @click="handleModal"
                   class="w-full bg-main text-white-20 font-bold text-base leading-4 font-dmsans py-4 mt-7 rounded-[10px]"
                 >Confirm</button>
             </div>

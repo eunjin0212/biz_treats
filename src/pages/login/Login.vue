@@ -111,7 +111,7 @@ export default {
                   :placeholder="form.placeholder"
                   v-model="formModel[form.key]"
                   @input="(e) => handleUpdate(form.key, e.target.value)"
-                  autocomplete
+                  autocomplete="on"
                 />
             </label>
             <div

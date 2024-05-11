@@ -107,7 +107,7 @@ export default {
                   v-model="formModel[form.key]"
                   :disabled="form.disabled"
                   @input="(e) => handleUpdate(form.key, e.target.value)"
-                  autocomplete
+                  autocomplete="on"
                 />
             </label>
             <button
