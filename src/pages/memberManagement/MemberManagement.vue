@@ -353,7 +353,7 @@ export default {
                         <label class="search-input">
                             <input
                               type="text"
-                              placeholder="Search for Treats"
+                              placeholder="Enter the name"
                               name="search"
                               v-model="filters.tableSearch"
                             />
@@ -399,7 +399,7 @@ export default {
                                           @input="(e) => row[column.field] = e.target.value"
                                           :value="row[column.field]"
                                           :class="column.field === 'name' ? 'w-24 -ml-4' : 'w-[130px]'"
-                                          class="px-2 py-3 text-xs leading-6 border rounded-lg border-white-02 bg-white-20 focus:ring-0 focus-visible:border-white-02 focus-within:border-white-02"
+                                          class="px-2 py-3 text-xs border rounded-lg leading-6 border-white-02 bg-white-20 focus:ring-0 focus-visible:border-white-02 focus-within:border-white-02"
                                         />
                                     </div>
                                     <!-- balance -->
@@ -451,7 +451,7 @@ export default {
                                         </button>
                                         <button
                                           v-else-if="row[column.field] === 'save'"
-                                          class="py-2 text-xs font-semibold leading-6 text-blue-300 border rounded-lg bg-white-20 border-white-02 px-9"
+                                          class="py-2 text-xs font-semibold text-blue-300 border rounded-lg leading-6 bg-white-20 border-white-02 px-9"
                                           @click="() => row[column.field] = 'editable'"
                                         >
                                             Save
@@ -568,7 +568,7 @@ export default {
                         </button>
                     </h2>
                     <hr class="border-white-10 !m-0" />
-                    <form class="flex flex-col gap-6 pt-8 pb-3 font-inter" @submit="handleSave">
+                    <form class="flex flex-col pt-8 pb-3 gap-6 font-inter" @submit="handleSave">
                         <label
                           class="mx-6 modal-form__label-input"
                           v-for="form in modalForm"
@@ -623,7 +623,7 @@ export default {
                             />
                         </label>
                         <hr class="border-white-10" />
-                        <div class="flex items-center justify-end gap-2 pr-6 -mt-3">
+                        <div class="flex items-center justify-end pr-6 -mt-3 gap-2">
                             <button
                               type="button"
                               class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
