@@ -362,10 +362,10 @@ export default {
                         <p class="font-inter text-[#33383F] font-semibold text-[13px] leading-4">Top-up</p>
                         <div class="flex items-end mt-1 mb-3">
                             <i class="text-stone-02 font-inter font-bold text-5xl leading-[48px]">10,000</i>
-                            <span class="text-sm font-bold text-gray-06 leading-5 font-poppins">Points</span>
+                            <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold rounded bg-white-19 w-fit gap-1 leading-4 text-green-01 -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -374,10 +374,10 @@ export default {
                         <p class="font-inter text-[#33383F] font-semibold text-[13px] leading-4">Transfer</p>
                         <div class="flex items-end mt-1 mb-3">
                             <i class="text-stone-02 font-inter font-bold text-5xl leading-[48px]">-5,000</i>
-                            <span class="text-sm font-bold text-gray-06 leading-5 font-poppins">Points</span>
+                            <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold text-red-200 rounded bg-white-19 w-fit gap-1 leading-4 -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 text-red-200 rounded bg-white-19 w-fit -tracking-wide"
                         >
                             <DownSvg /> 37.8%
                         </span>
@@ -386,10 +386,10 @@ export default {
                         <p class="font-inter text-[#33383F] font-semibold text-[13px] leading-4">Used</p>
                         <div class="flex items-end mt-1 mb-3">
                             <i class="text-stone-02 font-inter font-bold text-5xl leading-[48px]">6,000</i>
-                            <span class="text-sm font-bold text-gray-06 leading-5 font-poppins">Points</span>
+                            <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold rounded bg-white-19 w-fit gap-1 leading-4 text-green-01 -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
