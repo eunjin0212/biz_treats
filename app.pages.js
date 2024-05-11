@@ -90,10 +90,14 @@ module.exports = {
         title: 'Points Top-up Management',
         path: '/pointsTopUpManagement'
     },
-    // 'pointsTransfer': {
-    //     title: 'Points Transfer/Retrieve',
-    //     path: '/pointsTransfer'
-    // },
+    'pointsTransferRetrieve': {
+        title: 'Points Transfer/Retrieve',
+        path: '/pointsTransferRetrieve'
+    },
+    'retrieve': {
+        title: 'Points Transfer/Retrieve',
+        path: '/retrieve'
+    },
     // 'monthlyReport': {
     //     title: 'Monthly Report',
     //     path: '/monthlyReport'

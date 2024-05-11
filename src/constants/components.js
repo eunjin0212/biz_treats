@@ -161,7 +161,7 @@ export const myPageLnbMenu = [
             },
             {
                 title: 'Points Transfer/Retrieve',
-                path: '/pointsTransfer'
+                path: '/pointsTransferRetrieve'
             },
             {
                 title: 'Monthly Report',
