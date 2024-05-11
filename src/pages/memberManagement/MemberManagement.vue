@@ -15,6 +15,8 @@ import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ChevronLeftSvg from '@/assets/icons/ChevronLeftSvg.vue';
 import ChevronRightSvg from '@/assets/icons/ChevronRightSvg.vue';
 import EditSvg from '@/assets/icons/EditSvg.vue';
+import PlusSvg from '@/assets/icons/PlusSvg.vue';
+import CloseSvg from '@/assets/icons/CloseSvg.vue';
 
 export default {
     components: {
@@ -31,6 +33,8 @@ export default {
         ChevronLeftSvg,
         ChevronRightSvg,
         EditSvg,
+        PlusSvg,
+        CloseSvg,
     },
     data() {
         const rowPerPage = 6
@@ -42,6 +46,12 @@ export default {
         }
         const initFilters = {
             tableSearch: '',
+        }
+        const formModel = {
+            type: 'false',
+            name: '',
+            email: '',
+            phone: '',
         }
         return {
             navMenu,
@@ -79,9 +89,47 @@ export default {
                 active: 'Active',
             },
             statusOptions: [{ label: 'Resigned', value: 'resigned' }, { label: 'Active', value: 'active' }],
+            isOpen: false,
+            formModel,
+            modalForm: [
+                {
+                    label: 'Type',
+                    name: 'name',
+                    value: formModel.type,
+                    type: 'radio',
+                    key: 'type',
+                },
+                {
+                    label: 'Name',
+                    name: 'name',
+                    value: formModel.name,
+                    placeholder: 'Enter Member Name',
+                    type: 'text',
+                    key: 'name',
+                },
+                {
+                    label: 'Phone Number',
+                    name: 'phone',
+                    value: formModel.phone,
+                    placeholder: 'Enter Phone Number',
+                    type: 'text',
+                    key: 'phone',
+                },
+                {
+                    label: 'Email',
+                    name: 'email',
+                    value: formModel.email,
+                    placeholder: 'Enter Work Email',
+                    type: 'email',
+                    key: 'email',
+                },
+            ],
         }
     },
     methods: {
+        handleUpdate(key, value) {
+            this.formModel[key] = value
+        },
         handleSubmit(event) {
             event.preventDefault();
         },
@@ -105,21 +153,23 @@ export default {
         handleAlert() {
             this.alertOpen = !this.alertOpen
         },
-        handleGlobalDropdown(e) {
-            const { parentNode } = e.target
+        handleGlobalDropdown(event) {
+            const { parentNode } = event.target
             if (parentNode !== this.$refs.dropdownRef && !this.$refs.dropdownOptsRef.contains(parentNode)) {
                 this.dropdown = false
             }
         },
-        handleGlobalAlert(e) {
-            const { parentNode } = e.target
+        handleGlobalAlert(event) {
+            const { parentNode } = event.target
             if (parentNode !== this.$refs.alertRef && !this.$refs.alertWrapperRef.contains(parentNode)) {
                 this.alertOpen = false
             }
         },
-        handleInvite(e) {
-            window.alert('popup open!')
-            // popup
+        handleModal(value) {
+            this.isOpen = value
+        },
+        handleSave(event) {
+            event.preventDefault();
         },
     },
     watch: {
@@ -287,7 +337,17 @@ export default {
         </aside>
         <section class="w-[calc(100%-266px)] max-w-[932px] flex flex-col">
             <div class="section-card !px-0">
-                <h2 class="!mb-4.5 px-3"><span class="!bg-green-03"></span>Member Management</h2>
+                <h2 class="!mb-4.5 px-3 justify-between">
+                    <div class="inline-flex items-center">
+                        <span class="!bg-green-03"></span>Member Management
+                    </div>
+                    <button
+                      @click="() => handleModal(true)"
+                      class="inline-flex items-center gap-1 font-bold text-sm leading-6 text-white-19 py-3 pl-5.5 pr-6.5 bg-blue-300 rounded-lg"
+                    >
+                        <PlusSvg />Invite
+                    </button>
+                </h2>
                 <div class="table-filter-bar">
                     <form @submit="handleSubmit">
                         <label class="search-input">
@@ -354,7 +414,7 @@ export default {
                                       v-else-if="column.field === 'status'"
                                       class="flex justify-between items-center"
                                     >
-                                        <!-- 초대 취소 된 행 제외 -->
+                                        <!-- exclude canceled invite row -->
                                         <span
                                           class="text-stone-04 text-xs leading-6 font-semibold rounded-md px-3 py-[2px]"
                                           :class="statusClass[row[column.field]]"
@@ -367,9 +427,8 @@ export default {
                                           v-else-if="row.button === 'save'"
                                           :value="row[column.field]"
                                           @change="(e) => {
-                                              row[column.field] = e.target.value
-                                              row[column.field] === 'resigned' && handleInvite(e)
-                                          }"
+                        row[column.field] = e.target.value
+                    }"
                                         >
                                             <option
                                               v-for="opt in statusOptions"
@@ -377,9 +436,6 @@ export default {
                                               :key="opt.value"
                                             >{{ opt.label }}</option>
                                         </select>
-                                        <Teleport to="body">
-                                            모달
-                                        </Teleport>
                                     </div>
                                     <!-- edit, save, cancel button -->
                                     <div
@@ -492,4 +548,94 @@ export default {
             Copyright © SHARE TREATS. All rights reserved.
         </p>
     </footer>
+    <Teleport to="body">
+        <aside
+          class="modal__wrapper inline-flex justify-center items-center !p-0"
+          v-if="isOpen"
+        >
+            <div class="rounded-2xl w-[578px] h-[468px] mx-auto pt-[30px] pb-3 pl-4.5 pr-6 flex flex-col items-center">
+
+                <div class="section-card !px-0 !m-0">
+                    <h2 class="!mb-5 mt-1.5 px-3 justify-between">
+                        <div class="inline-flex items-center">
+                            <span class="!bg-orange-01 ml-0.5"></span>Member Invite
+                        </div>
+                        <button
+                          @click="() => handleModal(false)"
+                          class="inline-flex items-center bg-white-10 rounded-full p-2 mr-4.5"
+                        >
+                            <CloseSvg />
+                        </button>
+                    </h2>
+                    <hr class="border-white-10 !m-0" />
+                    <form class="font-inter flex flex-col gap-6 pt-8 pb-3" @submit="handleSave">
+                        <label
+                          class="modal-form__label-input mx-6"
+                          v-for="form in modalForm"
+                          :key="form.key"
+                        >
+                            <span>
+                                {{ form.label }}
+                            </span>
+                            <label
+                              v-if="form.type === 'radio'"
+                              class="radio"
+                              :for="form.name"
+                            >
+                                <input
+                                  :type="form.type"
+                                  :name="form.name"
+                                  :id="form.name"
+                                  checked
+                                  autocomplete="on"
+                                />
+                                Member
+                            </label>
+                            <div
+                              v-else-if="form.name === 'phone'"
+                              class="flex items-center w-full gap-3"
+                            >
+                                <input
+                                  class="disabled:bg-white-16 disabled:text-stone-05 !w-[52px] !py-3 !px-3.5"
+                                  disabled
+                                  type="text"
+                                  value="+63"
+                                />
+                                <input
+                                  :type="form.type"
+                                  :name="form.name"
+                                  :class="form?.class"
+                                  :placeholder="form.placeholder"
+                                  v-model="formModel[form.key]"
+                                  @input="(e) => handleUpdate(form.key, e.target.value)"
+                                  autocomplete="on"
+                                />
+                            </div>
+                            <input
+                              v-else
+                              :type="form.type"
+                              :name="form.name"
+                              :class="form?.class"
+                              :placeholder="form.placeholder"
+                              v-model="formModel[form.key]"
+                              @input="(e) => handleUpdate(form.key, e.target.value)"
+                              autocomplete="on"
+                            />
+                        </label>
+                        <hr class="border-white-10" />
+                        <div class="-mt-3 pr-6 flex items-center justify-end gap-2">
+                            <button
+                              type="button"
+                              class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
+                            >Cancel</button>
+                            <button
+                              type="submit"
+                              class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-400"
+                            >Invite</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </aside>
+    </Teleport>
 </template>
