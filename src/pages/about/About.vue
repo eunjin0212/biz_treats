@@ -163,7 +163,7 @@ export default {
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
                 </button>
-                <div class="btn-group ml-4">
+                <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
                         <button
@@ -235,10 +235,10 @@ export default {
                 </div>
                 <h2 class="!mb-[30px]"><span></span>Let's work together as partners with ShareTreats! Talk to us now at
                 </h2>
-                <div class="flex items-center ml-12 mb-8 gap-7">
+                <div class="flex items-center mb-8 ml-12 gap-7">
                     <div class="flex items-start gap-3">
                         <span
-                          class="w-8 h-8 border border-white-07 rounded-full inline-flex justify-center items-center"
+                          class="inline-flex items-center justify-center w-8 h-8 border rounded-full border-white-07"
                         >
                             <MailSvg />
                         </span>
@@ -249,7 +249,7 @@ export default {
                     </div>
                     <div class="flex items-start gap-3">
                         <span
-                          class="w-8 h-8 border border-white-07 rounded-full inline-flex justify-center items-center"
+                          class="inline-flex items-center justify-center w-8 h-8 border rounded-full border-white-07"
                         >
                             <SmartphoneSvg />
                         </span>
@@ -260,7 +260,7 @@ export default {
                     </div>
                     <div class="flex items-start gap-3">
                         <span
-                          class="w-8 h-8 border border-white-07 rounded-full inline-flex justify-center items-center"
+                          class="inline-flex items-center justify-center w-8 h-8 border rounded-full border-white-07"
                         >
                             <MapSvg />
                         </span>

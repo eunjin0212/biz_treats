@@ -238,7 +238,7 @@ export default {
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
                 </button>
-                <div class="btn-group ml-4">
+                <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
                         <button @click="handleDropdown" ref="dropdownRef">
@@ -296,7 +296,7 @@ export default {
                   :key="accordion.title"
                 >
                     <h3
-                      class="accordion__section-title text-main font-bold text-base leading-5 mt-6 pb-3 border-b border-b-gray-02"
+                      class="pb-3 mt-6 text-base font-bold border-b accordion__section-title text-main leading-5 border-b-gray-02"
                     >{{ accordion.title }}</h3>
                     <div
                       class="accordion__section-content"

@@ -90,7 +90,7 @@ export default {
                   autocomplete="on"
                 />
             </label>
-            <div class="recaptcha mb-5">
+            <div class="mb-5 recaptcha">
                 <div
                 class="checkbox"
                   @click.prevent="() => {
@@ -125,7 +125,7 @@ export default {
             </button>
             <a
               href="/login"
-              class="text-main mt-2 text-xs"
+              class="mt-2 text-xs text-main"
             >
                 Back to Login
             </a>

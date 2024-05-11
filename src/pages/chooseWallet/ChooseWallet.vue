@@ -196,7 +196,7 @@ export default {
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
                 </button>
-                <div class="btn-group ml-4">
+                <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
                         <button @click="handleDropdown" ref="dropdownRef">
@@ -262,7 +262,7 @@ export default {
                     </p>
                 </div>
             </div>
-            <div class="pagination-wrapper my-6">
+            <div class="my-6 pagination-wrapper">
                 <button
                   class="page-left"
                   @click="() => handlePage('prev')"

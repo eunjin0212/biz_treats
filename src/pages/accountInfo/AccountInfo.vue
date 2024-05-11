@@ -229,7 +229,7 @@ export default {
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
                 </button>
-                <div class="btn-group ml-4">
+                <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
                         <button
@@ -306,7 +306,7 @@ export default {
                     </label>
                 </form>
                 <hr class="!mx-0 !mb-0" />
-                <div class="flex justify-end items-center gap-2 pt-3 pr-6">
+                <div class="flex items-center justify-end pt-3 pr-6 gap-2">
                     <button
                       class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
                     >Cancel</button>

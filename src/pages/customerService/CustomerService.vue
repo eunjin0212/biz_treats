@@ -187,7 +187,7 @@ export default {
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
                 </button>
-                <div class="btn-group ml-4">
+                <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
                         <button @click="handleDropdown" ref="dropdownRef">
@@ -237,7 +237,7 @@ export default {
             </ul>
         </aside>
         <section class="w-[calc(100%-266px)] max-w-[932px] mb-32">
-            <div class="main-section pb-24">
+            <div class="pb-24 main-section">
                 <h2>Customer Service</h2>
                 <div class="ml-2.5 mt-[30px]">
                     <h3 class="text-2xl font-bold leading-8 text-[#595959]">Customer Service hotline</h3>
@@ -249,7 +249,7 @@ export default {
                         <span class="text-black-400">{{ data.title }}</span> :
                         <span class="text-[#1211278F]">{{ data.content }}</span>
                     </p>
-                    <h3 class="mt-8 flex items-center text-main font-semibold text-sm leading-6 tracking-wider mb-5">
+                    <h3 class="flex items-center mt-8 mb-5 text-sm font-semibold tracking-wider text-main leading-6">
                         NOTICE
                         <hr class="flex-1 ml-3.5 border-t-[#1211271F]" />
                     </h3>
@@ -260,7 +260,7 @@ export default {
                         <h4 class="text-sm leading-[25px] font-normal text-black-400 inline-flex items-center">
                             <CheckRoundSvg class="mr-3" /> {{ notice.title }}
                         </h4>
-                        <ul class="mt-3 list-disc ml-10 mb-9">
+                        <ul class="mt-3 ml-10 list-disc mb-9">
                             <li
                               v-for="(item, idx) in notice.content"
                               :key="idx"

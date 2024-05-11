@@ -249,7 +249,7 @@ export default {
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
                 </button>
-                <div class="btn-group ml-4">
+                <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
                         <button @click="handleDropdown" ref="dropdownRef">
@@ -360,36 +360,36 @@ export default {
                 <ul class="flex items-center gap-[22px] px-3 mb-4.5">
                     <li class="pt-5 pb-[9px] px-8 bg-[#B5E4CA40] rounded-xl flex-1">
                         <p class="font-inter text-[#33383F] font-semibold text-[13px] leading-4">Top-up</p>
-                        <div class="flex items-end mb-3 mt-1">
+                        <div class="flex items-end mt-1 mb-3">
                             <i class="text-stone-02 font-inter font-bold text-5xl leading-[48px]">10,000</i>
-                            <span class="text-gray-06 font-bold text-sm leading-5 font-poppins">Points</span>
+                            <span class="text-sm font-bold text-gray-06 leading-5 font-poppins">Points</span>
                         </div>
                         <span
-                          class="bg-white-19 p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-green-01 rounded -tracking-wide"
+                          class="flex items-center p-1 text-xs font-bold rounded bg-white-19 w-fit gap-1 leading-4 text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
                     </li>
                     <li class="pt-5 pb-[9px] px-8 bg-[#B1E5FC40] rounded-xl flex-1">
                         <p class="font-inter text-[#33383F] font-semibold text-[13px] leading-4">Transfer</p>
-                        <div class="flex items-end mb-3 mt-1">
+                        <div class="flex items-end mt-1 mb-3">
                             <i class="text-stone-02 font-inter font-bold text-5xl leading-[48px]">-5,000</i>
-                            <span class="text-gray-06 font-bold text-sm leading-5 font-poppins">Points</span>
+                            <span class="text-sm font-bold text-gray-06 leading-5 font-poppins">Points</span>
                         </div>
                         <span
-                          class="bg-white-19 p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-red-200 rounded -tracking-wide"
+                          class="flex items-center p-1 text-xs font-bold text-red-200 rounded bg-white-19 w-fit gap-1 leading-4 -tracking-wide"
                         >
                             <DownSvg /> 37.8%
                         </span>
                     </li>
                     <li class="pt-5 pb-[9px] px-8 bg-[#CABDFF40] rounded-xl flex-1">
                         <p class="font-inter text-[#33383F] font-semibold text-[13px] leading-4">Used</p>
-                        <div class="flex items-end mb-3 mt-1">
+                        <div class="flex items-end mt-1 mb-3">
                             <i class="text-stone-02 font-inter font-bold text-5xl leading-[48px]">6,000</i>
-                            <span class="text-gray-06 font-bold text-sm leading-5 font-poppins">Points</span>
+                            <span class="text-sm font-bold text-gray-06 leading-5 font-poppins">Points</span>
                         </div>
                         <span
-                          class="bg-white-19 p-1 flex w-fit items-center gap-1 text-xs leading-4 font-bold text-green-01 rounded -tracking-wide"
+                          class="flex items-center p-1 text-xs font-bold rounded bg-white-19 w-fit gap-1 leading-4 text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -486,7 +486,7 @@ export default {
                                     </div>
                                     <div
                                       v-else-if="column.field === 'notes'"
-                                      class="flex justify-between items-center"
+                                      class="flex items-center justify-between"
                                     >
                                         {{ row[column.field] }}
                                         <a
@@ -502,7 +502,7 @@ export default {
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination-wrapper mt-9 mb-8">
+                <div class="mb-8 pagination-wrapper mt-9">
                     <button
                       class="page-left"
                       @click="() => handlePage('prev')"

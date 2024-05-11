@@ -134,7 +134,7 @@ export default {
                     Remember this account
                 </label>
             </div>
-            <div class="recaptcha mb-5">
+            <div class="mb-5 recaptcha">
                 <div
                   class="checkbox"
                   @click.prevent="() => {

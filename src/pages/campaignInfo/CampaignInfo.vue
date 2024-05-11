@@ -172,7 +172,7 @@ export default {
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
                 </button>
-                <div class="btn-group ml-4">
+                <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
                         <button
@@ -258,12 +258,12 @@ export default {
                               class="inline-block w-9 h-9 border-2 rounded-md border-[#D7D7D7]"
                             ></span>
                             <div
-                              class="cursor-pointer relative py-3 px-5 rounded-xl border border-white-02 text-blue-300 text-xs leading-6 font-bold hover:bg-white-02-light"
+                              class="relative px-5 py-3 text-xs font-bold text-blue-300 border cursor-pointer rounded-xl border-white-02 leading-6 hover:bg-white-02-light"
                             >
                                 <input
                                   type="color"
                                   :value="colorPicker"
-                                  class="w-full h-full absolute top-0 left-0 opacity-0"
+                                  class="absolute top-0 left-0 w-full h-full opacity-0"
                                   @input="handleColorPicker"
                                 />
                                 Select Color
@@ -287,7 +287,7 @@ export default {
                                     <input
                                       type="file"
                                       accept="image/*"
-                                      class="opacity-0 absolute top-0 left-0 w-full h-full"
+                                      class="absolute top-0 left-0 w-full h-full opacity-0"
                                       @change="handleFilePicker"
                                     />
                                     <UploadSvg />
@@ -315,7 +315,7 @@ export default {
                     </label>
                 </form>
                 <hr class="!mx-0 !mb-0" />
-                <div class="flex justify-end items-center gap-2 pt-3 pr-6">
+                <div class="flex items-center justify-end pt-3 pr-6 gap-2">
                     <button
                       class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
                     >Cancel</button>

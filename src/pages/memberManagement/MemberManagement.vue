@@ -283,7 +283,7 @@ export default {
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
                 </button>
-                <div class="btn-group ml-4">
+                <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
                         <button
@@ -389,7 +389,7 @@ export default {
                                 >
                                     <div
                                       v-if="['name', 'phone'].includes(column.field)"
-                                      class="flex justify-between items-center"
+                                      class="flex items-center justify-between"
                                     >
                                         <template v-if="row.button !== 'save'">
                                             {{ row[column.field] }}
@@ -399,20 +399,20 @@ export default {
                                           @input="(e) => row[column.field] = e.target.value"
                                           :value="row[column.field]"
                                           :class="column.field === 'name' ? 'w-24 -ml-4' : 'w-[130px]'"
-                                          class="px-2 py-3 border border-white-02 text-xs leading-6 rounded-lg bg-white-20 focus:ring-0 focus-visible:border-white-02 focus-within:border-white-02"
+                                          class="px-2 py-3 text-xs border rounded-lg border-white-02 leading-6 bg-white-20 focus:ring-0 focus-visible:border-white-02 focus-within:border-white-02"
                                         />
                                     </div>
                                     <!-- balance -->
                                     <div
                                       v-else-if="column.field === 'balance'"
-                                      class="flex justify-between items-center"
+                                      class="flex items-center justify-between"
                                     >
                                         {{ row[column.field].toLocaleString() }}P
                                     </div>
                                     <!-- status -->
                                     <div
                                       v-else-if="column.field === 'status'"
-                                      class="flex justify-between items-center"
+                                      class="flex items-center justify-between"
                                     >
                                         <!-- exclude canceled invite row -->
                                         <span
@@ -440,18 +440,18 @@ export default {
                                     <!-- edit, save, cancel button -->
                                     <div
                                       v-else-if="column.field === 'button'"
-                                      class="flex justify-between items-center"
+                                      class="flex items-center justify-between"
                                     >
                                         <button
                                           v-if="row[column.field] === 'editable'"
-                                          class="h-10 w-10 rounded-lg bg-white-20 border border-white-02 inline-flex items-center justify-center"
+                                          class="inline-flex items-center justify-center w-10 h-10 border rounded-lg bg-white-20 border-white-02"
                                           @click="() => row[column.field] = 'save'"
                                         >
                                             <EditSvg />
                                         </button>
                                         <button
                                           v-else-if="row[column.field] === 'save'"
-                                          class="rounded-lg bg-white-20 border border-white-02 py-2 px-9 text-xs leading-6 font-semibold text-blue-300"
+                                          class="py-2 text-xs font-semibold text-blue-300 border rounded-lg bg-white-20 border-white-02 px-9 leading-6"
                                           @click="() => row[column.field] = 'editable'"
                                         >
                                             Save
@@ -568,9 +568,9 @@ export default {
                         </button>
                     </h2>
                     <hr class="border-white-10 !m-0" />
-                    <form class="font-inter flex flex-col gap-6 pt-8 pb-3" @submit="handleSave">
+                    <form class="flex flex-col pt-8 pb-3 font-inter gap-6" @submit="handleSave">
                         <label
-                          class="modal-form__label-input mx-6"
+                          class="mx-6 modal-form__label-input"
                           v-for="form in modalForm"
                           :key="form.key"
                         >
@@ -623,7 +623,7 @@ export default {
                             />
                         </label>
                         <hr class="border-white-10" />
-                        <div class="-mt-3 pr-6 flex items-center justify-end gap-2">
+                        <div class="flex items-center justify-end pr-6 -mt-3 gap-2">
                             <button
                               type="button"
                               class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"

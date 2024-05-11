@@ -240,7 +240,7 @@ export default {
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
                 </button>
-                <div class="btn-group ml-4">
+                <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
                         <button @click="handleDropdown" ref="dropdownRef">
@@ -388,7 +388,7 @@ export default {
                                 >
                                     <div
                                       v-if="column.field === 'sent_date' && tab === 'Reserved Schedule'"
-                                      class="flex justify-between items-center"
+                                      class="flex items-center justify-between"
                                     >
                                         <button
                                           class="border border-white-02 rounded-lg bg-white px-[31px] py-1.5 text-red-200 font-semibold leading-6 hover:bg-white-02-light"
@@ -398,7 +398,7 @@ export default {
                                     </div>
                                     <div
                                       v-else-if="column.field === 'recipient_list'"
-                                      class="flex justify-between items-center"
+                                      class="flex items-center justify-between"
                                     >
                                         {{ row[column.field] }}
                                         <button
