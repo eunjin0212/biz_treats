@@ -16,6 +16,7 @@ html {
 body {
     background-color: rgb(249 249 249);
     position: relative;
+    font-family: inter, sans-serif;
 }
 
 /* background */
@@ -71,7 +72,7 @@ body {
         @apply w-40 mr-[108px] last-of-type:mr-0
     }
     footer.footer aside div h4 {
-        @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mb-5
+        @apply text-base font-medium text-[theme(colors.black.300)] mb-5
     }
     footer.footer aside > div a {
         @apply block text-xs font-medium text-[theme(colors.slate.02)] mb-6 last-of-type:mb-0
@@ -83,7 +84,7 @@ body {
         @apply w-[117px] h-[59px]
     }
     footer.footer aside > div:first-of-type h4 {
-        @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mt-6
+        @apply text-base font-medium text-[theme(colors.black.300)] mt-6
     }
     footer.footer aside > div:first-of-type div {
         @apply flex gap-2 mt-2
@@ -95,7 +96,7 @@ body {
         @apply text-xs
     }
     footer.footer p {
-        @apply font-[theme(fontFamily.inter)] text-sm font-medium text-[theme(colors.slate.02)] pt-[30px] pb-[34px] border-t border-t-[theme(colors.white.05)]
+        @apply text-sm font-medium text-[theme(colors.slate.02)] pt-[30px] pb-[34px] border-t border-t-[theme(colors.white.05)]
     }
 }
 
@@ -228,7 +229,7 @@ body {
         @apply w-40 mr-[108px] last-of-type:mr-0
     }
     footer.service-footer > div aside div h4 {
-        @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mb-5
+        @apply text-base font-medium text-[theme(colors.black.300)] mb-5
     }
     footer.service-footer > div aside > div a {
         @apply block text-xs font-medium text-[theme(colors.slate.02)] mb-6 last-of-type:mb-0
@@ -240,7 +241,7 @@ body {
         @apply w-[117px] h-[59px]
     }
     footer.service-footer > div aside > div:first-of-type h4 {
-        @apply text-base font-medium text-[theme(colors.black.300)] font-[theme(fontFamily.inter)] mt-6
+        @apply text-base font-medium text-[theme(colors.black.300)] mt-6
     }
     footer.service-footer > div aside > div:first-of-type div {
         @apply flex gap-2 mt-2
@@ -256,7 +257,7 @@ body {
 
     }
     footer.service-footer > p {
-        @apply w-[1228px] mx-auto font-[theme(fontFamily.inter)] text-sm font-medium text-[theme(colors.slate.02)] pt-[30px] pb-[34px]
+        @apply w-[1228px] mx-auto text-sm font-medium text-[theme(colors.slate.02)] pt-[30px] pb-[34px]
     }
 }
 
@@ -280,7 +281,7 @@ body {
 /* badge */
 @layer components {
     span.badge {
-        @apply absolute -top-2 -right-3 text-sm leading-4 -tracking-[0.323px] font-bold font-[theme(fontFamily.inter)] text-[theme(colors.white.20)] bg-[theme(colors.red.300)] px-2 py-1 rounded-[10px]
+        @apply absolute -top-2 -right-3 text-sm leading-4 -tracking-[0.323px] font-bold text-[theme(colors.white.20)] bg-[theme(colors.red.300)] px-2 py-1 rounded-[10px]
     }
 }
 
@@ -315,7 +316,7 @@ body {
         box-shadow: 0px 40px 64px -12px #00000014;
     }
     div.dropdown .dropdown-opts > a {
-        @apply whitespace-nowrap w-full m-0 px-[theme(spacing[3.5])] py-[15px] rounded-[theme(spacing[2.5])] text-[theme(colors.slate.01)] text-sm leading-6 flex items-center gap-[theme(spacing[1.5])] font-[theme(fontFamily.inter)] hover:bg-[theme(colors.white.14)] hover:bg-slate-50
+        @apply whitespace-nowrap w-full m-0 px-[theme(spacing[3.5])] py-[15px] rounded-[theme(spacing[2.5])] text-[theme(colors.slate.01)] text-sm leading-6 flex items-center gap-[theme(spacing[1.5])] hover:bg-[theme(colors.white.14)] hover:bg-slate-50
     }
 }
 
@@ -331,13 +332,13 @@ body {
         @apply px-6 pt-3 flex flex-col
     }
     aside.alert-wrapper .alert-header h1 {
-        @apply text-[theme(colors.black.200)] leading-8 text-left text-xl font-[theme(fontFamily.inter)] font-semibold 
+        @apply text-[theme(colors.black.200)] leading-8 text-left text-xl font-semibold 
     }
     aside.alert-wrapper .alert-header > p {
         @apply flex justify-between items-center
     }
     aside.alert-wrapper .alert-header > p span, aside.alert-wrapper .alert-header > p button {
-        @apply text-[theme(colors.gray.03)] text-xs font-normal leading-6 font-[theme(fontFamily.inter)]
+        @apply text-[theme(colors.gray.03)] text-xs font-normal leading-6
     }
     aside.alert-wrapper hr {
         @apply border-[theme(colors.white.13)]
@@ -358,10 +359,10 @@ body {
         @apply flex flex-col items-start gap-1 ml-3
     }
     aside.alert-wrapper > ul li > div > div > span { /* alert title, description */
-        @apply text-[theme(colors.gray.03)] text-xs font-medium leading-6 font-[theme(fontFamily.inter)]
+        @apply text-[theme(colors.gray.03)] text-xs font-medium leading-6
     }
     aside.alert-wrapper > ul li > div > div > p > span:first-of-type {
-        @apply inline-block text-[theme(colors.slate.01)] text-sm leading-6 font-bold font-[theme(fontFamily.inter)] mr-1
+        @apply inline-block text-[theme(colors.slate.01)] text-sm leading-6 font-bold mr-1
     }
     aside.alert-wrapper > ul li > div > div > p > span:last-of-type {
         @apply inline-block text-[theme(colors.gray.03)] font-normal text-xs leading-6
@@ -385,7 +386,7 @@ body {
     }
     aside.lnb ul li div,
     aside.lnb ul li a {
-        @apply font-semibold font-[theme(fontFamily.inter)] text-[15px] leading-6 -tracking-[0.323px]
+        @apply font-semibold text-[15px] leading-6 -tracking-[0.323px]
     }
     aside.lnb ul li div {
         @apply py-3 px-1
@@ -407,7 +408,7 @@ body {
         @apply border-[theme(colors.white.09)] mt-[22px] mb-[30px] mx-3
     }
     div.section-card h2 { /* section card header */
-        @apply ml-3 mb-6 text-[theme(colors.black.200)] text-xl font-semibold leading-8 font-[theme(fontFamily.inter)] flex items-center
+        @apply ml-3 mb-6 text-[theme(colors.black.200)] text-xl font-semibold leading-8 flex items-center
     }
     div.section-card h2 span { /* section card header */
         @apply bg-[#B1E5FC] rounded w-4 h-8 inline-block mr-4
@@ -417,7 +418,7 @@ body {
 /* main section */
 @layer components {
     div.main-section {
-      @apply bg-[theme(colors.white.20)] rounded-xl w-full pt-5 px-6 ml-[30px] first-of-type:mt-[37px] font-[theme(fontFamily.inter)]
+      @apply bg-[theme(colors.white.20)] rounded-xl w-full pt-5 px-6 ml-[30px] first-of-type:mt-[37px]
     }
     div.main-section h2 { /* section card header */
         @apply pl-2 pb-6 text-[theme(colors.main)] text-xl font-bold leading-8 border-b border-b-[theme(colors.white.09)]
@@ -434,10 +435,10 @@ body {
         @apply py-2 px-4 flex justify-between items-center
     }
     li.wallet-info__card .wallet-info__card-header span {
-        @apply text-[#33383F] font-semibold text-[13px] leading-5 font-[theme(fontFamily.inter)]
+        @apply text-[#33383F] font-semibold text-[13px] leading-5
     }
     li.wallet-info__card .wallet-info__card-header a {
-        @apply font-[theme(fontFamily.inter)] text-[theme(colors.main)] font-medium text-xs leading-5
+        @apply text-[theme(colors.main)] font-medium text-xs leading-5
     }
     li.wallet-info__card hr {
         @apply bg-[theme(colors.white.04)]
@@ -446,7 +447,7 @@ body {
         @apply flex flex-col gap-1 px-[theme(spacing[2.5])] py-[theme(spacing[1.5])]
     }
     li.wallet-info__card .wallet-info__card-content li {
-        @apply min-h-[22px] leading-[22px] flex items-start gap-2 text-[theme(colors.zinc.02)] text-xs font-normal font-[theme(fontFamily.inter)]
+        @apply min-h-[22px] leading-[22px] flex items-start gap-2 text-[theme(colors.zinc.02)] text-xs font-normal
     }
     li.wallet-info__card .wallet-info__card-content li span {
         @apply w-[22px] min-w-[22px] h-[22px] bg-[theme(colors.white.15)] rounded inline-flex justify-center items-center
@@ -553,13 +554,13 @@ body {
         @apply transition-all cursor-pointer pt-4 px-3.5 pb-3 relative before:top-0 before:left-0 before:w-full before:h-full before:absolute before:border before:border-[theme(colors.white.05)] before:rounded-xl
     }
     div.card > .card-title__wrapper {
-        @apply flex items-center gap-[theme(spacing[2.5])] font-[theme(fontFamily.inter)]
+        @apply flex items-center gap-[theme(spacing[2.5])]
     }
     div.card > .card-title__wrapper > span {
         @apply rounded-full w-[46px] h-[46px] inline-flex items-center justify-center
     }
     div.card > .card-title__wrapper > p > strong {
-        @apply block leading-7 text-xl
+        @apply block text-xl
     }
     div.card > .card-title__wrapper > p > span {
         @apply font-normal text-sm leading-6 text-[#1211277A]
@@ -626,5 +627,49 @@ body {
     }
     label.radio input[type="radio"] {
         @apply border border-[theme(colors.white.10)] focus:border-[theme(colors.white.10)] focus:ring-offset-0 focus-visible:border-[theme(colors.white.10)] hover:border-[theme(colors.white.10)] outline-0 text-transparent focus:ring-0 focus-visible:ring-offset-0 focus-within:ring-offset-0 ring-0 ring-offset-transparent w-6 h-6 p-1.5 checked:bg-[left_5.5px_top_6.9px] checked:bg-[length:13px] checked:bg-[url('@/assets/icons/radio_icon.svg')] checked:bg-[theme(colors.blue.300)]
+    }
+}
+
+/* point info bar in Points Top-up Management, Points Transfer/Retrieve */
+@layer components {
+    div.point-info-bar {
+        @apply px-[theme(spacing[6.5])] mb-[theme(spacing[5.5])]
+    }
+
+    div.point-info-bar div.point-card {
+        @apply border-2 border-[theme(colors.white.03)] rounded-xl p-4 flex justify-between
+    }
+
+    div.point-info-bar div.point-card .point-card-title__wrapper {
+        @apply flex items-center gap-[theme(spacing[2.5])]
+    }
+
+    div.point-info-bar div.point-card .point-card-title__wrapper>span {
+        @apply rounded-full w-[46px] h-[46px] inline-flex items-center justify-center bg-[#EF466F]
+    }
+
+    div.point-info-bar>.point-card .point-card-title__wrapper>p>strong {
+        @apply text-[#EF466F] block text-xl
+    }
+
+    div.point-info-bar>.point-card .point-card-title__wrapper>p>span {
+        @apply font-normal text-sm leading-6 text-[#1211277A]
+    }
+    div.point-info-bar div.point-card  .point-card-content {
+        @apply text-[theme(colors.blue.300)]
+    }
+    div.point-info-bar div.point-card .point-card-content>strong {
+        @apply text-[44px] leading-[60px] mr-1
+    }
+    div.point-info-bar div.point-card .point-card-content>span {
+        @apply font-semibold text-base leading-7
+    }
+
+    div.point-info-bar>p {
+        @apply text-right text-[13px] leading-4 font-semibold text-[#878787] mt-[theme(spacing[2.5])]
+    }
+
+    div.point-info-bar>p>svg {
+        @apply ml-1 inline-block
     }
 }

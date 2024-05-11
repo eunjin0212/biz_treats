@@ -86,10 +86,10 @@ module.exports = {
         title: 'Member Management',
         path: '/memberManagement'
     },
-    // 'pointsTopUpManagement': {
-    //     title: 'Points Top-up Management',
-    //     path: '/pointsTopUpManagement'
-    // },
+    'pointsTopUpManagement': {
+        title: 'Points Top-up Management',
+        path: '/pointsTopUpManagement'
+    },
     // 'pointsTransfer': {
     //     title: 'Points Transfer/Retrieve',
     //     path: '/pointsTransfer'
