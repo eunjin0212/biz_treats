@@ -225,7 +225,7 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bgwhite-17">
+    <main class="bg-white-17">
         <section class="w-[940px] mx-auto mt-7 mb-11 flex flex-col bg-white rounded-xl">
             <ul class="font-inter text-center mt-[52px] mb-9">
                 <li class="text-main text-[28px] font-bold leading-10 mb-1">Choose your Wallet type</li>
