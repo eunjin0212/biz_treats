@@ -1,7 +1,7 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
-import { rows } from '@/mock/pointsTopUpManagement.js'
+import { managementRows } from '@/mock/pointsTransferRetrieve.js'
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -44,10 +44,10 @@ export default {
     data() {
         const rowPerPage = 6
         const pagination = {
-            total: rows.length,
+            total: managementRows.length,
             page: 1, // 현재 페이지
             rowPerPage, // 테이블 row 수
-            lastPage: Math.ceil(rows.length / rowPerPage), // 마지막 페이지
+            lastPage: Math.ceil(managementRows.length / rowPerPage), // 마지막 페이지
         }
         const initFilters = {
             fromDate: moment(new Date()).format('DD/MM/YYYY'),
@@ -65,19 +65,15 @@ export default {
             alertOpen: false,
             alertData,
             tableColumns: [
-                { label: 'Top-up ID', field: 'top_up_id', class: '' },
+                { label: 'Date', field: 'date', class: 'w-24' },
                 { label: 'Type', field: 'type', class: '' },
+                { label: 'Receiver Email(ID)', field: 'email', class: '' },
+                { label: 'Name', field: 'name', class: '' },
                 { label: 'Points', field: 'points', class: '' },
-                { label: 'Requester', field: 'requester', class: '' },
-                { label: 'PO/CE\nNo.', field: 'po_ce_no', class: '' },
-                { label: 'BS/SOA\nNo.', field: 'bs_soa_no', class: '' },
-                { label: 'Invoice\nNo.', field: 'invoice_no', class: '' },
-                { label: 'Collection\nType', field: 'collection', class: '' },
-                { label: 'Request\nDate', field: 'request_date', class: 'w-20 min-w-20 max-w-20' },
-                { label: 'Top up\nDate', field: 'top_up_date', class: 'w-20 min-w-20 max-w-20' },
-                { label: 'Status', field: 'status', class: 'w-28 min-w-28 max-w-28' },
+                { label: 'Sender', field: 'sender', class: '' },
+                { label: 'Note', field: 'note', class: '' },
             ],
-            data: rows.slice(pagination.page - 1, rowPerPage),
+            data: managementRows.slice(pagination.page - 1, rowPerPage),
             typeStyle: {
                 Deduct: 'text-red-300',
                 'Top-up': 'text-blue-300',
@@ -303,12 +299,15 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] flex flex-col">
+        <section class="w-[calc(100%-266px)] max-w-[970px] flex flex-col">
             <div class="section-card !px-0 mb-11 mt-4.5">
                 <h2 class="relative w-[100%_-_12px] px-3">
                     <span class="!bg-green-03"></span>
                     Points Transfer/Retrieve
-                    <a href="/retrieve" class="absolute inline-flex items-center gap-1.5 bg-blue-300 rounded-lg right-6 text-white-19 font-bold text-[15px] leading-6 pl-6 pr-7 py-3">
+                    <a
+                      href="/retrieve"
+                      class="absolute inline-flex items-center gap-1.5 bg-blue-300 rounded-lg right-6 text-white-19 font-bold text-[15px] leading-6 pl-6 pr-7 py-3"
+                    >
                         <TransferSvg />
                         Transfer/Retrieve
                     </a>
@@ -326,8 +325,8 @@ export default {
                             </p>
                         </div>
                         <div class="point-card-content">
-                          <strong>1,000</strong>
-                          <span>Points</span>
+                            <strong>1,000</strong>
+                            <span>Points</span>
                         </div>
                     </div>
                     <p>Active Balance
@@ -378,7 +377,7 @@ export default {
                         <label class="search-input">
                             <input
                               type="text"
-                              placeholder="Enter Top-up ID"
+                              placeholder="Enter Email or Note"
                               name="search"
                               v-model="filters.tableSearch"
                             />
@@ -399,8 +398,8 @@ export default {
                                 <th
                                   v-for="column in tableColumns"
                                   :key="column.field"
-                                  v-html="column.label.replace('\n', '<br />')"
                                 >
+                                    {{ column.label }}
                                 </th>
                             </tr>
                         </thead>
@@ -415,32 +414,11 @@ export default {
                                   :class="column.class"
                                 >
                                     <div
-                                      :class="typeStyle[row[column.field]]"
-                                      v-if="column.field === 'type'"
-                                      class="py-[2px] px-2 rounded-md leading-6 font-semibold w-fit"
-                                    >
-                                        {{ row[column.field] }}
-                                    </div>
-                                    <div
-                                      v-else-if="column.field === 'points'"
+                                      v-if="column.field === 'points'"
                                       class="flex items-center justify-between"
                                     >
-                                        {{ Math.sign(row[column.field]) === 1 ? '+' : '' }}
-                                        {{ row[column.field].toLocaleString() }}P
-                                    </div>
-                                    <a
-                                      v-else-if="['po_ce_no', 'invoice_no'].includes(column.field)"
-                                      :class="{ 'text-blue-300 underline': row[column.field] }"
-                                      :href="row[column.field] ? '' : void (0)"
-                                    >
-                                        {{ row[column.field] || '-' }}
-                                    </a>
-                                    <div
-                                      :class="statusStyle[row[column.field]]"
-                                      class="font-semibold text-center rounded-md h-7 py-0.5 text-stone-03 leading-6"
-                                      v-else-if="column.field === 'status'"
-                                    >
-                                        {{ row[column.field] }}
+                                        {{ Math.sign(row[column.field]) === 1 ? '+' : '' }}{{
+                        row[column.field].toLocaleString() }}P
                                     </div>
                                     <template v-else>
                                         {{ row[column.field] || '-' }}

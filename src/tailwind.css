@@ -502,7 +502,7 @@ body {
 /* table search input */
 @layer components {
     label.search-input {
-        @apply px-4 py-2 h-10 w-64 rounded border border-[theme(colors.white.10)] flex items-center hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
+        @apply px-4 py-2 h-10 w-56 rounded border border-[theme(colors.white.10)] flex items-center hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
     }
     label.search-input input {
         @apply p-0 border-0 focus:border-0 focus-visible:border-0 focus:ring-0 w-full h-full text-[theme(colors.stone.01)] placeholder:text-[theme(colors.gray.04)] text-xs font-medium leading-[theme(spacing[2.5])] bg-transparent
@@ -671,5 +671,21 @@ body {
 
     div.point-info-bar>p>svg {
         @apply ml-1 inline-block
+    }
+}
+
+/* checkbox */
+@layer components {
+    label.checkbox {
+        @apply flex items-center w-full cursor-pointer
+    }
+    label.checkbox > input {
+        @apply hidden
+    }
+    label.checkbox > span {
+        @apply border-2 border-[#6F767E66] rounded-md block w-6 h-6 bg-[theme(colors.white.20)]
+    }
+    label.checkbox > .active {
+        @apply !border-[theme(colors.blue.300)] !bg-[theme(colors.blue.300)]
     }
 }

@@ -1,7 +1,7 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
-import { rows } from '@/mock/pointsTopUpManagement.js'
+import { transferRows, retrieveRows } from '@/mock/pointsTransferRetrieve.js'
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -18,6 +18,7 @@ import ChevronRightSvg from '@/assets/icons/ChevronRightSvg.vue';
 import InfoSvg from '@/assets/icons/InfoSvg.vue';
 import CardWalletSvg from '@/assets/icons/CardWalletSvg.vue';
 import PrevPageSvg from '@/assets/icons/PrevPageSvg.vue';
+import CheckSvg from '@/assets/icons/CheckSvg.vue';
 
 export default {
     components: {
@@ -36,14 +37,15 @@ export default {
         InfoSvg,
         CardWalletSvg,
         PrevPageSvg,
+        CheckSvg,
     },
     data() {
         const rowPerPage = 6
         const pagination = {
-            total: rows.length,
+            total: transferRows.length,
             page: 1, // 현재 페이지
             rowPerPage, // 테이블 row 수
-            lastPage: Math.ceil(rows.length / rowPerPage), // 마지막 페이지
+            lastPage: Math.ceil(transferRows.length / rowPerPage), // 마지막 페이지
         }
         const initFilters = {
             fromDate: moment(new Date()).format('DD/MM/YYYY'),
@@ -60,28 +62,28 @@ export default {
             dropdown: false,
             alertOpen: false,
             alertData,
+            myPoint: 1000,
             tableColumns: [
-                { label: 'Top-up ID', field: 'top_up_id', class: '' },
-                { label: 'Type', field: 'type', class: '' },
-                { label: 'Points', field: 'points', class: '' },
-                { label: 'Requester', field: 'requester', class: '' },
-                { label: 'PO/CE\nNo.', field: 'po_ce_no', class: '' },
-                { label: 'BS/SOA\nNo.', field: 'bs_soa_no', class: '' },
-                { label: 'Invoice\nNo.', field: 'invoice_no', class: '' },
-                { label: 'Collection\nType', field: 'collection', class: '' },
-                { label: 'Request\nDate', field: 'request_date', class: 'w-20 min-w-20 max-w-20' },
-                { label: 'Top up\nDate', field: 'top_up_date', class: 'w-20 min-w-20 max-w-20' },
-                { label: 'Status', field: 'status', class: 'w-28 min-w-28 max-w-28' },
+                { label: '', field: 'selected', class: '' },
+                { label: 'Name', field: 'name', class: '' },
+                { label: 'Status', field: 'status', class: '' },
+                { label: 'Email(ID)', field: 'email', class: '' },
+                { label: 'Balance', field: 'balance', class: '' },
+                { label: 'Amount', field: 'amount', class: '' },
+                { label: 'Notes', field: 'notes', class: '' },
             ],
-            data: rows.slice(pagination.page - 1, rowPerPage),
+            data: transferRows.map((row) => ({ ...row, selected: false })).slice(pagination.page - 1, rowPerPage),
             typeStyle: {
                 Deduct: 'text-red-300',
                 'Top-up': 'text-blue-300',
             },
             statusStyle: {
-                Request: 'bg-blue-200 w-16',
-                Complete: 'bg-green-02 w-16',
-                InProgress: 'bg-purple-01 w-20',
+                active: 'bg-blue-200 w-16',
+                resigned: 'bg-red-400 w-16',
+            },
+            statusLabel: {
+                active: 'Active',
+                resigned: 'Resigned',
             },
             moment,
             typeOptions: ['Deduct', 'Topup',],
@@ -92,6 +94,8 @@ export default {
                 to: moment(new Date()).format('YYYY-MM-DD'),
                 from: moment(new Date()).format('YYYY-MM-DD'),
             },
+            tab: 'Transfer',
+            tabOptions: ['Transfer', 'Retrieve'],
         }
     },
     methods: {
@@ -116,6 +120,12 @@ export default {
         handleToDate(event) {
             this.filters.toDate = moment(event.target.value).format('DD/MM/YYYY')
             this.formatDate.to = moment(event.target.value).format('YYYY-MM-DD')
+        },
+        handleTab(value) {
+            this.tab = value
+            this.filters = { ...this.initFilters }
+            const array = value === 'Retrieve' ? retrieveRows : transferRows
+            this.data = array.map((row) => ({ ...row, selected: false })).slice(this.pagination.page - 1, this.rowPerPage)
         },
         handleDropdown() {
             this.dropdown = !this.dropdown
@@ -170,6 +180,9 @@ export default {
             const currentIndexPages = paginationArr.find((page) => page.includes(this.pagination.page))
             return currentIndexPages;
         },
+        totalAmount: function () {
+            return this.data.filter((row) => row.selected).reduce((acc, cur) => +acc + +cur.amount, 0)
+        }
     }
 }
 </script>
@@ -299,18 +312,29 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] flex flex-col">
+        <section class="w-[calc(100%-266px)] max-w-[970px] flex flex-col">
             <div class="section-card !px-0 mb-11 mt-4.5">
                 <a
                   href="/pointsTransferRetrieve"
-                  class="flex items-center px-3 mb-6 ml-3 text-xl font-semibold leading-8 text-black-200"
+                  class="flex items-center px-3 mb-3 ml-3 text-xl font-semibold leading-8 text-black-200"
                 >
                     <span class="bg-blue-300 rounded-lg mr-2.5">
                         <PrevPageSvg />
                     </span>
                     Points Transfer/Retrieve
                 </a>
-                <hr class="!mx-0 mt-0 mb-5 border-white-10" />
+                <div class="pl-6 mb-4 tab">
+                    <ul class="gap-6">
+                        <li
+                          v-for="opt in tabOptions"
+                          :key="opt"
+                          :class="{ 'border-b-4 border-b-main !text-main': opt === tab }"
+                          @click="() => handleTab(opt)"
+                        >
+                            <span class="inline-block px-1 py-2">{{ opt }}</span>
+                        </li>
+                    </ul>
+                </div>
                 <div class="point-info-bar">
                     <div class="point-card">
                         <div class="point-card-title__wrapper">
@@ -323,7 +347,7 @@ export default {
                             </p>
                         </div>
                         <div class="point-card-content">
-                            <strong>1,000</strong>
+                            <strong>{{ myPoint.toLocaleString() }}</strong>
                             <span>Points</span>
                         </div>
                     </div>
@@ -331,15 +355,34 @@ export default {
                         <InfoSvg />
                     </p>
                 </div>
-                <div class="data-table__wrapper">
+                <div class="border-t data-table__wrapper border-t-white-10">
                     <table class="table-fixed data-table">
                         <thead>
                             <tr>
                                 <th
                                   v-for="column in tableColumns"
                                   :key="column.field"
-                                  v-html="column.label.replace('\n', '<br />')"
                                 >
+                                    <label
+                                      class="checkbox"
+                                      v-if="column.field === 'selected'"
+                                      @click.prevent="() => {
+                        data = data.map(row => ({ ...row, selected: !data.every((row) => row.selected) }))
+                    }"
+                                    >
+                                        <span :class="{ 'active': data.every((row) => row.selected) }">
+                                            <CheckSvg
+                                              :class="data.every((row) => row.selected) ? 'text-white-20' : 'hidden'"
+                                            />
+                                        </span>
+                                        <input
+                                          type="checkbox"
+                                          :name="column.field"
+                                        />
+                                    </label>
+                                    <template v-else>
+                                        {{ column.label }}
+                                    </template>
                                 </th>
                             </tr>
                         </thead>
@@ -353,33 +396,40 @@ export default {
                                   :key="column.field"
                                   :class="column.class"
                                 >
-                                    <div
-                                      :class="typeStyle[row[column.field]]"
-                                      v-if="column.field === 'type'"
-                                      class="py-[2px] px-2 rounded-md leading-6 font-semibold w-fit"
+                                    <label
+                                      class="checkbox"
+                                      v-if="column.field === 'selected'"
+                                      @click.prevent="() => {
+                        row[column.field] = !row[column.field];
+                    }"
                                     >
-                                        {{ row[column.field] }}
+                                        <span :class="{ 'active': row[column.field] }">
+                                            <CheckSvg :class="row[column.field] ? 'text-white-20' : 'hidden'" />
+                                        </span>
+                                        <input
+                                          type="checkbox"
+                                          :name="row.name"
+                                          v-model="row[column.field]"
+                                        />
+                                    </label>
+                                    <div v-else-if="column.field === 'status'" :class="statusStyle[row[column.field]]" class="rounded-md text-stone-03 font-semibold text-xs w-[65px] h-7 inline-flex justify-center items-center">
+                                        {{ statusLabel[row[column.field]] }}
                                     </div>
                                     <div
-                                      v-else-if="column.field === 'points'"
+                                      v-else-if="column.field === 'balance'"
                                       class="flex items-center justify-between"
                                     >
-                                        {{ Math.sign(row[column.field]) === 1 ? '+' : '' }}
                                         {{ row[column.field].toLocaleString() }}P
                                     </div>
-                                    <a
-                                      v-else-if="['po_ce_no', 'invoice_no'].includes(column.field)"
-                                      :class="{ 'text-blue-300 underline': row[column.field] }"
-                                      :href="row[column.field] ? '' : void (0)"
-                                    >
-                                        {{ row[column.field] || '-' }}
-                                    </a>
-                                    <div
-                                      :class="statusStyle[row[column.field]]"
-                                      class="font-semibold text-center rounded-md h-7 py-0.5 text-stone-03 leading-6"
-                                      v-else-if="column.field === 'status'"
-                                    >
-                                        {{ row[column.field] }}
+                                    <div v-else-if="['amount', 'notes'].includes(column.field)">
+                                        <label class="input">
+                                            <input
+                                              :class="{'!text-red-300': column.field === 'amount' && row.selected && row.status === 'resigned'}"
+                                              v-model="row[column.field]"
+                                              type="text"
+                                              :disabled="!row.selected"
+                                            />
+                                        </label>
                                     </div>
                                     <template v-else>
                                         {{ row[column.field] || '-' }}
@@ -413,6 +463,50 @@ export default {
                     >
                         <ChevronRightSvg />
                     </button>
+                </div>
+                <div class="text-center">
+                    <div class="flex items-center mb-3 flex-nowrap">
+                        <hr class="flex-grow border-white-10">
+                        <span
+                          class="w-[66px] inline-block font-semibold text-blue-300 text-sm leading-6 text-center tracking-wide mx-[60px]"
+                        >
+                            Massage
+                        </span>
+                        <hr class="flex-grow border-white-10" />
+                    </div>
+                    <label class="textarea">
+                        <textarea
+                          placeholder="Enter your name"
+                          class="w-[calc(100%-48px)] !max-h-28 !min-h-28 !h-28 mx-6 resize-none"
+                          auto
+                        />
+                    </label>
+                    <div class="flex items-center mt-2.5 mb-3 flex-nowrap">
+                        <hr class="flex-grow border-white-10">
+                        <span
+                          class="inline-block w-40 mx-3 text-sm font-semibold leading-6 tracking-wide text-center text-blue-300 text-nowrap"
+                        >
+                            Total Amount : {{ totalAmount.toLocaleString() }}P
+                        </span>
+                        <hr class="flex-grow border-white-10" />
+                    </div>
+                    <span
+                      v-if="myPoint < totalAmount"
+                      class="text-[13px] leading-4 font-light text-red-500 block pb-9"
+                    >
+                        *Lack of points to transfer. Please recheck it.
+                    </span>
+                    <hr class="border-white-10" />
+                    <div class="flex items-center justify-end gap-2 pt-3 pr-6">
+                        <button
+                          class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
+                        >Cancel</button>
+                        <button
+                          :disabled="myPoint < totalAmount"
+                          :class="tab !== 'Retrieve' ? 'bg-main hover:bg-blue-400' : 'bg-red-300 hover:bg-red-350'"
+                          class="outline-0 w-[180px] h-12 text-white-20 rounded-lg text-[15px] leading-6 font-bold "
+                        >{{ tab }}</button>
+                    </div>
                 </div>
             </div>
         </section>
