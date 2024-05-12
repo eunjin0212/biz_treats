@@ -98,10 +98,10 @@ module.exports = {
         title: 'Points Transfer/Retrieve',
         path: '/retrieve'
     },
-    // 'monthlyReport': {
-    //     title: 'Monthly Report',
-    //     path: '/monthlyReport'
-    // },
+    'monthlyReport': {
+        title: 'Monthly Report',
+        path: '/monthlyReport'
+    },
     // 'permissionSettings': {
     //     title: 'Permission Settings',
     //     path: '/permissionSettings'
