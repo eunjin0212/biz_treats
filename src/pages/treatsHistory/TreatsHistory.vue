@@ -289,7 +289,7 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] flex flex-col">
+        <section class="w-[calc(100%-266px)] max-w-[932px] flex flex-col">
             <div class="section-card !px-0 mb-11 mt-4.5 h-[815px]">
                 <h2 class="px-3 !mb-4"><span></span>Treats History</h2>
                 <div class="tab mb-3.5 pl-6">

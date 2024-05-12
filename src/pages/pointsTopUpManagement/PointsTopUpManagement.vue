@@ -301,7 +301,7 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] flex flex-col">
+        <section class="w-[calc(100%-266px)] max-w-[970px] flex flex-col">
             <div class="section-card !px-0 mb-11 mt-4.5">
                 <h2 class="px-3"><span class="!bg-green-03"></span>Points Top-up Management</h2>
                 <hr class="!mx-0 mt-0 mb-5 border-white-10" />

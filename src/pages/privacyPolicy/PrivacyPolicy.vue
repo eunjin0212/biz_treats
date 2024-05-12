@@ -206,7 +206,7 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section class="w-[calc(100%-266px)] max-w-[932px] mr-[106px] flex flex-col">
+        <section class="w-[calc(100%-266px)] max-w-[932px] flex flex-col">
             <div class="main-section pb-[50px] text-black-100 text-xs leading-5 mb-7">
                 <h2>Privacy Policy</h2>
                 <strong class="mt-6 leading-3.5 block">Use of Information</strong>
