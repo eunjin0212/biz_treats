@@ -17,6 +17,7 @@ import DownSvg from '@/assets/icons/DownSvg.vue';
 import FileDownloadSvg from '@/assets/icons/FileDownloadSvg.vue';
 import ChevronLeftSvg from '@/assets/icons/ChevronLeftSvg.vue';
 import ChevronRightSvg from '@/assets/icons/ChevronRightSvg.vue';
+import CloseSvg from '@/assets/icons/CloseSvg.vue';
 
 export default {
     components: {
@@ -35,6 +36,7 @@ export default {
         FileDownloadSvg,
         ChevronLeftSvg,
         ChevronRightSvg,
+        CloseSvg,
     },
     data() {
         const rowPerPage = 6
@@ -47,6 +49,25 @@ export default {
         const initFilters = {
             month: '',
         }
+        const formModel = {
+            monthly: 'false',
+            type: '',
+            account: '',
+        }
+        const monthOptions = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+        ]
         return {
             navMenu,
             snsMenu,
@@ -64,21 +85,38 @@ export default {
             ],
             data: monthlyReportRows.slice(pagination.page - 1, rowPerPage),
             filters: { ...initFilters },
-            monthOptions: [
-                'January',
-                'February',
-                'March',
-                'April',
-                'May',
-                'June',
-                'July',
-                'August',
-                'September',
-                'October',
-                'November',
-                'December',
-            ],
+            monthOptions,
             pagination,
+            isOpen: false,
+            formModel,
+            modalForm: [
+                {
+                    label: 'Monthly',
+                    name: 'monthly',
+                    value: formModel.monthly,
+                    type: 'select',
+                    option: monthOptions,
+                    key: 'monthly',
+                    required: true,
+                },
+                {
+                    label: 'Type',
+                    name: 'type',
+                    value: formModel.type,
+                    type: 'select',
+                    options: ['Used'],
+                    key: 'type',
+                    required: true,
+                },
+                {
+                    label: 'Account',
+                    name: 'account',
+                    value: formModel.account,
+                    type: 'list',
+                    key: 'account',
+                    required: true,
+                },
+            ],
         }
     },
     methods: {
@@ -102,17 +140,23 @@ export default {
         handleAlert() {
             this.alertOpen = !this.alertOpen
         },
-        handleGlobalDropdown(e) {
-            const { parentNode } = e.target
+        handleGlobalDropdown(event) {
+            const { parentNode } = event.target
             if (parentNode !== this.$refs.dropdownRef && !this.$refs.dropdownOptsRef.contains(parentNode)) {
                 this.dropdown = false
             }
         },
-        handleGlobalAlert(e) {
-            const { parentNode } = e.target
+        handleGlobalAlert(event) {
+            const { parentNode } = event.target
             if (parentNode !== this.$refs.alertRef && !this.$refs.alertWrapperRef.contains(parentNode)) {
                 this.alertOpen = false
             }
+        },
+        handleModal(value) {
+            this.isOpen = value
+        },
+        handleExtract(event) {
+            event.preventDefault();
         },
     },
     watch: {
@@ -302,7 +346,10 @@ export default {
                                 {{ opt }}
                             </option>
                         </select>
-                        <button type="submit" class="!text-white-20 !bg-main !text-xs !font-inter !h-12 !w-[104px]">
+                        <button
+                          type="submit"
+                          class="!text-white-20 !bg-main !text-xs !font-inter !h-12 !w-[104px]"
+                        >
                             Search
                         </button>
                     </form>
@@ -315,7 +362,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold rounded gap-1 leading-4 bg-white-19 w-fit text-green-01 -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -327,7 +374,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold text-red-200 rounded gap-1 leading-4 bg-white-19 w-fit -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 text-red-200 rounded bg-white-19 w-fit -tracking-wide"
                         >
                             <DownSvg /> 37.8%
                         </span>
@@ -339,7 +386,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold rounded gap-1 leading-4 bg-white-19 w-fit text-green-01 -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -371,10 +418,11 @@ export default {
                                       class="flex items-center justify-between"
                                     >
                                         {{ row[column.field] }}
-                                        <a
+                                        <button
+                                          @click="() => handleModal(true)"
                                           class="flex gap-2 items-center h-10 px-3 py-2 border border-white-02 rounded text-gray-05 hover:bg-[#A9A9A920] text-sm leading-5 font-semibold font-manrope float-right">
                                             <FileDownloadSvg /> Excel Download
-                                        </a>
+                                        </button>
                                     </div>
                                     <template v-else>
                                         {{ row[column.field] }}
@@ -462,4 +510,53 @@ export default {
             Copyright © SHARE TREATS. All rights reserved.
         </p>
     </footer>
+    <Teleport to="body">
+        <aside
+          class="modal__wrapper inline-flex justify-center items-center !p-0"
+          v-if="isOpen"
+        >
+            <div class="rounded-2xl w-[578px] h-[468px] mx-auto pt-[30px] pb-3 pl-4.5 pr-6 flex flex-col items-center">
+
+                <div class="section-card !px-0 !m-0">
+                    <h2 class="!mb-5 mt-1.5 px-3 justify-between">
+                        <div class="inline-flex items-center">
+                            <span class="!bg-orange-01 ml-0.5"></span>Monthly Report Extract
+                        </div>
+                        <button
+                          @click="() => handleModal(false)"
+                          class="inline-flex items-center bg-white-10 rounded-full p-2 mr-4.5"
+                        >
+                            <CloseSvg />
+                        </button>
+                    </h2>
+                    <hr class="border-white-10 !m-0" />
+                    <form
+                      class="flex flex-col gap-6 pt-8 pb-3 font-inter"
+                      @submit="handleExtract"
+                    >
+                        <fieldset
+                          class="mx-6 modal-form__label-input"
+                          v-for="form in modalForm"
+                          :key="form.key"
+                        >
+                            <span>
+                                {{ form.label }}
+                            </span>
+                        </fieldset>
+                        <hr class="border-white-10" />
+                        <div class="flex items-center justify-end gap-2 pr-6 -mt-3">
+                            <button
+                              type="button"
+                              class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
+                            >Cancel</button>
+                            <button
+                              type="submit"
+                              class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-400"
+                            >Invite</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </aside>
+    </Teleport>
 </template>
