@@ -229,7 +229,7 @@ export default {
                 <h2 class="!mb-4.5 px-3"><span></span>Campaign Info</h2>
                 <hr class="!mx-0" />
                 <form class="px-6 font-inter flex flex-col gap-[26px] pb-7">
-                    <label class="form__label-input">
+                    <fieldset class="form__label-input">
                         <span>
                             Campaign No.
                         </span>
@@ -238,8 +238,8 @@ export default {
                           disabled
                           value="T120435"
                         />
-                    </label>
-                    <label class="form__label-input">
+                    </fieldset>
+                    <fieldset class="form__label-input">
                         <span>
                             Campaign Name
                         </span>
@@ -247,8 +247,8 @@ export default {
                           type="text"
                           placeholder="Enter the Campaign Name"
                         />
-                    </label>
-                    <label class="form__label-input">
+                    </fieldset>
+                    <fieldset class="form__label-input">
                         <span>
                             Campaign Color
                         </span>
@@ -257,8 +257,8 @@ export default {
                               :style="{ backgroundColor: colorPicker }"
                               class="inline-block w-9 h-9 border-2 rounded-md border-[#D7D7D7]"
                             ></span>
-                            <div
-                              class="relative px-5 py-3 text-xs font-bold text-blue-300 border cursor-pointer rounded-xl border-white-02 leading-6 hover:bg-white-02-light"
+                            <label
+                              class="relative h-12 px-5 py-3 text-xs font-bold leading-6 text-blue-300 border cursor-pointer w-fit rounded-xl border-white-02 hover:bg-white-02-light"
                             >
                                 <input
                                   type="color"
@@ -267,10 +267,10 @@ export default {
                                   @input="handleColorPicker"
                                 />
                                 Select Color
-                            </div>
+                            </label>
                         </div>
-                    </label>
-                    <label class="form__label-input">
+                    </fieldset>
+                    <fieldset class="form__label-input">
                         <span>
                             Campaign Logo
                         </span>
@@ -303,8 +303,8 @@ export default {
                                 </p>
                             </div>
                         </div>
-                    </label>
-                    <label class="form__label-input">
+                    </fieldset>
+                    <fieldset class="form__label-input">
                         <span>
                             Campaign Address
                         </span>
@@ -312,10 +312,10 @@ export default {
                           type="text"
                           placeholder="Enter the Campaign Address"
                         />
-                    </label>
+                    </fieldset>
                 </form>
                 <hr class="!mx-0 !mb-0" />
-                <div class="flex items-center justify-end pt-3 pr-6 gap-2">
+                <div class="flex items-center justify-end gap-2 pt-3 pr-6">
                     <button
                       class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
                     >Cancel</button>

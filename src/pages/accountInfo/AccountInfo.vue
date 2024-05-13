@@ -281,12 +281,12 @@ export default {
                 </li>
             </ul>
         </aside>
-        <section class="w-[calc(100%-266px)] max-w-[932px] flex flex-col">
+        <section class="w-[calc(100%-266px)] max-w-[932px] mb-32 flex flex-col">
             <div class="section-card !px-0">
                 <h2 class="!mb-4.5 px-3"><span></span>Account Info</h2>
                 <hr class="!mx-0" />
                 <form class="px-6 font-inter flex flex-col gap-[26px] pb-7">
-                    <label
+                    <fieldset
                       class="form__label-input"
                       v-for="form in modalForm"
                       :key="form.key"
@@ -303,10 +303,10 @@ export default {
                           v-model="formModel[form.key]"
                           @input="(e) => handleUpdate(form.key, e.target.value)"
                         />
-                    </label>
+                    </fieldset>
                 </form>
                 <hr class="!mx-0 !mb-0" />
-                <div class="flex items-center justify-end pt-3 pr-6 gap-2">
+                <div class="flex items-center justify-end gap-2 pt-3 pr-6">
                     <button
                       class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
                     >Cancel</button>

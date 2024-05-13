@@ -615,7 +615,7 @@ body {
 /* table search select */
 @layer components {
     select.search-select {
-        @apply w-[104px] h-10 p-3 rounded border border-[theme(colors.white.10)] hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)] focus-visible:border-[theme(colors.main)] focus:ring-0 text-[theme(colors.stone.01)] placeholder:text-[theme(colors.gray.04)] text-xs font-medium leading-[theme(spacing[2.5])] appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_icon.svg')]
+        @apply w-[104px] h-10 px-3 rounded border border-[theme(colors.white.10)] hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)] focus-visible:border-[theme(colors.main)] focus:ring-0 text-[theme(colors.stone.01)] placeholder:text-[theme(colors.gray.04)] text-xs font-medium appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_icon.svg')]
     }
 }
 
@@ -719,15 +719,15 @@ body {
 /* modal form */
 
 @layer components {
-    :is(label.form__label-input, label.modal-form__label-input) {
-        @apply flex items-center
+    :is(fieldset.form__label-input, fieldset.modal-form__label-input) {
+        @apply inline-flex items-center
     }
 
-    :is(label.form__label-input, label.modal-form__label-input)>span {
+    :is(fieldset.form__label-input, fieldset.modal-form__label-input)>span {
         @apply w-32 min-w-32 mr-5 text-sm leading-6 font-semibold text-[theme(colors.slate.01)] -tracking-[0.1px]
     }
 
-    :is(label.form__label-input input, label.modal-form__label-input input:not([type="radio"])) {
+    :is(fieldset.form__label-input input, fieldset.modal-form__label-input input:not([type="radio"])) {
         @apply py-3 px-5 border border-[theme(colors.white.10)] focus:border-[theme(colors.white.10)] focus-visible:border-[theme(colors.white.10)] focus:ring-0 ring-0 text-[theme(colors.black.200)] placeholder:text-[#9A9FA5] disabled:bg-[theme(colors.white.15)] disabled:text-[theme(colors.black.200)] font-medium text-xs leading-6 rounded-lg w-full
     }
 }
