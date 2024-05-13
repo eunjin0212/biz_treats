@@ -317,12 +317,16 @@ export default {
                             </p>
                         </div>
                         <div class="point-card-content">
-                          <strong>1,000</strong>
-                          <span>Points</span>
+                            <strong>1,000</strong>
+                            <span>Points</span>
                         </div>
                     </div>
-                    <p>Active Balance
+                    <p class="tooltip__trigger">Active Balance
                         <InfoSvg />
+                        <label class="tooltip__wrapper right top">
+                            <span class="tooltip__arrow"></span>
+                            <span class="tooltip__text">Notice Message</span>
+                        </label>
                     </p>
                 </div>
                 <div class="table-filter-bar">

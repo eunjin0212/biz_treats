@@ -870,3 +870,34 @@ body {
         @apply bg-[#FEF7D1] border-[#F7C752] text-[#755118]
     }
 }
+
+/* tooltip */
+@layer components {
+    .tooltip__trigger {
+        @apply relative
+    }
+    .tooltip__trigger .tooltip__wrapper {
+        @apply !hidden absolute bg-[#000000B2] px-4 py-[theme(spacing[2.5])] rounded-lg min-w-80
+    }
+    .tooltip__trigger:hover .tooltip__wrapper {
+        @apply !block
+    }
+    .tooltip__trigger:hover .tooltip__wrapper.right {
+        @apply -right-2 text-left /* 포인트 위치에 따라 변경 */
+    }
+    .tooltip__trigger:hover .tooltip__wrapper.top {
+        @apply -top-11
+    }
+    .tooltip__trigger .tooltip__wrapper .tooltip__text {
+        @apply text-[theme(colors.white.20)] text-xs leading-[theme(spacing[3.5])] font-medium
+    }
+    .tooltip__trigger .tooltip__wrapper .tooltip__arrow {
+        @apply bg-transparent border w-0 h-0 border-transparent
+    }
+    .tooltip__trigger .tooltip__wrapper.top .tooltip__arrow {
+        @apply border-t-4 border-l-4 border-r-4 border-b-0 absolute -bottom-1 border-t-[#000000B2] /* 포인트 위치에 따라 변경 */
+    }
+    .tooltip__trigger .tooltip__wrapper.right .tooltip__arrow {
+        @apply right-3 /* 포인트 위치에 따라 변경 */
+    }
+}
