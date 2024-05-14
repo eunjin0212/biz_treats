@@ -205,7 +205,7 @@ export default {
                       class="flex items-center w-full gap-2.5"
                     >
                         <input
-                          class="disabled:bg-white-16 disabled:text-stone-05 w-[60px]"
+                          class="disabled:bg-white-16 disabled:text-zinc-03 w-[60px]"
                           disabled
                           type="text"
                           value="+63"
