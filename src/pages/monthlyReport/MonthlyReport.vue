@@ -18,6 +18,7 @@ import FileDownloadSvg from '@/assets/icons/FileDownloadSvg.vue';
 import ChevronLeftSvg from '@/assets/icons/ChevronLeftSvg.vue';
 import ChevronRightSvg from '@/assets/icons/ChevronRightSvg.vue';
 import CloseSvg from '@/assets/icons/CloseSvg.vue';
+import CheckSvg from '@/assets/icons/CheckSvg.vue'
 
 export default {
     components: {
@@ -37,6 +38,7 @@ export default {
         ChevronLeftSvg,
         ChevronRightSvg,
         CloseSvg,
+        CheckSvg,
     },
     data() {
         const rowPerPage = 6
@@ -95,7 +97,7 @@ export default {
                     name: 'monthly',
                     value: formModel.monthly,
                     type: 'select',
-                    option: monthOptions,
+                    options: monthOptions,
                     key: 'monthly',
                     required: true,
                 },
@@ -114,6 +116,13 @@ export default {
                     value: formModel.account,
                     type: 'list',
                     key: 'account',
+                    listOptions: [
+                        { label: 'Sena ABC Kim(sena@sharetreats.com)', checked: false },
+                        { label: 'Sena ABC Kim(sena@sharetreats.com)',checked: false },
+                        { label: 'Sena ABC Kim(sena@sharetreats.com)', checked: false },
+                        { label: 'Sena ABC Kim(sena@sharetreats.com)', checked: false },
+                        { label: 'Sena ABC Kim(sena@sharetreats.com)', checked: false },
+                    ],
                     required: true,
                 },
             ],
@@ -420,7 +429,8 @@ export default {
                                         {{ row[column.field] }}
                                         <button
                                           @click="() => handleModal(true)"
-                                          class="flex gap-2 items-center h-10 px-3 py-2 border border-white-02 rounded text-gray-05 hover:bg-[#A9A9A920] text-sm leading-5 font-semibold font-manrope float-right">
+                                          class="flex gap-2 items-center h-10 px-3 py-2 border border-white-02 rounded text-gray-05 hover:bg-[#A9A9A920] text-sm leading-5 font-semibold font-manrope float-right"
+                                        >
                                             <FileDownloadSvg /> Excel Download
                                         </button>
                                     </div>
@@ -515,7 +525,7 @@ export default {
           class="modal__wrapper inline-flex justify-center items-center !p-0"
           v-if="isOpen"
         >
-            <div class="rounded-2xl w-[578px] h-[468px] mx-auto pt-[30px] pb-3 pl-4.5 pr-6 flex flex-col items-center">
+            <div class="rounded-2xl w-[578px] mx-auto pt-[30px] pb-3 pl-4.5 pr-6 flex flex-col items-center">
 
                 <div class="section-card !px-0 !m-0">
                     <h2 class="!mb-5 mt-1.5 px-3 justify-between">
@@ -531,21 +541,95 @@ export default {
                     </h2>
                     <hr class="border-white-10 !m-0" />
                     <form
-                      class="flex flex-col gap-6 pt-8 pb-3 font-inter"
+                      class="flex flex-col gap-5 pt-8 pb-3 font-inter"
                       @submit="handleExtract"
                     >
                         <fieldset
-                          class="mx-6 modal-form__label-input"
+                          class="px-4.5 modal-form__label-input"
                           v-for="form in modalForm"
                           :key="form.key"
+                          :class="{
+                        'border-b border-b-white-10 pb-7': form.name === 'type',
+                        '-mt-2.5 flex-col !items-start': form.name === 'account',
+                    }"
                         >
-                            <span>
-                                {{ form.label }}
-                            </span>
+                            <label class="w-16 text-sm leading-6 min-w-16 mr-14">
+                                <span class=" text-slate-01">
+                                    {{ form.label }}
+                                </span>
+                                <span
+                                  class="text-[#FF2C2C]"
+                                  v-if="form.required"
+                                >*</span>
+                            </label>
+                            <select
+                              class="w-full select"
+                              v-if="form.options?.length"
+                            >
+                                <option
+                                  :value="opt"
+                                  :key="opt"
+                                  v-for="opt in form.options"
+                                >{{ opt }}</option>
+                            </select>
+                            <div
+                              class="flex flex-col w-full"
+                              v-else
+                            >
+                                <label
+                                  class="px-4.5 mt-3 checkbox"
+                                  @click.prevent="() => {
+                                    form.listOptions = form.listOptions.map(row => ({ ...row, checked: !form.listOptions.every((row) => row.checked) }))
+                                  }"
+                                >
+                                    <span :class="{ 'active': form.listOptions.every((row) => row.checked) }">
+                                        <CheckSvg :class="form.listOptions.every((row) => row.checked) ? 'text-white-20' : 'hidden'" />
+                                    </span>
+                                    <input
+                                      type="checkbox"
+                                      :name="opt"
+                                    />
+                                    <p class="font-medium text-[13px] text-stone-05 ml-2">
+                                        All
+                                    </p>
+                                </label>
+                                <ul
+                                  class="mt-2.5 overflow-y-scroll border rounded-md h-52 border-white-10 font-medium text-[13px] text-stone-05"
+                                >
+                                    <li
+                                      class="py-3 px-4.5 border-b border-b-white-10"
+                                      :class="{'last-of-type:border-0': form.listOptions.length > 4}"
+                                      :key="opt.label"
+                                      v-for="opt in form.listOptions"
+                                    >
+                                        <label
+                                          class="checkbox"
+                                          @click.prevent="() => {
+                                            opt.checked = !opt.checked
+                                          }"
+                                        >
+                                            <span
+                                              :class="{ 'active': opt.checked }"
+                                              class="mr-2"
+                                            >
+                                                <CheckSvg 
+                                                  :class="opt.checked ? 'text-white-20' : 'hidden'"
+                                                />
+                                            </span>
+                                            <input
+                                              type="checkbox"
+                                              :name="opt.label"
+                                            />
+                                            {{ opt.label }}
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
                         </fieldset>
                         <hr class="border-white-10" />
-                        <div class="flex items-center justify-end gap-2 pr-6 -mt-3">
+                        <div class="flex items-center justify-end gap-2 pr-6 -mt-1">
                             <button
+                              @click="() => handleModal(false)"
                               type="button"
                               class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
                             >Cancel</button>
