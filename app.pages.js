@@ -102,10 +102,10 @@ module.exports = {
         title: 'Monthly Report',
         path: '/monthlyReport'
     },
-    // 'permissionSettings': {
-    //     title: 'Permission Settings',
-    //     path: '/permissionSettings'
-    // },
+    'permissionSettings': {
+        title: 'Permission Settings',
+        path: '/permissionSettings'
+    },
     // 'systemSettings': {
     //     title: 'System Settings',
     //     path: '/systemSettings'
