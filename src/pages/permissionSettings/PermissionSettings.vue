@@ -27,6 +27,14 @@ export default {
         ReadSvg,
     },
     data() {
+        const initPermission = {
+            campaign_info: '0',
+            member_management: '0',
+            points_top_up_management: '0',
+            points_transfer_retrieve: '0',
+            monthly_report: '0',
+            permission_settings: '0',
+        }
         return {
             navMenu,
             snsMenu,
@@ -71,14 +79,13 @@ export default {
                     options: [{ label: 'N/A', value: '0' }, { label: 'Access&Edit', value: '1' }],
                 },
             ],
-            userPermission: {}
+            userPermission: initPermission,
         }
     },
     methods: {
         handleSubmit(event) {
             event.preventDefault();
         },
-
         handleDropdown() {
             this.dropdown = !this.dropdown
         },
@@ -97,17 +104,10 @@ export default {
                 this.alertOpen = false
             }
         },
-        handleModal(value) {
-            this.isOpen = value
-        },
-        handleExtract(event) {
-            event.preventDefault();
-        },
         handleActive: function (id) {
-            this.userList = this.userList.map((user) => ({ ...user, active: false }))
-            console.log(id)
+            this.userList = this.userList.map((user) => ({ ...user, active: id === user.id }))
             const findRow = this.userList.find((user) => id === user.id)
-            console.log(findRow)
+            this.userPermission = findRow.permissions
         },
     },
     watch: {
@@ -149,6 +149,7 @@ export default {
         // create member data
         this.userList = users.map((user, idx) => ({ ...user, id: idx, active: false, color: this.profileColors[Math.floor(Math.random() * 3)] }))
         this.userList[0].active = true
+        this.userPermission = this.userList[0].permissions
     }
 }
 </script>
@@ -329,7 +330,23 @@ export default {
                               :key="permission.value"
                               class="border-b border-b-white-10 flex items-center w-full px-6 py-[22px]"
                             >
-                                <label>{{ permission.label }}</label>
+                                <label class="inline-block w-48 mr-10 text-sm font-semibold min-w-48 font-manrope text-slate-01">{{ permission.label }}</label>
+                                <div class="grid w-full grid-cols-2">
+                                    <label
+                                      v-for="opt in permission.options"
+                                      :key="opt.label"
+                                      class="w-fit"
+                                    >
+                                        <input
+                                          type="radio"
+                                          @change="(e) => userPermission[permission.value] = e.target.value"
+                                          class="w-6 h-6 mr-3 border-2 border-gray-07 focus:border-gray-07 focus:ring-offset-0 focus-visible:border-gray-07 hover:border-gray-07 outline-0 text-transparent focus:ring-0 focus-visible:ring-offset-0 focus-within:ring-offset-0 ring-0 ring-offset-transparent checked:bg-center checked:bg-[length:24px] checked:bg-[url('@/assets/icons/radio.svg')]"
+                                          :value="opt.value"
+                                          :checked="userPermission[permission.value] === opt.value"
+                                        />
+                                        <span class="text-sm font-medium font-manrope text-[#84818A]">{{ opt.label }}</span>
+                                    </label>
+                                </div>
                             </li>
                             <button
                               type="submit"
