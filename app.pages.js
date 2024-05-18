@@ -106,8 +106,8 @@ module.exports = {
         title: 'Permission Settings',
         path: '/permissionSettings'
     },
-    // 'systemSettings': {
-    //     title: 'System Settings',
-    //     path: '/systemSettings'
-    // },
+    'systemSettings': {
+        title: 'System Settings',
+        path: '/systemSettings'
+    },
 }
