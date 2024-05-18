@@ -693,11 +693,11 @@ body {
     }
 
     div.card:nth-of-type(even)>.card-title__wrapper>span {
-        @apply bg-[#EF466F]
+        @apply bg-[theme(colors.red.700)]
     }
 
     div.card:nth-of-type(even)>.card-title__wrapper>p>strong {
-        @apply text-[#EF466F]
+        @apply text-[theme(colors.red.700)]
     }
 
     div.card>.card-content__wrapper {
@@ -774,11 +774,11 @@ body {
     }
 
     div.point-info-bar div.point-card .point-card-title__wrapper>span {
-        @apply rounded-full w-[46px] h-[46px] inline-flex items-center justify-center bg-[#EF466F]
+        @apply rounded-full w-[46px] h-[46px] inline-flex items-center justify-center bg-[theme(colors.red.700)]
     }
 
     div.point-info-bar>.point-card .point-card-title__wrapper>p>strong {
-        @apply text-[#EF466F] block text-xl
+        @apply text-[theme(colors.red.700)] block text-xl
     }
 
     div.point-info-bar>.point-card .point-card-title__wrapper>p>span {

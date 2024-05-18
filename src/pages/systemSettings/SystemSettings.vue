@@ -14,7 +14,9 @@ import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import CloseSvg from '@/assets/icons/CloseSvg.vue';
 import CalendarSvg from '@/assets/icons/CalendarSvg.vue';
-
+import CautionSvg from '@/assets/icons/CautionSvg.vue';
+import CheckSvg from '@/assets/icons/CheckSvg.vue'
+import TableCalendarSvg from '@/assets/icons/TableCalendarSvg.vue'
 export default {
     components: {
         SearchSvg,
@@ -29,6 +31,9 @@ export default {
         ReadSvg,
         CloseSvg,
         CalendarSvg,
+        CautionSvg,
+        CheckSvg,
+        TableCalendarSvg,
     },
     data() {
         const systemsList = [
@@ -58,6 +63,7 @@ export default {
             delegation_date: moment(new Date()).format('DD/MM/YYYY'),
             account: '',
             notes: '',
+            agree: false,
         }
         return {
             navMenu,
@@ -72,7 +78,7 @@ export default {
             systemData: initSystemData,
             isOpen: false,
             formModel,
-            displayModalFormDate: moment(new Date()).format('YYYY-MM-DD'), 
+            displayModalFormDate: moment(new Date()).format('YYYY-MM-DD'),
             modalForm: [
                 {
                     label: 'Delegation Date',
@@ -103,6 +109,17 @@ export default {
                     required: false,
                 },
             ],
+            requestColumns: [
+                { label: 'Date', field: 'date', class: '', type: 'date' },
+                { label: 'Name', field: 'name', class: 'w-[168px]', type: 'input', placeholder: 'Enter Name' },
+                { label: 'Notes', field: 'notes', class: 'w-[325px]', type: 'input', placeholder: 'Enter Notes' },
+                { label: '', field: 'button', class: '', type: 'button', },
+            ],
+            rows: [
+                { date: moment(new Date()).format('DD/MM/YYYY'), name: '', notes: '' }
+            ],
+            isRequest: false,
+            displayRowDate: moment(new Date()).format('MM/DD/YYYY'),
         }
     },
     methods: {
@@ -136,7 +153,13 @@ export default {
         },
         handleRequest(event) {
             event.preventDefault();
+            this.handleModal(false)
+            this.isRequest = true
         },
+        handleRowDate() {
+            this.rows[0].date = moment(event.target.value).format('DD/MM/YYYY')
+            this.displayRowDate = moment(event.target.value).format('MM/DD/YYYY')
+        }
     },
     watch: {
         dropdown() {
@@ -344,10 +367,55 @@ export default {
                     </p>
                     <button
                       @click="() => handleModal(true)"
+                      v-if="!isRequest"
                       class="w-[264px] h-12 rounded-xl border border-white-02 mt-3.5 text-blue-300 font-bold text-[15px] leading-6"
                     >
                         Delegation Reservation
                     </button>
+                    <table v-else class="mt-3">
+                        <thead>
+                            <tr>
+                                <th
+                                  v-for="col in requestColumns"
+                                  :key="col.field"
+                                  :class="col.class"
+                                  class="text-[#B2B3BD] font-semibold text-[13px] leading-4.5 text-left px-2 pb-1 first-of-type:pl-0 last-of-type:pr-0 border-b border-b-[#E4E4E4]"
+                                >{{ col.label }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                              v-for="row in rows"
+                              :key="row"
+                            >
+                                <td
+                                  v-for="col in requestColumns"
+                                  :key="col.field"
+                                  class="px-2 py-2 first-of-type:pl-0 last-of-type:pr-0"
+                                >
+                                    <label
+                                      class="date-picker no-hover !rounded-md !h-11 !w-[132px] !text-black-200 !text-xs !leading-6"
+                                      v-if="col.type === 'date'"
+                                    >
+                                        <TableCalendarSvg class="mr-3" />
+                                        {{ displayRowDate }}
+                                        <input
+                                          :type="col.type"
+                                          :value="row[col.field]"
+                                          @change="handleRowDate"
+                                        />
+                                    </label>
+                                    <label class="input" v-else-if="col.type === 'input'">
+                                        <input
+                                          type="text"
+                                          :placeholder="col?.placeholder"
+                                        />
+                                    </label>
+                                    <button v-else class="w-[120px] border-2 border-white-10 rounded-lg h-11 bg-white-19 text-[#9A9FA5]">Cancel</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -457,7 +525,10 @@ export default {
                               class="resize-none h-36"
                               v-model="form.value"
                             />
-                            <label class="!w-full !justify-start date-picker no-hover pl-4 !h-12 !text-slate-01" v-else-if="form.type === 'date'">
+                            <label
+                              class="!w-full !justify-start date-picker no-hover pl-4 !h-12 !text-slate-01"
+                              v-else-if="form.type === 'date'"
+                            >
                                 <CalendarSvg class="mr-4" />
                                 {{ displayModalFormDate }}
                                 <input
@@ -467,6 +538,29 @@ export default {
                                 />
                             </label>
                         </fieldset>
+                        <div class="bg-[#EF466F14] mx-4.5 px-5 py-3.5 rounded-lg">
+                            <p class="inline-flex items-center gap-2 mb-3 text-sm font-medium leading-4 text-red-700">
+                                <CautionSvg />
+                                After delegation, the request cannot be undone.
+                            </p>
+                            <label
+                              class="text-sm font-medium leading-4 checkbox text-slate-01"
+                              @click.prevent="() => {
+                        formModel.agree = !formModel.agree
+                    }"
+                            >
+                                <input
+                                  type="checkbox"
+                                  :checked="formModel.agree"
+                                />
+                                <span
+                                  class="mr-2.5"
+                                  :class="{ 'active': formModel.agree }"
+                                >
+                                    <CheckSvg :class="formModel.agree ? 'text-white-20' : 'hidden'" />
+                                </span>I Agree with this
+                            </label>
+                        </div>
                         <hr class="border-white-10" />
                         <div class="flex items-center justify-end gap-2 pr-6 -mt-1">
                             <button
