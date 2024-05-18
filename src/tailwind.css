@@ -588,9 +588,11 @@ body {
 /* date-picker */
 @layer components {
     label.date-picker {
-        @apply flex items-center justify-center gap-1 relative border border-[theme(colors.white.07)] w-[114px] h-10 bg-[theme(colors.white.20)] rounded text-sm leading-5 font-medium text-[theme(colors.gray.04)] font-[theme(fontFamily.manrope)] hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
+        @apply flex items-center justify-center gap-1 relative border border-[theme(colors.white.07)] w-[114px] h-10 bg-[theme(colors.white.20)] rounded text-sm leading-5 font-medium text-[theme(colors.gray.04)] font-[theme(fontFamily.manrope)]
     }
-
+    label.date-picker:not(.no-hover) {
+        @apply hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
+    }
     label.date-picker input {
         @apply p-0 opacity-0 absolute top-0 left-0 z-10 w-full h-full
     }
@@ -730,7 +732,7 @@ body {
         @apply w-32 min-w-32 mr-5 text-sm leading-6 font-semibold text-[theme(colors.slate.01)] -tracking-[0.1px]
     }
 
-    :is(fieldset.form__label-input input, fieldset.modal-form__label-input input:not([type="radio"])) {
+    :is(fieldset.form__label-input input, fieldset.modal-form__label-input :where(input:not([type="radio"]), textarea)) {
         @apply py-3 px-5 border border-[theme(colors.white.10)] focus:border-[theme(colors.white.10)] focus-visible:border-[theme(colors.white.10)] focus:ring-0 ring-0 text-[theme(colors.black.200)] placeholder:text-[#9A9FA5] disabled:bg-[theme(colors.white.15)] disabled:text-[theme(colors.black.200)] font-medium text-xs leading-6 rounded-lg w-full
     }
 }
@@ -902,5 +904,25 @@ body {
     }
     .tooltip__trigger .tooltip__wrapper.right .tooltip__arrow {
         @apply right-3 /* 포인트 위치에 따라 변경 */
+    }
+}
+
+/* toggle */
+@layer components {
+    label.toggle {
+        @apply relative inline-block w-12 h-6
+    }
+    label.toggle input[type="checkbox"] {
+        @apply hidden
+    }
+    label.toggle .slider {
+        @apply rounded-full absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-[theme(colors.gray.07)] duration-[.4s] before:absolute before:left-[2px] before:bottom-[2px] before:bg-white-20 before:w-5 before:h-5 before:duration-[.4s] before:content-[''] before:rounded-full;
+        box-shadow: 0px -1px 1px 0px #0000001A inset;
+    }
+    label.toggle input[type="checkbox"]:checked + .slider {
+        @apply bg-[theme(colors.blue.300)] 
+    }
+    label.toggle input[type="checkbox"]:checked + .slider::before {
+        @apply translate-x-6
     }
 }

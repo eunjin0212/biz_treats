@@ -1,7 +1,7 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
-import { users } from '@/mock/permissionSettings.js'
 import { alertData } from '@/mock/alertData.js'
+import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -12,6 +12,8 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
+import CloseSvg from '@/assets/icons/CloseSvg.vue';
+import CalendarSvg from '@/assets/icons/CalendarSvg.vue';
 
 export default {
     components: {
@@ -25,8 +27,38 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
+        CloseSvg,
+        CalendarSvg,
     },
     data() {
+        const systemsList = [
+            {
+                value: 'notification',
+                title: 'Notification',
+                description: 'This is for the notification function on the menu bar. If you turn it on, you can get an alert of Points movement and reserve sending result.',
+            },
+            {
+                value: 'monthly_report',
+                title: 'Monthly Report',
+                description: 'This is for the extract report function of each month. If you turn it on, you can extract all member’s point usage history.',
+            },
+            {
+                value: 'team_wallet_mode',
+                title: 'Team Wallet Mode',
+                description: 'This is for using the campaign in ‘Team’ mode. If you turn it off, other people can’t access this campaign.',
+                caution: '*Once turned on, it can’t be changed OFF mode.',
+            },
+        ]
+        const initSystemData = {
+            notification: false,
+            monthly_report: false,
+            team_wallet_mode: false,
+        }
+        const formModel = {
+            delegation_date: moment(new Date()).format('DD/MM/YYYY'),
+            account: '',
+            notes: '',
+        }
         return {
             navMenu,
             snsMenu,
@@ -36,6 +68,41 @@ export default {
             dropdown: false,
             alertOpen: false,
             alertData,
+            systemsList,
+            systemData: initSystemData,
+            isOpen: false,
+            formModel,
+            displayModalFormDate: moment(new Date()).format('YYYY-MM-DD'), 
+            modalForm: [
+                {
+                    label: 'Delegation Date',
+                    name: 'delegation_date',
+                    value: formModel.delegation_date,
+                    type: 'date',
+                    key: 'delegation_date',
+                    required: true,
+                },
+                {
+                    label: 'New PIC Account',
+                    name: 'account',
+                    value: formModel.account,
+                    type: 'select',
+                    options: [
+                        'Lana Kim(lana@sharetreats.com)',
+                        'Lana Kim(lana@sharetreats.com)',
+                    ],
+                    key: 'account',
+                    required: true,
+                },
+                {
+                    label: 'Notes',
+                    name: 'notes',
+                    value: formModel.notes,
+                    type: 'textarea',
+                    key: 'notes',
+                    required: false,
+                },
+            ],
         }
     },
     methods: {
@@ -59,6 +126,16 @@ export default {
             if (parentNode !== this.$refs.alertRef && !this.$refs.alertWrapperRef.contains(parentNode)) {
                 this.alertOpen = false
             }
+        },
+        handleModal(value) {
+            this.isOpen = value
+        },
+        handleDate() {
+            this.formModel.delegation_date = moment(event.target.value).format('DD/MM/YYYY')
+            this.displayModalFormDate = moment(event.target.value).format('YYYY-MM-DD')
+        },
+        handleRequest(event) {
+            event.preventDefault();
         },
     },
     watch: {
@@ -96,12 +173,6 @@ export default {
             return currentIndexPages;
         },
     },
-    beforeMount() {
-        // create member data
-        this.userList = users.map((user, idx) => ({ ...user, id: idx, active: false, color: this.profileColors[Math.floor(Math.random() * 3)] }))
-        this.userList[0].active = true
-        this.userPermission = this.userList[0].permissions
-    }
 }
 </script>
 <template>
@@ -232,7 +303,52 @@ export default {
         </aside>
         <section class="w-[calc(100%-266px)] max-w-[932px] flex flex-col">
             <div class="section-card mb-11 !px-0 !pb-0 mt-3.5">
-                <h2><span class="!bg-green-03"></span>System Settings</h2>
+                <h2><span class="!bg-green-03 ml-3"></span>System Settings</h2>
+                <hr class="!mx-0 !mt-0 !mb-6 border-white-10" />
+                <div class="flex flex-col gap-4.5 px-6.5 pb-12">
+                    <div
+                      v-for="(item, index) in systemsList"
+                      :key="index"
+                      class="flex flex-col px-5 py-4 border border-white-10 rounded-xl"
+                    >
+                        <p class="flex items-center h-6 mb-4">
+                            <strong class="inline-block w-32 mr-4 text-sm font-semibold leading-6 text-black-200">
+                                {{ item.title }}
+                            </strong>
+                            <label class="toggle">
+                                <input
+                                  type="checkbox"
+                                  :checked="systemData[item.value]"
+                                />
+                                <span class="slider round"></span>
+                            </label>
+                        </p>
+                        <small class="text-xs font-normal leading-5 text-slate-01">{{ item.description }}</small>
+                        <span
+                          v-if="item?.caution"
+                          class="text-xs font-normal leading-5 text-red-600"
+                        >{{ item.caution }}</span>
+                    </div>
+                </div>
+                <h2><span class="!bg-green-03 ml-3"></span>Manager Delegation</h2>
+                <hr class="!mx-0 !mt-0 !mb-6 border-white-10" />
+                <div class="pb-20 pl-6.5">
+                    <p class="flex flex-col">
+                        <strong class="text-sm font-semibold leading-6 text-black-200">
+                            Request Delegation
+                        </strong>
+                        <span class="text-xs font-normal leading-6 text-slate-01">
+                            Once delegated authority has been delegated, it cannot be restored. When you reactivate your
+                            account, it will change to a sub wallet.
+                        </span>
+                    </p>
+                    <button
+                      @click="() => handleModal(true)"
+                      class="w-[264px] h-12 rounded-xl border border-white-02 mt-3.5 text-blue-300 font-bold text-[15px] leading-6"
+                    >
+                        Delegation Reservation
+                    </button>
+                </div>
             </div>
         </section>
     </main>
@@ -286,4 +402,86 @@ export default {
             Copyright © SHARE TREATS. All rights reserved.
         </p>
     </footer>
+    <Teleport to="body">
+        <aside
+          class="modal__wrapper inline-flex justify-center items-center !p-0"
+          v-if="isOpen"
+        >
+            <div class="rounded-2xl w-[578px] h-[468px] mx-auto pt-[30px] pb-3 pl-4.5 pr-6 flex flex-col items-center">
+
+                <div class="section-card !px-0 !m-0">
+                    <h2 class="!mb-5 mt-1.5 px-3 justify-between">
+                        <div class="inline-flex items-center">
+                            <span class="!bg-orange-01 ml-0.5"></span>Request Delegation
+                        </div>
+                        <button
+                          @click="() => handleModal(false)"
+                          class="inline-flex items-center bg-white-10 rounded-full p-2 mr-4.5"
+                        >
+                            <CloseSvg />
+                        </button>
+                    </h2>
+                    <hr class="border-white-10 !m-0" />
+                    <form
+                      class="flex flex-col gap-5 pt-8 pb-3 font-inter"
+                      @submit="handleRequest"
+                    >
+                        <fieldset
+                          class="px-4.5 modal-form__label-input"
+                          v-for="form in modalForm"
+                          :key="form.key"
+                        >
+                            <label class="w-32 text-sm leading-6 min-w-32 mr-7">
+                                <span class=" text-slate-01 text-nowrap">
+                                    {{ form.label }}
+                                </span>
+                                <span
+                                  class="text-[#FF2C2C]"
+                                  v-if="form.required"
+                                >*</span>
+                            </label>
+                            <select
+                              class="w-full select !border-white-10"
+                              v-model="form.value"
+                              v-if="form.type === 'select'"
+                            >
+                                <option
+                                  :value="opt"
+                                  :key="opt"
+                                  v-for="opt in form.options"
+                                >{{ opt }}</option>
+                            </select>
+                            <textarea
+                              v-else-if="form.type === 'textarea'"
+                              placeholder="Enter the comments"
+                              class="resize-none h-36"
+                              v-model="form.value"
+                            />
+                            <label class="!w-full !justify-start date-picker no-hover pl-4 !h-12 !text-slate-01" v-else-if="form.type === 'date'">
+                                <CalendarSvg class="mr-4" />
+                                {{ displayModalFormDate }}
+                                <input
+                                  :type="form.type"
+                                  :value="form.value"
+                                  @change="handleDate"
+                                />
+                            </label>
+                        </fieldset>
+                        <hr class="border-white-10" />
+                        <div class="flex items-center justify-end gap-2 pr-6 -mt-1">
+                            <button
+                              @click="() => handleModal(false)"
+                              type="button"
+                              class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
+                            >Cancel</button>
+                            <button
+                              type="submit"
+                              class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-400"
+                            >Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </aside>
+    </Teleport>
 </template>
