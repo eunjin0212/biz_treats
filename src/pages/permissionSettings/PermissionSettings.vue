@@ -340,7 +340,7 @@ export default {
                                         <input
                                           type="radio"
                                           @change="(e) => userPermission[permission.value] = e.target.value"
-                                          class="w-6 h-6 mr-3 border-2 border-gray-07 focus:border-gray-07 focus:ring-offset-0 focus-visible:border-gray-07 hover:border-gray-07 outline-0 text-transparent focus:ring-0 focus-visible:ring-offset-0 focus-within:ring-offset-0 ring-0 ring-offset-transparent checked:bg-center checked:bg-[length:24px] checked:bg-[url('@/assets/icons/radio.svg')]"
+                                          class="w-6 h-6 mr-3 border-2 border-gray-08 focus:border-gray-08 focus:ring-offset-0 focus-visible:border-gray-08 hover:border-gray-08 outline-0 text-transparent focus:ring-0 focus-visible:ring-offset-0 focus-within:ring-offset-0 ring-0 ring-offset-transparent checked:bg-center checked:bg-[length:24px] checked:bg-[url('@/assets/icons/radio.svg')]"
                                           :value="opt.value"
                                           :checked="userPermission[permission.value] === opt.value"
                                         />

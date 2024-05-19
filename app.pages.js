@@ -110,4 +110,8 @@ module.exports = {
         title: 'System Settings',
         path: '/systemSettings'
     },
+    'multiCart': {
+        title: 'Cart',
+        path: '/multiCart'
+    }
 }

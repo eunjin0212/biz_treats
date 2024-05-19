@@ -606,6 +606,23 @@ body {
     }
 }
 
+/* time-picker */
+@layer components {
+    label.time-picker {
+        @apply relative inline-flex items-center p-3 px-3 py-2 border rounded-md  w-fit h-11 bg-[theme(colors.white.20)] border-[theme(colors.white.10)]
+    }
+    label.time-picker:not(.no-hover) {
+        @apply hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
+    }
+    label.time-picker input {
+        @apply p-0 opacity-0 absolute top-0 left-0 z-10 w-full h-full
+    }
+
+    label.time-picker input[type="time"]::-webkit-calendar-picker-indicator {
+        @apply w-full h-full absolute top-0 left-0
+    }
+}
+
 /* table search input */
 @layer components {
     label.search-input {
@@ -916,7 +933,7 @@ body {
         @apply hidden
     }
     label.toggle .slider {
-        @apply rounded-full absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-[theme(colors.gray.07)] duration-[.4s] before:absolute before:left-[2px] before:bottom-[2px] before:bg-white-20 before:w-5 before:h-5 before:duration-[.4s] before:content-[''] before:rounded-full;
+        @apply rounded-full absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-[theme(colors.gray.08)] duration-[.4s] before:absolute before:left-[2px] before:bottom-[2px] before:bg-white-20 before:w-5 before:h-5 before:duration-[.4s] before:content-[''] before:rounded-full;
         box-shadow: 0px -1px 1px 0px #0000001A inset;
     }
     label.toggle input[type="checkbox"]:checked + .slider {

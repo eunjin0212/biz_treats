@@ -17,6 +17,7 @@ import CalendarSvg from '@/assets/icons/CalendarSvg.vue';
 import CautionSvg from '@/assets/icons/CautionSvg.vue';
 import CheckSvg from '@/assets/icons/CheckSvg.vue'
 import TableCalendarSvg from '@/assets/icons/TableCalendarSvg.vue'
+
 export default {
     components: {
         SearchSvg,
