@@ -118,4 +118,8 @@ module.exports = {
         title: 'Completed',
         path: '/completed'
     },
+    'singleCart': {
+        title: 'SingleCart',
+        path: '/singleCart'
+    },
 }
