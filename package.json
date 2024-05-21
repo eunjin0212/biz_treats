@@ -29,7 +29,8 @@
     "tiny-emitter": "^2.1.0",
     "vue": "^3.4.21",
     "vue3-carousel": "^0.2.4",
-    "vue3-cookies": "^1.0.6"
+    "vue3-cookies": "^1.0.6",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@babel/core": "^7.24.3",

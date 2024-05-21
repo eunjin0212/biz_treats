@@ -2,6 +2,7 @@
 import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { cartData } from '@/mock/cart.js'
+import { excelToArray } from '@/modules/excelToArray.js'
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -15,6 +16,8 @@ import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import CartCalendarSvg from '@/assets/icons/CartCalendarSvg.vue';
 import ClockSvg from '@/assets/icons/ClockSvg.vue';
+import CardWalletSvg from '@/assets/icons/CardWalletSvg.vue';
+import Trash from '@/assets/icons/Trash.vue';
 
 export default {
     components: {
@@ -30,29 +33,31 @@ export default {
         ReadSvg,
         CartCalendarSvg,
         ClockSvg,
+        CardWalletSvg,
+        Trash,
     },
     data() {
         const orderData = {
             0: {
                 recipient: 0,
                 quantity: 0,
-                isSchedule: false,
-                date: '',
-                time: '',
+                isSchedule: true,
+                date: moment().format('YYYY-MM-DD'),
+                time: moment().format('hh:mm:ss'),
             },
             1: {
                 recipient: 200,
                 quantity: 200,
-                isSchedule: true,
-                date: moment().format('YYYY-MM-DD'),
-                time: moment().format('h:mm A'),
+                isSchedule: false,
+                date: '',
+                time: '',
             },
             2: {
                 recipient: 200,
-                quantity: 200,
-                isSchedule: true,
-                date: moment().format('YYYY-MM-DD'),
-                time: moment().format('h:mm A'),
+                quantity: 0,
+                isSchedule: false,
+                date: '',
+                time: '',
             },
         }
         return {
@@ -66,6 +71,7 @@ export default {
             alertData,
             cartData,
             orderData,
+            fileName: {},
         }
     },
     methods: {
@@ -90,16 +96,32 @@ export default {
                 this.alertOpen = false
             }
         },
-        handleSchedule(id) {
-            this.orderData[id].isSchedule = !this.orderData[id].isSchedule
-            this.orderData[id].date = moment().format('YYYY-MM-DD')
-            this.orderData[id].time = moment().format('h:mm A')
+        handleSchedule(toggleValue, id) {
+            this.orderData[id].isSchedule = toggleValue
+            this.orderData[id].date = toggleValue ? moment().format('YYYY-MM-DD') : ''
+            this.orderData[id].time = toggleValue ? moment().format('hh:mm:ss') : ''
         },
         handleScheduleDate(event, id) {
             this.orderData[id].date = moment(event.target.value).format('YYYY-MM-DD')
         },
         handleScheduleTime(event, id) {
-            this.orderData[id].time = moment(event.target.value).format('h:mm A')
+            this.orderData[id].time = moment(event.target.value).format('hh:mm:ss')
+        },
+        handleExcel(file, id) {
+            if (!this.fileName[id]) {
+                this.fileName[id] = file[0].name
+                excelToArray(file[0], ['recipient', 'quantity']).then((res) => {
+                    this.orderData[id].recipient = res.map((row) => row.recipient).length
+                    this.orderData[id].quantity = res.reduce((acc, cur) => acc + cur.quantity, 0)
+                }).catch(() => {
+                    this.fileName[id] = ''
+                })
+                return;
+            }
+            
+            this.orderData[id].recipient = 0
+            this.orderData[id].quantity = 0
+            this.fileName[id] = ''
         },
     },
     watch: {
@@ -123,20 +145,34 @@ export default {
             return (id) => moment(this.orderData[id].date).format('MMMM DD, YYYY')
         },
         handleDisplayScheduleTime: function () {
-            return (id) => moment(`${this.orderData[id].date} ${this.orderData[id].time}`).format('h:mm A')
+            return (id) => {
+                const checkDate = this.orderData[id].date && this.orderData[id].time
+
+                if (checkDate) {
+                    const fullDate = `${this.orderData[id].date} ${this.orderData[id].time.split(' ')[0]}`
+                    return moment(fullDate).format('h:mm A')
+                }
+
+                return ''
+            }
         },
         handleDisplayScheduleSending: function () {
-            return (id) => moment(`${this.orderData[id].date} ${this.orderData[id].time}`).format('MM.DD.YYYY HH:mm')
+            return (id) => {
+                const checkDate = this.orderData[id].date && this.orderData[id].time
+
+                if (checkDate) {
+                    const fullDate = `${this.orderData[id].date} ${this.orderData[id].time.split(' ')[0]}`
+                    return moment(fullDate).format('MM.DD.YYYY HH:mm')
+                }
+
+                return ''
+            }
         },
         handleUnavailableTime: function () {
             return (id) => (moment(`${this.orderData[id].date} ${this.orderData[id].time}`, 'YYYYMMDDhhmmss').fromNow()).includes('ago') ? '*It’s a unavailable set time.' : ''
         },
-        getOrders: function () {
-            const sendData = Object.keys(this.orderData).filter((id) => +this.orderData[id].isSchedule)
-            return this.cartData.filter((cart) => sendData.includes(String(cart.id)))
-        },
         getInsufficientStock: function () {
-            return (order) => +order.available_stock >= +order.quantity
+            return (cart) => +cart.available_stock >= +cart.quantity
         }
     }
 }
@@ -297,13 +333,29 @@ export default {
                     </li>
                     <li class="inline-flex justify-between px-4 py-1.5 border-b border-b-gray-07 w-full">
                         <span class="text-sm font-medium font-manrope text-secondary-04">Recipient Upload</span>
+                        <label class="file-picker w-[358px] no-hover">
+                            <span class="placeholder">{{ fileName[cart.id] || 'Choose a excel file' }}</span>
+                            <button
+                              @click="() => fileName[cart.id] && handleExcel([], cart.id)"
+                              :class="fileName[cart.id] ? 'bg-[#AEAEAE] px-6.5' : 'bg-blue-300 text-white-20 px-[18.5px]'"
+                            >
+                                <input
+                                  v-if="!fileName[cart.id]"
+                                  type="file"
+                                  accept=".xlsx"
+                                  @change="(e) => handleExcel(e.target.files, cart.id)"
+                                />
+                                {{ fileName[cart.id] ? '' : 'Select File' }}
+                                <Trash v-if="fileName[cart.id]" />
+                            </button>
+                        </label>
                     </li>
                     <li class="inline-flex justify-between px-4 py-1.5 border-b border-b-gray-07 w-full">
                         <span class="text-sm font-medium font-manrope text-secondary-04">Schedule Sending</span>
                         <label class="toggle">
                             <input
                               type="checkbox"
-                              @change="() => handleSchedule(cart.id)"
+                              @change="(e) => handleSchedule(e.target.checked, cart.id)"
                               :checked="orderData[cart.id].isSchedule"
                             />
                             <span class="slider round"></span>
@@ -359,38 +411,99 @@ export default {
             </div>
         </section>
         <aside
-          class="w-[352px] inline-block min-h-[687px] bg-white-20 border border-white-05 rounded-xl shadow-[0px_40px_32px_-24px] shadow-[#0F0F0F1F]"
+          class="w-[352px] inline-block h-fit min-h-[687px] bg-white-20 border border-white-05 rounded-xl shadow-[0px_40px_32px_-24px] shadow-[#0F0F0F1F]"
         >
-            <div class="section-card !mx-0 !my-0 !p-5 h-full">
+            <div class="section-card !mx-0 !my-0 !p-5">
                 <h2 class="!ml-0 !mb-5"><span class="!bg-primary-250"></span>
                     Order Summary
                 </h2>
-                <p class="text-slate-01 font-semibold text-[13px] leading-4">{{ getOrders.length }} Items</p>
+                <p class="text-slate-01 font-semibold text-[13px] leading-4">{{ cartData.length }} Items</p>
                 <ul
                   class="border rounded-lg p-3.5 mt-2.5"
-                  :class="getInsufficientStock(order) ? 'border-[#E2E1E1]' : 'border-red-800'"
-                  v-for="order in getOrders"
-                  :key="order.id"
+                  :class="(!!getInsufficientStock(cart) && !!handleDisplayScheduleSending(cart.id)) && (cart.point * cart.quantity)
+                        ? 'border-[#E2E1E1]' : 'border-red-800'"
+                  v-for="cart in cartData"
+                  :key="cart.id"
                 >
                     <li
                       class="text-[13px] leading-4 text-black-100 font-medium inline-flex justify-between items-center w-full"
                     >
-                        {{ order.brand }}
-                        <span class="text-base font-semibold leading-5 text-blue-300">{{ (order.point *
-                        order.quantity).toLocaleString() }}P</span>
+                        {{ cart.brand }}
+                        <span
+                          v-if="getInsufficientStock(cart)"
+                          :class="!(cart.point * cart.quantity) ? 'text-black-200' : 'text-blue-300'"
+                          class="text-base font-semibold leading-5"
+                        >
+                            {{ (cart.point * cart.quantity)
+                        ? (cart.point * cart.quantity).toLocaleString()
+                        : '-'
+                            }}P
+                        </span>
                     </li>
-                    <li class="mb-2 text-sm font-normal leading-4 text-stone-05">{{ order.name }}</li>
-                    <li class="bg-[#F2F2F2] rounded-md px-2 text-[13px] leading-6 font-semibold text-blue-700 w-fit">
-                        QTY: {{ order.quantity }}
-                    </li>
-                    <li v-if="getInsufficientStock(order)" class="text-xs leading-3.5 font-normal text-[#9A9FA5] mt-1">
-                        [Reserved] {{ handleDisplayScheduleSending(order.id) }}
+                    <li class="mb-2 text-sm font-normal leading-4 text-stone-05">{{ cart.name }}</li>
+                    <li
+                      v-if="cart.quantity"
+                      class="bg-[#F2F2F2] rounded-md px-2 text-[13px] leading-6 font-semibold text-blue-700 w-fit"
+                    >
+                        QTY: {{ cart.quantity }}
                     </li>
                     <li
-                      v-if="!getInsufficientStock(order)"
+                      v-if="getInsufficientStock(cart)"
+                      class="text-xs leading-3.5 font-normal text-[#9A9FA5] mt-1"
+                    >
+                        {{ handleDisplayScheduleSending(cart.id) ? `[Reserved]
+                        ${handleDisplayScheduleSending(cart.id)}` : '-' }}
+                    </li>
+                    <li
+                      v-if="!getInsufficientStock(cart)"
                       class="mt-2 text-sm font-medium text-red-800"
                     >Insufficient Stock</li>
                 </ul>
+                <hr class="border-gray-07 !mx-0 !mt-4 !mb-3.5" />
+                <label class="input !gap-0">
+                    <span>Promo Code</span>
+                    <div class="inline-flex w-full gap-2">
+                        <input
+                          type="text"
+                          class="!w-[230px] !h-12"
+                          placeholder="Enter the Promo Code"
+                        />
+                        <button
+                          class="px-5 !h-12 text-xs font-bold leading-6 text-blue-300 border rounded-lg border-white-03"
+                        >Apply</button>
+                    </div>
+                </label>
+                <hr class="border-gray-07 !mx-0 !mt-7 !mb-3.5" />
+                <p class="flex items-center justify-between">
+                    <span class="text-xs font-normal leading-6 text-slate-01">Subtotal</span>
+                    <span class="text-base font-semibold text-black-200">25,600P</span>
+                </p>
+                <p class="flex items-center justify-between">
+                    <span class="text-xs font-normal leading-6 text-slate-01">Discount</span>
+                    <span class="text-base font-semibold text-[#FF0F1D]">-600P</span>
+                </p>
+                <hr class="border-gray-07 !mx-0 !my-4" />
+                <p class="flex items-center justify-between mb-14">
+                    <strong class="text-2xl font-semibold leading-6 text-slate-01">
+                        Total
+                    </strong>
+                    <strong class="text-2xl font-semibold leading-6 text-blue-300">
+                        25,000P
+                    </strong>
+                </p>
+                <div class="flex items-center justify-between border border-[#EAEAEA] rounded-lg py-2 px-2.5 mb-6.5">
+                    <p class="inline-flex items-center gap-1.5">
+                        <span class="inline-flex items-center justify-center p-2 bg-red-700 rounded-full w-9 h-9">
+                            <CardWalletSvg />
+                        </span>
+                        <strong class="text-red-700 font-bold text-[13px] leading-[18px]">Teddy Bear</strong>
+                    </p>
+                    <i class="text-lg font-medium leading-6 text-blue-300">
+                        152,200P
+                    </i>
+                </div>
+                <button class="w-full h-12 bg-blue-300 rounded-lg text-white-19 font-bold text-[15px] leading-6">Proceed
+                    Payment</button>
             </div>
         </aside>
     </main>

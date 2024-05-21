@@ -609,10 +609,10 @@ body {
 /* time-picker */
 @layer components {
     label.time-picker {
-        @apply relative inline-flex items-center p-3 px-3 py-2 border rounded-md  w-fit h-11 bg-[theme(colors.white.20)] border-[theme(colors.white.10)]
+        @apply relative inline-flex items-center p-3 border rounded-md  w-fit h-11 bg-[theme(colors.white.20)] border-[theme(colors.white.10)]
     }
     label.time-picker:not(.no-hover) {
-        @apply hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
+        @apply hover:border-[theme(colors.blue.300)] focus-within:border-[theme(colors.blue.300)]
     }
     label.time-picker input {
         @apply p-0 opacity-0 absolute top-0 left-0 z-10 w-full h-full
@@ -621,6 +621,29 @@ body {
     label.time-picker input[type="time"]::-webkit-calendar-picker-indicator {
         @apply w-full h-full absolute top-0 left-0
     }
+}
+
+/* file-picker */
+@layer components {
+    label.file-picker {
+        @apply inline-flex items-center justify-between py-[theme(spacing[1.5])] pl-[theme(spacing[2.5])] pr-[theme(spacing[1.5])] border rounded-md h-12 bg-[theme(colors.white.20)] border-[theme(colors.white.10)]
+    }
+    label.file-picker:not(.no-hover) {
+        @apply hover:border-[theme(colors.blue.300)] focus-within:border-[theme(colors.blue.300)]
+    }
+    label.file-picker input {
+        @apply p-0 opacity-0 absolute top-0 left-0 z-10 w-full h-full
+    }
+    label.file-picker .placeholder {
+        @apply font-semibold font-[theme(fontFamily.manrope)] text-xs leading-5 text-[theme(colors.secondary.04)]
+    }
+    label.file-picker button {
+        @apply h-9 relative rounded text-xs leading-5 font-semibold font-[theme(fontFamily.manrope)]
+    }
+
+    /* label.file-picker input[type="file"]::-webkit-calendar-picker-indicator {
+        @apply w-full h-full absolute top-0 left-0
+    } */
 }
 
 /* table search input */

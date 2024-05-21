@@ -1,7 +1,7 @@
 export const cartData = [
     {
         name: 'Regular Coke McFloat',
-        available_stock : 100,
+        available_stock : 200,
         brand: 'McDonald’s',
         recipient: 200,
         quantity: 200,
@@ -12,7 +12,7 @@ export const cartData = [
     },
     {
         name: 'Regular Coke McFloat',
-        available_stock : 200,
+        available_stock : 100,
         brand: 'McDonald’s',
         recipient: 200,
         quantity: 200,
@@ -26,7 +26,7 @@ export const cartData = [
         available_stock : 100,
         brand: 'McDonald’s',
         recipient: 200,
-        quantity: 200,
+        quantity: 0,
         point: 1000,
         schedule_sending: '',
         id: 2,
