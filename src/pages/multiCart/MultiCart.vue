@@ -690,14 +690,11 @@ export default {
                           class="text-[13px] text-[#404040] leading-5 font-medium border-b border-b-white-05 p-4.5"
                         >
                             {{ item.brand }}/{{ item.name }}’s available stock is max <span class="text-[#FF1D2A]">{{
-                        item.available_stock.toLocaleString() }}</span>.<br>
+                                item.available_stock.toLocaleString() }}</span>.<br>
                             Please adjust your order.
                         </li>
                     </ul>
-                    <button
-                      @click="() => insufficientStock = []"
-                      class="rounded-lg bg-blue-300 w-full py-5 text-lg leading-4.5 text-[#FCFCFD] font-bold font-dmsans"
-                    >Confirm</button>
+                    <button @click="() => insufficientStock = []" class="rounded-lg bg-blue-300 w-full py-5 text-lg leading-4.5 text-[#FCFCFD] font-bold font-dmsans">Confirm</button>
                 </div>
             </div>
         </aside>

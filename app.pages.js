@@ -113,5 +113,9 @@ module.exports = {
     'multiCart': {
         title: 'Cart',
         path: '/multiCart'
-    }
+    },
+    'completed': {
+        title: 'Completed',
+        path: '/completed'
+    },
 }
