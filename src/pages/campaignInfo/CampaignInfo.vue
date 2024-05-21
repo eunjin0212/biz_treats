@@ -1,6 +1,7 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
+import { cartData } from '@/mock/cart.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -37,6 +38,7 @@ export default {
             dropdown: false,
             alertOpen: false,
             alertData,
+            cartData,
             colorPicker: '#ffffff',
             preview: null,
         }
@@ -44,6 +46,9 @@ export default {
     methods: {
         handleClick() {
             window.location.href = '/login'
+        },        
+        handleCartLocation() {
+            window.location.href = '/multiCart'
         },
         handleDropdown() {
             this.dropdown = !this.dropdown
@@ -168,9 +173,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5">
+                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
                     <CartSvg />
-                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
+                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
+                        cartData.length }}</span>
                 </button>
                 <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
@@ -258,7 +264,7 @@ export default {
                               class="inline-block w-9 h-9 border-2 rounded-md border-[#D7D7D7]"
                             ></span>
                             <label
-                              class="relative h-12 px-5 py-3 text-xs font-bold text-blue-300 border cursor-pointer leading-6 w-fit rounded-xl border-white-02 hover:bg-white-02-light"
+                              class="relative h-12 px-5 py-3 text-xs font-bold leading-6 text-blue-300 border cursor-pointer w-fit rounded-xl border-white-02 hover:bg-white-02-light"
                             >
                                 <input
                                   type="color"
@@ -315,7 +321,7 @@ export default {
                     </fieldset>
                 </form>
                 <hr class="!mx-0 !mb-0" />
-                <div class="flex items-center justify-end pt-3 pr-6 gap-2">
+                <div class="flex items-center justify-end gap-2 pt-3 pr-6">
                     <button
                       class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
                     >Cancel</button>

@@ -2,6 +2,7 @@
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { doneRows } from '@/mock/treatsHistory.js'
+import { cartData } from '@/mock/cart.js'
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -58,6 +59,7 @@ export default {
             dropdown: false,
             alertOpen: false,
             alertData,
+            cartData,
             tableColumns: [
                 { label: 'Order ID', field: 'order_id', class: '' },
                 { label: 'Trans Info', field: 'trans_info', class: 'w-[122px]' },
@@ -83,7 +85,10 @@ export default {
             tabOptions: ['Done', 'Reserved Schedule'],
         }
     },
-    methods: {
+    methods: {       
+        handleCartLocation() {
+            window.location.href = '/multiCart'
+        },
         handleSubmit(event) {
             event.preventDefault();
         },
@@ -236,9 +241,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5">
+                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
                     <CartSvg />
-                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
+                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
+                        cartData.length }}</span>
                 </button>
                 <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>

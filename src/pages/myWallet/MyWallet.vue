@@ -23,6 +23,7 @@ import CalendarSvg from '@/assets/icons/CalendarSvg.vue';
 import FileDownloadSvg from '@/assets/icons/FileDownloadSvg.vue';
 import ChevronLeftSvg from '@/assets/icons/ChevronLeftSvg.vue';
 import ChevronRightSvg from '@/assets/icons/ChevronRightSvg.vue';
+import { cartData } from '@/mock/cart';
 
 export default {
     components: {
@@ -69,6 +70,7 @@ export default {
             search: '',
             dropdown: false,
             alertOpen: false,
+            cartData,
             alertData,
             tableColumns: [
                 { label: 'Date', field: 'date', class: '' },
@@ -98,6 +100,9 @@ export default {
         }
     },
     methods: {
+        handleCartLocation() {
+            window.location.href = '/multiCart'
+        },
         handleSubmit(event) {
             event.preventDefault();
         },
@@ -246,9 +251,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5">
+                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
                     <CartSvg />
-                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
+                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
+                        cartData.length }}</span>
                 </button>
                 <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
@@ -366,7 +372,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold rounded gap-1 leading-4 bg-white-19 w-fit text-green-01 -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -378,7 +384,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold text-red-200 rounded gap-1 leading-4 bg-white-19 w-fit -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 text-red-200 rounded bg-white-19 w-fit -tracking-wide"
                         >
                             <DownSvg /> 37.8%
                         </span>
@@ -390,7 +396,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold rounded gap-1 leading-4 bg-white-19 w-fit text-green-01 -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>

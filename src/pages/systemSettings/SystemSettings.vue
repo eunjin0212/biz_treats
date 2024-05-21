@@ -17,6 +17,7 @@ import CalendarSvg from '@/assets/icons/CalendarSvg.vue';
 import CautionSvg from '@/assets/icons/CautionSvg.vue';
 import CheckSvg from '@/assets/icons/CheckSvg.vue'
 import TableCalendarSvg from '@/assets/icons/TableCalendarSvg.vue'
+import { cartData } from '@/mock/cart';
 
 export default {
     components: {
@@ -74,6 +75,7 @@ export default {
             search: '',
             dropdown: false,
             alertOpen: false,
+            cartData,
             alertData,
             systemsList,
             systemData: initSystemData,
@@ -124,6 +126,9 @@ export default {
         }
     },
     methods: {
+        handleCartLocation() {
+            window.location.href = '/multiCart'
+        },
         handleSubmit(event) {
             event.preventDefault();
         },
@@ -269,9 +274,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5">
+                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
                     <CartSvg />
-                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
+                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
+                        cartData.length }}</span>
                 </button>
                 <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>

@@ -19,6 +19,7 @@ import InfoSvg from '@/assets/icons/InfoSvg.vue';
 import CardWalletSvg from '@/assets/icons/CardWalletSvg.vue';
 import PrevPageSvg from '@/assets/icons/PrevPageSvg.vue';
 import CheckSvg from '@/assets/icons/CheckSvg.vue';
+import { cartData } from '@/mock/cart';
 
 export default {
     components: {
@@ -61,6 +62,7 @@ export default {
             search: '',
             dropdown: false,
             alertOpen: false,
+            cartData,
             alertData,
             myPoint: 1000,
             tableColumns: [
@@ -99,6 +101,9 @@ export default {
         }
     },
     methods: {
+        handleCartLocation() {
+            window.location.href = '/multiCart'
+        },
         handleSubmit(event) {
             event.preventDefault();
         },
@@ -256,9 +261,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5">
+                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
                     <CartSvg />
-                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
+                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
+                        cartData.length }}</span>
                 </button>
                 <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
@@ -484,7 +490,7 @@ export default {
                     <div class="flex items-center mt-2.5 mb-3 flex-nowrap">
                         <hr class="flex-grow border-white-10">
                         <span
-                          class="inline-block w-40 mx-3 text-sm font-semibold tracking-wide text-center text-blue-300 leading-6 text-nowrap"
+                          class="inline-block w-40 mx-3 text-sm font-semibold leading-6 tracking-wide text-center text-blue-300 text-nowrap"
                         >
                             Total Amount : {{ totalAmount.toLocaleString() }}P
                         </span>
@@ -497,7 +503,7 @@ export default {
                         *Lack of points to transfer. Please recheck it.
                     </span>
                     <hr class="border-white-10" />
-                    <div class="flex items-center justify-end pt-3 pr-6 gap-2">
+                    <div class="flex items-center justify-end gap-2 pt-3 pr-6">
                         <button
                           class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
                         >Cancel</button>

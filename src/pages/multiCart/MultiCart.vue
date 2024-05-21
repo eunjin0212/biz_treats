@@ -86,6 +86,9 @@ export default {
     methods: {
         handleClick() {
             window.location.href = '/login'
+        },        
+        handleCartLocation() {
+            window.location.href = '/multiCart'
         },
         handleDropdown() {
             this.dropdown = !this.dropdown
@@ -290,7 +293,7 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5">
+                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
                         cartData.length }}</span>

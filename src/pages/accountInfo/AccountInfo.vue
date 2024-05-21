@@ -1,6 +1,7 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
+import { cartData } from '@/mock/cart.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -44,6 +45,7 @@ export default {
             dropdown: false,
             alertOpen: false,
             alertData,
+            cartData,
             formModel,
             modalForm: [
                 {
@@ -112,6 +114,9 @@ export default {
         },
         handleClick() {
             window.location.href = '/login'
+        },        
+        handleCartLocation() {
+            window.location.href = '/multiCart'
         },
         handleDropdown() {
             this.dropdown = !this.dropdown
@@ -225,9 +230,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5">
+                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
                     <CartSvg />
-                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
+                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
+                        cartData.length }}</span>
                 </button>
                 <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>

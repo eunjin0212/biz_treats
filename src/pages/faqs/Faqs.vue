@@ -1,6 +1,7 @@
 <script>
 import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
+import { cartData } from '@/mock/cart';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -36,6 +37,7 @@ export default {
             search: '',
             dropdown: false,
             alertOpen: false,
+            cartData,
             alertData,
             accordionData: [
                 {
@@ -104,6 +106,9 @@ export default {
     methods: {
         handleClick() {
             window.location.href = '/login'
+        },        
+        handleCartLocation() {
+            window.location.href = '/multiCart'
         },
         handleToggle(content) {
             const index = this.accordionData.findIndex((data) => data.children.some((item) => content.title === item.title))
@@ -234,9 +239,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5">
+                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
                     <CartSvg />
-                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">32</span>
+                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
+                        cartData.length }}</span>
                 </button>
                 <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
@@ -296,7 +302,7 @@ export default {
                   :key="accordion.title"
                 >
                     <h3
-                      class="pb-3 mt-6 text-base font-bold border-b accordion__section-title text-main leading-5 border-b-gray-02"
+                      class="pb-3 mt-6 text-base font-bold leading-5 border-b accordion__section-title text-main border-b-gray-02"
                     >{{ accordion.title }}</h3>
                     <div
                       class="accordion__section-content"
