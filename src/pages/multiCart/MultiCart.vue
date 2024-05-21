@@ -80,6 +80,7 @@ export default {
             modalId: '',
             files: [],
             errorMsg: '',
+            insufficientStock: [],
         }
     },
     methods: {
@@ -155,6 +156,16 @@ export default {
         handleSampleFile() {
             downloadXlsx([{ recipient: 'eunjin', quantity: 100 }])
         },
+        handlePayment() {
+            const stock = this.cartData.filter((cart) => +cart.available_stock >= +this.orderData[cart.id].quantity)
+            if (stock.length) {
+                // modal open
+                this.insufficientStock = stock
+                return;
+            }
+
+            window.location.href = '/completed'
+        }
     },
     watch: {
         dropdown() {
@@ -204,8 +215,8 @@ export default {
             return (id) => (moment(`${this.orderData[id].date} ${this.orderData[id].time}`, 'YYYYMMDDhhmmss').fromNow()).includes('ago') ? '*It’s a unavailable set time.' : ''
         },
         getInsufficientStock: function () {
-            return (cart) => +cart.available_stock >= +cart.quantity
-        }
+            return (cart) => +cart.available_stock >= +this.orderData[cart.id].quantity
+        },
     }
 }
 </script>
@@ -528,7 +539,10 @@ export default {
                         152,200P
                     </i>
                 </div>
-                <button class="w-full h-12 bg-blue-300 rounded-lg text-white-19 font-bold text-[15px] leading-6">Proceed
+                <button
+                  @click="handlePayment"
+                  class="w-full h-12 bg-blue-300 rounded-lg text-white-19 font-bold text-[15px] leading-6"
+                >Proceed
                     Payment</button>
             </div>
         </aside>
@@ -654,6 +668,36 @@ export default {
                             >Upload</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </aside>
+    </Teleport>
+    <Teleport
+      to="body"
+      v-if="insufficientStock.length"
+    >
+        <!-- v-if="insufficientStock.length" -->
+        <aside class="modal__wrapper inline-flex justify-center items-center !p-0">
+            <div class="rounded-2xl w-[486px] h-[522px] mx-auto flex flex-col items-center">
+                <div class="section-card !m-0 !pt-6 !pb-4 !px-4.5 text-center">
+                    <h3 class="mb-2 text-2xl font-bold leading-10 text-blue-300">Insufficient Stock</h3>
+                    <p class="text-slate-02 text-[15px] leading-6 font-medium mb-5">Sorry, We’ll have it in stock soon.
+                    </p>
+                    <ul class="h-80 mb-2.5 overflow-y-scroll border border-white-10 rounded-md">
+                        <li
+                          v-for="item in insufficientStock"
+                          :key="item.id"
+                          class="text-[13px] text-[#404040] leading-5 font-medium border-b border-b-white-05 p-4.5"
+                        >
+                            {{ item.brand }}/{{ item.name }}’s available stock is max <span class="text-[#FF1D2A]">{{
+                        item.available_stock.toLocaleString() }}</span>.<br>
+                            Please adjust your order.
+                        </li>
+                    </ul>
+                    <button
+                      @click="() => insufficientStock = []"
+                      class="rounded-lg bg-blue-300 w-full py-5 text-lg leading-4.5 text-[#FCFCFD] font-bold font-dmsans"
+                    >Confirm</button>
                 </div>
             </div>
         </aside>
