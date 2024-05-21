@@ -3,6 +3,7 @@ import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { cartData } from '@/mock/cart.js'
 import { excelToArray } from '@/modules/excelToArray.js'
+import downloadXlsx from '@/modules/downloadXlsx.js'
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -17,7 +18,9 @@ import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import CartCalendarSvg from '@/assets/icons/CartCalendarSvg.vue';
 import ClockSvg from '@/assets/icons/ClockSvg.vue';
 import CardWalletSvg from '@/assets/icons/CardWalletSvg.vue';
-import Trash from '@/assets/icons/Trash.vue';
+import TrashSvg from '@/assets/icons/TrashSvg.vue';
+import CloseSvg from '@/assets/icons/CloseSvg.vue';
+import FileSvg from '@/assets/icons/FileSvg.vue';
 
 export default {
     components: {
@@ -34,7 +37,9 @@ export default {
         CartCalendarSvg,
         ClockSvg,
         CardWalletSvg,
-        Trash,
+        TrashSvg,
+        CloseSvg,
+        FileSvg,
     },
     data() {
         const orderData = {
@@ -72,6 +77,9 @@ export default {
             cartData,
             orderData,
             fileName: {},
+            modalId: '',
+            files: [],
+            errorMsg: '',
         }
     },
     methods: {
@@ -107,21 +115,45 @@ export default {
         handleScheduleTime(event, id) {
             this.orderData[id].time = moment(event.target.value).format('hh:mm:ss')
         },
-        handleExcel(file, id) {
+        handleExcel(id) {
+            // NOTE: modal open
             if (!this.fileName[id]) {
-                this.fileName[id] = file[0].name
-                excelToArray(file[0], ['recipient', 'quantity']).then((res) => {
-                    this.orderData[id].recipient = res.map((row) => row.recipient).length
-                    this.orderData[id].quantity = res.reduce((acc, cur) => acc + cur.quantity, 0)
-                }).catch(() => {
-                    this.fileName[id] = ''
-                })
+                this.modalId = id
                 return;
             }
-            
+
+            // NOTE: delete file
             this.orderData[id].recipient = 0
             this.orderData[id].quantity = 0
             this.fileName[id] = ''
+        },
+        handleModalExcel(file) {
+            this.errorMsg = ''
+            excelToArray(file[0], ['recipient', 'quantity']).then(() => {
+                this.files = file
+            }).catch((error) => {
+                this.errorMsg = error
+            })
+        },
+        handleModal(id) {
+            this.modalId = id
+
+            if (!id) {
+                this.files = []
+            }
+        },
+        handleUpload(event, id) { // NOTE: submit api
+            event.preventDefault();
+            this.fileName[id] = this.files[0].name
+            excelToArray(this.files[0], ['recipient', 'quantity']).then((res) => {
+                this.orderData[id].recipient = res.map((row) => row.recipient).length
+                this.orderData[id].quantity = res.reduce((acc, cur) => acc + cur.quantity, 0)
+            }).catch(() => {
+                this.fileName[id] = ''
+            })
+        },
+        handleSampleFile() {
+            downloadXlsx([{ recipient: 'eunjin', quantity: 100 }])
         },
     },
     watch: {
@@ -336,17 +368,11 @@ export default {
                         <label class="file-picker w-[358px] no-hover">
                             <span class="placeholder">{{ fileName[cart.id] || 'Choose a excel file' }}</span>
                             <button
-                              @click="() => fileName[cart.id] && handleExcel([], cart.id)"
+                              @click="() => fileName[cart.id] ? handleExcel([], cart.id) : handleModal(cart.id)"
                               :class="fileName[cart.id] ? 'bg-[#AEAEAE] px-6.5' : 'bg-blue-300 text-white-20 px-[18.5px]'"
                             >
-                                <input
-                                  v-if="!fileName[cart.id]"
-                                  type="file"
-                                  accept=".xlsx"
-                                  @change="(e) => handleExcel(e.target.files, cart.id)"
-                                />
                                 {{ fileName[cart.id] ? '' : 'Select File' }}
-                                <Trash v-if="fileName[cart.id]" />
+                                <TrashSvg v-if="fileName[cart.id]" />
                             </button>
                         </label>
                     </li>
@@ -557,4 +583,79 @@ export default {
             Copyright © SHARE TREATS. All rights reserved.
         </p>
     </footer>
+    <Teleport to="body">
+        <aside
+          v-if="!!modalId"
+          class="modal__wrapper inline-flex justify-center items-center !p-0"
+        >
+            <div class="rounded-2xl w-[557px] h-[468px] mx-auto pt-[30px] pb-3 pl-4.5 pr-6 flex flex-col items-center">
+                <div class="section-card !px-0 !m-0">
+                    <h2 class="!mb-5 mt-1.5 px-3 justify-between">
+                        <div class="inline-flex items-center">
+                            <span class="!bg-orange-01 ml-0.5"></span>Recipient Upload
+                        </div>
+                        <button
+                          @click="() => handleModal('')"
+                          class="inline-flex items-center bg-white-10 rounded-full p-2 mr-4.5"
+                        >
+                            <CloseSvg />
+                        </button>
+                    </h2>
+                    <hr class="border-white-10 !m-0 !mb-[30px]" />
+                    <form
+                      class="flex flex-col px-6 !font-inter"
+                      @submit="(e) => handleUpload(e, [], modalId)"
+                    >
+                        <button
+                          @click="handleSampleFile"
+                          type="button"
+                          class="flex items-center justify-center w-full gap-1 py-4 mb-5 text-base font-medium text-blue-300 border-2 border-blue-300 rounded-lg"
+                        >
+                            <FileSvg />Sample File Download
+                        </button>
+                        <fieldset class="flex flex-col">
+                            <p class="mb-1 text-sm font-semibold leading-6 text-slate-01 font-inter">File Upload</p>
+                            <label class="w-full file-picker no-hover">
+                                <span class="placeholder">
+                                    {{ files.length
+                        ? files[0].name
+                        : 'No files selected'
+                                    }}
+                                </span>
+                                <button
+                                  class="bg-blue-300 text-white-20 px-[18.5px]"
+                                  type="button"
+                                >
+                                    <input
+                                      type="file"
+                                      accept=".xlsx"
+                                      @change="(e) => handleModalExcel(e.target.files)"
+                                    />
+                                    Select File
+                                </button>
+                            </label>
+                        </fieldset>
+                        <div
+                          v-if="errorMsg"
+                          class="mt-6 text-[#E22929] border-2 border-[#E22929] rounded-lg w-full py-4.5 text-center text-sm leading-6 font-medium"
+                        >
+                            {{ errorMsg }}
+                        </div>
+                        <hr class="mt-8 -mx-6 border-white-10" />
+                        <div class="flex items-center justify-end gap-2 mt-2">
+                            <button
+                              @click="() => handleModal('')"
+                              type="button"
+                              class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
+                            >Cancel</button>
+                            <button
+                              type="submit"
+                              class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-400"
+                            >Upload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </aside>
+    </Teleport>
 </template>

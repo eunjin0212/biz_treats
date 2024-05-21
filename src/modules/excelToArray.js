@@ -25,6 +25,12 @@ function readFileAsync(fileData) {
     })
 }
 
+/**
+ * 
+ * @param {File} fileData 
+ * @param {string[] | string} requiredColumn 
+ * @returns Promise
+ */
 const excelToArray = (
     fileData, requiredColumn
 ) => new Promise((resolve, reject) => {
@@ -34,21 +40,19 @@ const excelToArray = (
         const firstSheetName = workbook.SheetNames[0];
         const sheetData = utils.sheet_to_json(workbook.Sheets[firstSheetName]);
 
-        const isString = typeof requiredColumn === 'string'
 
         // NOTE: 엑셀이 빈 파일일 경우
         if (!sheetData.length) {
-            const msg = '엑셀 파일에 데이터를 입력해주세요.'
+            const msg = 'Invalid file format. Please download your file try again.'
             reject(msg)
             return msg
         }
 
-        // NOTE: requiredColumn 자리에 어떠한 매개변수도 없으면 필수 헤더를 체크하지 않습니다.
-        const checkRequiredColumn = () => requiredColumn === undefined
-            ? true
-            : sheetData.some((row) => isString
+        // NOTE: 엑셀에 필수값이 안들어갔을 경우
+        const isString = typeof requiredColumn === 'string'
+        const checkRequiredColumn = () => sheetData.some((row) => isString
                 ? Object.keys(row).includes(requiredColumn)
-                : requiredColumn.some((r) => requiredColumn.includes(r))
+                : requiredColumn.some((col) => Object.keys(row).includes(col))
             )
 
         if (requiredColumn && !checkRequiredColumn()) {
