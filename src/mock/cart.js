@@ -1,7 +1,7 @@
 export const cartData = [
     {
         name: 'Regular Coke McFloat',
-        available_stock : 200,
+        available_stock: 200,
         brand: 'McDonald’s',
         recipient: 200,
         quantity: 200,
@@ -12,7 +12,7 @@ export const cartData = [
     },
     {
         name: 'Regular Coke McFloat',
-        available_stock : 100,
+        available_stock: 100,
         brand: 'McDonald’s',
         recipient: 200,
         quantity: 200,
@@ -23,13 +23,34 @@ export const cartData = [
     },
     {
         name: 'Regular Coke McFloat',
-        available_stock : 100,
+        available_stock: 100,
         brand: 'McDonald’s',
         recipient: 200,
         quantity: 0,
         point: 1000,
         schedule_sending: '',
         id: 2,
+        product_img: 'https://nas-public.sharetreats.ph/nas/sticker/6678142a-ea3d-4095-8041-ef5a4f74dc96.png.webp',
+    },
+]
+
+export const singleCartData = [
+    {
+        name: 'Regular Coke McFloat',
+        available_stock: 200,
+        brand: 'McDonald’s',
+        recipient: [{
+            name: '',
+            qty: 0,
+            mobile_number: '',
+            email: '',
+            massage: '',
+            notes: '',
+        }],
+        quantity: 200,
+        point: 1000,
+        schedule_sending: '',
+        id: 0,
         product_img: 'https://nas-public.sharetreats.ph/nas/sticker/6678142a-ea3d-4095-8041-ef5a4f74dc96.png.webp',
     },
 ]

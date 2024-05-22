@@ -165,7 +165,8 @@ body {
 
     label.input input,
     label.select select,
-    label.textarea textarea {
+    label.textarea textarea,
+    input.input {
         @apply border border-[theme(colors.white.01)] focus:border-[theme(colors.white.01)] focus-visible:border-[theme(colors.white.01)] focus:ring-0 ring-0 placeholder:text-[theme(colors.gray.01)] rounded-lg h-10 px-4 font-normal tracking-[0.5px] text-xs leading-[26px]
     }
 }

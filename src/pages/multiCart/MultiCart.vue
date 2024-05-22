@@ -196,7 +196,7 @@ export default {
 
                 if (checkDate) {
                     const fullDate = `${this.orderData[id].date} ${this.orderData[id].time.split(' ')[0]}`
-                    return moment(fullDate).format('h:mm A')
+                    return moment(fullDate).format('hh:mm A')
                 }
 
                 return ''

@@ -1,9 +1,7 @@
 <script>
 import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
-import { cartData } from '@/mock/cart.js'
-import { excelToArray } from '@/modules/excelToArray.js'
-import downloadXlsx from '@/modules/downloadXlsx.js'
+import { singleCartData, cartData } from '@/mock/cart.js'
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -18,9 +16,6 @@ import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import CartCalendarSvg from '@/assets/icons/CartCalendarSvg.vue';
 import ClockSvg from '@/assets/icons/ClockSvg.vue';
 import CardWalletSvg from '@/assets/icons/CardWalletSvg.vue';
-import TrashSvg from '@/assets/icons/TrashSvg.vue';
-import CloseSvg from '@/assets/icons/CloseSvg.vue';
-import FileSvg from '@/assets/icons/FileSvg.vue';
 
 export default {
     components: {
@@ -37,34 +32,33 @@ export default {
         CartCalendarSvg,
         ClockSvg,
         CardWalletSvg,
-        TrashSvg,
-        CloseSvg,
-        FileSvg,
     },
     data() {
         const orderData = {
             0: {
-                recipient: 0,
+                recipient: [],
                 quantity: 0,
                 isSchedule: true,
                 date: moment().format('YYYY-MM-DD'),
-                time: moment().format('hh:mm:ss'),
-            },
-            1: {
-                recipient: 200,
-                quantity: 200,
-                isSchedule: false,
-                date: '',
-                time: '',
-            },
-            2: {
-                recipient: 200,
-                quantity: 0,
-                isSchedule: false,
-                date: '',
-                time: '',
+                time: moment().format('HH:mm:ss'),
             },
         }
+        const initForm = {
+            name: '',
+            qty: '',
+            mobile_number: '',
+            email: '',
+            massage: '',
+            notes: '',
+        }
+        const recipientForm = [
+            { label: 'Recipient Name', value: 'name', contentClass: 'w-[222px]', class: 'col-span-2 grid-cols-[150px_auto]', placeholder: 'Enter Recipient Name', type: 'text' },
+            { label: 'Qty', value: 'qty', contentClass: 'w-[261px]', class: 'col-span-2 grid-cols-[112px_auto]', placeholder: 'Enter Qty', type: 'text' },
+            { label: 'Recipient Mobile Number', value: 'mobile_number', contentClass: 'w-[222px]', class: 'col-span-2 grid-cols-[150px_auto]', placeholder: 'Enter Recipient Mobile Number', type: 'text' },
+            { label: 'Recipient Email', value: 'email', contentClass: 'w-[261px]', class: 'col-span-2 grid-cols-[112px_auto]', placeholder: 'Enter Recipient Email', type: 'email' },
+            { label: 'Sending Message', value: 'massage', contentClass: 'w-[634px]', class: 'col-span-4 grid-cols-[150px_auto]', placeholder: 'Max 50', type: 'text' },
+            { label: 'Notes', value: 'notes', contentClass: 'w-[634px]', class: 'col-span-4 grid-cols-[150px_auto]', placeholder: 'EnterPO / Ref#', type: 'text' },
+        ]
         return {
             navMenu,
             snsMenu,
@@ -75,19 +69,19 @@ export default {
             alertOpen: false,
             alertData,
             cartData,
+            singleCartData,
             orderData,
-            fileName: {},
-            modalId: '',
-            files: [],
-            errorMsg: '',
             insufficientStock: [],
+            recipientForm,
+            isFormOpen: false,
+            recipientModel: initForm,
         }
     },
     methods: {
-        
+
         handleClick() {
             window.location.href = '/login'
-        },        
+        },
         handleCartLocation() {
             window.location.href = '/multiCart'
         },
@@ -120,48 +114,8 @@ export default {
         handleScheduleTime(event, id) {
             this.orderData[id].time = moment(event.target.value).format('hh:mm:ss')
         },
-        handleExcel(id) {
-            // NOTE: modal open
-            if (!this.fileName[id]) {
-                this.modalId = id
-                return;
-            }
-
-            // NOTE: delete file
-            this.orderData[id].recipient = 0
-            this.orderData[id].quantity = 0
-            this.fileName[id] = ''
-        },
-        handleModalExcel(file) {
-            this.errorMsg = ''
-            excelToArray(file[0], ['recipient', 'quantity']).then(() => {
-                this.files = file
-            }).catch((error) => {
-                this.errorMsg = error
-            })
-        },
-        handleModal(id) {
-            this.modalId = id
-
-            if (!id) {
-                this.files = []
-            }
-        },
-        handleUpload(event, id) { // NOTE: submit api
-            event.preventDefault();
-            this.fileName[id] = this.files[0].name
-            excelToArray(this.files[0], ['recipient', 'quantity']).then((res) => {
-                this.orderData[id].recipient = res.map((row) => row.recipient).length
-                this.orderData[id].quantity = res.reduce((acc, cur) => acc + cur.quantity, 0)
-            }).catch(() => {
-                this.fileName[id] = ''
-            })
-        },
-        handleSampleFile() {
-            downloadXlsx([{ recipient: 'eunjin', quantity: 100 }])
-        },
         handlePayment() {
-            const stock = this.cartData.filter((cart) => +cart.available_stock >= +this.orderData[cart.id].quantity)
+            const stock = this.singleCartData.filter((cart) => +cart.available_stock >= +this.orderData[cart.id].quantity)
             if (stock.length) {
                 // modal open
                 this.insufficientStock = stock
@@ -169,7 +123,20 @@ export default {
             }
 
             window.location.href = '/completed'
-        }
+        },
+        async updateRecipient() {
+            // submit
+        },
+        handleForm() {
+            if (!this.isFormOpen) {
+                this.isFormOpen = true;
+                return
+            }
+            
+            this.updateRecipient().then(() => {
+              this.isFormOpen = false
+            })
+        },
     },
     watch: {
         dropdown() {
@@ -197,7 +164,7 @@ export default {
 
                 if (checkDate) {
                     const fullDate = `${this.orderData[id].date} ${this.orderData[id].time.split(' ')[0]}`
-                    return moment(fullDate).format('h:mm A')
+                    return moment(fullDate).format('hh:mm A')
                 }
 
                 return ''
@@ -294,7 +261,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
+                <button
+                  class="header-btn inline-flex ml-4.5"
+                  @click="() => handleCartLocation()"
+                >
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
                         cartData.length }}</span>
@@ -335,14 +305,14 @@ export default {
         <section class="flex flex-col flex-grow max-w-[876px]">
             <div class="relative section-card !mx-0 !my-0 !px-0">
                 <h2 class="pl-4"><span class="!bg-primary-250"></span>
-                    <div class="text-blue-500">{{ cartData.length }}</div>&nbsp;Items in your cart
+                    Single Purchase (Up to 10 Recipients)
                 </h2>
                 <button
                   class="absolute top-5 right-9 px-5.5 py-2 text-sm font-semibold border rounded border-error text-error"
                 >Delete All</button>
                 <hr class="!mx-0 !mt-0 !mb-5 border-white-10" />
                 <ul
-                  v-for="cart in cartData"
+                  v-for="cart in singleCartData"
                   :key="cart.id"
                   class="mb-6 overflow-hidden border rounded-md mx-7 border-gray-07"
                 >
@@ -367,7 +337,7 @@ export default {
                                     </div>
                                     <i class="text-xl font-bold leading-6 text-blue-600">
                                         {{ orderData[cart.id]?.recipient || orderData[cart.id]?.quantity ?
-                        `${orderData[cart.id]?.recipient}/${orderData[cart.id]?.quantity}` : '-' }}
+                        `${orderData[cart.id]?.recipient.length}/${orderData[cart.id]?.quantity}` : '-' }}
                                     </i>
                                 </li>
                                 <li
@@ -378,20 +348,8 @@ export default {
                             </ul>
                         </div>
                     </li>
-                    <li class="inline-flex justify-between px-4 py-1.5 border-b border-b-gray-07 w-full">
-                        <span class="text-sm font-medium font-manrope text-secondary-04">Recipient Upload</span>
-                        <label class="file-picker w-[358px] no-hover">
-                            <span class="placeholder">{{ fileName[cart.id] || 'Choose a excel file' }}</span>
-                            <button
-                              @click="() => fileName[cart.id] ? handleExcel([], cart.id) : handleModal(cart.id)"
-                              :class="fileName[cart.id] ? 'bg-[#AEAEAE] px-6.5' : 'bg-blue-300 text-white-20 px-[18.5px]'"
-                            >
-                                {{ fileName[cart.id] ? '' : 'Select File' }}
-                                <TrashSvg v-if="fileName[cart.id]" />
-                            </button>
-                        </label>
-                    </li>
-                    <li class="inline-flex justify-between px-4 py-1.5 border-b border-b-gray-07 w-full">
+
+                    <li class="inline-flex justify-between items-center px-4 py-1.5 border-b border-b-gray-07 w-full">
                         <span class="text-sm font-medium font-manrope text-secondary-04">Schedule Sending</span>
                         <label class="toggle">
                             <input
@@ -402,6 +360,7 @@ export default {
                             <span class="slider round"></span>
                         </label>
                     </li>
+
                     <li
                       v-if="orderData[cart.id].isSchedule"
                       class="border-b border-b-gray-07 bg-white-11 py-2 px-3.5"
@@ -434,19 +393,28 @@ export default {
                         handleDisplayScheduleTime(cart.id) }}</span>
                                 </p>
                             </label>
-                            <input
-                              placeholder="Enter Message"
-                              type="text"
-                              class="rounded-md h-11 font-medium text-xs w-full leading-6 border-white-10 px-3.5 py-2.5 focus:border-white-10 focus-visible:border-white-10 focus:ring-0 ring-0 placeholder:text-[#C6C6C6]"
-                            />
                         </div>
                         <p class="text-[10px] font-normal leading-3 text-red-500 mt-2">{{ handleUnavailableTime(cart.id)
                             }}</p>
                     </li>
-                    <li class="px-4 py-1.5 w-full text-right">
+                    <li class="inline-flex items-center justify-between w-full px-4 py-2">
+                        <span class="text-sm font-medium font-manrope text-secondary-04">Recipient({{ orderData[cart.id].recipient.length }})</span>
                         <button
-                          class="text-gray-03 font-medium text-[15px] leading-6 px-6.5 py-2 border rounded-lg border-white-10"
-                        >Delete</button>
+                          class="text-blue-300 border border-blue-300 py-2 w-[170px] rounded"
+                          @click="handleForm"
+                        >Add Recipient</button>
+                    </li>
+                    <li v-if="isFormOpen" class="border-t border-t-gray-07">
+                        <form class="bg-white-11 py-4.5 px-5 grid grid-cols-4 gap-x-10 gap-y-6">
+                            <fieldset v-for="recipient in recipientForm" :key="recipient.value" :class="recipient.class" class="grid items-center">
+                                <label class="inline-block text-xs font-medium leading-6 text-slate-01 -tracking-wide">{{ recipient.label }}</label>
+                                <input class="!h-12 !-tracking-wide input" :name="recipient.value" :value="recipientModel[recipient.value]" :class="recipient.contentClass" :placeholder="recipient.placeholder" :type="recipient.type" />
+                            </fieldset>
+                            <button
+                              type="button"
+                              class="text-gray-03 justify-self-end bg-white-20 font-medium text-[15px] leading-6 px-6.5 py-2 border rounded-lg border-white-10 col-end-5 w-24"
+                            >Delete</button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -458,12 +426,12 @@ export default {
                 <h2 class="!ml-0 !mb-5"><span class="!bg-primary-250"></span>
                     Order Summary
                 </h2>
-                <p class="text-slate-01 font-semibold text-[13px] leading-4">{{ cartData.length }} Items</p>
+                <p class="text-slate-01 font-semibold text-[13px] leading-4">{{ singleCartData.length }} Items</p>
                 <ul
                   class="border rounded-lg p-3.5 mt-2.5"
                   :class="(!!getInsufficientStock(cart) && !!handleDisplayScheduleSending(cart.id)) && (cart.point * cart.quantity)
                         ? 'border-[#E2E1E1]' : 'border-red-800'"
-                  v-for="cart in cartData"
+                  v-for="cart in singleCartData"
                   :key="cart.id"
                 >
                     <li
@@ -601,86 +569,10 @@ export default {
             Copyright © SHARE TREATS. All rights reserved.
         </p>
     </footer>
-    <Teleport to="body">
-        <aside
-          v-if="!!modalId"
-          class="modal__wrapper inline-flex justify-center items-center !p-0"
-        >
-            <div class="rounded-2xl w-[557px] h-[468px] mx-auto pt-[30px] pb-3 pl-4.5 pr-6 flex flex-col items-center">
-                <div class="section-card !px-0 !m-0">
-                    <h2 class="!mb-5 mt-1.5 px-3 justify-between">
-                        <div class="inline-flex items-center">
-                            <span class="!bg-orange-01 ml-0.5"></span>Recipient Upload
-                        </div>
-                        <button
-                          @click="() => handleModal('')"
-                          class="inline-flex items-center bg-white-10 rounded-full p-2 mr-4.5"
-                        >
-                            <CloseSvg />
-                        </button>
-                    </h2>
-                    <hr class="border-white-10 !m-0 !mb-[30px]" />
-                    <form
-                      class="flex flex-col px-6 !font-inter"
-                      @submit="(e) => handleUpload(e, [], modalId)"
-                    >
-                        <button
-                          @click="handleSampleFile"
-                          type="button"
-                          class="flex items-center justify-center w-full gap-1 py-4 mb-5 text-base font-medium text-blue-300 border-2 border-blue-300 rounded-lg"
-                        >
-                            <FileSvg />Sample File Download
-                        </button>
-                        <fieldset class="flex flex-col">
-                            <p class="mb-1 text-sm font-semibold leading-6 text-slate-01 font-inter">File Upload</p>
-                            <label class="w-full file-picker no-hover">
-                                <span class="placeholder">
-                                    {{ files.length
-                        ? files[0].name
-                        : 'No files selected'
-                                    }}
-                                </span>
-                                <button
-                                  class="bg-blue-300 text-white-20 px-[18.5px]"
-                                  type="button"
-                                >
-                                    <input
-                                      type="file"
-                                      accept=".xlsx"
-                                      @change="(e) => handleModalExcel(e.target.files)"
-                                    />
-                                    Select File
-                                </button>
-                            </label>
-                        </fieldset>
-                        <div
-                          v-if="errorMsg"
-                          class="mt-6 text-[#E22929] border-2 border-[#E22929] rounded-lg w-full py-4.5 text-center text-sm leading-6 font-medium"
-                        >
-                            {{ errorMsg }}
-                        </div>
-                        <hr class="mt-8 -mx-6 border-white-10" />
-                        <div class="flex items-center justify-end gap-2 mt-2">
-                            <button
-                              @click="() => handleModal('')"
-                              type="button"
-                              class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
-                            >Cancel</button>
-                            <button
-                              type="submit"
-                              class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-400"
-                            >Upload</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </aside>
-    </Teleport>
     <Teleport
       to="body"
       v-if="insufficientStock.length"
     >
-        <!-- v-if="insufficientStock.length" -->
         <aside class="modal__wrapper inline-flex justify-center items-center !p-0">
             <div class="rounded-2xl w-[486px] h-[522px] mx-auto flex flex-col items-center">
                 <div class="section-card !m-0 !pt-6 !pb-4 !px-4.5 text-center">
@@ -694,11 +586,14 @@ export default {
                           class="text-[13px] text-[#404040] leading-5 font-medium border-b border-b-white-05 p-4.5"
                         >
                             {{ item.brand }}/{{ item.name }}’s available stock is max <span class="text-[#FF1D2A]">{{
-                                item.available_stock.toLocaleString() }}</span>.<br>
+                        item.available_stock.toLocaleString() }}</span>.<br>
                             Please adjust your order.
                         </li>
                     </ul>
-                    <button @click="() => insufficientStock = []" class="rounded-lg bg-blue-300 w-full py-5 text-lg leading-4.5 text-[#FCFCFD] font-bold font-dmsans">Confirm</button>
+                    <button
+                      @click="() => insufficientStock = []"
+                      class="rounded-lg bg-blue-300 w-full py-5 text-lg leading-4.5 text-[#FCFCFD] font-bold font-dmsans"
+                    >Confirm</button>
                 </div>
             </div>
         </aside>
