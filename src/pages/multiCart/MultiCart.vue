@@ -377,7 +377,7 @@ export default {
                             </ul>
                         </div>
                     </li>
-                    <li class="inline-flex justify-between px-4 py-1.5 border-b border-b-gray-07 w-full">
+                    <li class="inline-flex justify-between items-center px-4 py-1.5 border-b border-b-gray-07 w-full">
                         <span class="text-sm font-medium font-manrope text-secondary-04">Recipient Upload</span>
                         <label class="file-picker w-[358px] no-hover">
                             <span class="placeholder">{{ fileName[cart.id] || 'Choose a excel file' }}</span>
@@ -390,7 +390,7 @@ export default {
                             </button>
                         </label>
                     </li>
-                    <li class="inline-flex justify-between px-4 py-1.5 border-b border-b-gray-07 w-full">
+                    <li class="inline-flex justify-between items-center px-4 py-1.5 border-b border-b-gray-07 w-full">
                         <span class="text-sm font-medium font-manrope text-secondary-04">Schedule Sending</span>
                         <label class="toggle">
                             <input
