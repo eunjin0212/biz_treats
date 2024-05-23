@@ -433,10 +433,9 @@ export default {
                         handleDisplayScheduleTime(cart.id) }}</span>
                                 </p>
                             </label>
-                            <input
+                            <textarea
                               placeholder="Enter Message"
-                              type="text"
-                              class="rounded-md h-11 font-medium text-xs w-full leading-6 border-white-10 px-3.5 py-2.5 focus:border-white-10 focus-visible:border-white-10 focus:ring-0 ring-0 placeholder:text-[#C6C6C6]"
+                              class="resize-none rounded-md h-11 font-medium text-xs w-full leading-6 border-white-10 px-3.5 py-2.5 focus:border-white-10 focus-visible:border-white-10 focus:ring-0 ring-0 placeholder:text-[#C6C6C6]"
                             />
                         </div>
                         <p class="text-[10px] font-normal leading-3 text-red-500 mt-2">{{ handleUnavailableTime(cart.id)
