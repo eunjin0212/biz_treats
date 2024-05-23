@@ -482,9 +482,8 @@ export default {
           class="modal__wrapper inline-flex justify-center items-center !p-0"
           v-if="isOpen"
         >
-            <div class="rounded-2xl w-[578px] h-[468px] mx-auto pt-[30px] pb-3 pl-4.5 pr-6 flex flex-col items-center">
-
-                <div class="section-card !px-0 !m-0">
+            <div class="rounded-2xl w-[557px] h-[617px] mx-auto flex flex-col items-center">
+                <div class="section-card !px-0 !m-0 h-full">
                     <h2 class="!mb-5 mt-1.5 px-3 justify-between">
                         <div class="inline-flex items-center">
                             <span class="!bg-orange-01 ml-0.5"></span>Request Delegation
