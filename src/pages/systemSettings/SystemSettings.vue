@@ -274,7 +274,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
+                <button
+                  class="header-btn inline-flex ml-4.5"
+                  @click="() => handleCartLocation()"
+                >
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
                         cartData.length }}</span>
@@ -379,7 +382,10 @@ export default {
                     >
                         Delegation Reservation
                     </button>
-                    <table v-else class="mt-3">
+                    <table
+                      v-else
+                      class="mt-3"
+                    >
                         <thead>
                             <tr>
                                 <th
@@ -401,7 +407,7 @@ export default {
                                   class="px-2 py-2 first-of-type:pl-0 last-of-type:pr-0"
                                 >
                                     <label
-                                      class="date-picker no-hover !rounded-md !h-11 !w-[132px] !text-black-200 !text-xs !leading-6"
+                                      class="date-picker no-hover !rounded-md !h-11 !w-[132px] !text-black-200 !text-xs !leading-6 !border-white-10"
                                       v-if="col.type === 'date'"
                                     >
                                         <TableCalendarSvg class="mr-3" />
@@ -410,15 +416,23 @@ export default {
                                           :type="col.type"
                                           :value="row[col.field]"
                                           @change="handleRowDate"
+                                          class="!h-11"
                                         />
                                     </label>
-                                    <label class="input" v-else-if="col.type === 'input'">
+                                    <label
+                                      class="input !h-11"
+                                      v-else-if="col.type === 'input'"
+                                    >
                                         <input
                                           type="text"
+                                          class="!h-11 !rounded-md !border-white-10"
                                           :placeholder="col?.placeholder"
                                         />
                                     </label>
-                                    <button v-else class="w-[120px] border-2 border-white-10 rounded-lg h-11 bg-white-19 text-[#9A9FA5]">Cancel</button>
+                                    <button
+                                      v-else
+                                      class="w-[120px] border-2 border-white-10 !py-0 rounded-lg !h-11 bg-white-19 text-[#9A9FA5] hover:bg-[#9A9FA520]"
+                                    >Cancel</button>
                                 </td>
                             </tr>
                         </tbody>
