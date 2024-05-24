@@ -696,7 +696,7 @@ export default {
                             Please adjust your order.
                         </li>
                     </ul>
-                    <button @click="() => insufficientStock = []" class="rounded-lg bg-blue-300 w-full py-5 text-lg leading-4.5 text-[#FCFCFD] font-bold font-dmsans">Confirm</button>
+                    <button @click="() => insufficientStock = []" class="rounded-lg bg-blue-300 w-full py-[15px] text-lg leading-[18px] text-[#FCFCFD] font-bold font-dmsans hover:bg-blue-400">Confirm</button>
                 </div>
             </div>
         </aside>
