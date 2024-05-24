@@ -637,7 +637,7 @@ export default {
                             <button
                               @click="() => handleModal(false)"
                               type="button"
-                              class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
+                              class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-secondary-04-light border-white-10"
                             >Cancel</button>
                             <button
                               type="submit"

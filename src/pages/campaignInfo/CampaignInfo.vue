@@ -323,7 +323,7 @@ export default {
                 <hr class="!mx-0 !mb-0" />
                 <div class="flex items-center justify-end gap-2 pt-3 pr-6">
                     <button
-                      class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
+                      class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-secondary-04-light border-white-10"
                     >Cancel</button>
                     <button
                       class="w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-400"

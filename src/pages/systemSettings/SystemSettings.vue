@@ -431,7 +431,7 @@ export default {
                                     </label>
                                     <button
                                       v-else
-                                      class="w-[120px] border-2 border-white-10 !py-0 rounded-lg !h-11 bg-white-19 text-[#9A9FA5] hover:bg-[#9A9FA520]"
+                                      class="w-[120px] border-2 border-white-10 !py-0 rounded-lg !h-11 bg-white-19 text-[#9A9FA5] hover:bg-secondary-04-light"
                                     >Cancel</button>
                                 </td>
                             </tr>
@@ -586,7 +586,7 @@ export default {
                             <button
                               @click="() => handleModal(false)"
                               type="button"
-                              class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
+                              class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-secondary-04-light border-white-10"
                             >Cancel</button>
                             <button
                               type="submit"
