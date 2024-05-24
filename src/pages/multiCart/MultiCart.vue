@@ -625,7 +625,7 @@ export default {
                         <button
                           @click="handleSampleFile"
                           type="button"
-                          class="flex items-center justify-center w-full gap-1 py-4 mb-5 text-base font-medium text-blue-300 border-2 border-blue-300 rounded-lg"
+                          class="flex items-center justify-center w-full gap-1 py-2.5 mb-5 text-base font-medium text-blue-300 border-2 border-blue-300 hover:bg-sky-50 rounded-lg"
                         >
                             <FileSvg />Sample File Download
                         </button>
@@ -639,7 +639,7 @@ export default {
                                     }}
                                 </span>
                                 <button
-                                  class="bg-blue-300 text-white-20 px-[18.5px]"
+                                  class="bg-blue-300 text-white-20 px-[18.5px] hover:bg-blue-400"
                                   type="button"
                                 >
                                     <input
@@ -651,12 +651,12 @@ export default {
                                 </button>
                             </label>
                         </fieldset>
-                        <div
+                        <button
                           v-if="errorMsg"
                           class="mt-6 text-[#E22929] border-2 border-[#E22929] rounded-lg w-full py-4.5 text-center text-sm leading-6 font-medium"
                         >
                             {{ errorMsg }}
-                        </div>
+                        </button>
                         <hr class="mt-8 -mx-6 border-white-10" />
                         <div class="flex items-center justify-end gap-2 mt-2">
                             <button
