@@ -74,11 +74,10 @@ export default {
             insufficientStock: [],
             recipientForm,
             isFormOpen: false,
-            recipientModel: initForm,
+            initForm,
         }
     },
     methods: {
-
         handleClick() {
             window.location.href = '/login'
         },
@@ -128,15 +127,13 @@ export default {
             // submit
         },
         handleForm() {
-            if (!this.isFormOpen) {
-                this.isFormOpen = true;
-                return
-            }
-            
-            this.updateRecipient().then(() => {
-              this.isFormOpen = false
-            })
+          this.isFormOpen = true;
+          this.orderData[0].recipient.push({ ...this.initForm })
         },
+        handleDelete(idx) {
+            this.isFormOpen = this.orderData[0].recipient.length
+            this.orderData[0].recipient.splice(idx, 1)
+        }
     },
     watch: {
         dropdown() {
@@ -308,7 +305,7 @@ export default {
                     Single Purchase (Up to 10 Recipients)
                 </h2>
                 <button
-                  class="absolute top-5 right-9 px-5.5 py-2 text-sm font-semibold border rounded border-error text-error"
+                  class="absolute top-5 right-9 px-5.5 py-2 text-sm font-semibold border rounded border-error text-error hover:bg-red-50"
                 >Delete All</button>
                 <hr class="!mx-0 !mt-0 !mb-5 border-white-10" />
                 <ul
@@ -337,7 +334,8 @@ export default {
                                     </div>
                                     <i class="text-xl font-bold leading-6 text-blue-600">
                                         {{ orderData[cart.id]?.recipient || orderData[cart.id]?.quantity ?
-                        `${orderData[cart.id]?.recipient.length}/${orderData[cart.id]?.quantity}` : '-' }}
+                        `${orderData[cart.id]?.recipient.length}/${orderData[cart.id]?.quantity}` : '-'
+                                        }}
                                     </i>
                                 </li>
                                 <li
@@ -366,7 +364,7 @@ export default {
                       class="border-b border-b-gray-07 bg-white-11 py-2 px-3.5"
                     >
                         <div class="inline-flex items-center w-full gap-2">
-                            <label class="date-picker no-hover !w-fit !h-11 py-2 px-3 !rounded-md">
+                            <label class="date-picker no-hover !w-40 !h-11 py-2 px-3 !rounded-md">
                                 <CartCalendarSvg class="mr-3" />
                                 <input
                                   type="date"
@@ -375,11 +373,12 @@ export default {
                                 />
                                 <p class="inline-flex flex-col">
                                     <span class="text-[10px] leading-3 font-medium text-slate-01">Date</span>
-                                    <span class="text-xs font-normal text-black-200 text-nowrap">{{
-                        handleDisplayScheduleDate(cart.id) }}</span>
+                                    <span class="text-xs font-normal text-black-200 text-nowrap">
+                                        {{ handleDisplayScheduleDate(cart.id) }}
+                                    </span>
                                 </p>
                             </label>
-                            <label class="time-picker no-hover">
+                            <label class="time-picker no-hover !w-40">
                                 <ClockSvg class="mr-3" />
                                 <input
                                   type="time"
@@ -389,30 +388,58 @@ export default {
                                 />
                                 <p class="inline-flex flex-col">
                                     <span class="text-[10px] leading-3 font-medium text-slate-01">Time</span>
-                                    <span class="text-xs font-normal text-black-200 text-nowrap">{{
-                        handleDisplayScheduleTime(cart.id) }}</span>
+                                    <span class="text-xs font-normal text-black-200 text-nowrap">
+                                        {{ handleDisplayScheduleTime(cart.id) }}
+                                    </span>
                                 </p>
                             </label>
                         </div>
-                        <p class="text-[10px] font-normal leading-3 text-red-500 mt-2">{{ handleUnavailableTime(cart.id)
-                            }}</p>
+                        <p
+                          v-if="handleUnavailableTime(cart.id)"
+                          class="text-[10px] font-normal leading-3 text-red-500 mt-2"
+                        >
+                            {{ handleUnavailableTime(cart.id) }}
+                        </p>
                     </li>
                     <li class="inline-flex items-center justify-between w-full px-4 py-2">
-                        <span class="text-sm font-medium font-manrope text-secondary-04">Recipient({{ orderData[cart.id].recipient.length }})</span>
+                        <span class="text-sm font-medium font-manrope text-secondary-04">Recipient({{
+                        orderData[cart.id].recipient.length }})</span>
                         <button
-                          class="text-blue-300 border border-blue-300 py-2 w-[170px] rounded"
+                          class="text-blue-300 border border-blue-300 py-2 w-[170px] rounded hover:bg-sky-50"
                           @click="handleForm"
                         >Add Recipient</button>
                     </li>
-                    <li v-if="isFormOpen" class="border-t border-t-gray-07">
+                    <template v-if="isFormOpen">
+
+                    </template>
+                    <li
+                      v-for="(item, idx) in orderData[0].recipient"
+                      :key="idx"
+                      class="border-t border-t-gray-07"
+                    >
                         <form class="bg-white-11 py-4.5 px-5 grid grid-cols-4 gap-x-10 gap-y-6">
-                            <fieldset v-for="recipient in recipientForm" :key="recipient.value" :class="recipient.class" class="grid items-center">
-                                <label class="inline-block text-xs font-medium leading-6 text-slate-01 -tracking-wide">{{ recipient.label }}</label>
-                                <input class="!h-12 !-tracking-wide input" :name="recipient.value" :value="recipientModel[recipient.value]" :class="recipient.contentClass" :placeholder="recipient.placeholder" :type="recipient.type" />
+                            <fieldset
+                              v-for="recipient in recipientForm"
+                              :key="recipient.value"
+                              :class="recipient.class"
+                              class="grid items-center"
+                            >
+                                <label
+                                  class="inline-block text-xs font-medium leading-6 text-slate-01 -tracking-wide">{{
+                        recipient.label }}</label>
+                                <input
+                                  class="!h-12 !-tracking-wide input"
+                                  :name="recipient.value"
+                                  v-model="item[recipient.value]"
+                                  :class="recipient.contentClass"
+                                  :placeholder="recipient.placeholder"
+                                  :type="recipient.type"
+                                />
                             </fieldset>
                             <button
+                              @click="() => handleDelete(idx)"
                               type="button"
-                              class="text-gray-03 justify-self-end bg-white-20 font-medium text-[15px] leading-6 px-6.5 py-2 border rounded-lg border-white-10 col-end-5 w-24"
+                              class="text-gray-03 justify-self-end bg-white-20 font-medium text-[15px] leading-6 px-6.5 py-2 border rounded-lg border-white-10 col-end-5 w-24 hover:bg-secondary-04-light"
                             >Delete</button>
                         </form>
                     </li>
@@ -478,7 +505,7 @@ export default {
                           placeholder="Enter the Promo Code"
                         />
                         <button
-                          class="px-5 !h-12 text-xs font-bold leading-6 text-blue-300 border rounded-lg border-white-03"
+                          class="px-5 !h-12 text-xs font-bold leading-6 text-blue-300 border rounded-lg border-white-03 hover:bg-sky-50"
                         >Apply</button>
                     </div>
                 </label>
@@ -513,7 +540,7 @@ export default {
                 </div>
                 <button
                   @click="handlePayment"
-                  class="w-full h-12 bg-blue-300 rounded-lg text-white-19 font-bold text-[15px] leading-6"
+                  class="w-full h-12 bg-blue-300 rounded-lg text-white-19 font-bold text-[15px] leading-6 hover:bg-blue-400"
                 >Proceed
                     Payment</button>
             </div>
@@ -586,7 +613,7 @@ export default {
                           class="text-[13px] text-[#404040] leading-5 font-medium border-b border-b-white-05 p-4.5"
                         >
                             {{ item.brand }}/{{ item.name }}’s available stock is max <span class="text-[#FF1D2A]">{{
-                        item.available_stock.toLocaleString() }}</span>.<br>
+                                item.available_stock.toLocaleString() }}</span>.<br>
                             Please adjust your order.
                         </li>
                     </ul>
