@@ -38,9 +38,9 @@ export default {
             0: {
                 recipient: [],
                 quantity: 0,
-                isSchedule: true,
-                date: moment().format('YYYY-MM-DD'),
-                time: moment().format('HH:mm:ss'),
+                isSchedule: false,
+                date: '',
+                time: '',
             },
         }
         const initForm = {
@@ -102,16 +102,20 @@ export default {
                 this.alertOpen = false
             }
         },
+        handleScheduleDate(value, id) {
+          this.orderData[id].date = moment(value).format('YYYY-MM-DD')
+        },
+        handleScheduleTime(value, id) {
+          this.orderData[id].time = moment(value).format('hh:mm')
+        },
         handleSchedule(toggleValue, id) {
             this.orderData[id].isSchedule = toggleValue
-            this.orderData[id].date = toggleValue ? moment().format('YYYY-MM-DD') : ''
-            this.orderData[id].time = toggleValue ? moment().format('hh:mm:ss') : ''
-        },
-        handleScheduleDate(event, id) {
-            this.orderData[id].date = moment(event.target.value).format('YYYY-MM-DD')
-        },
-        handleScheduleTime(event, id) {
-            this.orderData[id].time = moment(event.target.value).format('hh:mm:ss')
+            if (!toggleValue) {
+                return
+            }
+            
+            this.handleScheduleDate(new Date(), id)
+            this.handleScheduleTime(new Date(), id)
         },
         handlePayment() {
             const stock = this.singleCartData.filter((cart) => +cart.available_stock >= +this.orderData[cart.id].quantity)
@@ -157,10 +161,10 @@ export default {
         },
         handleDisplayScheduleTime: function () {
             return (id) => {
-                const checkDate = this.orderData[id].date && this.orderData[id].time
+                const checkDate = !!this.orderData[id].date && !!this.orderData[id].time
 
                 if (checkDate) {
-                    const fullDate = `${this.orderData[id].date} ${this.orderData[id].time.split(' ')[0]}`
+                    const fullDate = `${this.orderData[id].date} ${this.orderData[id].time}`
                     return moment(fullDate).format('hh:mm A')
                 }
 
@@ -169,18 +173,27 @@ export default {
         },
         handleDisplayScheduleSending: function () {
             return (id) => {
-                const checkDate = this.orderData[id].date && this.orderData[id].time
+                const checkDate = !!this.orderData[id].date && !!this.orderData[id].time
 
                 if (checkDate) {
-                    const fullDate = `${this.orderData[id].date} ${this.orderData[id].time.split(' ')[0]}`
-                    return moment(fullDate).format('MM.DD.YYYY HH:mm')
+                    const fullDate = `${this.orderData[id].date} ${this.orderData[id].time}`
+                    return moment(fullDate).format('MM.DD.YYYY hh:mm')
                 }
 
                 return ''
             }
         },
         handleUnavailableTime: function () {
-            return (id) => (moment(`${this.orderData[id].date} ${this.orderData[id].time}`, 'YYYYMMDDhhmmss').fromNow()).includes('ago') ? '*It’s a unavailable set time.' : ''
+          return (id) => {
+              const checkDate = !!this.orderData[id].date && !!this.orderData[id].time
+
+              if (checkDate) {
+                const fullDate = `${this.orderData[id].date} ${this.orderData[id].time}`
+                return (moment(fullDate, 'YYYY-MM-DD hh:mm').fromNow()).includes('ago') ? '*It’s a unavailable set time.' : ''
+              }
+              
+              return ''
+            }
         },
         getInsufficientStock: function () {
             return (cart) => +cart.available_stock >= +this.orderData[cart.id].quantity
@@ -369,7 +382,7 @@ export default {
                                 <input
                                   type="date"
                                   :value="orderData[cart.id].date"
-                                  @change="(e) => handleScheduleDate(e, cart.id)"
+                                  @change="(e) => handleScheduleDate(e.target.value, cart.id)"
                                 />
                                 <p class="inline-flex flex-col">
                                     <span class="text-[10px] leading-3 font-medium text-slate-01">Date</span>
@@ -384,7 +397,7 @@ export default {
                                   type="time"
                                   class="absolute top-0 left-0 z-10 w-full h-full p-0 opacity-0"
                                   :value="orderData[cart.id].time"
-                                  @change="(e) => handleScheduleTime(e, cart.id)"
+                                  @change="(e) => handleScheduleTime(e.value, cart.id)"
                                 />
                                 <p class="inline-flex flex-col">
                                     <span class="text-[10px] leading-3 font-medium text-slate-01">Time</span>
