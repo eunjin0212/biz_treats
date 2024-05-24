@@ -21,6 +21,7 @@ import CardWalletSvg from '@/assets/icons/CardWalletSvg.vue';
 import TrashSvg from '@/assets/icons/TrashSvg.vue';
 import CloseSvg from '@/assets/icons/CloseSvg.vue';
 import FileSvg from '@/assets/icons/FileSvg.vue';
+import CartInfoSvg from '@/assets/icons/CartInfoSvg.vue';
 
 export default {
     components: {
@@ -40,6 +41,7 @@ export default {
         TrashSvg,
         CloseSvg,
         FileSvg,
+        CartInfoSvg,
     },
     data() {
         const orderData = {
@@ -86,7 +88,7 @@ export default {
     methods: {
         handleClick() {
             window.location.href = '/login'
-        },        
+        },
         handleCartLocation() {
             window.location.href = '/multiCart'
         },
@@ -293,7 +295,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
+                <button
+                  class="header-btn inline-flex ml-4.5"
+                  @click="() => handleCartLocation()"
+                >
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
                         cartData.length }}</span>
@@ -333,9 +338,12 @@ export default {
     <main class="bg-white-17 flex w-[1240px] mx-auto justify-between gap-3 pt-[46px] pb-[70px]">
         <section class="flex flex-col flex-grow max-w-[876px]">
             <div class="relative section-card !mx-0 !my-0 !px-0">
-                <h2 class="pl-4"><span class="!bg-primary-250"></span>
-                    <div class="text-blue-500">{{ cartData.length }}</div>&nbsp;Items in your cart
+                <h2 class="pl-4 !mb-0"><span class="!bg-primary-250"></span>
+                    <div class="text-blue-500">{{ cartData.length }}</div>&nbsp;Items in your cart<br>
                 </h2>
+                <p class="flex items-center pl-[58px] mb-3 text-secondary-04 text-xs leading-[14px]">
+                    <CartInfoSvg class="mr-0.5" />Cart Validity : 05/24/2024
+                </p>
                 <button
                   class="absolute top-5 right-9 px-5.5 py-2 text-sm font-semibold border rounded border-error text-error hover:bg-red-50"
                 >Delete All</button>
@@ -406,7 +414,7 @@ export default {
                       class="border-b border-b-gray-07 bg-white-11 py-2 px-3.5"
                     >
                         <div class="inline-flex items-center w-full gap-2">
-                            <label class="date-picker no-hover !w-fit !h-11 py-2 px-3 !rounded-md">
+                            <label class="date-picker no-hover !w-40 !h-11 py-2 px-3 !rounded-md">
                                 <CartCalendarSvg class="mr-3" />
                                 <input
                                   type="date"
@@ -419,7 +427,7 @@ export default {
                         handleDisplayScheduleDate(cart.id) }}</span>
                                 </p>
                             </label>
-                            <label class="time-picker no-hover">
+                            <label class="time-picker no-hover !w-40">
                                 <ClockSvg class="mr-3" />
                                 <input
                                   type="time"
@@ -429,17 +437,26 @@ export default {
                                 />
                                 <p class="inline-flex flex-col">
                                     <span class="text-[10px] leading-3 font-medium text-slate-01">Time</span>
-                                    <span class="text-xs font-normal text-black-200 text-nowrap">{{
-                        handleDisplayScheduleTime(cart.id) }}</span>
+                                    <span class="text-xs font-normal text-black-200 text-nowrap">
+                                        {{ handleDisplayScheduleTime(cart.id) }}
+                                    </span>
                                 </p>
                             </label>
-                            <textarea
-                              placeholder="Enter Message"
-                              class="resize-none rounded-md h-11 font-medium text-xs w-full leading-6 border-white-10 px-3.5 py-2.5 focus:border-white-10 focus-visible:border-white-10 focus:ring-0 ring-0 placeholder:text-[#C6C6C6]"
-                            />
                         </div>
-                        <p class="text-[10px] font-normal leading-3 text-red-500 mt-2">{{ handleUnavailableTime(cart.id)
-                            }}</p>
+                        <p
+                          class="text-[10px] font-normal leading-3 text-red-500 mt-2"
+                          v-if="handleUnavailableTime(cart.id)"
+                        >
+                            {{ handleUnavailableTime(cart.id) }}
+                        </p>
+                    </li>
+                    <li class="inline-flex justify-between items-start px-4 py-1.5 border-b border-b-gray-07 w-full">
+                        <span
+                          class="text-sm font-medium font-manrope text-secondary-04 mr-[108px] mt-2.5">Message</span>
+                        <textarea
+                          placeholder="Enter Message"
+                          class="resize-none rounded-md h-[70px] font-medium text-xs w-full leading-6 border-white-10 px-3.5 py-2.5 focus:border-white-10 focus-visible:border-white-10 focus:ring-0 ring-0 placeholder:text-[#C6C6C6]"
+                        />
                     </li>
                     <li class="px-4 py-1.5 w-full text-right">
                         <button
@@ -692,11 +709,14 @@ export default {
                           class="text-[13px] text-[#404040] leading-5 font-medium border-b border-b-white-05 p-4.5"
                         >
                             {{ item.brand }}/{{ item.name }}’s available stock is max <span class="text-[#FF1D2A]">{{
-                                item.available_stock.toLocaleString() }}</span>.<br>
+                        item.available_stock.toLocaleString() }}</span>.<br>
                             Please adjust your order.
                         </li>
                     </ul>
-                    <button @click="() => insufficientStock = []" class="rounded-lg bg-blue-300 w-full py-[15px] text-lg leading-[18px] text-[#FCFCFD] font-bold font-dmsans hover:bg-blue-400">Confirm</button>
+                    <button
+                      @click="() => insufficientStock = []"
+                      class="rounded-lg bg-blue-300 w-full py-[15px] text-lg leading-[18px] text-[#FCFCFD] font-bold font-dmsans hover:bg-blue-400"
+                    >Confirm</button>
                 </div>
             </div>
         </aside>
