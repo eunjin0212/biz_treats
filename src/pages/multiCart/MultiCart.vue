@@ -337,7 +337,7 @@ export default {
                     <div class="text-blue-500">{{ cartData.length }}</div>&nbsp;Items in your cart
                 </h2>
                 <button
-                  class="absolute top-5 right-9 px-5.5 py-2 text-sm font-semibold border rounded border-error text-error"
+                  class="absolute top-5 right-9 px-5.5 py-2 text-sm font-semibold border rounded border-error text-error hover:bg-red-50"
                 >Delete All</button>
                 <hr class="!mx-0 !mt-0 !mb-5 border-white-10" />
                 <ul
@@ -443,7 +443,7 @@ export default {
                     </li>
                     <li class="px-4 py-1.5 w-full text-right">
                         <button
-                          class="text-gray-03 font-medium text-[15px] leading-6 px-6.5 py-2 border rounded-lg border-white-10"
+                          class="text-gray-03 font-medium text-[15px] leading-6 px-6.5 py-2 border rounded-lg border-white-10 hover:bg-secondary-04-light"
                         >Delete</button>
                     </li>
                 </ul>
@@ -508,7 +508,7 @@ export default {
                           placeholder="Enter the Promo Code"
                         />
                         <button
-                          class="px-5 !h-12 text-xs font-bold leading-6 text-blue-300 border rounded-lg border-white-03"
+                          class="px-5 !h-12 text-xs font-bold leading-6 text-blue-300 border rounded-lg border-white-03 hover:bg-sky-50"
                         >Apply</button>
                     </div>
                 </label>
@@ -543,7 +543,7 @@ export default {
                 </div>
                 <button
                   @click="handlePayment"
-                  class="w-full h-12 bg-blue-300 rounded-lg text-white-19 font-bold text-[15px] leading-6"
+                  class="w-full h-12 bg-blue-300 rounded-lg text-white-19 font-bold text-[15px] leading-6 hover:bg-blue-400"
                 >Proceed
                     Payment</button>
             </div>
@@ -662,7 +662,7 @@ export default {
                             <button
                               @click="() => handleModal('')"
                               type="button"
-                              class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-[#9A9FA520] border-white-10"
+                              class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-secondary-04-light border-white-10"
                             >Cancel</button>
                             <button
                               type="submit"
