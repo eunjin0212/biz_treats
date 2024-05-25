@@ -103,17 +103,18 @@ export default {
             }
         },
         handleScheduleDate(value, id) {
-          this.orderData[id].date = moment(value).format('YYYY-MM-DD')
+            this.orderData[id].date = moment(value).format('YYYY-MM-DD')
         },
         handleScheduleTime(value, id) {
-          this.orderData[id].time = moment(value).format('hh:mm')
+            this.orderData[id].time = moment(value, 'HH:mm').format('HH:mm')
         },
         handleSchedule(toggleValue, id) {
             this.orderData[id].isSchedule = toggleValue
             if (!toggleValue) {
                 return
             }
-            
+
+            // toggle initial date
             this.handleScheduleDate(new Date(), id)
             this.handleScheduleTime(new Date(), id)
         },
@@ -131,8 +132,8 @@ export default {
             // submit
         },
         handleForm() {
-          this.isFormOpen = true;
-          this.orderData[0].recipient.push({ ...this.initForm })
+            this.isFormOpen = true;
+            this.orderData[0].recipient.push({ ...this.initForm })
         },
         handleDelete(idx) {
             this.isFormOpen = this.orderData[0].recipient.length
@@ -184,15 +185,15 @@ export default {
             }
         },
         handleUnavailableTime: function () {
-          return (id) => {
-              const checkDate = !!this.orderData[id].date && !!this.orderData[id].time
+            return (id) => {
+                const checkDate = !!this.orderData[id].date && !!this.orderData[id].time
 
-              if (checkDate) {
-                const fullDate = `${this.orderData[id].date} ${this.orderData[id].time}`
-                return (moment(fullDate, 'YYYY-MM-DD hh:mm').fromNow()).includes('ago') ? '*It’s a unavailable set time.' : ''
-              }
-              
-              return ''
+                if (checkDate) {
+                    const fullDate = `${this.orderData[id].date} ${this.orderData[id].time}`
+                    return (moment(fullDate, 'YYYY-MM-DD hh:mm').fromNow()).includes('ago') ? '*It’s a unavailable set time.' : ''
+                }
+
+                return ''
             }
         },
         getInsufficientStock: function () {
@@ -397,7 +398,7 @@ export default {
                                   type="time"
                                   class="absolute top-0 left-0 z-10 w-full h-full p-0 opacity-0"
                                   :value="orderData[cart.id].time"
-                                  @change="(e) => handleScheduleTime(e.value, cart.id)"
+                                  @input="(e) => handleScheduleTime(e.target.value, cart.id)"
                                 />
                                 <p class="inline-flex flex-col">
                                     <span class="text-[10px] leading-3 font-medium text-slate-01">Time</span>
@@ -626,7 +627,7 @@ export default {
                           class="text-[13px] text-[#404040] leading-5 font-medium border-b border-b-white-05 p-4.5"
                         >
                             {{ item.brand }}/{{ item.name }}’s available stock is max <span class="text-[#FF1D2A]">{{
-                                item.available_stock.toLocaleString() }}</span>.<br>
+                        item.available_stock.toLocaleString() }}</span>.<br>
                             Please adjust your order.
                         </li>
                     </ul>

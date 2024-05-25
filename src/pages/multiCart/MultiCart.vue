@@ -114,14 +114,15 @@ export default {
             this.orderData[id].date = moment(value).format('YYYY-MM-DD')
         },
         handleScheduleTime(value, id) {
-            this.orderData[id].time = moment(value).format('hh:mm')
+            this.orderData[id].time = moment(value, 'HH:mm').format('HH:mm')
         },
         handleSchedule(toggleValue, id) {
             this.orderData[id].isSchedule = toggleValue
             if (!toggleValue) {
                 return
             }
-            
+
+            // toggle initial date
             this.handleScheduleDate(new Date(), id)
             this.handleScheduleTime(new Date(), id)
         },
@@ -221,15 +222,15 @@ export default {
             }
         },
         handleUnavailableTime: function () {
-          return (id) => {
-              const checkDate = this.orderData[id].date && this.orderData[id].time
-              
-              if (checkDate) {
-                const fullDate = `${this.orderData[id].date} ${this.orderData[id].time}`
-                return (moment(fullDate, 'YYYY-MM-DD hh:mm').fromNow()).includes('ago') ? '*It’s a unavailable set time.' : ''
-              }
-              
-              return ''
+            return (id) => {
+                const checkDate = this.orderData[id].date && this.orderData[id].time
+
+                if (checkDate) {
+                    const fullDate = `${this.orderData[id].date} ${this.orderData[id].time}`
+                    return (moment(fullDate, 'YYYY-MM-DD hh:mm').fromNow()).includes('ago') ? '*It’s a unavailable set time.' : ''
+                }
+
+                return ''
             }
         },
         getInsufficientStock: function () {
@@ -446,7 +447,7 @@ export default {
                                   type="time"
                                   class="absolute top-0 left-0 z-10 w-full h-full p-0 opacity-0"
                                   :value="orderData[cart.id].time"
-                                  @change="(e) => handleScheduleTime(e.value, cart.id)"
+                                  @input="(e) => handleScheduleTime(e.target.value, cart.id)"
                                 />
                                 <p class="inline-flex flex-col">
                                     <span class="text-[10px] leading-3 font-medium text-slate-01">Time</span>
