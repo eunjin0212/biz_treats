@@ -365,14 +365,14 @@ export default {
                 <ul
                   v-for="cart in cartData"
                   :key="cart.id"
-                  class="mb-6 overflow-hidden border rounded-md mx-7 border-gray-07"
+                  class="mb-6 overflow-hidden border rounded-md mx-7 border-gray-09"
                 >
-                    <li class="px-4 py-3.5 border-b border-b-gray-07">
+                    <li class="px-4 py-3.5 border-b border-b-gray-09">
                         <div class="px-4 py-2 rounded-lg bg-white-18 inline-flex gap-3.5 w-full">
                             <img
                               :src="cart.product_img"
                               :alt="cart.name"
-                              class="w-20 h-20 border border-gray-09"
+                              class="w-20 h-20 border border-gray-10"
                             />
                             <ul class="inline-flex flex-col w-full gap-1">
                                 <li class="font-medium text-[13px] leading-4 text-black-100">{{ cart.brand }}</li>
@@ -399,7 +399,7 @@ export default {
                             </ul>
                         </div>
                     </li>
-                    <li class="inline-flex justify-between items-center px-4 py-1.5 border-b border-b-gray-07 w-full">
+                    <li class="inline-flex justify-between items-center px-4 py-1.5 border-b border-b-gray-09 w-full">
                         <span class="text-sm font-medium font-manrope text-secondary-04">Recipient Upload</span>
                         <label class="file-picker w-[358px] no-hover">
                             <span class="placeholder">{{ fileName[cart.id] || 'Choose a excel file' }}</span>
@@ -412,7 +412,7 @@ export default {
                             </button>
                         </label>
                     </li>
-                    <li class="inline-flex justify-between items-center px-4 py-1.5 border-b border-b-gray-07 w-full">
+                    <li class="inline-flex justify-between items-center px-4 py-1.5 border-b border-b-gray-09 w-full">
                         <span class="text-sm font-medium font-manrope text-secondary-04">Schedule Sending</span>
                         <label class="toggle">
                             <input
@@ -425,7 +425,7 @@ export default {
                     </li>
                     <li
                       v-if="orderData[cart.id].isSchedule"
-                      class="border-b border-b-gray-07 bg-white-11 py-2 px-3.5"
+                      class="border-b border-b-gray-09 bg-white-11 py-2 px-3.5"
                     >
                         <div class="inline-flex items-center w-full gap-2">
                             <label class="date-picker no-hover !w-40 !h-11 py-2 px-3 !rounded-md">
@@ -464,7 +464,7 @@ export default {
                             {{ handleUnavailableTime(cart.id) }}
                         </p>
                     </li>
-                    <li class="inline-flex justify-between items-start px-4 py-1.5 border-b border-b-gray-07 w-full">
+                    <li class="inline-flex justify-between items-start px-4 py-1.5 border-b border-b-gray-09 w-full">
                         <span
                           class="text-sm font-medium font-manrope text-secondary-04 mr-[108px] mt-2.5">Message</span>
                         <textarea
@@ -529,7 +529,7 @@ export default {
                       class="mt-2 text-sm font-medium text-red-800"
                     >Insufficient Stock</li>
                 </ul>
-                <hr class="border-gray-07 !mx-0 !mt-4 !mb-3.5" />
+                <hr class="border-gray-09 !mx-0 !mt-4 !mb-3.5" />
                 <label class="input !gap-0">
                     <span>Promo Code</span>
                     <div class="inline-flex w-full gap-2">
@@ -543,7 +543,7 @@ export default {
                         >Apply</button>
                     </div>
                 </label>
-                <hr class="border-gray-07 !mx-0 !mt-7 !mb-3.5" />
+                <hr class="border-gray-09 !mx-0 !mt-7 !mb-3.5" />
                 <p class="flex items-center justify-between">
                     <span class="text-xs font-normal leading-6 text-slate-01">Subtotal</span>
                     <span class="text-base font-semibold text-black-200">25,600P</span>
@@ -552,7 +552,7 @@ export default {
                     <span class="text-xs font-normal leading-6 text-slate-01">Discount</span>
                     <span class="text-base font-semibold text-[#FF0F1D]">-600P</span>
                 </p>
-                <hr class="border-gray-07 !mx-0 !my-4" />
+                <hr class="border-gray-09 !mx-0 !my-4" />
                 <p class="flex items-center justify-between mb-14">
                     <strong class="text-2xl font-semibold leading-6 text-slate-01">
                         Total
