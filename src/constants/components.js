@@ -178,3 +178,26 @@ export const myPageLnbMenu = [
         ],
     },
 ]
+
+export const mainMenu = [
+    {
+        title: 'Home',
+        path: '/home'
+    },
+    {
+        title: 'Budget',
+        path: '/budget'
+    },
+    {
+        title: 'Brand',
+        path: '/brand'
+    },
+    {
+        title: 'Hybrid',
+        path: '/hybrid'
+    },
+    {
+        title: 'Display1',
+        path: '/display1'
+    },
+]
