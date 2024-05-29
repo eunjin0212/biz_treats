@@ -1010,3 +1010,17 @@ body {
         @apply translate-x-6
     }
 }
+
+@layer components {
+    .main-section {
+        @apply w-full min-w-[1440px]
+    }
+
+    .main-section__wrapper {
+        @apply w-[1440px] mx-auto
+    }
+
+    h1.main-section__title {
+        @apply text-[theme(colors.black.0)] font-semibold text-4xl leading-7 font-[theme(fontFamily.poppins)]
+    }
+}

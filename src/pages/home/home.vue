@@ -16,6 +16,9 @@ import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import SliderLeftSvg from '@/assets/icons/SliderLeftSvg.vue';
 import SliderRightSvg from '@/assets/icons/SliderRightSvg.vue';
+import FireSvg from '@/assets/icons/FireSvg.vue';
+import TrophySvg from '@/assets/icons/TrophySvg.vue';
+import CoinSvg from '@/assets/icons/CoinSvg.vue';
 
 export default {
     components: {
@@ -31,6 +34,9 @@ export default {
         ReadSvg,
         SliderLeftSvg,
         SliderRightSvg,
+        FireSvg,
+        TrophySvg,
+        CoinSvg,
     },
     data() {
         return {
@@ -304,8 +310,8 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
-        <section class="w-full main-section bg-white-17 h-96 min-w-[1440px] pt-7">
-            <aside class="main-banner slider relative w-full h-[396px] overflow-hidden">
+        <section class="main-section main-section bg-white-17 h-[430px] pt-7">
+            <aside class="relative w-full h-full overflow-hidden main-banner slider">
                 <ul
                   class="flex h-[327px] w-full select-none keen-slider"
                   ref="slider"
@@ -317,7 +323,7 @@ export default {
                       :key="banner"
                     >
                         <div
-                            v-if="current !== idx + 1"
+                          v-if="current !== idx + 1"
                           class="bg-black-0/50 w-full h-[327px] absolute rounded-2xl transition-opacity ease-linear delay-200"
                         ></div>
                         <img
@@ -336,7 +342,8 @@ export default {
                     >
                         <SliderLeftSvg />
                     </span>
-                    <span class="text-[#5F5F5F] text-xl leading-7 font-medium select-none ml-4">{{ currentSlider }}</span>
+                    <span class="text-[#5F5F5F] text-xl leading-7 font-medium select-none ml-4">{{ currentSlider
+                        }}</span>
                     <span class="text-[#C8CAD2] text-xl leading-7 font-medium select-none mx-1.5">/</span>
                     <span class="text-[#C8CAD2] text-xl leading-7 font-medium select-none mr-4">{{ totalSlider }}</span>
                     <span
@@ -349,11 +356,79 @@ export default {
                 </div>
             </aside>
         </section>
-        <section class="w-full keyword-section bg-white-17 h-96 min-w-[1440px]">
+        <section class="pt-24 main-section keyword-section bg-white-17 h-96">
+            <div class="main-section__wrapper">
+                <div class="flex justify-between">
+                    <h1 class="main-section__title">
+                        <p class="flex items-center mb-2 h-fit">
+                            HOT
+                            <FireSvg />
+                        </p>
+                        KEYWORD
+                    </h1>
+                    <ul>
+                        <li>#Chicken</li>
+                        <li>#Coffee</li>
+                        <li>#eGift</li>
+                        <li>#Dessert</li>
+                        <li>#Burger</li>
+                    </ul>
+                </div>
+            </div>
         </section>
-        <section class="w-full best-brands-section bg-white-20 h-96 min-w-[1440px]">
+        <section class="main-section best-brands-section bg-white-20 h-96">
+            <div class="main-section__wrapper">
+                <h1 class="main-section__title">
+                    <p class="flex items-center gap-2 h-fit">
+                        BEST BRANDS
+                        <TrophySvg />
+                    </p>
+                </h1>
+                <ul>
+                    <li>Best-Brands</li>
+                    <li>eWallet & Shopping</li>
+                    <li>Grocery & Essentials</li>
+                    <li>Fast Food</li>
+                    <li>Casual Resto</li>
+                    <li>Bread & Dessert</li>
+                    <li>Drugstore & Wellness</li>
+                    <li>Best-Brands</li>
+                    <li>eWallet & Shopping</li>
+                    <li>Grocery & Essentials</li>
+                    <li>Fast Food</li>
+                    <li>Casual Resto</li>
+                    <li>Bread & Dessert</li>
+                    <li>Drugstore & Wellness</li>
+                    <li>Beauty & Lifestyle</li>
+                    <li>Transpo & Travel</li>
+                    <li>Digital & Appliance</li>
+                    <li>Home & Kids</li>
+                    <li>Beauty & Lifestyle</li>
+                    <li>Transpo & Travel</li>
+                    <li>Digital & Appliance</li>
+                    <li>Home & Kids</li>
+                </ul>
+            </div>
         </section>
-        <section class="w-full recommend-section bg-white-17 h-96 min-w-[1440px]">
+        <section class="main-section recommend-section bg-white-17 h-96">
+            <div class="main-section__wrapper">
+                <div class="flex justify-between">
+                    <h1 class="main-section__title">
+                        <p class="flex items-center mb-2 h-fit">
+                            BY BUDGET
+                            <CoinSvg />
+                        </p>
+                        RECOMMEND
+                    </h1>
+                    <ul class="main-section__filter">
+                        <li>Below P50</li>
+                        <li>P51~P100</li>
+                        <li>P101~P300</li>
+                        <li>P301~P500</li>
+                        <li>P501 and UP</li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="service-footer">
