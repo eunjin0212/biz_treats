@@ -359,7 +359,7 @@ export default {
                         <small class="text-xs font-normal leading-5 text-slate-01">{{ item.description }}</small>
                         <span
                           v-if="item?.caution"
-                          class="text-xs font-normal leading-5 text-red-600"
+                          class="text-xs font-normal text-red-600 leading-5"
                         >{{ item.caution }}</span>
                     </div>
                 </div>
@@ -511,7 +511,7 @@ export default {
                     </h2>
                     <hr class="border-white-10 !m-0" />
                     <form
-                      class="flex flex-col gap-5 pt-8 pb-3 font-inter"
+                      class="flex flex-col pt-8 pb-3 gap-5 font-inter"
                       @submit="handleRequest"
                     >
                         <fieldset
@@ -559,7 +559,7 @@ export default {
                             </label>
                         </fieldset>
                         <div class="bg-[#EF466F14] mx-4.5 px-5 py-3.5 rounded-lg">
-                            <p class="inline-flex items-center gap-2 mb-3 text-sm font-medium leading-4 text-red-700">
+                            <p class="inline-flex items-center mb-3 text-sm font-medium text-red-700 gap-2 leading-4">
                                 <CautionSvg />
                                 After delegation, the request cannot be undone.
                             </p>
@@ -582,7 +582,7 @@ export default {
                             </label>
                         </div>
                         <hr class="border-white-10" />
-                        <div class="flex items-center justify-end gap-2 pr-6 -mt-1">
+                        <div class="flex items-center justify-end pr-6 -mt-1 gap-2">
                             <button
                               @click="() => handleModal(false)"
                               type="button"

@@ -377,7 +377,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
+                          class="flex items-center p-1 text-xs font-bold rounded gap-1 leading-4 bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -389,7 +389,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 text-red-200 rounded bg-white-19 w-fit -tracking-wide"
+                          class="flex items-center p-1 text-xs font-bold text-red-200 rounded gap-1 leading-4 bg-white-19 w-fit -tracking-wide"
                         >
                             <DownSvg /> 37.8%
                         </span>
@@ -401,7 +401,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
+                          class="flex items-center p-1 text-xs font-bold rounded gap-1 leading-4 bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -547,7 +547,7 @@ export default {
                     </h2>
                     <hr class="border-white-10 !m-0" />
                     <form
-                      class="flex flex-col gap-5 pt-8 pb-3 font-inter"
+                      class="flex flex-col pt-8 pb-3 gap-5 font-inter"
                       @submit="handleExtract"
                     >
                         <fieldset
@@ -633,7 +633,7 @@ export default {
                             </div>
                         </fieldset>
                         <hr class="border-white-10" />
-                        <div class="flex items-center justify-end gap-2 pr-6 -mt-1">
+                        <div class="flex items-center justify-end pr-6 -mt-1 gap-2">
                             <button
                               @click="() => handleModal(false)"
                               type="button"

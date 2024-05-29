@@ -255,7 +255,7 @@ export default {
                         <span class="text-black-400">{{ data.title }}</span> :
                         <span class="text-[#1211278F]">{{ data.content }}</span>
                     </p>
-                    <h3 class="flex items-center mt-8 mb-5 text-sm font-semibold leading-6 tracking-wider text-main">
+                    <h3 class="flex items-center mt-8 mb-5 text-sm font-semibold tracking-wider leading-6 text-main">
                         NOTICE
                         <hr class="flex-1 ml-3.5 border-t-[#1211271F]" />
                     </h3>

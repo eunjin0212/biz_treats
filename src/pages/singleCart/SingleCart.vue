@@ -343,10 +343,10 @@ export default {
                                     <div class="text-xs leading-3.5 text-blue-300 font-normal">Recipient/Quantity</div>
                                 </li>
                                 <li class="!inline-flex items-center justify-between">
-                                    <div class="text-base font-bold leading-5 text-blue-300">
+                                    <div class="text-base font-bold text-blue-300 leading-5">
                                         {{ cart.point.toLocaleString() }}p
                                     </div>
-                                    <i class="text-xl font-bold leading-6 text-blue-600">
+                                    <i class="text-xl font-bold text-blue-600 leading-6">
                                         {{ orderData[cart.id]?.recipient || orderData[cart.id]?.quantity ?
                         `${orderData[cart.id]?.recipient.length}/${orderData[cart.id]?.quantity}` : '-'
                                         }}
@@ -436,7 +436,7 @@ export default {
                               v-for="recipient in recipientForm"
                               :key="recipient.value"
                               :class="recipient.class"
-                              class="grid items-center"
+                              class="items-center grid"
                             >
                                 <label
                                   class="inline-block text-xs font-medium leading-6 text-slate-01 -tracking-wide">{{
@@ -537,7 +537,7 @@ export default {
                     <strong class="text-2xl font-semibold leading-6 text-slate-01">
                         Total
                     </strong>
-                    <strong class="text-2xl font-semibold leading-6 text-blue-300">
+                    <strong class="text-2xl font-semibold text-blue-300 leading-6">
                         25,000P
                     </strong>
                 </p>
@@ -548,7 +548,7 @@ export default {
                         </span>
                         <strong class="text-red-700 font-bold text-[13px] leading-[18px]">Teddy Bear</strong>
                     </p>
-                    <i class="text-lg font-medium leading-6 text-blue-300">
+                    <i class="text-lg font-medium text-blue-300 leading-6">
                         152,200P
                     </i>
                 </div>
@@ -617,7 +617,7 @@ export default {
         <aside class="modal__wrapper inline-flex justify-center items-center !p-0">
             <div class="rounded-2xl w-[486px] h-[522px] mx-auto flex flex-col items-center">
                 <div class="section-card !m-0 !pt-6 !pb-4 !px-4.5 text-center">
-                    <h3 class="mb-2 text-2xl font-bold leading-10 text-blue-300">Insufficient Stock</h3>
+                    <h3 class="mb-2 text-2xl font-bold text-blue-300 leading-10">Insufficient Stock</h3>
                     <p class="text-slate-02 text-[15px] leading-6 font-medium mb-5">Sorry, We’ll have it in stock soon.
                     </p>
                     <ul class="h-80 mb-2.5 overflow-y-scroll border border-white-10 rounded-md">

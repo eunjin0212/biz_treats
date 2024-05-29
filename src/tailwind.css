@@ -183,6 +183,7 @@ body {
     label.select select {
         @apply appearance-none bg-no-repeat bg-[right_9px_center] bg-[url('@/assets/icons/select_arrow.svg')]
     }
+
     select.select {
         @apply border border-[theme(colors.white.01)] focus:border-[theme(colors.white.01)] focus-visible:border-[theme(colors.white.01)] focus:ring-0 ring-0 placeholder:text-[theme(colors.gray.01)] rounded-lg px-4 font-normal tracking-[0.5px] text-xs leading-[26px]
     }
@@ -259,23 +260,26 @@ body {
 /* main menu */
 @layer components {
     nav.main-menu {
-      @apply bg-[theme(colors.white.20)] w-full border-b border-b-[theme(color.gray.07)]
+        @apply bg-[theme(colors.white.20)] w-full border-b border-b-[theme(color.gray.07)]
     }
+
     nav.main-menu div {
         @apply w-[1228px] mx-auto flex h-16 items-center gap-[73px]
     }
+
     nav.main-menu div a {
-      @apply text-xl leading-4 -tracking-wide font-semibold text-[#999999]
+        @apply text-xl leading-5 -tracking-wide font-semibold text-[#999999] hover:text-[theme(colors.blue.300)]
     }
+
     nav.main-menu div .active-main-menu {
-      @apply border-b-2 border-b-[theme(colors.blue.300)] text-[theme(colors.blue.300)] relative before:content-['•'] before:absolute before:-top-2 before:-right-2
+        @apply border-b-2 border-b-[theme(colors.blue.300)] text-[theme(colors.blue.300)] relative before:content-['•'] before:absolute before:-top-2 before:-right-2
     }
-  }
+}
 
 /* service footer */
 @layer components {
     footer.service-footer {
-        @apply relative bottom-0 left-0 bg-[theme(colors.white.20)] w-full border-t border-t-[theme(colors.white.05)]
+        @apply relative bottom-0 left-0 bg-[theme(colors.white.20)] w-full min-w-[1440px] border-t border-t-[theme(colors.white.05)]
     }
 
     footer.service-footer>div {
@@ -607,9 +611,11 @@ body {
     label.date-picker {
         @apply flex items-center justify-center gap-1 relative border border-[theme(colors.white.07)] w-[114px] h-10 bg-[theme(colors.white.20)] rounded text-sm leading-5 font-medium text-[theme(colors.gray.04)] font-[theme(fontFamily.manrope)]
     }
+
     label.date-picker:not(.no-hover) {
         @apply hover:border-[theme(colors.main)] focus-within:border-[theme(colors.main)]
     }
+
     label.date-picker input {
         @apply p-0 opacity-0 absolute top-0 left-0 z-10 w-full h-full
     }
@@ -626,11 +632,13 @@ body {
 /* time-picker */
 @layer components {
     label.time-picker {
-        @apply relative inline-flex items-center p-3 border rounded-md  w-fit h-11 bg-[theme(colors.white.20)] border-[theme(colors.white.10)]
+        @apply relative inline-flex items-center p-3 border rounded-md w-fit h-11 bg-[theme(colors.white.20)] border-[theme(colors.white.10)]
     }
+
     label.time-picker:not(.no-hover) {
         @apply hover:border-[theme(colors.blue.300)] focus-within:border-[theme(colors.blue.300)]
     }
+
     label.time-picker input {
         @apply p-0 opacity-0 absolute top-0 left-0 z-10 w-full h-full
     }
@@ -645,15 +653,19 @@ body {
     label.file-picker {
         @apply inline-flex items-center justify-between py-[theme(spacing[1.5])] pl-[theme(spacing[2.5])] pr-[theme(spacing[1.5])] border rounded-md h-12 bg-[theme(colors.white.20)] border-[theme(colors.white.10)]
     }
+
     label.file-picker:not(.no-hover) {
         @apply hover:border-[theme(colors.blue.300)] focus-within:border-[theme(colors.blue.300)]
     }
+
     label.file-picker input {
         @apply p-0 opacity-0 absolute top-0 left-0 z-10 w-full h-full
     }
+
     label.file-picker .placeholder {
         @apply font-semibold font-[theme(fontFamily.manrope)] text-xs leading-5 text-[theme(colors.secondary.04)]
     }
+
     label.file-picker button {
         @apply h-9 relative rounded text-xs leading-5 font-semibold font-[theme(fontFamily.manrope)]
     }
@@ -938,29 +950,40 @@ body {
     .tooltip__trigger {
         @apply relative
     }
+
     .tooltip__trigger .tooltip__wrapper {
         @apply !hidden absolute bg-[#000000B2] px-4 py-[theme(spacing[2.5])] rounded-lg min-w-80
     }
+
     .tooltip__trigger:hover .tooltip__wrapper {
         @apply !block
     }
+
     .tooltip__trigger:hover .tooltip__wrapper.right {
-        @apply -right-2 text-left /* 포인트 위치에 따라 변경 */
+        @apply -right-2 text-left
+        /* 포인트 위치에 따라 변경 */
     }
+
     .tooltip__trigger:hover .tooltip__wrapper.top {
         @apply -top-11
     }
+
     .tooltip__trigger .tooltip__wrapper .tooltip__text {
         @apply text-[theme(colors.white.20)] text-xs leading-[theme(spacing[3.5])] font-medium
     }
+
     .tooltip__trigger .tooltip__wrapper .tooltip__arrow {
         @apply bg-transparent border w-0 h-0 border-transparent
     }
+
     .tooltip__trigger .tooltip__wrapper.top .tooltip__arrow {
-        @apply border-t-4 border-l-4 border-r-4 border-b-0 absolute -bottom-1 border-t-[#000000B2] /* 포인트 위치에 따라 변경 */
+        @apply border-t-4 border-l-4 border-r-4 border-b-0 absolute -bottom-1 border-t-[#000000B2]
+        /* 포인트 위치에 따라 변경 */
     }
+
     .tooltip__trigger .tooltip__wrapper.right .tooltip__arrow {
-        @apply right-3 /* 포인트 위치에 따라 변경 */
+        @apply right-3
+        /* 포인트 위치에 따라 변경 */
     }
 }
 
@@ -969,17 +992,21 @@ body {
     label.toggle {
         @apply relative inline-block w-12 h-6
     }
+
     label.toggle input[type="checkbox"] {
         @apply hidden
     }
+
     label.toggle .slider {
         @apply rounded-full absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-[theme(colors.gray.08)] duration-[.4s] before:absolute before:left-[2px] before:bottom-[2px] before:bg-white-20 before:w-5 before:h-5 before:duration-[.4s] before:content-[''] before:rounded-full;
         box-shadow: 0px -1px 1px 0px #0000001A inset;
     }
-    label.toggle input[type="checkbox"]:checked + .slider {
-        @apply bg-[theme(colors.blue.300)] 
+
+    label.toggle input[type="checkbox"]:checked+.slider {
+        @apply bg-[theme(colors.blue.300)]
     }
-    label.toggle input[type="checkbox"]:checked + .slider::before {
+
+    label.toggle input[type="checkbox"]:checked+.slider::before {
         @apply translate-x-6
     }
 }

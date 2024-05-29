@@ -264,7 +264,7 @@ export default {
                               class="inline-block w-9 h-9 border-2 rounded-md border-[#D7D7D7]"
                             ></span>
                             <label
-                              class="relative h-12 px-5 py-3 text-xs font-bold leading-6 text-blue-300 border cursor-pointer w-fit rounded-xl border-white-02 hover:bg-white-02-light"
+                              class="relative h-12 px-5 py-3 text-xs font-bold text-blue-300 border cursor-pointer leading-6 w-fit rounded-xl border-white-02 hover:bg-white-02-light"
                             >
                                 <input
                                   type="color"
@@ -321,7 +321,7 @@ export default {
                     </fieldset>
                 </form>
                 <hr class="!mx-0 !mb-0" />
-                <div class="flex items-center justify-end gap-2 pt-3 pr-6">
+                <div class="flex items-center justify-end pt-3 pr-6 gap-2">
                     <button
                       class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-secondary-04-light border-white-10"
                     >Cancel</button>

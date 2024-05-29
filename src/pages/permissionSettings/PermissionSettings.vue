@@ -337,7 +337,7 @@ export default {
                               class="border-b border-b-white-10 flex items-center w-full px-6 py-[22px]"
                             >
                                 <label class="inline-block w-48 mr-10 text-sm font-semibold min-w-48 font-manrope text-slate-01">{{ permission.label }}</label>
-                                <div class="grid w-full grid-cols-2">
+                                <div class="w-full grid grid-cols-2">
                                     <label
                                       v-for="opt in permission.options"
                                       :key="opt.label"
