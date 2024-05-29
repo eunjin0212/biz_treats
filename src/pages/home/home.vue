@@ -1,4 +1,6 @@
 <script>
+import "keen-slider/keen-slider.min.css";
+import KeenSlider from "keen-slider";
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart';
 import { alertData } from '@/mock/alertData.js'
@@ -12,6 +14,8 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
+import SliderLeftSvg from '@/assets/icons/SliderLeftSvg.vue';
+import SliderRightSvg from '@/assets/icons/SliderRightSvg.vue';
 
 export default {
     components: {
@@ -25,6 +29,8 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
+        SliderLeftSvg,
+        SliderRightSvg,
     },
     data() {
         return {
@@ -63,6 +69,18 @@ export default {
                     title: 'Refund',
                     content: ['Refund will be made approximately within 10 business days depending on the payment issuer’s process once <br> the refund is confirmed by our CS.'],
                 },
+            ],
+            current: 1,
+            slider: null,
+            slides: [
+                '/path/to/your-image1.jpg',
+                '/path/to/your-image2.jpg',
+                '/path/to/your-image3.jpg',
+                '/path/to/your-image4.jpg',
+                '/path/to/your-image5.jpg',
+                '/path/to/your-image6.jpg',
+                '/path/to/your-image7.jpg',
+                // Add more image paths as needed
             ],
         }
     },
@@ -111,8 +129,58 @@ export default {
     computed: {
         matchPath: () => {
             return (path) => path === window.location.pathname
-        }
+        },
+        totalSlider() {
+            const total = this.slider ? [...Array(this.slider.track.details.slides.length).keys()] : []
+            return `${total.length < 10 ? '0' : ''}${total.length}`
+        },
+        currentSlider() {
+            return `${this.current < 10 ? '0' : ''}${this.current}`
+        },
     },
+    mounted() {
+        // https://keen-slider.io/
+        this.slider = new KeenSlider(this.$refs.slider, {
+            loop: true,
+            drag: false,
+            slides: { origin: "center", perView: 'auto', spacing: 30 },
+            slideChanged: (s) => {
+                this.current = s.track.details.rel + 1
+            },
+        }, [
+            (slider) => {
+                let timeout
+                let mouseOver = false
+                function clearNextTimeout() {
+                    clearTimeout(timeout)
+                }
+                function nextTimeout() {
+                    clearTimeout(timeout)
+                    if (mouseOver) return
+                    timeout = setTimeout(() => {
+                        slider.next()
+                    }, 5000)
+                }
+                slider.on("created", () => {
+                    slider.container.addEventListener("mouseover", () => {
+                        mouseOver = true
+                        clearNextTimeout()
+                    })
+                    slider.container.addEventListener("mouseout", () => {
+                        mouseOver = false
+                        nextTimeout()
+                    })
+                    nextTimeout()
+                })
+                slider.on("dragStarted", clearNextTimeout)
+                slider.on("animationEnded", nextTimeout)
+                slider.on("updated", nextTimeout)
+            },
+        ]);
+    },
+    beforeUnmount() {
+        if (this.slider) this.slider.destroy();
+    }
 }
 </script>
 <template>
@@ -225,17 +293,68 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="flex w-full mx-auto bg-white-17">
-        <nav class="main-menu">
+    <main class="flex flex-col w-full mx-auto">
+        <nav class="w-full main-menu min-w-[1440px]">
             <div>
-              <a
-              :class="{'active-main-menu': matchPath(menu.path)}"
-              v-for="menu in mainMenu"
-              :key="menu.title"
-              :href="menu.path"
-              >{{ menu.title }}</a>
+                <a
+                  :class="{ 'active-main-menu': matchPath(menu.path) }"
+                  v-for="menu in mainMenu"
+                  :key="menu.title"
+                  :href="menu.path"
+                >{{ menu.title }}</a>
             </div>
         </nav>
+        <section class="w-full main-section bg-white-17 h-96 min-w-[1440px] pt-7">
+            <aside class="main-banner slider relative w-full h-[396px] overflow-hidden">
+                <ul
+                  class="flex h-[327px] w-full select-none keen-slider"
+                  ref="slider"
+                >
+                    <li
+                      class="w-[812px] max-w-[812px] min-w-[812px] min-h-full keen-slider__slide"
+                      :class="`number-slide${idx + 1}`"
+                      v-for="(banner, idx) in slides"
+                      :key="banner"
+                    >
+                        <div
+                            v-if="current !== idx + 1"
+                          class="bg-black-0/50 w-full h-[327px] absolute rounded-2xl transition-opacity ease-linear delay-200"
+                        ></div>
+                        <img
+                          :src="banner"
+                          :alt="banner"
+                          height="327"
+                          class="rounded-2xl"
+                        />
+                    </li>
+                </ul>
+                <div class="flex items-center justify-center w-48 pt-4 mx-auto">
+                    <span
+                      class="p-[11px] rounded-full bg-white-20 shadow-[0_4px_8px_0_#00000015] cursor-pointer"
+                      v-if="slider"
+                      @click="slider.prev()"
+                    >
+                        <SliderLeftSvg />
+                    </span>
+                    <span class="text-[#5F5F5F] text-xl leading-7 font-medium select-none ml-4">{{ currentSlider }}</span>
+                    <span class="text-[#C8CAD2] text-xl leading-7 font-medium select-none mx-1.5">/</span>
+                    <span class="text-[#C8CAD2] text-xl leading-7 font-medium select-none mr-4">{{ totalSlider }}</span>
+                    <span
+                      class="p-[11px] rounded-full bg-white-20 shadow-[0_4px_8px_0_#00000015] cursor-pointer"
+                      v-if="slider"
+                      @click="slider.next()"
+                    >
+                        <SliderRightSvg />
+                    </span>
+                </div>
+            </aside>
+        </section>
+        <section class="w-full keyword-section bg-white-17 h-96 min-w-[1440px]">
+        </section>
+        <section class="w-full best-brands-section bg-white-20 h-96 min-w-[1440px]">
+        </section>
+        <section class="w-full recommend-section bg-white-17 h-96 min-w-[1440px]">
+        </section>
     </main>
     <footer class="service-footer">
         <div>
