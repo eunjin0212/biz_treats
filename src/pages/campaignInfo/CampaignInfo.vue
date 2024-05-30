@@ -300,10 +300,10 @@ export default {
                                     Upload
                                 </label>
                                 <p class="inline-flex flex-col">
-                                    <span class="text-xs leading-3.5 font-medium text-stone-05">
+                                    <span class="text-xs leading-3.5 font-medium text-zinc-04">
                                         Click to upload
                                     </span>
-                                    <span class="text-xs leading-3.5 font-normal text-stone-05">
+                                    <span class="text-xs leading-3.5 font-normal text-zinc-04">
                                         PNG, JPG(max 5MB)
                                     </span>
                                 </p>
