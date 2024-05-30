@@ -83,7 +83,7 @@ export default {
             statusStyle: {
                 Request: 'bg-blue-03 w-16',
                 Complete: 'bg-green-02 w-16',
-                InProgress: 'bg-purple-01 w-20',
+                InProgress: 'bg-purple-02 w-20',
             },
             moment,
             typeOptions: ['Deduct', 'Topup',],

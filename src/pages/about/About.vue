@@ -225,7 +225,7 @@ export default {
             <div class="section-card">
                 <h1>Company Information</h1>
                 <hr />
-                <h2 class="!mb-4.5"><span class="!bg-orange-01"></span>Overview</h2>
+                <h2 class="!mb-4.5"><span class="!bg-orange-02"></span>Overview</h2>
                 <div
                   class="py-4.5 px-4 mb-6 ml-3 bg-white-18 rounded text-sm font-normal tracking-normal leading-6 text-[#33383F]"
                 >

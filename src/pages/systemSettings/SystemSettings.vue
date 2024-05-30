@@ -500,7 +500,7 @@ export default {
                 <div class="section-card !px-0 !m-0 h-full">
                     <h2 class="!mb-5 mt-1.5 px-3 justify-between">
                         <div class="inline-flex items-center">
-                            <span class="!bg-orange-01 ml-0.5"></span>Request Delegation
+                            <span class="!bg-orange-02 ml-0.5"></span>Request Delegation
                         </div>
                         <button
                           @click="() => handleModal(false)"

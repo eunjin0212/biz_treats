@@ -48,7 +48,7 @@ export default {
             alertData,
             users,
             userList: [],
-            profileColors: ['!bg-green-03', '!bg-orange-01', '!bg-blue-02'],
+            profileColors: ['!bg-green-03', '!bg-orange-02', '!bg-blue-02'],
             permissionList: [
                 {
                     label: 'Campaign Info',

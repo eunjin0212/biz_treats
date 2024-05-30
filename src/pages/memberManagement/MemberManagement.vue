@@ -79,7 +79,7 @@ export default {
             pagination,
             filters: { ...initFilters },
             statusClass: {
-                resigned: 'bg-purple-01',
+                resigned: 'bg-purple-02',
                 invited: 'bg-green-02',
                 canceled: 'bg-red-04',
                 active: 'bg-blue-03',
@@ -564,7 +564,7 @@ export default {
                 <div class="section-card !px-0 !m-0">
                     <h2 class="!mb-5 mt-1.5 px-3 justify-between">
                         <div class="inline-flex items-center">
-                            <span class="!bg-orange-01 ml-0.5"></span>Member Invite
+                            <span class="!bg-orange-02 ml-0.5"></span>Member Invite
                         </div>
                         <button
                           @click="() => handleModal(false)"
