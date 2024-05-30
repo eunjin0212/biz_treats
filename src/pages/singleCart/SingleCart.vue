@@ -490,7 +490,7 @@ export default {
                             }}P
                         </span>
                     </li>
-                    <li class="mb-2 text-sm font-normal leading-4 text-stone-05">{{ cart.name }}</li>
+                    <li class="mb-2 text-sm font-normal leading-4 text-zinc-04">{{ cart.name }}</li>
                     <li
                       v-if="cart.quantity"
                       class="bg-[#F2F2F2] rounded-md px-2 text-[13px] leading-6 font-semibold text-blue-10 w-fit"

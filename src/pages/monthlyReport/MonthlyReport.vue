@@ -595,12 +595,12 @@ export default {
                                       type="checkbox"
                                       :name="opt"
                                     />
-                                    <p class="font-medium text-[13px] text-stone-05 ml-2">
+                                    <p class="font-medium text-[13px] text-zinc-04 ml-2">
                                         All
                                     </p>
                                 </label>
                                 <ul
-                                  class="mt-2.5 overflow-y-scroll border rounded-md h-52 border-white-10 font-medium text-[13px] text-stone-05"
+                                  class="mt-2.5 overflow-y-scroll border rounded-md h-52 border-white-10 font-medium text-[13px] text-zinc-04"
                                 >
                                     <li
                                       class="py-3 px-4.5 border-b border-b-white-10"
