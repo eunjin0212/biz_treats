@@ -3,6 +3,7 @@ import "keen-slider/keen-slider.min.css";
 import KeenSlider from "keen-slider";
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart';
+import { hotKeyword } from '@/mock/home';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -19,6 +20,7 @@ import SliderRightSvg from '@/assets/icons/SliderRightSvg.vue';
 import FireSvg from '@/assets/icons/FireSvg.vue';
 import TrophySvg from '@/assets/icons/TrophySvg.vue';
 import CoinSvg from '@/assets/icons/CoinSvg.vue';
+import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 
 export default {
     components: {
@@ -37,6 +39,7 @@ export default {
         FireSvg,
         TrophySvg,
         CoinSvg,
+        ProductCartSvg,
     },
     data() {
         return {
@@ -88,6 +91,20 @@ export default {
                 '/path/to/your-image7.jpg',
                 // Add more image paths as needed
             ],
+            keywordFilter: [
+                { label: '#Chicken', value: 'chicken', class: 'bg-blue-01 text-blue-08 border-blue-08 hover:bg-blue-04 data-[active=true]:bg-blue-04 data-[active=true]:text-white-20 ', },
+                { label: '#Coffee', value: 'coffee', class: 'bg-red-01 text-pink-02 border-pink-02 hover:bg-pink-01 data-[active=true]:bg-pink-01 data-[active=true]:text-white-20 ', },
+                { label: '#eGift', value: 'eGift', class: 'bg-primary-01 text-blue-11 border-blue-11 hover:bg-blue-12 data-[active=true]:bg-blue-12 data-[active=true]:text-white-20 ', },
+                { label: '#Dessert', value: 'dessert', class: 'bg-purple-01 text-purple-03 border-purple-03 hover:bg-purple-04 data-[active=true]:bg-purple-04 data-[active=true]:text-white-20 ', },
+                { label: '#Burger', value: 'burger', class: 'bg-orange-01 text-orange-05 border-orange-04 hover:bg-orange-03 data-[active=true]:bg-orange-03 data-[active=true]:text-white-20 ', },
+            ],
+            hotKeyword,
+            selectedFilter: {
+                keyword: 'chicken',
+                brand: 'best',
+                budget: 50,
+            },
+            hotKeywordData: {},
         }
     },
     methods: {
@@ -183,6 +200,11 @@ export default {
                 slider.on("updated", nextTimeout)
             },
         ]);
+        this.hotKeywordData = this.hotKeyword.reduce((obj, data) => {
+            console.log(data.keyword)
+            obj[data.keyword] = this.hotKeyword.filter((item) => item.keyword === data.keyword)
+            return obj
+        }, {})
     },
     beforeUnmount() {
         if (this.slider) this.slider.destroy();
@@ -356,9 +378,9 @@ export default {
                 </div>
             </aside>
         </section>
-        <section class="pt-24 main-section keyword-section bg-white-17 h-96">
-            <div class="main-section__wrapper">
-                <div class="flex justify-between">
+        <section class="pt-24 main-section keyword-section bg-white-17">
+            <div class="main-section__wrapper w-[1121px]">
+                <div class="flex items-center justify-between">
                     <h1 class="main-section__title">
                         <p class="flex items-center mb-2 h-fit">
                             HOT
@@ -366,14 +388,45 @@ export default {
                         </p>
                         KEYWORD
                     </h1>
-                    <ul>
-                        <li>#Chicken</li>
-                        <li>#Coffee</li>
-                        <li>#eGift</li>
-                        <li>#Dessert</li>
-                        <li>#Burger</li>
+                    <ul class="inline-flex gap-2.5">
+                        <li
+                          :class="filter.class"
+                          :data-active="filter.value === selectedFilter.keyword"
+                          class="cursor-pointer border w-[120px] h-fit text-center py-2.5 rounded-[28px] text-base leading-[22px] font-semibold hover:text-white-20"
+                          v-for="filter in keywordFilter"
+                          :key="filter.value"
+                          @click="() => selectedFilter.keyword = filter.value"
+                        >{{ filter.label }}</li>
                     </ul>
                 </div>
+                <ul class="mt-8 mb-12 product">
+                    <li
+                      v-for="(data, idx) in hotKeywordData[selectedFilter.keyword]"
+                      :key="idx"
+                    >
+                        <figure class="relative">
+                            <img
+                              :src="data.img"
+                              :alt="data.img"
+                            />
+                            <figcaption v-if="data.is_soldout">
+                                <span>SOLD OUT</span>
+                            </figcaption>
+                        </figure>
+                        <dl class="product__detail">
+                            <strong class="product__brand">{{ data.brand }}</strong>
+                            <dd class="product__name">{{ data.name }}</dd>
+                            <dd class="product__price">
+                                <strong class="product__price-sale">P{{ data.sale_price }}</strong>
+                                <s class="product__price-origin">P{{ data.price }}</s>
+                            </dd>
+                            <dd class="buttons">
+                                <button>Buy Now</button>
+                                <button><ProductCartSvg /> Add to Cart</button>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
             </div>
         </section>
         <section class="main-section best-brands-section bg-white-20 h-96">
