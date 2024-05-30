@@ -79,7 +79,7 @@ export default {
             ],
             data: rows.slice(pagination.page - 1, rowPerPage),
             typeStyle: {
-                Deduct: 'text-red-300',
+                Deduct: 'text-red-06',
                 'Top-up': 'text-blue-04',
             },
             statusStyle: {

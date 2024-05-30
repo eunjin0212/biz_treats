@@ -359,7 +359,7 @@ export default {
                         <small class="text-xs font-normal leading-5 text-slate-01">{{ item.description }}</small>
                         <span
                           v-if="item?.caution"
-                          class="text-xs font-normal text-red-600 leading-5"
+                          class="text-xs font-normal text-pink-04 leading-5"
                         >{{ item.caution }}</span>
                     </div>
                 </div>
@@ -559,7 +559,7 @@ export default {
                             </label>
                         </fieldset>
                         <div class="bg-[#EF466F14] mx-4.5 px-5 py-3.5 rounded-lg">
-                            <p class="inline-flex items-center mb-3 text-sm font-medium text-red-700 gap-2 leading-4">
+                            <p class="inline-flex items-center mb-3 text-sm font-medium text-pink-03 gap-2 leading-4">
                                 <CautionSvg />
                                 After delegation, the request cannot be undone.
                             </p>

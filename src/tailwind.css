@@ -356,7 +356,7 @@ body {
 /* badge */
 @layer components {
     span.badge {
-        @apply absolute -top-2 -right-3 text-sm leading-4 -tracking-[0.323px] font-bold text-[theme(colors.white.20)] bg-[theme(colors.red.300)] px-2 py-1 rounded-[10px]
+        @apply absolute -top-2 -right-3 text-sm leading-4 -tracking-[0.323px] font-bold text-[theme(colors.white.20)] bg-[theme(colors.red.06)] px-2 py-1 rounded-[10px]
     }
 }
 
@@ -762,11 +762,11 @@ body {
     }
 
     div.card:nth-of-type(even)>.card-title__wrapper>span {
-        @apply bg-[theme(colors.red.700)]
+        @apply bg-[theme(colors.pink.03)]
     }
 
     div.card:nth-of-type(even)>.card-title__wrapper>p>strong {
-        @apply text-[theme(colors.red.700)]
+        @apply text-[theme(colors.pink.03)]
     }
 
     div.card>.card-content__wrapper {
@@ -843,11 +843,11 @@ body {
     }
 
     div.point-info-bar div.point-card .point-card-title__wrapper>span {
-        @apply rounded-full w-[46px] h-[46px] inline-flex items-center justify-center bg-[theme(colors.red.700)]
+        @apply rounded-full w-[46px] h-[46px] inline-flex items-center justify-center bg-[theme(colors.pink.03)]
     }
 
     div.point-info-bar>.point-card .point-card-title__wrapper>p>strong {
-        @apply text-[theme(colors.red.700)] block text-xl
+        @apply text-[theme(colors.pink.03)] block text-xl
     }
 
     div.point-info-bar>.point-card .point-card-title__wrapper>p>span {

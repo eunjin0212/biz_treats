@@ -389,7 +389,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold text-red-200 rounded gap-1 leading-4 bg-white-19 w-fit -tracking-wide"
+                          class="flex items-center p-1 text-xs font-bold text-red-05 rounded gap-1 leading-4 bg-white-19 w-fit -tracking-wide"
                         >
                             <DownSvg /> 37.8%
                         </span>

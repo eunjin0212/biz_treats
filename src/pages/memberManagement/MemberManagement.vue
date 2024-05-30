@@ -81,7 +81,7 @@ export default {
             statusClass: {
                 resigned: 'bg-purple-01',
                 invited: 'bg-green-02',
-                canceled: 'bg-red-400',
+                canceled: 'bg-red-04',
                 active: 'bg-blue-03',
             },
             statusLabel: {
@@ -464,7 +464,7 @@ export default {
                                         </button>
                                         <button
                                           v-else-if="row[column.field] === 'cancel'"
-                                          class="rounded-lg bg-white-20 border border-white-02 py-2 px-3.5 text-xs leading-6 font-semibold text-red-300"
+                                          class="rounded-lg bg-white-20 border border-white-02 py-2 px-3.5 text-xs leading-6 font-semibold text-red-06"
                                         >Invited Cancel</button>
                                     </div>
                                     <!-- ...rest -->

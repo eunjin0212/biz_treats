@@ -397,7 +397,7 @@ export default {
                                       class="flex items-center justify-between"
                                     >
                                         <button
-                                          class="border border-white-02 rounded-lg bg-white px-[31px] py-1.5 text-red-200 font-semibold leading-6 hover:bg-white-02-light"
+                                          class="border border-white-02 rounded-lg bg-white px-[31px] py-1.5 text-red-05 font-semibold leading-6 hover:bg-white-02-light"
                                         >
                                             Cancel
                                         </button>

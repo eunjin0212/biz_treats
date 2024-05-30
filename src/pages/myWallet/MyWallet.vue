@@ -84,7 +84,7 @@ export default {
             ],
             data: rows.slice(pagination.page - 1, rowPerPage),
             typeStyle: {
-                Canceled: 'bg-red-100',
+                Canceled: 'bg-red-03',
                 Transfer: 'bg-blue-05',
                 Deduct: 'bg-primary-400',
                 Topup: 'bg-blue-03',
@@ -384,7 +384,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold text-red-200 rounded gap-1 leading-4 bg-white-19 w-fit -tracking-wide"
+                          class="flex items-center p-1 text-xs font-bold text-red-05 rounded gap-1 leading-4 bg-white-19 w-fit -tracking-wide"
                         >
                             <DownSvg /> 37.8%
                         </span>

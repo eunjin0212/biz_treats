@@ -76,12 +76,12 @@ export default {
             ],
             data: transferRows.map((row) => ({ ...row, selected: false })).slice(pagination.page - 1, rowPerPage),
             typeStyle: {
-                Deduct: 'text-red-300',
+                Deduct: 'text-red-06',
                 'Top-up': 'text-blue-04',
             },
             statusStyle: {
                 active: 'bg-blue-03 w-16',
-                resigned: 'bg-red-400 w-16',
+                resigned: 'bg-red-04 w-16',
             },
             statusLabel: {
                 active: 'Active',
@@ -430,7 +430,7 @@ export default {
                                     <div v-else-if="['amount', 'notes'].includes(column.field)">
                                         <label class="input">
                                             <input
-                                              :class="{'!text-red-300': column.field === 'amount' && row.selected && row.status === 'resigned'}"
+                                              :class="{'!text-red-06': column.field === 'amount' && row.selected && row.status === 'resigned'}"
                                               v-model="row[column.field]"
                                               type="text"
                                               :disabled="!row.selected"
@@ -498,7 +498,7 @@ export default {
                     </div>
                     <span
                       v-if="myPoint < totalAmount"
-                      class="text-[13px] leading-4 font-light text-red-500 block pb-9"
+                      class="text-[13px] leading-4 font-light text-pink-05 block pb-9"
                     >
                         *Lack of points to transfer. Please recheck it.
                     </span>
@@ -509,7 +509,7 @@ export default {
                         >Cancel</button>
                         <button
                           :disabled="myPoint < totalAmount"
-                          :class="tab !== 'Retrieve' ? 'bg-main hover:bg-blue-05' : 'bg-red-300 hover:bg-red-350'"
+                          :class="tab !== 'Retrieve' ? 'bg-main hover:bg-blue-05' : 'bg-red-06 hover:bg-red-07'"
                           class="outline-0 w-[180px] h-12 text-white-20 rounded-lg text-[15px] leading-6 font-bold "
                         >{{ tab }}</button>
                     </div>

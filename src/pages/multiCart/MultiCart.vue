@@ -383,16 +383,16 @@ export default {
                                     <div class="text-xs leading-3.5 text-blue-04 font-normal">Recipient/Quantity</div>
                                 </li>
                                 <li class="!inline-flex items-center justify-between">
-                                    <div class="text-base font-bold text-blue-04 leading-5">
+                                    <div class="text-base font-bold leading-5 text-blue-04">
                                         {{ cart.point.toLocaleString() }}p
                                     </div>
-                                    <i class="text-xl font-bold text-blue-07 leading-6">
+                                    <i class="text-xl font-bold leading-6 text-blue-07">
                                         {{ orderData[cart.id]?.recipient || orderData[cart.id]?.quantity ?
                         `${orderData[cart.id]?.recipient}/${orderData[cart.id]?.quantity}` : '-' }}
                                     </i>
                                 </li>
                                 <li
-                                  class="bg-red-01 py-1 px-1.5 text-red-500 text-[10px] leading-3 font-normal rounded-sm w-fit"
+                                  class="bg-red-01 py-1 px-1.5 text-pink-05 text-[10px] leading-3 font-normal rounded-sm w-fit"
                                 >
                                     Available stock : {{ cart.available_stock.toLocaleString() }}
                                 </li>
@@ -458,7 +458,7 @@ export default {
                             </label>
                         </div>
                         <p
-                          class="text-[10px] font-normal leading-3 text-red-500 mt-2"
+                          class="text-[10px] font-normal leading-3 text-pink-05 mt-2"
                           v-if="handleUnavailableTime(cart.id)"
                         >
                             {{ handleUnavailableTime(cart.id) }}
@@ -491,7 +491,7 @@ export default {
                 <ul
                   class="border rounded-lg p-3.5 mt-2.5"
                   :class="(!!getInsufficientStock(cart) && !!handleDisplayScheduleSending(cart.id)) && (cart.point * cart.quantity)
-                        ? 'border-[#E2E1E1]' : 'border-red-800'"
+                        ? 'border-[#E2E1E1]' : 'border-red-08'"
                   v-for="cart in cartData"
                   :key="cart.id"
                 >
@@ -526,7 +526,7 @@ export default {
                     </li>
                     <li
                       v-if="!getInsufficientStock(cart)"
-                      class="mt-2 text-sm font-medium text-red-800"
+                      class="mt-2 text-sm font-medium text-red-08"
                     >Insufficient Stock</li>
                 </ul>
                 <hr class="border-gray-09 !mx-0 !mt-4 !mb-3.5" />
@@ -550,25 +550,25 @@ export default {
                 </p>
                 <p class="flex items-center justify-between">
                     <span class="text-xs font-normal leading-6 text-slate-01">Discount</span>
-                    <span class="text-base font-semibold text-[#FF0F1D]">-600P</span>
+                    <span class="text-base font-semibold text-red-10">-600P</span>
                 </p>
                 <hr class="border-gray-09 !mx-0 !my-4" />
                 <p class="flex items-center justify-between mb-14">
                     <strong class="text-2xl font-semibold leading-6 text-slate-01">
                         Total
                     </strong>
-                    <strong class="text-2xl font-semibold text-blue-04 leading-6">
+                    <strong class="text-2xl font-semibold leading-6 text-blue-04">
                         25,000P
                     </strong>
                 </p>
                 <div class="flex items-center justify-between border border-[#EAEAEA] rounded-lg py-2 px-2.5 mb-6.5">
                     <p class="inline-flex items-center gap-1.5">
-                        <span class="inline-flex items-center justify-center p-2 bg-red-700 rounded-full w-9 h-9">
+                        <span class="inline-flex items-center justify-center p-2 rounded-full bg-pink-03 w-9 h-9">
                             <CardWalletSvg />
                         </span>
-                        <strong class="text-red-700 font-bold text-[13px] leading-[18px]">Teddy Bear</strong>
+                        <strong class="text-pink-03 font-bold text-[13px] leading-[18px]">Teddy Bear</strong>
                     </p>
-                    <i class="text-lg font-medium text-blue-04 leading-6">
+                    <i class="text-lg font-medium leading-6 text-blue-04">
                         152,200P
                     </i>
                 </div>
@@ -684,12 +684,12 @@ export default {
                         </fieldset>
                         <button
                           v-if="errorMsg"
-                          class="mt-6 text-[#E22929] border-2 border-[#E22929] rounded-lg w-full py-4.5 text-center text-sm leading-6 font-medium"
+                          class="mt-6 text-red-09 border-2 border-red-09 rounded-lg w-full py-4.5 text-center text-sm leading-6 font-medium"
                         >
                             {{ errorMsg }}
                         </button>
                         <hr class="mt-8 -mx-6 border-white-10" />
-                        <div class="flex items-center justify-end mt-2 gap-2">
+                        <div class="flex items-center justify-end gap-2 mt-2">
                             <button
                               @click="() => handleModal('')"
                               type="button"
@@ -713,7 +713,7 @@ export default {
         <aside class="modal__wrapper inline-flex justify-center items-center !p-0">
             <div class="rounded-2xl w-[486px] h-[522px] mx-auto flex flex-col items-center">
                 <div class="section-card !m-0 !pt-6 !pb-4 !px-4.5 text-center">
-                    <h3 class="mb-2 text-2xl font-bold text-blue-04 leading-10">Insufficient Stock</h3>
+                    <h3 class="mb-2 text-2xl font-bold leading-10 text-blue-04">Insufficient Stock</h3>
                     <p class="text-slate-02 text-[15px] leading-6 font-medium mb-5">Sorry, We’ll have it in stock soon.
                     </p>
                     <ul class="h-80 mb-2.5 overflow-y-scroll border border-white-10 rounded-md">
