@@ -268,11 +268,11 @@ body {
     }
 
     nav.main-menu div a {
-        @apply text-xl leading-5 -tracking-wide font-semibold text-[#999999] hover:text-[theme(colors.blue.300)]
+        @apply text-xl leading-5 -tracking-wide font-semibold text-[#999999] hover:text-[theme(colors.blue.04)]
     }
 
     nav.main-menu div .active-main-menu {
-        @apply border-b-2 border-b-[theme(colors.blue.300)] text-[theme(colors.blue.300)] relative before:content-['•'] before:absolute before:-top-2 before:-right-2
+        @apply border-b-2 border-b-[theme(colors.blue.04)] text-[theme(colors.blue.04)] relative before:content-['•'] before:absolute before:-top-2 before:-right-2
     }
 }
 
@@ -367,14 +367,14 @@ body {
     }
 
     div.btn-group>button {
-        @apply py-3 px-5 whitespace-nowrap hover:bg-[theme(colors.blue.400)] rounded-l-xl
+        @apply py-3 px-5 whitespace-nowrap hover:bg-[theme(colors.blue.05)] rounded-l-xl
     }
 }
 
 /* dropdown */
 @layer components {
     div.dropdown {
-        @apply relative hover:bg-[theme(colors.blue.400)] rounded-r-xl
+        @apply relative hover:bg-[theme(colors.blue.05)] rounded-r-xl
     }
 
     div.dropdown>button {
@@ -636,7 +636,7 @@ body {
     }
 
     label.time-picker:not(.no-hover) {
-        @apply hover:border-[theme(colors.blue.300)] focus-within:border-[theme(colors.blue.300)]
+        @apply hover:border-[theme(colors.blue.04)] focus-within:border-[theme(colors.blue.04)]
     }
 
     label.time-picker input {
@@ -655,7 +655,7 @@ body {
     }
 
     label.file-picker:not(.no-hover) {
-        @apply hover:border-[theme(colors.blue.300)] focus-within:border-[theme(colors.blue.300)]
+        @apply hover:border-[theme(colors.blue.04)] focus-within:border-[theme(colors.blue.04)]
     }
 
     label.file-picker input {
@@ -824,7 +824,7 @@ body {
     }
 
     label.radio input[type="radio"] {
-        @apply border border-[theme(colors.white.10)] focus:border-[theme(colors.white.10)] focus:ring-offset-0 focus-visible:border-[theme(colors.white.10)] hover:border-[theme(colors.white.10)] outline-0 text-transparent focus:ring-0 focus-visible:ring-offset-0 focus-within:ring-offset-0 ring-0 ring-offset-transparent w-6 h-6 p-1.5 checked:bg-[left_5.5px_top_6.9px] checked:bg-[length:13px] checked:bg-[url('@/assets/icons/radio_icon.svg')] checked:bg-[theme(colors.blue.300)]
+        @apply border border-[theme(colors.white.10)] focus:border-[theme(colors.white.10)] focus:ring-offset-0 focus-visible:border-[theme(colors.white.10)] hover:border-[theme(colors.white.10)] outline-0 text-transparent focus:ring-0 focus-visible:ring-offset-0 focus-within:ring-offset-0 ring-0 ring-offset-transparent w-6 h-6 p-1.5 checked:bg-[left_5.5px_top_6.9px] checked:bg-[length:13px] checked:bg-[url('@/assets/icons/radio_icon.svg')] checked:bg-[theme(colors.blue.04)]
     }
 }
 
@@ -855,7 +855,7 @@ body {
     }
 
     div.point-info-bar div.point-card .point-card-content {
-        @apply text-[theme(colors.blue.300)]
+        @apply text-[theme(colors.blue.04)]
     }
 
     div.point-info-bar div.point-card .point-card-content>strong {
@@ -890,7 +890,7 @@ body {
     }
 
     label.checkbox>.active {
-        @apply !border-[theme(colors.blue.300)] !bg-[theme(colors.blue.300)]
+        @apply !border-[theme(colors.blue.04)] !bg-[theme(colors.blue.04)]
     }
 }
 
@@ -1003,7 +1003,7 @@ body {
     }
 
     label.toggle input[type="checkbox"]:checked+.slider {
-        @apply bg-[theme(colors.blue.300)]
+        @apply bg-[theme(colors.blue.04)]
     }
 
     label.toggle input[type="checkbox"]:checked+.slider::before {

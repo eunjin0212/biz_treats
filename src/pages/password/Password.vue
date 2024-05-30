@@ -103,7 +103,7 @@ export default {
                       :value="reCaptcha"
                       name="reCaptcha"
                     />
-                    <span :class="reCaptcha ? 'border-blue-600 bg-blue-600' : 'border-neutral-300 bg-white'">
+                    <span :class="reCaptcha ? 'border-blue-07 bg-blue-07' : 'border-neutral-300 bg-white'">
                         <CheckSvg :class="reCaptcha ? 'text-white-20' : 'hidden'" />
                     </span>
                     <label

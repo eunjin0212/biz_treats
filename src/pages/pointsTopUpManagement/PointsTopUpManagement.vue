@@ -80,10 +80,10 @@ export default {
             data: rows.slice(pagination.page - 1, rowPerPage),
             typeStyle: {
                 Deduct: 'text-red-300',
-                'Top-up': 'text-blue-300',
+                'Top-up': 'text-blue-04',
             },
             statusStyle: {
-                Request: 'bg-blue-200 w-16',
+                Request: 'bg-blue-03 w-16',
                 Complete: 'bg-green-02 w-16',
                 InProgress: 'bg-purple-01 w-20',
             },
@@ -431,7 +431,7 @@ export default {
                                     </div>
                                     <a
                                       v-else-if="['po_ce_no', 'invoice_no'].includes(column.field)"
-                                      :class="{ 'text-blue-300 underline': row[column.field] }"
+                                      :class="{ 'text-blue-04 underline': row[column.field] }"
                                       :href="row[column.field] ? '' : void (0)"
                                     >
                                         {{ row[column.field] || '-' }}

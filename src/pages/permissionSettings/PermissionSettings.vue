@@ -48,7 +48,7 @@ export default {
             alertData,
             users,
             userList: [],
-            profileColors: ['!bg-green-03', '!bg-orange-01', '!bg-blue-100'],
+            profileColors: ['!bg-green-03', '!bg-orange-01', '!bg-blue-02'],
             permissionList: [
                 {
                     label: 'Campaign Info',
@@ -318,7 +318,7 @@ export default {
                                     </label>
                                     <span
                                       v-if="user.is_admin"
-                                      class="bg-blue-300 text-white-20 border border-[#F2F2F2] rounded-md inline-block w-[50px] text-center leading-6 font-semibold text-[10px]"
+                                      class="bg-blue-04 text-white-20 border border-[#F2F2F2] rounded-md inline-block w-[50px] text-center leading-6 font-semibold text-[10px]"
                                     >Admin</span>
                                 </button>
                             </li>
@@ -356,7 +356,7 @@ export default {
                             </li>
                             <button
                               type="submit"
-                              class="float-right w-[180px] h-12 bg-blue-300 mr-5 mt-[26px] text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-400"
+                              class="float-right w-[180px] h-12 bg-blue-04 mr-5 mt-[26px] text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-05"
                             >Save</button>
                         </ul>
                     </form>

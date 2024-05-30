@@ -85,9 +85,9 @@ export default {
             data: rows.slice(pagination.page - 1, rowPerPage),
             typeStyle: {
                 Canceled: 'bg-red-100',
-                Transfer: 'bg-blue-400',
+                Transfer: 'bg-blue-05',
                 Deduct: 'bg-primary-400',
-                Topup: 'bg-blue-200',
+                Topup: 'bg-blue-03',
             },
             moment,
             typeOptions: ['Canceled', 'Transfer', 'Deduct', 'Topup',],

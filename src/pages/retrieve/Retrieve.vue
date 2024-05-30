@@ -77,10 +77,10 @@ export default {
             data: transferRows.map((row) => ({ ...row, selected: false })).slice(pagination.page - 1, rowPerPage),
             typeStyle: {
                 Deduct: 'text-red-300',
-                'Top-up': 'text-blue-300',
+                'Top-up': 'text-blue-04',
             },
             statusStyle: {
-                active: 'bg-blue-200 w-16',
+                active: 'bg-blue-03 w-16',
                 resigned: 'bg-red-400 w-16',
             },
             statusLabel: {
@@ -324,7 +324,7 @@ export default {
                   href="/pointsTransferRetrieve"
                   class="flex items-center px-3 mb-3 ml-3 text-xl font-semibold leading-8 text-black-200"
                 >
-                    <span class="bg-blue-300 rounded-lg mr-2.5">
+                    <span class="bg-blue-04 rounded-lg mr-2.5">
                         <PrevPageSvg />
                     </span>
                     Points Transfer/Retrieve
@@ -474,7 +474,7 @@ export default {
                     <div class="flex items-center mb-3 flex-nowrap">
                         <hr class="flex-grow border-white-10">
                         <span
-                          class="w-[66px] inline-block font-semibold text-blue-300 text-sm leading-6 text-center tracking-wide mx-[60px]"
+                          class="w-[66px] inline-block font-semibold text-blue-04 text-sm leading-6 text-center tracking-wide mx-[60px]"
                         >
                             Massage
                         </span>
@@ -490,7 +490,7 @@ export default {
                     <div class="flex items-center mt-2.5 mb-3 flex-nowrap">
                         <hr class="flex-grow border-white-10">
                         <span
-                          class="inline-block w-40 mx-3 text-sm font-semibold tracking-wide text-center text-blue-300 leading-6 text-nowrap"
+                          class="inline-block w-40 mx-3 text-sm font-semibold tracking-wide text-center text-blue-04 leading-6 text-nowrap"
                         >
                             Total Amount : {{ totalAmount.toLocaleString() }}P
                         </span>
@@ -509,7 +509,7 @@ export default {
                         >Cancel</button>
                         <button
                           :disabled="myPoint < totalAmount"
-                          :class="tab !== 'Retrieve' ? 'bg-main hover:bg-blue-400' : 'bg-red-300 hover:bg-red-350'"
+                          :class="tab !== 'Retrieve' ? 'bg-main hover:bg-blue-05' : 'bg-red-300 hover:bg-red-350'"
                           class="outline-0 w-[180px] h-12 text-white-20 rounded-lg text-[15px] leading-6 font-bold "
                         >{{ tab }}</button>
                     </div>

@@ -192,8 +192,8 @@ export default {
     <main class="bg-white-17 flex w-[1240px] mx-auto justify-center gap-3 pt-[46px] pb-[70px]">
         <section class="w-[612px] h-[628px] bg-white-20 rounded-lg bg-center bg-[url('@/assets/icons/completed_bg.svg')] text-center pt-[58px]">
             <img src="@/assets/icons/completed_check.svg" alt="completed_check" class="mx-auto mb-2" />
-            <strong class="block mb-10 text-2xl font-bold text-blue-300 font-poppins">You’re order has been completed!</strong>
-            <button class="bg-blue-300 w-[342px] h-16 text-white-20 font-bold text-base leading-6 font-poppins rounded-lg hover:bg-blue-400">Go to Treats Sending History</button>
+            <strong class="block mb-10 text-2xl font-bold text-blue-04 font-poppins">You’re order has been completed!</strong>
+            <button class="bg-blue-04 w-[342px] h-16 text-white-20 font-bold text-base leading-6 font-poppins rounded-lg hover:bg-blue-05">Go to Treats Sending History</button>
         </section>
     </main>
     <footer class="service-footer">

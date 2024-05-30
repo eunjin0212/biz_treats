@@ -378,7 +378,7 @@ export default {
                     <button
                       @click="() => handleModal(true)"
                       v-if="!isRequest"
-                      class="w-[264px] h-12 rounded-xl border border-white-02 mt-3.5 text-blue-300 font-bold text-[15px] leading-6"
+                      class="w-[264px] h-12 rounded-xl border border-white-02 mt-3.5 text-blue-04 font-bold text-[15px] leading-6"
                     >
                         Delegation Reservation
                     </button>
@@ -590,7 +590,7 @@ export default {
                             >Cancel</button>
                             <button
                               type="submit"
-                              class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-400"
+                              class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-05"
                             >Request</button>
                         </div>
                     </form>

@@ -641,7 +641,7 @@ export default {
                             >Cancel</button>
                             <button
                               type="submit"
-                              class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-400"
+                              class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-05"
                             >Invite</button>
                         </div>
                     </form>

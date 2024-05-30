@@ -82,7 +82,7 @@ export default {
                 resigned: 'bg-purple-01',
                 invited: 'bg-green-02',
                 canceled: 'bg-red-400',
-                active: 'bg-blue-200',
+                active: 'bg-blue-03',
             },
             statusLabel: {
                 resigned: 'Resigned',
@@ -349,7 +349,7 @@ export default {
                     </div>
                     <button
                       @click="() => handleModal(true)"
-                      class="inline-flex items-center gap-1 font-bold text-sm leading-6 text-white-19 py-3 pl-5.5 pr-6.5 bg-blue-300 rounded-lg"
+                      class="inline-flex items-center gap-1 font-bold text-sm leading-6 text-white-19 py-3 pl-5.5 pr-6.5 bg-blue-04 rounded-lg"
                     >
                         <PlusSvg />Invite
                     </button>
@@ -457,7 +457,7 @@ export default {
                                         </button>
                                         <button
                                           v-else-if="row[column.field] === 'save'"
-                                          class="py-2 text-xs font-semibold text-blue-300 border rounded-lg leading-6 bg-white-20 border-white-02 px-9"
+                                          class="py-2 text-xs font-semibold text-blue-04 border rounded-lg leading-6 bg-white-20 border-white-02 px-9"
                                           @click="() => row[column.field] = 'editable'"
                                         >
                                             Save
@@ -636,7 +636,7 @@ export default {
                             >Cancel</button>
                             <button
                               type="submit"
-                              class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-400"
+                              class="outline-0 w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-05"
                             >Invite</button>
                         </div>
                     </form>
