@@ -127,7 +127,7 @@ export default {
                   name="remember"
                   class="hidden"
                 />
-                <span :class="rememberAccount ? 'border-blue-07 bg-blue-07' : 'border-neutral-300 bg-white'">
+                <span :class="rememberAccount ? 'border-blue-09 bg-blue-09' : 'border-neutral-300 bg-white'">
                     <CheckSvg :class="rememberAccount ? 'text-white-20' : 'hidden'" />
                 </span>
                 <label for="remember">
@@ -147,7 +147,7 @@ export default {
                       :value="reCaptcha"
                       name="reCaptcha"
                     />
-                    <span :class="reCaptcha ? 'border-blue-07 bg-blue-07' : 'border-neutral-300 bg-white'">
+                    <span :class="reCaptcha ? 'border-blue-09 bg-blue-09' : 'border-neutral-300 bg-white'">
                         <CheckSvg :class="reCaptcha ? 'text-white-20' : 'hidden'" />
                     </span>
                     <label for="reCaptcha">

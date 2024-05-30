@@ -78,7 +78,7 @@ export default {
             data: managementRows.slice(pagination.page - 1, rowPerPage),
             typeStyle: {
                 Deduct: 'text-red-06',
-                'Top-up': 'text-blue-04',
+                'Top-up': 'text-blue-05',
             },
             statusStyle: {
                 Request: 'bg-blue-03 w-16',
@@ -312,7 +312,7 @@ export default {
                     Points Transfer/Retrieve
                     <a
                       href="/retrieve"
-                      class="absolute inline-flex items-center gap-1.5 bg-blue-04 rounded-lg right-6 text-white-19 font-bold text-[15px] leading-6 pl-6 pr-7 py-3"
+                      class="absolute inline-flex items-center gap-1.5 bg-blue-05 rounded-lg right-6 text-white-19 font-bold text-[15px] leading-6 pl-6 pr-7 py-3"
                     >
                         <TransferSvg />
                         Transfer/Retrieve

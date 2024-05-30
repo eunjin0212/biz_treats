@@ -264,7 +264,7 @@ export default {
                               class="inline-block w-9 h-9 border-2 rounded-md border-[#D7D7D7]"
                             ></span>
                             <label
-                              class="relative h-12 px-5 py-3 text-xs font-bold text-blue-04 border cursor-pointer leading-6 w-fit rounded-xl border-white-02 hover:bg-white-02-light"
+                              class="relative h-12 px-5 py-3 text-xs font-bold text-blue-05 border cursor-pointer leading-6 w-fit rounded-xl border-white-02 hover:bg-white-02-light"
                             >
                                 <input
                                   type="color"
@@ -288,7 +288,7 @@ export default {
                             />
                             <div class="flex flex-col gap-1.5">
                                 <label
-                                  class="cursor-pointer inline-flex relative items-center gap-1 py-3 pl-7 pr-[42px] rounded-xl border border-white-02 text-blue-04 text-xs leading-6 font-bold hover:bg-white-02-light"
+                                  class="cursor-pointer inline-flex relative items-center gap-1 py-3 pl-7 pr-[42px] rounded-xl border border-white-02 text-blue-05 text-xs leading-6 font-bold hover:bg-white-02-light"
                                 >
                                     <input
                                       type="file"
@@ -326,7 +326,7 @@ export default {
                       class="w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-secondary-04-light border-white-10"
                     >Cancel</button>
                     <button
-                      class="w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-05"
+                      class="w-[180px] h-12 bg-main text-white-20 rounded-lg text-[15px] leading-6 font-bold hover:bg-blue-06"
                     >Save</button>
                 </div>
             </div>

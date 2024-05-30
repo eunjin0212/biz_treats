@@ -340,13 +340,13 @@ export default {
                                     <div class="text-base font-normal leading-5 text-secondary-04 mb-0.5">
                                         {{ cart.name }}
                                     </div>
-                                    <div class="text-xs leading-3.5 text-blue-04 font-normal">Recipient/Quantity</div>
+                                    <div class="text-xs leading-3.5 text-blue-05 font-normal">Recipient/Quantity</div>
                                 </li>
                                 <li class="!inline-flex items-center justify-between">
-                                    <div class="text-base font-bold leading-5 text-blue-04">
+                                    <div class="text-base font-bold leading-5 text-blue-05">
                                         {{ cart.point.toLocaleString() }}p
                                     </div>
-                                    <i class="text-xl font-bold leading-6 text-blue-07">
+                                    <i class="text-xl font-bold leading-6 text-blue-09">
                                         {{ orderData[cart.id]?.recipient || orderData[cart.id]?.quantity ?
                         `${orderData[cart.id]?.recipient.length}/${orderData[cart.id]?.quantity}` : '-'
                                         }}
@@ -419,7 +419,7 @@ export default {
                         <span class="text-sm font-medium font-manrope text-secondary-04">Recipient({{
                         orderData[cart.id].recipient.length }})</span>
                         <button
-                          class="text-blue-04 border border-blue-04 py-2 w-[170px] rounded hover:bg-sky-50"
+                          class="text-blue-05 border border-blue-05 py-2 w-[170px] rounded hover:bg-sky-50"
                           @click="handleForm"
                         >Add Recipient</button>
                     </li>
@@ -481,7 +481,7 @@ export default {
                         {{ cart.brand }}
                         <span
                           v-if="getInsufficientStock(cart)"
-                          :class="!(cart.point * cart.quantity) ? 'text-black-200' : 'text-blue-04'"
+                          :class="!(cart.point * cart.quantity) ? 'text-black-200' : 'text-blue-05'"
                           class="text-base font-semibold leading-5"
                         >
                             {{ (cart.point * cart.quantity)
@@ -519,7 +519,7 @@ export default {
                           placeholder="Enter the Promo Code"
                         />
                         <button
-                          class="px-5 !h-12 text-xs font-bold leading-6 text-blue-04 border rounded-lg border-white-03 hover:bg-sky-50"
+                          class="px-5 !h-12 text-xs font-bold leading-6 text-blue-05 border rounded-lg border-white-03 hover:bg-sky-50"
                         >Apply</button>
                     </div>
                 </label>
@@ -537,7 +537,7 @@ export default {
                     <strong class="text-2xl font-semibold leading-6 text-slate-01">
                         Total
                     </strong>
-                    <strong class="text-2xl font-semibold leading-6 text-blue-04">
+                    <strong class="text-2xl font-semibold leading-6 text-blue-05">
                         25,000P
                     </strong>
                 </p>
@@ -548,13 +548,13 @@ export default {
                         </span>
                         <strong class="text-pink-03 font-bold text-[13px] leading-[18px]">Teddy Bear</strong>
                     </p>
-                    <i class="text-lg font-medium leading-6 text-blue-04">
+                    <i class="text-lg font-medium leading-6 text-blue-05">
                         152,200P
                     </i>
                 </div>
                 <button
                   @click="handlePayment"
-                  class="w-full h-12 bg-blue-04 rounded-lg text-white-19 font-bold text-[15px] leading-6 hover:bg-blue-05"
+                  class="w-full h-12 bg-blue-05 rounded-lg text-white-19 font-bold text-[15px] leading-6 hover:bg-blue-06"
                 >Proceed
                     Payment</button>
             </div>
@@ -617,7 +617,7 @@ export default {
         <aside class="modal__wrapper inline-flex justify-center items-center !p-0">
             <div class="rounded-2xl w-[486px] h-[522px] mx-auto flex flex-col items-center">
                 <div class="section-card !m-0 !pt-6 !pb-4 !px-4.5 text-center">
-                    <h3 class="mb-2 text-2xl font-bold leading-10 text-blue-04">Insufficient Stock</h3>
+                    <h3 class="mb-2 text-2xl font-bold leading-10 text-blue-05">Insufficient Stock</h3>
                     <p class="text-slate-02 text-[15px] leading-6 font-medium mb-5">Sorry, We’ll have it in stock soon.
                     </p>
                     <ul class="h-80 mb-2.5 overflow-y-scroll border border-white-10 rounded-md">
@@ -633,7 +633,7 @@ export default {
                     </ul>
                     <button
                       @click="() => insufficientStock = []"
-                      class="rounded-lg bg-blue-04 w-full py-5 text-lg leading-4.5 text-[#FCFCFD] font-bold font-dmsans"
+                      class="rounded-lg bg-blue-05 w-full py-5 text-lg leading-4.5 text-[#FCFCFD] font-bold font-dmsans"
                     >Confirm</button>
                 </div>
             </div>
