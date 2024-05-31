@@ -3,7 +3,7 @@ import "keen-slider/keen-slider.min.css";
 import KeenSlider from "keen-slider";
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart';
-import { hotKeyword } from '@/mock/home';
+import { genMockData } from '@/mock/home';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -21,6 +21,8 @@ import FireSvg from '@/assets/icons/FireSvg.vue';
 import TrophySvg from '@/assets/icons/TrophySvg.vue';
 import CoinSvg from '@/assets/icons/CoinSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
+import RightArrowSvg from '@/assets/icons/RightArrowSvg.vue';
+import LeftArrowSvg from '@/assets/icons/LeftArrowSvg.vue';
 
 export default {
     components: {
@@ -40,6 +42,8 @@ export default {
         TrophySvg,
         CoinSvg,
         ProductCartSvg,
+        RightArrowSvg,
+        LeftArrowSvg,
     },
     data() {
         return {
@@ -79,8 +83,8 @@ export default {
                     content: ['Refund will be made approximately within 10 business days depending on the payment issuer’s process once <br> the refund is confirmed by our CS.'],
                 },
             ],
-            current: 1,
-            slider: null,
+            mainSliderCurrent: 1,
+            mainSlider: null,
             slides: [
                 '/path/to/your-image1.jpg',
                 '/path/to/your-image2.jpg',
@@ -98,13 +102,14 @@ export default {
                 { label: '#Dessert', value: 'dessert', class: 'bg-purple-01 text-purple-03 border-purple-03 hover:bg-purple-04 data-[active=true]:bg-purple-04 data-[active=true]:text-white-20 ', },
                 { label: '#Burger', value: 'burger', class: 'bg-orange-01 text-orange-05 border-orange-04 hover:bg-orange-03 data-[active=true]:bg-orange-03 data-[active=true]:text-white-20 ', },
             ],
-            hotKeyword,
+            hotKeyword: genMockData(50),
             selectedFilter: {
                 keyword: 'chicken',
                 brand: 'best',
                 budget: 50,
             },
             hotKeywordData: {},
+            keywordSliderCurrent: 0,
         }
     },
     methods: {
@@ -132,6 +137,21 @@ export default {
                 this.alertOpen = false
             }
         },
+
+        // 배너 이중 배열을 만듦
+        genBanner(originArr, chunkSize = 4) {
+            return originArr.reduce((result, item, index) => {
+                const chunkIndex = Math.floor(index / chunkSize);
+
+                if (!result[chunkIndex]) {
+                    result[chunkIndex] = [];
+                }
+
+                result[chunkIndex].push(item);
+
+                return result;
+            }, []);
+        },
     },
     watch: {
         dropdown() {
@@ -154,21 +174,21 @@ export default {
             return (path) => path === window.location.pathname
         },
         totalSlider() {
-            const total = this.slider ? [...Array(this.slider.track.details.slides.length).keys()] : []
+            const total = this.mainSlider ? [...Array(this.mainSlider.track.details.slides.length).keys()] : []
             return `${total.length < 10 ? '0' : ''}${total.length}`
         },
         currentSlider() {
-            return `${this.current < 10 ? '0' : ''}${this.current}`
+            return `${this.mainSliderCurrent < 10 ? '0' : ''}${this.mainSliderCurrent}`
         },
     },
     mounted() {
         // https://keen-slider.io/
-        this.slider = new KeenSlider(this.$refs.slider, {
+        this.mainSlider = new KeenSlider(this.$refs.mainSlider, {
             loop: true,
             drag: false,
             slides: { origin: "center", perView: 'auto', spacing: 30 },
             slideChanged: (s) => {
-                this.current = s.track.details.rel + 1
+                this.mainSliderCurrent = s.track.details.rel + 1
             },
         }, [
             (slider) => {
@@ -200,14 +220,15 @@ export default {
                 slider.on("updated", nextTimeout)
             },
         ]);
+
         this.hotKeywordData = this.hotKeyword.reduce((obj, data) => {
-            console.log(data.keyword)
-            obj[data.keyword] = this.hotKeyword.filter((item) => item.keyword === data.keyword)
+            const originArray = this.hotKeyword.filter((item) => item.keyword === data.keyword)
+            obj[data.keyword] = this.genBanner(originArray)
             return obj
         }, {})
     },
     beforeUnmount() {
-        if (this.slider) this.slider.destroy();
+        if (this.mainSlider) this.mainSlider.destroy();
     }
 }
 </script>
@@ -333,10 +354,10 @@ export default {
             </div>
         </nav>
         <section class="main-section main-section bg-white-17 h-[430px] pt-7">
-            <aside class="relative w-full h-full overflow-hidden main-banner slider">
+            <aside class="relative w-full h-full overflow-hidden main-banner">
                 <ul
                   class="flex h-[327px] w-full select-none keen-slider"
-                  ref="slider"
+                  ref="mainSlider"
                 >
                     <li
                       class="w-[812px] max-w-[812px] min-w-[812px] min-h-full keen-slider__slide"
@@ -345,7 +366,7 @@ export default {
                       :key="banner"
                     >
                         <div
-                          v-if="current !== idx + 1"
+                          v-if="mainSliderCurrent !== idx + 1"
                           class="bg-black-0/50 w-full h-[327px] absolute rounded-2xl transition-opacity ease-linear delay-200"
                         ></div>
                         <img
@@ -359,8 +380,8 @@ export default {
                 <div class="flex items-center justify-center w-48 pt-4 mx-auto">
                     <span
                       class="p-[11px] rounded-full bg-white-20 shadow-[0_4px_8px_0_#00000015] cursor-pointer"
-                      v-if="slider"
-                      @click="slider.prev()"
+                      v-if="mainSlider"
+                      @click="mainSlider.prev()"
                     >
                         <SliderLeftSvg />
                     </span>
@@ -370,8 +391,8 @@ export default {
                     <span class="text-[#C8CAD2] text-xl leading-7 font-medium select-none mr-4">{{ totalSlider }}</span>
                     <span
                       class="p-[11px] rounded-full bg-white-20 shadow-[0_4px_8px_0_#00000015] cursor-pointer"
-                      v-if="slider"
-                      @click="slider.next()"
+                      v-if="mainSlider"
+                      @click="mainSlider.next()"
                     >
                         <SliderRightSvg />
                     </span>
@@ -399,34 +420,59 @@ export default {
                         >{{ filter.label }}</li>
                     </ul>
                 </div>
-                <ul class="mt-8 mb-12 product">
-                    <li
-                      v-for="(data, idx) in hotKeywordData[selectedFilter.keyword]"
-                      :key="idx"
+                <aside class="relative">
+                    <div class="flex overflow-hidden product-wrapper">
+                        <ul
+                          class="mt-8 mb-12 product"
+                          v-for="(data, index) in hotKeywordData[selectedFilter.keyword]"
+                          :key="index"
+                          :style="{ transform: `translateX(-${keywordSliderCurrent * 100}%)` }"
+                        >
+                            <li
+                              v-for="(item, idx) in data"
+                              :key="idx"
+                            >
+                                <figure class="relative">
+                                    <img
+                                      :src="item.img"
+                                      :alt="item.img"
+                                    />
+                                    <figcaption v-if="item.is_soldout">
+                                        <span>SOLD OUT</span>
+                                    </figcaption>
+                                </figure>
+                                <dl class="product__detail">
+                                    <strong class="product__brand">{{ item.brand }}</strong>
+                                    <dd class="product__name">{{ item.name }}</dd>
+                                    <dd class="product__price">
+                                        <strong class="product__price-sale">P{{ item.sale_price }}</strong>
+                                        <s class="product__price-origin">P{{ item.price }}</s>
+                                    </dd>
+                                    <dd class="buttons">
+                                        <button>Buy Now</button>
+                                        <button>
+                                            <ProductCartSvg /> Add to Cart
+                                        </button>
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                    <button
+                        :disabled="keywordSliderCurrent === 0"
+                        class="banner-nav__btn left"
+                        @click="() => keywordSliderCurrent = (keywordSliderCurrent - 1 + hotKeywordData[selectedFilter.keyword].length) % hotKeywordData[selectedFilter.keyword].length"
                     >
-                        <figure class="relative">
-                            <img
-                              :src="data.img"
-                              :alt="data.img"
-                            />
-                            <figcaption v-if="data.is_soldout">
-                                <span>SOLD OUT</span>
-                            </figcaption>
-                        </figure>
-                        <dl class="product__detail">
-                            <strong class="product__brand">{{ data.brand }}</strong>
-                            <dd class="product__name">{{ data.name }}</dd>
-                            <dd class="product__price">
-                                <strong class="product__price-sale">P{{ data.sale_price }}</strong>
-                                <s class="product__price-origin">P{{ data.price }}</s>
-                            </dd>
-                            <dd class="buttons">
-                                <button>Buy Now</button>
-                                <button><ProductCartSvg /> Add to Cart</button>
-                            </dd>
-                        </dl>
-                    </li>
-                </ul>
+                        <LeftArrowSvg />
+                    </button>
+                    <button
+                        :disabled="keywordSliderCurrent >= hotKeywordData[selectedFilter.keyword]?.length - 1"
+                        class="banner-nav__btn right"
+                        @click="() => keywordSliderCurrent = (keywordSliderCurrent + 1) % hotKeywordData[selectedFilter.keyword].length"
+                    >
+                        <RightArrowSvg />
+                    </button>
+                </aside>
             </div>
         </section>
         <section class="main-section best-brands-section bg-white-20 h-96">

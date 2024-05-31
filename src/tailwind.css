@@ -1027,48 +1027,70 @@ body {
 
 @layer components {
     ul.product {
-        @apply grid grid-cols-[repeat(4,minmax(270px,270px))] justify-center h-[360px] gap-3
+        @apply grid grid-cols-[repeat(4,minmax(270px,270px))] justify-center h-[360px] gap-3 min-w-full h-full
     }
 
-    ul.product > li {
+    ul.product>li {
         @apply flex flex-col border border-[theme(colors.white.10)] bg-[theme(colors.white.20)]
     }
 
-    ul.product > li > figure {
+    ul.product>li>figure {
         @apply h-[216px] px-[theme(spacing[6.5])] py-[theme(spacing[0.5])]
     }
-    ul.product > li > figure > img {
+
+    ul.product>li>figure>img {
         @apply bg-[theme(colors.white.10)] h-full
     }
-    ul.product > li > figure > figcaption {
+
+    ul.product>li>figure>figcaption {
         @apply bg-[#00000033] absolute w-full h-full top-0 left-0 inline-flex justify-center items-center
     }
-    ul.product > li > figure > figcaption > span {
+
+    ul.product>li>figure>figcaption>span {
         @apply inline-flex justify-center items-center w-32 h-32 border-[5px] border-red-11 text-red-11 font-bold rounded-full bg-white-20 text-[32px] leading-8 -rotate-[17.19deg] text-wrap text-center
     }
-    ul.product > li .product__detail {
+
+    ul.product>li .product__detail {
         @apply px-2.5 pt-1.5 pb-2
     }
-    ul.product > li > .product__detail .product__brand {
+
+    ul.product>li>.product__detail .product__brand {
         @apply text-base leading-[17px] -tracking-wide font-bold text-zinc-05
     }
-    ul.product > li > .product__detail .product__name {
-        @apply text-[15px] leading-[17px] -tracking-wide font-normal text-zinc-05 
-    }
-    ul.product > li > .product__detail .product__price {
-        @apply flex items-center gap-1 mt-4 h-6.5
-    }
-    ul.product > li > .product__detail .product__price .product__price-sale {
-        @apply text-base leading-[22px] -tracking-[0.12px] text-blue-05
-    }
-    ul.product > li > .product__detail .product__price .product__price-origin {
-        @apply text-sm leading-6 -tracking-[0.4px] font-medium text-secondary-05
-    }
-    ul.product > li > .product__detail .buttons {
-        @apply flex items-center gap-1.5 mt-2
-    }
-    ul.product > li > .product__detail .buttons > button {
-        @apply h-9 px-4.5 border border-blue-05 text-blue-05 text-[13px] font-medium leading-4 last-of-type:inline-flex last-of-type:items-center last-of-type:gap-1.5 last-of-type:flex-grow last-of-type:justify-center
+
+    ul.product>li>.product__detail .product__name {
+        @apply text-[15px] leading-[17px] -tracking-wide font-normal text-zinc-05
     }
 
+    ul.product>li>.product__detail .product__price {
+        @apply flex items-center gap-1 mt-4 h-6.5
+    }
+
+    ul.product>li>.product__detail .product__price .product__price-sale {
+        @apply text-base leading-[22px] -tracking-[0.12px] text-blue-05
+    }
+
+    ul.product>li>.product__detail .product__price .product__price-origin {
+        @apply text-sm leading-6 -tracking-[0.4px] font-medium text-secondary-05
+    }
+
+    ul.product>li>.product__detail .buttons {
+        @apply flex items-center gap-1.5 mt-2
+    }
+
+    ul.product>li>.product__detail .buttons>button {
+        @apply h-9 px-4.5 border border-blue-05 text-blue-05 text-[13px] font-medium leading-4 last-of-type:inline-flex last-of-type:items-center last-of-type:gap-1.5 last-of-type:flex-grow last-of-type:justify-center
+    }
+}
+
+@layer components {
+    button.banner-nav__btn {
+        @apply p-4 rounded-full bg-white-20 border border-[#E6E6E6] shadow-[0_4px_8px_0_#0000000A] absolute top-1/2 -mt-[74px]
+    }
+    button.banner-nav__btn.left {
+        @apply -left-20
+    }
+    button.banner-nav__btn.right {
+        @apply -right-20
+    }
 }
