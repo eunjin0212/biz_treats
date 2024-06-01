@@ -3,7 +3,7 @@ import "keen-slider/keen-slider.min.css";
 import KeenSlider from "keen-slider";
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart';
-import { genKeywordMockData, genBrandsMockData } from '@/mock/home';
+import { genKeywordMockData, genBrandsMockData, genBudgetMockData } from '@/mock/home';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -106,7 +106,7 @@ export default {
             selectedFilter: {
                 keyword: 'chicken',
                 brand: 'ALL',
-                budget: 50,
+                budget: 0,
             },
             hotKeywordData: {},
             keywordSliderCurrent: 0,
@@ -126,6 +126,16 @@ export default {
             bestBrand: genBrandsMockData(100),
             bestBrandData: {},
             bestBrandSliderCurrent: 0,
+            budgetFilter: [
+                { label: 'Below P50', min: 0, max: 50 },
+                { label: 'P51~P100', min: 51, max: 100 },
+                { label: 'P101~P300', min: 101, max: 300 },
+                { label: 'P301~P500', min: 301, max: 500 },
+                { label: 'P501 and UP', min: 501, max: 99999 },
+            ],
+            budgetRecommend: genBudgetMockData(100),
+            budgetData: {},
+            budgetSliderCurrent: 0,
         }
     },
     methods: {
@@ -248,6 +258,14 @@ export default {
             obj[data.keyword] = data.keyword === 'ALL' ? this.genBanner(this.bestBrand, 12) :this.genBanner(originArray, 12)
             return obj
         }, {})
+
+        const budgetOriginArray = (min = 0, max = 50) => this.budgetRecommend.filter((item) => item.sale_price >= min && item.sale_price < max)
+        this.budgetData = this.budgetFilter.reduce((obj, data) => {
+            const originData  = budgetOriginArray(data.min, data.max)
+            obj[data.min] = this.genBanner(originData)
+            return obj
+        }, {})
+
     },
     beforeUnmount() {
         if (this.mainSlider) this.mainSlider.destroy();
@@ -562,7 +580,7 @@ export default {
             </aside>
             <button class="see-all-btn">See All Brand ></button>
         </section>
-        <section class="main-section recommend-section bg-white-17 h-96">
+        <section class="pt-[51px] pb-[65px] main-section recommend-section bg-white-17">
             <div class="main-section__wrapper w-[1121px]">
                 <div class="flex justify-between">
                     <h1 class="main-section__title">
@@ -572,14 +590,73 @@ export default {
                         </p>
                         RECOMMEND
                     </h1>
-                    <ul class="main-section__filter">
-                        <li>Below P50</li>
-                        <li>P51~P100</li>
-                        <li>P101~P300</li>
-                        <li>P301~P500</li>
-                        <li>P501 and UP</li>
+                    <ul class="inline-flex gap-2.5">
+                        <li
+                          :data-active="filter.min === selectedFilter.budget"
+                          class="cursor-pointer text-nowrap border border-[#DADADA] h-11 w-[120px] text-center py-2.5 rounded-[29px] text-base leading-[22px] font-semibold text-zinc-01 bg-white-20 hover:text-white-20 hover:bg-blue-05 hover:border-blue-05 data-[active=true]:text-white-20 data-[active=true]:bg-blue-05 data-[active=true]:border-blue-05"
+                          v-for="filter in budgetFilter"
+                          :key="filter.min"
+                          @click="() => {
+                            budgetSliderCurrent = 0;
+                            selectedFilter.budget = filter.min;
+                          }"
+                        >{{ filter.label }}</li>
                     </ul>
                 </div>
+                <aside class="relative">
+                    <div class="flex overflow-hidden product-wrapper">
+                        <ul
+                          class="mt-8 mb-12 product"
+                          v-for="(data, index) in budgetData[selectedFilter.budget]"
+                          :key="index"
+                          :style="{ transform: `translateX(-${budgetSliderCurrent * 100}%)` }"
+                        >
+                            <li
+                              v-for="(item, idx) in data"
+                              :key="idx"
+                            >
+                                <figure class="relative">
+                                    <img
+                                      :src="item.img"
+                                      :alt="item.img"
+                                    />
+                                    <figcaption v-if="item.is_soldout">
+                                        <span>SOLD OUT</span>
+                                    </figcaption>
+                                </figure>
+                                <dl class="product__detail">
+                                    <strong class="product__brand">{{ item.brand }}</strong>
+                                    <dd class="product__name">{{ item.name }}</dd>
+                                    <dd class="product__price">
+                                        <strong class="product__price-sale">P{{ item.sale_price }}</strong>
+                                        <s class="product__price-origin">P{{ item.price }}</s>
+                                    </dd>
+                                    <dd class="buttons">
+                                        <button>Buy Now</button>
+                                        <button>
+                                            <ProductCartSvg /> Add to Cart
+                                        </button>
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                    <button
+                      :disabled="budgetSliderCurrent === 0"
+                      class="banner-nav__btn left"
+                      @click="() => budgetSliderCurrent = (budgetSliderCurrent - 1 + budgetData[selectedFilter.budget].length) % budgetData[selectedFilter.budget].length"
+                    >
+                        <LeftArrowSvg />
+                    </button>
+                    <button
+                      :disabled="budgetSliderCurrent >= budgetData[selectedFilter.budget]?.length - 1"
+                      class="banner-nav__btn right"
+                      @click="() => budgetSliderCurrent = (budgetSliderCurrent + 1) % budgetData[selectedFilter.budget].length"
+                    >
+                        <RightArrowSvg />
+                    </button>
+                </aside>
+                <button class="see-all-btn">See All Brand ></button>
             </div>
         </section>
     </main>
