@@ -3,7 +3,7 @@ import "keen-slider/keen-slider.min.css";
 import KeenSlider from "keen-slider";
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart';
-import { genMockData } from '@/mock/home';
+import { genKeywordMockData, genBrandsMockData } from '@/mock/home';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -102,14 +102,30 @@ export default {
                 { label: '#Dessert', value: 'dessert', class: 'bg-purple-01 text-purple-03 border-purple-03 hover:bg-purple-04 data-[active=true]:bg-purple-04 data-[active=true]:text-white-20 ', },
                 { label: '#Burger', value: 'burger', class: 'bg-orange-01 text-orange-05 border-orange-04 hover:bg-orange-03 data-[active=true]:bg-orange-03 data-[active=true]:text-white-20 ', },
             ],
-            hotKeyword: genMockData(50),
+            hotKeyword: genKeywordMockData(50),
             selectedFilter: {
                 keyword: 'chicken',
-                brand: 'best',
+                brand: 'ALL',
                 budget: 50,
             },
             hotKeywordData: {},
             keywordSliderCurrent: 0,
+            brandFilter: [
+                'ALL',
+                'eWallet & Shopping',
+                'Grocery & Essentials',
+                'Fast Food',
+                'Casual Resto',
+                'Bread & Dessert',
+                'Drugstore & Wellness',
+                'Beauty & Lifestyle',
+                'Transpo & Travel',
+                'Digital & Appliance',
+                'Home & Kids',
+            ],
+            bestBrand: genBrandsMockData(100),
+            bestBrandData: {},
+            bestBrandSliderCurrent: 0,
         }
     },
     methods: {
@@ -224,6 +240,12 @@ export default {
         this.hotKeywordData = this.hotKeyword.reduce((obj, data) => {
             const originArray = this.hotKeyword.filter((item) => item.keyword === data.keyword)
             obj[data.keyword] = this.genBanner(originArray)
+            return obj
+        }, {})
+
+        this.bestBrandData = this.bestBrand.reduce((obj, data) => {
+            const originArray = this.bestBrand.filter((item) => item.keyword === data.keyword)
+            obj[data.keyword] = data.keyword === 'ALL' ? this.genBanner(this.bestBrand, 12) :this.genBanner(originArray, 12)
             return obj
         }, {})
     },
@@ -416,7 +438,10 @@ export default {
                           class="cursor-pointer border w-[120px] h-fit text-center py-2.5 rounded-[28px] text-base leading-[22px] font-semibold hover:text-white-20"
                           v-for="filter in keywordFilter"
                           :key="filter.value"
-                          @click="() => selectedFilter.keyword = filter.value"
+                          @click="() => {
+                            keywordSliderCurrent = 0;
+                            selectedFilter.keyword = filter.value;
+                          }"
                         >{{ filter.label }}</li>
                     </ul>
                 </div>
@@ -459,58 +484,86 @@ export default {
                         </ul>
                     </div>
                     <button
-                        :disabled="keywordSliderCurrent === 0"
-                        class="banner-nav__btn left"
-                        @click="() => keywordSliderCurrent = (keywordSliderCurrent - 1 + hotKeywordData[selectedFilter.keyword].length) % hotKeywordData[selectedFilter.keyword].length"
+                      :disabled="keywordSliderCurrent === 0"
+                      class="banner-nav__btn left"
+                      @click="() => keywordSliderCurrent = (keywordSliderCurrent - 1 + hotKeywordData[selectedFilter.keyword].length) % hotKeywordData[selectedFilter.keyword].length"
                     >
                         <LeftArrowSvg />
                     </button>
                     <button
-                        :disabled="keywordSliderCurrent >= hotKeywordData[selectedFilter.keyword]?.length - 1"
-                        class="banner-nav__btn right"
-                        @click="() => keywordSliderCurrent = (keywordSliderCurrent + 1) % hotKeywordData[selectedFilter.keyword].length"
+                      :disabled="keywordSliderCurrent >= hotKeywordData[selectedFilter.keyword]?.length - 1"
+                      class="banner-nav__btn right"
+                      @click="() => keywordSliderCurrent = (keywordSliderCurrent + 1) % hotKeywordData[selectedFilter.keyword].length"
                     >
                         <RightArrowSvg />
                     </button>
                 </aside>
             </div>
         </section>
-        <section class="main-section best-brands-section bg-white-20 h-96">
-            <div class="main-section__wrapper">
+        <section class="pt-[75px] pb-[60px] main-section best-brands-section bg-white-20">
+            <div class="main-section__wrapper w-[1121px]">
                 <h1 class="main-section__title">
                     <p class="flex items-center gap-2 h-fit">
                         BEST BRANDS
                         <TrophySvg />
                     </p>
                 </h1>
-                <ul>
-                    <li>Best-Brands</li>
-                    <li>eWallet & Shopping</li>
-                    <li>Grocery & Essentials</li>
-                    <li>Fast Food</li>
-                    <li>Casual Resto</li>
-                    <li>Bread & Dessert</li>
-                    <li>Drugstore & Wellness</li>
-                    <li>Best-Brands</li>
-                    <li>eWallet & Shopping</li>
-                    <li>Grocery & Essentials</li>
-                    <li>Fast Food</li>
-                    <li>Casual Resto</li>
-                    <li>Bread & Dessert</li>
-                    <li>Drugstore & Wellness</li>
-                    <li>Beauty & Lifestyle</li>
-                    <li>Transpo & Travel</li>
-                    <li>Digital & Appliance</li>
-                    <li>Home & Kids</li>
-                    <li>Beauty & Lifestyle</li>
-                    <li>Transpo & Travel</li>
-                    <li>Digital & Appliance</li>
-                    <li>Home & Kids</li>
+                <ul class="inline-flex gap-2.5 w-[1058px] flex-wrap mt-8">
+                    <li
+                      :data-active="filter === selectedFilter.brand"
+                      :class="{ 'w-36': filter === 'ALL' }"
+                      class="cursor-pointer text-nowrap border border-[#E5E5E5] h-9 text-center px-2.5 py-1.5 rounded-[31px] text-sm leading-[22px] font-medium font-poppins text-blue-05 hover:text-white-20 hover:bg-blue-05 hover:border-blue-05 data-[active=true]:text-white-20 data-[active=true]:bg-blue-05 data-[active=true]:border-blue-05"
+                      v-for="filter in brandFilter"
+                      :key="filter"
+                      @click="() => {
+                        bestBrandSliderCurrent = 0
+                        selectedFilter.brand = filter
+                      }"
+                    >{{ filter }}</li>
                 </ul>
             </div>
+            <aside class="w-[1121px] relative border border-white-13 shadow-[0_4px_8px_0_#0000000A] mx-auto h-[460px] mb-10 mt-5">
+                <div class="flex overflow-hidden brand-wrapper">
+                    <ul
+                      class="brand"
+                      v-for="(data, index) in bestBrandData[selectedFilter.brand]"
+                      :key="index"
+                      :style="{ transform: `translateX(-${bestBrandSliderCurrent * 100}%)` }"
+                    >
+                        <li
+                          v-for="(item, idx) in data"
+                          :key="idx"
+                        >
+                            <img
+                                :src="item.img"
+                                :alt="item.img"
+                            />
+                            <dl class="brand__detail">
+                                <strong class="brand__name">{{ item.brand }}</strong>
+                                <dd class="brand__locations">{{ item.locations.toLocaleString() }} Locations</dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+                <button
+                  :disabled="bestBrandSliderCurrent === 0"
+                  class="banner-nav__btn left"
+                  @click="() => bestBrandSliderCurrent = (bestBrandSliderCurrent - 1 + bestBrandData[selectedFilter.brand].length) % bestBrandData[selectedFilter.brand].length"
+                >
+                    <LeftArrowSvg />
+                </button>
+                <button
+                  :disabled="bestBrandSliderCurrent >= bestBrandData[selectedFilter.brand]?.length - 1"
+                  class="banner-nav__btn right"
+                  @click="() => bestBrandSliderCurrent = (bestBrandSliderCurrent + 1) % bestBrandData[selectedFilter.brand].length"
+                >
+                    <RightArrowSvg />
+                </button>
+            </aside>
+            <button class="see-all-btn">See All Brand ></button>
         </section>
         <section class="main-section recommend-section bg-white-17 h-96">
-            <div class="main-section__wrapper">
+            <div class="main-section__wrapper w-[1121px]">
                 <div class="flex justify-between">
                     <h1 class="main-section__title">
                         <p class="flex items-center mb-2 h-fit">
