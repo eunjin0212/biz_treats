@@ -255,13 +255,13 @@ export default {
 
         this.bestBrandData = this.bestBrand.reduce((obj, data) => {
             const originArray = this.bestBrand.filter((item) => item.keyword === data.keyword)
-            obj[data.keyword] = data.keyword === 'ALL' ? this.genBanner(this.bestBrand, 12) :this.genBanner(originArray, 12)
+            obj[data.keyword] = data.keyword === 'ALL' ? this.genBanner(this.bestBrand, 12) : this.genBanner(originArray, 12)
             return obj
         }, {})
 
         const budgetOriginArray = (min = 0, max = 50) => this.budgetRecommend.filter((item) => item.sale_price >= min && item.sale_price < max)
         this.budgetData = this.budgetFilter.reduce((obj, data) => {
-            const originData  = budgetOriginArray(data.min, data.max)
+            const originData = budgetOriginArray(data.min, data.max)
             obj[data.min] = this.genBanner(originData)
             return obj
         }, {})
@@ -457,9 +457,9 @@ export default {
                           v-for="filter in keywordFilter"
                           :key="filter.value"
                           @click="() => {
-                            keywordSliderCurrent = 0;
-                            selectedFilter.keyword = filter.value;
-                          }"
+                        keywordSliderCurrent = 0;
+                        selectedFilter.keyword = filter.value;
+                    }"
                         >{{ filter.label }}</li>
                     </ul>
                 </div>
@@ -536,11 +536,13 @@ export default {
                       @click="() => {
                         bestBrandSliderCurrent = 0
                         selectedFilter.brand = filter
-                      }"
+                    }"
                     >{{ filter }}</li>
                 </ul>
             </div>
-            <aside class="w-[1121px] relative border border-white-13 shadow-[0_4px_8px_0_#0000000A] mx-auto h-[460px] mb-10 mt-5">
+            <aside
+              class="w-[1121px] relative border border-white-13 shadow-[0_4px_8px_0_#0000000A] mx-auto h-[460px] mb-10 mt-5"
+            >
                 <div class="flex overflow-hidden brand-wrapper">
                     <ul
                       class="brand"
@@ -553,8 +555,9 @@ export default {
                           :key="idx"
                         >
                             <img
-                                :src="item.img"
-                                :alt="item.img"
+                              :src="item.img"
+                              :alt="item.img"
+                              class="object-contain"
                             />
                             <dl class="brand__detail">
                                 <strong class="brand__name">{{ item.brand }}</strong>
@@ -578,7 +581,22 @@ export default {
                     <RightArrowSvg />
                 </button>
             </aside>
-            <button class="see-all-btn">See All Brand ></button>
+            <button class="see-all-btn">
+                See All Brand
+                <svg
+                  width="9"
+                  height="14"
+                  viewBox="0 0 9 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                      d="M1 1L7 7L1 13"
+                      stroke="#979797"
+                      stroke-width="2"
+                    />
+                </svg>
+            </button>
         </section>
         <section class="pt-[51px] pb-[65px] main-section recommend-section bg-white-17">
             <div class="main-section__wrapper w-[1121px]">
@@ -597,9 +615,9 @@ export default {
                           v-for="filter in budgetFilter"
                           :key="filter.min"
                           @click="() => {
-                            budgetSliderCurrent = 0;
-                            selectedFilter.budget = filter.min;
-                          }"
+                        budgetSliderCurrent = 0;
+                        selectedFilter.budget = filter.min;
+                    }"
                         >{{ filter.label }}</li>
                     </ul>
                 </div>
@@ -656,7 +674,21 @@ export default {
                         <RightArrowSvg />
                     </button>
                 </aside>
-                <button class="see-all-btn">See All Brand ></button>
+                <button class="see-all-btn">See More
+                    <svg
+                      width="9"
+                      height="14"
+                      viewBox="0 0 9 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                          d="M1 1L7 7L1 13"
+                          stroke="#979797"
+                          stroke-width="2"
+                        />
+                    </svg>
+                </button>
             </div>
         </section>
     </main>

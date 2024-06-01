@@ -27,12 +27,6 @@ export const genKeywordMockData = (length = 10) => Array.from({ length }).map((_
 }))
 
 export const genBrandsMockData = (length = 10) => {
-    const brands = [
-        'Jollibee',
-        'KFC',
-        'Mang Inasal',
-        'Red Ribbon',
-    ]
     const keywords = [
         'ALL',
         'eWallet & Shopping',
@@ -46,22 +40,29 @@ export const genBrandsMockData = (length = 10) => {
         'Digital & Appliance',
         'Home & Kids',
     ]
-    return Array.from({ length }).map((_, idx) => {
+    const brands = [
+        { label: 'Shawa wama', img: '/assets/images/go.png', },
+        { label: 'GrabFood', img: '/assets/images/olive_garden.png', },
+        { label: 'McDonald’s', img: '/assets/images/pricelocq.png', },
+    ]
+    return Array.from({ length }).map(() => {
         return {
-            brand: brands[getRandom(0, brands.length - 1)],
+            brand: brands[getRandom(0, brands.length - 1)].label,
             locations: 12300,
             keyword: keywords[getRandom(0, keywords.length - 1)],
-            img: `path/img_${idx}.png`,
+            img: brands[getRandom(0, brands.length - 1)].img
         }
     })
 }
 
-export const genBudgetMockData = (length = 10) => Array.from({ length }).map((_, idx) => ({
-    brand: productBrands[getRandom(0, productBrands.length - 1)],
-    name: productNames[getRandom(0, productNames.length - 1)],
-    sale_price: getRandom(0, 1000),
-    price: getRandom(0, 1000),
-    keyword: productKeywords[getRandom(0, productKeywords.length - 1)],
-    img: `path/img_${idx}.png`,
-    is_soldout: soldOuts[getRandom(0, soldOuts.length - 1)],
-}))
+export const genBudgetMockData = (length = 10) => {
+    return Array.from({ length }).map((_, idx) => ({
+        brand: productBrands[getRandom(0, productBrands.length - 1)].label,
+        name: productNames[getRandom(0, productNames.length - 1)],
+        sale_price: getRandom(0, 1000),
+        price: getRandom(0, 1000),
+        keyword: productKeywords[getRandom(0, productKeywords.length - 1)],
+        img: `path/img_${idx}.png`,
+        is_soldout: soldOuts[getRandom(0, soldOuts.length - 1)],
+    }))
+}

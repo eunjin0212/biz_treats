@@ -1039,7 +1039,7 @@ body {
     }
 
     ul.product>li>figure>img {
-        @apply bg-[theme(colors.white.10)] h-full
+        @apply bg-[theme(colors.white.10)] h-full object-contain
     }
 
     ul.product>li>figure>figcaption {
@@ -1099,18 +1099,39 @@ body {
     .brand {
         @apply grid grid-cols-[repeat(6,minmax(186px,1fr))] grid-rows-2 justify-center gap-0 min-w-full h-[460px]
     }
+    
     .brand>li {
-        @apply outline outline-1 outline-white-12 inline-flex flex-col items-center py-7 justify-between
+        @apply inline-flex flex-col items-center py-7 justify-between
     }
+    
+    .brand>li:nth-of-type(n+1):not(:nth-of-type(7)), .brand>li:last-of-type {
+        @apply border-l border-l-white-12
+    }
+    
+    .brand>li:first-of-type {
+        @apply !border-l-0
+    }
+    
+    .brand>li:last-of-type:not(:nth-of-type(6), :nth-of-type(12)) {
+        @apply border-r border-r-white-12
+    }
+    
+    .brand>li:not(:nth-of-type(n+7)) {
+        @apply border-b border-b-white-12
+    }
+    
     .brand>li>img {
         @apply w-[106px] h-[106px] rounded-[21px] border border-[#E4E8EB]
     }
+    
     .brand>li>.brand__detail {
         @apply mt-3.5 text-center
     }
+    
     .brand>li>.brand__detail>.brand__name {
         @apply font-semibold text-base -tracking-wide text-black-06 block
     }
+    
     .brand>li>.brand__detail>.brand__locations {
         @apply text-slate-03 text-[11px] leading-5 -tracking-wide font-normal mt-1
     }
@@ -1118,6 +1139,6 @@ body {
 
 @layer components {
     .see-all-btn {
-        @apply rounded-md border border-[#E5E5E5] py-4 bg-white-20 text-[#979797] text-base -tracking-wide font-medium h-14 w-[480px] block mx-auto
+        @apply flex justify-center items-center gap-2 rounded-md border border-[#E5E5E5] py-4 bg-white-20 text-[#979797] text-base -tracking-wide font-medium h-14 w-[480px] mx-auto
     }
 }
