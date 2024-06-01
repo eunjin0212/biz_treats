@@ -122,4 +122,8 @@ module.exports = {
         title: 'SingleCart',
         path: '/singleCart'
     },
+    'budget': {
+        title: 'Budget',
+        path: '/budget'
+    },
 }

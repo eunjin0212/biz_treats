@@ -190,7 +190,7 @@ export const mainMenu = [
     },
     {
         title: 'Brand',
-        path: '/brand'
+        path: '/brands'
     },
     {
         title: 'Hybrid',

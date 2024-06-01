@@ -1,7 +1,7 @@
 <script>
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart';
-import { genBrandsMockData } from '@/mock/home';
+import { genBudgetMockData } from '@/mock/home';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -13,9 +13,8 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
-import TrophySvg from '@/assets/icons/TrophySvg.vue';
-import RightArrowSvg from '@/assets/icons/RightArrowSvg.vue';
-import LeftArrowSvg from '@/assets/icons/LeftArrowSvg.vue';
+import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
+import AllSvg from '@/assets/icons/AllSvg.vue'
 
 export default {
     components: {
@@ -29,9 +28,8 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
-        TrophySvg,
-        RightArrowSvg,
-        LeftArrowSvg,
+        AllSvg,
+        ProductCartSvg,
     },
     data() {
         return {
@@ -72,24 +70,31 @@ export default {
                 },
             ],
             selectedFilter: {
-                brand: 'ALL',
+                budget: 0,
+                category: 'ALL'
             },
-            brandFilter: [
-                'ALL',
-                'eWallet & Shopping',
-                'Grocery & Essentials',
-                'Fast Food',
-                'Casual Resto',
-                'Bread & Dessert',
-                'Drugstore & Wellness',
-                'Beauty & Lifestyle',
-                'Transpo & Travel',
-                'Digital & Appliance',
-                'Home & Kids',
+            categoryFilter: [
+                { label: 'ALL', icon: 'AllSvg', textClass: '' },
+                { label: 'eWallet', icon: '', textClass: '' },
+                { label: 'Grocery & Essentials', icon: '', textClass: '' },
+                { label: 'Fast Food', icon: '', textClass: 'text-nowrap' },
+                { label: 'Casual Resto', icon: '', textClass: '' },
+                { label: 'Bread & Dessert', icon: '', textClass: '' },
+                { label: 'Drugstore & Wellness', icon: '', textClass: '-tracking-[0.14px]' },
+                { label: 'Beauty & Lifestyle', icon: '', textClass: '' },
+                { label: 'Transpo & Travel', icon: '', textClass: '' },
+                { label: 'Digital & Appliance', icon: '', textClass: '' },
+                { label: 'Home & Kids', icon: '', textClass: '' },
             ],
-            bestBrand: genBrandsMockData(100),
-            bestBrandData: {},
-            bestBrandSliderCurrent: 0,
+            budgetFilter: [
+                { label: 'Below P50', min: 0, max: 50 },
+                { label: 'P51~P100', min: 51, max: 100 },
+                { label: 'P101~P300', min: 101, max: 300 },
+                { label: 'P301~P500', min: 301, max: 500 },
+                { label: 'P501 and UP', min: 501, max: 99999 },
+            ],
+            budgetRecommend: genBudgetMockData(100),
+            budgetData: {},
         }
     },
     methods: {
@@ -117,21 +122,6 @@ export default {
                 this.alertOpen = false
             }
         },
-
-        // 배너 이중 배열을 만듦
-        genBanner(originArr, chunkSize = 4) {
-            return originArr.reduce((result, item, index) => {
-                const chunkIndex = Math.floor(index / chunkSize);
-
-                if (!result[chunkIndex]) {
-                    result[chunkIndex] = [];
-                }
-
-                result[chunkIndex].push(item);
-
-                return result;
-            }, []);
-        },
     },
     watch: {
         dropdown() {
@@ -155,9 +145,9 @@ export default {
         },
     },
     mounted() {
-        this.bestBrandData = this.bestBrand.reduce((obj, data) => {
-            const originArray = this.bestBrand.filter((item) => item.keyword === data.keyword)
-            obj[data.keyword] = data.keyword === 'ALL' ? this.genBanner(this.bestBrand, 12) : this.genBanner(originArray, 12)
+        const budgetOriginArray = (min = 0, max = 50) => this.budgetRecommend.filter((item) => item.sale_price >= min && item.sale_price < max)
+        this.budgetData = this.budgetFilter.reduce((obj, data) => {
+            obj[data.min] = budgetOriginArray(data.min, data.max)
             return obj
         }, {})
     },
@@ -284,85 +274,92 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
-        <section class="pt-[75px] pb-[60px] main-section best-brands-section bg-white-20">
-            <div class="main-section__wrapper w-[1121px]">
-                <h1 class="main-section__title">
-                    <p class="flex items-center gap-2 h-fit">
-                        BEST BRANDS
-                        <TrophySvg />
-                    </p>
-                </h1>
-                <ul class="inline-flex gap-2.5 w-[1058px] flex-wrap mt-8">
-                    <li
-                      :data-active="filter === selectedFilter.brand"
-                      :class="{ 'w-36': filter === 'ALL' }"
-                      class="cursor-pointer text-nowrap border border-[#E5E5E5] h-9 text-center px-2.5 py-1.5 rounded-[31px] text-sm leading-[22px] font-medium font-poppins text-blue-05 hover:text-white-20 hover:bg-blue-05 hover:border-blue-05 data-[active=true]:text-white-20 data-[active=true]:bg-blue-05 data-[active=true]:border-blue-05"
-                      v-for="filter in brandFilter"
-                      :key="filter"
-                      @click="() => {
-                        bestBrandSliderCurrent = 0
-                        selectedFilter.brand = filter
+        <div class="w-full py-3 bg-white-20 min-w-[1440px] sticky top-0 z-20">
+            <ul class="flex gap-2.5 w-[1120px] mx-auto">
+                <li
+                  :data-active="filter.min === selectedFilter.budget"
+                  class="cursor-pointer text-nowrap border border-[#DADADA] h-11 w-[120px] text-center py-2.5 rounded-[29px] text-base leading-[22px] font-semibold text-zinc-01 bg-white-20 hover:text-white-20 hover:bg-blue-05 hover:border-blue-05 data-[active=true]:text-white-20 data-[active=true]:bg-blue-05 data-[active=true]:border-blue-05"
+                  v-for="filter in budgetFilter"
+                  :key="filter.min"
+                  @click="() => {
+                        selectedFilter.budget = filter.min;
                     }"
-                    >{{ filter }}</li>
-                </ul>
-            </div>
-            <aside
-              class="w-[1121px] relative border border-white-13 shadow-[0_4px_8px_0_#0000000A] mx-auto h-[460px] mb-10 mt-5"
-            >
-                <div class="flex overflow-hidden brand-wrapper">
-                    <ul
-                      class="brand"
-                      v-for="(data, index) in bestBrandData[selectedFilter.brand]"
-                      :key="index"
-                      :style="{ transform: `translateX(-${bestBrandSliderCurrent * 100}%)` }"
+                >{{ filter.label }}</li>
+            </ul>
+        </div>
+        <div class="w-full bg-white-18 min-w-[1440px]">
+            <h4 class="pt-6 mb-4 text-[#696969] text-base leading-8 -tracking-tight font-bold w-[1120px] mx-auto">
+                Sort by Category
+                <hr class="border-t-gray-07" />
+            </h4>
+        </div>
+        <div class="w-full pt-1 bg-white-18 min-w-[1440px] sticky top-[68px] z-20">
+            <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center">
+                <li
+                  v-for="category in categoryFilter"
+                  :key="category.label"
+                  :data-active="category.label === selectedFilter.category"
+                  class="flex flex-col items-center cursor-pointer group h-[90px] max-w-[50px]"
+                  @click="() => {
+                        selectedFilter.category = category.label;
+                    }"
+                >
+                    <div
+                      class="text-nowrap border border-[#858E96] rounded-full p-3 w-[50px] h-[50px] min-h-[50px] group-data-[active=true]:border-blue-05"
                     >
-                        <li
-                          v-for="(item, idx) in data"
-                          :key="idx"
-                        >
-                            <img
-                              :src="item.img"
-                              :alt="item.img"
-                              class="object-contain"
-                            />
-                            <dl class="brand__detail">
-                                <strong class="brand__name">{{ item.brand }}</strong>
-                                <dd class="brand__locations">{{ item.locations.toLocaleString() }} Locations</dd>
-                            </dl>
-                        </li>
-                    </ul>
-                </div>
-                <button
-                  :disabled="bestBrandSliderCurrent === 0"
-                  class="banner-nav__btn left"
-                  @click="() => bestBrandSliderCurrent = (bestBrandSliderCurrent - 1 + bestBrandData[selectedFilter.brand].length) % bestBrandData[selectedFilter.brand].length"
-                >
-                    <LeftArrowSvg />
-                </button>
-                <button
-                  :disabled="bestBrandSliderCurrent >= bestBrandData[selectedFilter.brand]?.length - 1"
-                  class="banner-nav__btn right"
-                  @click="() => bestBrandSliderCurrent = (bestBrandSliderCurrent + 1) % bestBrandData[selectedFilter.brand].length"
-                >
-                    <RightArrowSvg />
-                </button>
-            </aside>
-            <button class="see-all-btn">
-                See All Brand
-                <svg
-                  width="9"
-                  height="14"
-                  viewBox="0 0 9 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                      d="M1 1L7 7L1 13"
-                      stroke="#979797"
-                      stroke-width="2"
-                    />
-                </svg>
-            </button>
+                        <component
+                          v-if="category?.icon"
+                          :is="category?.icon"
+                          class="text-[#858E96] group-data-[active=true]:text-blue-05"
+                        ></component>
+                    </div>
+                    <span
+                      :class="category.textClass"
+                      class="font-roboto relative h-10 inline-flex flex-col justify-between pt-1 text-[11px] text-center leading-[18px] font-normal -tracking-[0.12px] group-data-[active=true]:font-semibold text-[#858E96] group-data-[active=true]:text-blue-05 group-data-[active=true]:before:content-[''] group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-[2px] group-data-[active=true]:before:bg-blue-05"
+                    >
+                        {{ category.label }}
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <hr class="border-t-2 border-t-[#CECECE] w-[1120px] mx-auto" />
+        <section class="pt-[51px] pb-[65px] main-section budget-section bg-white-18">
+            <div class="main-section__wrapper w-[1120px]">
+                <aside>
+                    <div class="flex overflow-hidden product-wrapper">
+                        <ul class="mt-8 mb-12 product">
+                            <li
+                              v-for="(item, index) in budgetData[selectedFilter.budget]"
+                              :key="index"
+                            >
+                                <figure class="relative">
+                                    <img
+                                      :src="item.img"
+                                      :alt="item.img"
+                                    />
+                                    <figcaption v-if="item.is_soldout">
+                                        <span>SOLD OUT</span>
+                                    </figcaption>
+                                </figure>
+                                <dl class="product__detail">
+                                    <strong class="product__brand">{{ item.brand }}</strong>
+                                    <dd class="product__name">{{ item.name }}</dd>
+                                    <dd class="product__price">
+                                        <strong class="product__price-sale">P{{ item.sale_price }}</strong>
+                                        <s class="product__price-origin">P{{ item.price }}</s>
+                                    </dd>
+                                    <dd class="buttons">
+                                        <button>Buy Now</button>
+                                        <button>
+                                            <ProductCartSvg /> Add to Cart
+                                        </button>
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
         </section>
     </main>
     <footer class="service-footer">

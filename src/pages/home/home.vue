@@ -581,7 +581,7 @@ export default {
                     <RightArrowSvg />
                 </button>
             </aside>
-            <button class="see-all-btn">
+            <a class="see-all-btn" href="/brands">
                 See All Brand
                 <svg
                   width="9"
@@ -596,9 +596,9 @@ export default {
                       stroke-width="2"
                     />
                 </svg>
-            </button>
+            </a>
         </section>
-        <section class="pt-[51px] pb-[65px] main-section recommend-section bg-white-17">
+        <section class="pt-[51px] pb-[65px] main-section budget-section bg-white-17">
             <div class="main-section__wrapper w-[1121px]">
                 <div class="flex justify-between">
                     <h1 class="main-section__title">
@@ -674,7 +674,7 @@ export default {
                         <RightArrowSvg />
                     </button>
                 </aside>
-                <button class="see-all-btn">See More
+                <a href="/budget" class="see-all-btn">See More
                     <svg
                       width="9"
                       height="14"
@@ -688,7 +688,7 @@ export default {
                           stroke-width="2"
                         />
                     </svg>
-                </button>
+                </a>
             </div>
         </section>
     </main>
