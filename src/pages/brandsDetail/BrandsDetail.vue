@@ -1,7 +1,7 @@
 <script>
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart';
-import { genBrandsMockData } from '@/mock/home';
+import { genProductMockData } from '@/mock/brand';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -13,9 +13,7 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
-import TrophySvg from '@/assets/icons/TrophySvg.vue';
-import RightArrowSvg from '@/assets/icons/RightArrowSvg.vue';
-import LeftArrowSvg from '@/assets/icons/LeftArrowSvg.vue';
+import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 
 export default {
     components: {
@@ -29,9 +27,7 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
-        TrophySvg,
-        RightArrowSvg,
-        LeftArrowSvg,
+        ProductCartSvg,
     },
     data() {
         return {
@@ -71,25 +67,8 @@ export default {
                     content: ['Refund will be made approximately within 10 business days depending on the payment issuer’s process once <br> the refund is confirmed by our CS.'],
                 },
             ],
-            selectedFilter: {
-                brand: 'ALL',
-            },
-            brandFilter: [
-                'ALL',
-                'eWallet & Shopping',
-                'Grocery & Essentials',
-                'Fast Food',
-                'Casual Resto',
-                'Bread & Dessert',
-                'Drugstore & Wellness',
-                'Beauty & Lifestyle',
-                'Transpo & Travel',
-                'Digital & Appliance',
-                'Home & Kids',
-            ],
-            bestBrand: genBrandsMockData(100),
-            bestBrandData: {},
-            bestBrandSliderCurrent: 0,
+            products: genProductMockData(100),
+            window,
         }
     },
     methods: {
@@ -117,21 +96,6 @@ export default {
                 this.alertOpen = false
             }
         },
-
-        // 배너 이중 배열을 만듦
-        genBanner(originArr, chunkSize = 4) {
-            return originArr.reduce((result, item, index) => {
-                const chunkIndex = Math.floor(index / chunkSize);
-
-                if (!result[chunkIndex]) {
-                    result[chunkIndex] = [];
-                }
-
-                result[chunkIndex].push(item);
-
-                return result;
-            }, []);
-        },
     },
     watch: {
         dropdown() {
@@ -153,13 +117,6 @@ export default {
         matchPath: () => {
             return (path) => path === window.location.pathname
         },
-    },
-    mounted() {
-        this.bestBrandData = this.bestBrand.reduce((obj, data) => {
-            const originArray = this.bestBrand.filter((item) => item.keyword === data.keyword)
-            obj[data.keyword] = data.keyword === 'ALL' ? this.genBanner(this.bestBrand, 12) : this.genBanner(originArray, 12)
-            return obj
-        }, {})
     },
 }
 </script>
@@ -284,85 +241,60 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
-        <section class="pt-[75px] pb-[60px] main-section best-brands-section bg-white-20">
-            <div class="main-section__wrapper w-[1121px]">
-                <h1 class="main-section__title">
-                    <p class="flex items-center gap-2 h-fit">
-                        BEST BRANDS
-                        <TrophySvg />
-                    </p>
-                </h1>
-                <ul class="inline-flex gap-2.5 w-[1058px] flex-wrap mt-8">
-                    <li
-                      :data-active="filter === selectedFilter.brand"
-                      :class="{ 'w-36': filter === 'ALL' }"
-                      class="cursor-pointer text-nowrap border border-[#E5E5E5] h-9 text-center px-2.5 py-1.5 rounded-[31px] text-sm leading-[22px] font-medium font-poppins text-blue-05 hover:text-white-20 hover:bg-blue-05 hover:border-blue-05 data-[active=true]:text-white-20 data-[active=true]:bg-blue-05 data-[active=true]:border-blue-05"
-                      v-for="filter in brandFilter"
-                      :key="filter"
-                      @click="() => {
-                        bestBrandSliderCurrent = 0
-                        selectedFilter.brand = filter
-                    }"
-                    >{{ filter }}</li>
-                </ul>
+        <section class="pt-4 pb-40 main-section budget-section bg-white-18">
+            <div class="flex border bg-white-20 border-white-10 w-[1120px] h-[150px] mx-auto">
+                <img
+                  class="w-[250px] py-5 h-full border-r border-r-white-10 object-contain"
+                  :src="`/assets/images/brand_${window.location.search.split('=')[1]}.png`"
+                  :alt="`path/images/assets/brand_${window.location.search.split('=')[1]}.png`"
+                />
+                <div class="flex flex-col justify-center ml-8">
+                    <p class="text-[28px] leading-8 font-semibold -tracking-wide text-[#6C6C6C]">Jollibee</p>
+                    <span class="text-[15px] leading-8 -tracking-wide font-normal text-[#A6A6A6]">1,136 LOCATIONS</span>
+                </div>
             </div>
-            <aside
-              class="w-[1121px] relative border border-white-13 shadow-[0_4px_8px_0_#0000000A] mx-auto h-[460px] mb-10 mt-5"
-            >
-                <div class="flex overflow-hidden brand-wrapper">
-                    <ul
-                      class="brand"
-                      v-for="(data, index) in bestBrandData[selectedFilter.brand]"
+            <hr class="border-t border-t-gray-07 w-[1120px] mx-auto mt-6 mb-2.5" />
+            <div class="main-section__wrapper w-[1120px]">
+                <div class="text-right pb-3.5 flex items-center justify-end">
+                    <span class="mr-2 text-sm font-medium leading-4 text-slate-01">
+                        Sort By
+                    </span>
+                    <select class="search-select !w-[182px]">
+                        <option value="asc">Price-low to high</option>
+                        <option value="desc">Price-high to low</option>
+                    </select>
+                </div>
+                <ul class="mb-12 product">
+                    <li
+                      v-for="(item, index) in products"
                       :key="index"
-                      :style="{ transform: `translateX(-${bestBrandSliderCurrent * 100}%)` }"
                     >
-                        <li
-                          v-for="(item, idx) in data"
-                          :key="idx"
-                        >
+                        <figure class="relative">
                             <img
                               :src="item.img"
                               :alt="item.img"
-                              class="object-contain"
                             />
-                            <dl class="brand__detail">
-                                <strong class="brand__name">{{ item.brand }}</strong>
-                                <dd class="brand__locations">{{ item.locations.toLocaleString() }} Locations</dd>
-                            </dl>
-                        </li>
-                    </ul>
-                </div>
-                <button
-                  :disabled="bestBrandSliderCurrent === 0"
-                  class="banner-nav__btn left"
-                  @click="() => bestBrandSliderCurrent = (bestBrandSliderCurrent - 1 + bestBrandData[selectedFilter.brand].length) % bestBrandData[selectedFilter.brand].length"
-                >
-                    <LeftArrowSvg />
-                </button>
-                <button
-                  :disabled="bestBrandSliderCurrent >= bestBrandData[selectedFilter.brand]?.length - 1"
-                  class="banner-nav__btn right"
-                  @click="() => bestBrandSliderCurrent = (bestBrandSliderCurrent + 1) % bestBrandData[selectedFilter.brand].length"
-                >
-                    <RightArrowSvg />
-                </button>
-            </aside>
-            <button class="see-all-btn">
-                See All Brand
-                <svg
-                  width="9"
-                  height="14"
-                  viewBox="0 0 9 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                      d="M1 1L7 7L1 13"
-                      stroke="#979797"
-                      stroke-width="2"
-                    />
-                </svg>
-            </button>
+                            <figcaption v-if="item.is_soldout">
+                                <span>SOLD OUT</span>
+                            </figcaption>
+                        </figure>
+                        <dl class="product__detail">
+                            <strong class="product__brand">{{ item.brand }}</strong>
+                            <dd class="product__name">{{ item.name }}</dd>
+                            <dd class="product__price">
+                                <strong class="product__price-sale">P{{ item.sale_price }}</strong>
+                                <s class="product__price-origin">P{{ item.price }}</s>
+                            </dd>
+                            <dd class="buttons">
+                                <button>Buy Now</button>
+                                <button>
+                                    <ProductCartSvg /> Add to Cart
+                                </button>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
         </section>
     </main>
     <footer class="service-footer">

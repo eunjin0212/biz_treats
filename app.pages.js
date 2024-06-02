@@ -40,90 +40,94 @@ module.exports = {
     },
     'faqs': {
         title: 'FAQS',
-        path: '/faqs'
+        path: '/faqs',
     },
     'customerService': {
         title: 'Customer Service',
-        path: '/customerService'
+        path: '/customerService',
     },
     'termsService': {
         title: 'Terms and Service',
-        path: '/termsService'
+        path: '/termsService',
     },
     'privacyPolicy': {
       title: 'Privacy Policy',
-      path: '/privacyPolicy'
+      path: '/privacyPolicy',
     },
     'merchantPartnership': {
         title: 'Merchant Partnership',
-        path: '/merchantPartnership'
+        path: '/merchantPartnership',
     },
     'companyWebsite': {
         title: 'Company Website',
-        path: '/companyWebsite'
+        path: '/companyWebsite',
     },
     'myWallet': {
         title: 'My Wallet',
-        path: '/myWallet'
+        path: '/myWallet',
     },
     'treatsHistory': {
         title: 'Treats History',
-        path: '/treatsHistory'
+        path: '/treatsHistory',
     },
     'chooseWallet': {
         title: 'Choose Wallet',
-        path: '/chooseWallet'
+        path: '/chooseWallet',
     },
     'accountInfo': {
         title: 'Account Info',
-        path: '/accountInfo'
+        path: '/accountInfo',
     },
     'campaignInfo': {
         title: 'Campaign Info',
-        path: '/campaignInfo'
+        path: '/campaignInfo',
     },
     'memberManagement': {
         title: 'Member Management',
-        path: '/memberManagement'
+        path: '/memberManagement',
     },
     'pointsTopUpManagement': {
         title: 'Points Top-up Management',
-        path: '/pointsTopUpManagement'
+        path: '/pointsTopUpManagement',
     },
     'pointsTransferRetrieve': {
         title: 'Points Transfer/Retrieve',
-        path: '/pointsTransferRetrieve'
+        path: '/pointsTransferRetrieve',
     },
     'retrieve': {
         title: 'Points Transfer/Retrieve',
-        path: '/retrieve'
+        path: '/retrieve',
     },
     'monthlyReport': {
         title: 'Monthly Report',
-        path: '/monthlyReport'
+        path: '/monthlyReport',
     },
     'permissionSettings': {
         title: 'Permission Settings',
-        path: '/permissionSettings'
+        path: '/permissionSettings',
     },
     'systemSettings': {
         title: 'System Settings',
-        path: '/systemSettings'
+        path: '/systemSettings',
     },
     'multiCart': {
         title: 'Cart',
-        path: '/multiCart'
+        path: '/multiCart',
     },
     'completed': {
         title: 'Completed',
-        path: '/completed'
+        path: '/completed',
     },
     'singleCart': {
         title: 'SingleCart',
-        path: '/singleCart'
+        path: '/singleCart',
     },
     'budget': {
         title: 'Budget',
-        path: '/budget'
+        path: '/budget',
     },
+    'brandsDetail': {
+        title: 'BrandsDetail',
+        path: '/brandsDetail',
+    }
 }
