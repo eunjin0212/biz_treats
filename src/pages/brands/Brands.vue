@@ -151,12 +151,12 @@ export default {
 </script>
 <template>
     <header class="service-header">
-        <div>
+        <div class="!w-[1120px]">
             <nav>
-                <a href="/">
+                <a href="/" class="!mr-5">
                     <img src="/assets/images/biz_treats_log.png" />
                 </a>
-                <div class="search-input">
+                <div class="search-input !w-[442px]">
                     <input
                       type="text"
                       placeholder="Search for Treats"

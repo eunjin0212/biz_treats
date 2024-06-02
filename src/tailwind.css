@@ -264,7 +264,7 @@ body {
     }
 
     nav.main-menu div {
-        @apply w-[1228px] mx-auto flex h-16 items-center gap-[73px]
+        @apply w-[1120px] mx-auto flex h-16 items-center gap-[73px]
     }
 
     nav.main-menu div a {

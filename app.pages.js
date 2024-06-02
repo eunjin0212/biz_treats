@@ -129,5 +129,9 @@ module.exports = {
     'brandsDetail': {
         title: 'BrandsDetail',
         path: '/brandsDetail',
-    }
+    },
+    'display1': {
+        title: 'Display1',
+        path: '/display1',
+    },
 }
