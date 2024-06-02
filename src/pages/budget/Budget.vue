@@ -1,7 +1,7 @@
 <script>
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart';
-import { genBudgetMockData } from '@/mock/home';
+import { genBudgetMockData } from '@/mock/budget';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -93,7 +93,7 @@ export default {
                 { label: 'P301~P500', min: 301, max: 500 },
                 { label: 'P501 and UP', min: 501, max: 99999 },
             ],
-            budgetRecommend: genBudgetMockData(100),
+            budgetRecommend: genBudgetMockData(1000),
             budgetData: {},
         }
     },
@@ -305,17 +305,17 @@ export default {
                     }"
                 >
                     <div
-                      class="text-nowrap border border-[#858E96] rounded-full p-3 w-[50px] h-[50px] min-h-[50px] group-data-[active=true]:border-blue-05"
+                      class="text-nowrap border border-[#858E96] rounded-full p-3 w-[50px] h-[50px] min-h-[50px] group-data-[active=true]:border-blue-05 group-hover:border-blue-05"
                     >
                         <component
                           v-if="category?.icon"
                           :is="category?.icon"
-                          class="text-[#858E96] group-data-[active=true]:text-blue-05"
+                          class="text-[#858E96] group-data-[active=true]:text-blue-05 group-hover:text-blue-05"
                         ></component>
                     </div>
                     <span
                       :class="category.textClass"
-                      class="font-roboto relative h-10 inline-flex flex-col justify-between pt-1 text-[11px] text-center leading-[18px] font-normal -tracking-[0.12px] group-data-[active=true]:font-semibold text-[#858E96] group-data-[active=true]:text-blue-05 group-data-[active=true]:before:content-[''] group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-[2px] group-data-[active=true]:before:bg-blue-05"
+                      class="font-roboto relative h-10 inline-flex flex-col justify-between pt-1 text-[11px] text-center leading-[18px] font-normal -tracking-[0.12px] group-data-[active=true]:font-semibold text-[#858E96] group-hover:text-blue-05 group-data-[active=true]:text-blue-05 group-data-[active=true]:before:content-[''] group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-[2px] group-data-[active=true]:before:bg-blue-05"
                     >
                         {{ category.label }}
                     </span>
@@ -323,42 +323,38 @@ export default {
             </ul>
         </div>
         <hr class="border-t-2 border-t-[#CECECE] w-[1120px] mx-auto" />
-        <section class="pt-[51px] pb-[65px] main-section budget-section bg-white-18">
+        <section class="pt-4 pb-40 main-section budget-section bg-white-18">
             <div class="main-section__wrapper w-[1120px]">
-                <aside>
-                    <div class="flex overflow-hidden product-wrapper">
-                        <ul class="mt-8 mb-12 product">
-                            <li
-                              v-for="(item, index) in budgetData[selectedFilter.budget]"
-                              :key="index"
-                            >
-                                <figure class="relative">
-                                    <img
-                                      :src="item.img"
-                                      :alt="item.img"
-                                    />
-                                    <figcaption v-if="item.is_soldout">
-                                        <span>SOLD OUT</span>
-                                    </figcaption>
-                                </figure>
-                                <dl class="product__detail">
-                                    <strong class="product__brand">{{ item.brand }}</strong>
-                                    <dd class="product__name">{{ item.name }}</dd>
-                                    <dd class="product__price">
-                                        <strong class="product__price-sale">P{{ item.sale_price }}</strong>
-                                        <s class="product__price-origin">P{{ item.price }}</s>
-                                    </dd>
-                                    <dd class="buttons">
-                                        <button>Buy Now</button>
-                                        <button>
-                                            <ProductCartSvg /> Add to Cart
-                                        </button>
-                                    </dd>
-                                </dl>
-                            </li>
-                        </ul>
-                    </div>
-                </aside>
+                <ul class="mb-12 product">
+                    <li
+                        v-for="(item, index) in budgetData[selectedFilter.budget]"
+                        :key="index"
+                    >
+                        <figure class="relative">
+                            <img
+                                :src="item.img"
+                                :alt="item.img"
+                            />
+                            <figcaption v-if="item.is_soldout">
+                                <span>SOLD OUT</span>
+                            </figcaption>
+                        </figure>
+                        <dl class="product__detail">
+                            <strong class="product__brand">{{ item.brand }}</strong>
+                            <dd class="product__name">{{ item.name }}</dd>
+                            <dd class="product__price">
+                                <strong class="product__price-sale">P{{ item.sale_price }}</strong>
+                                <s class="product__price-origin">P{{ item.price }}</s>
+                            </dd>
+                            <dd class="buttons">
+                                <button>Buy Now</button>
+                                <button>
+                                    <ProductCartSvg /> Add to Cart
+                                </button>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
             </div>
         </section>
     </main>
