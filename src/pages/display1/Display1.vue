@@ -1,7 +1,7 @@
 <script>
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart';
-import { genBudgetMockData } from '@/mock/budget';
+import { genProductData } from '@/mock/product';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -75,7 +75,7 @@ export default {
                 max: 0,
                 keyword: 'Chicken'
             },
-            displayData: genBudgetMockData(100),
+            displayData: genProductData(100),
             keyword: ['Chicken', 'Meal', 'Drinks']
         }
     },

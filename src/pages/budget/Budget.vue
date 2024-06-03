@@ -1,7 +1,7 @@
 <script>
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart';
-import { genBudgetMockData } from '@/mock/budget';
+import { genProductData } from '@/mock/product';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -93,7 +93,7 @@ export default {
                 { label: 'P301~P500', min: 301, max: 500 },
                 { label: 'P501 and UP', min: 501, max: 99999 },
             ],
-            budgetRecommend: genBudgetMockData(1000),
+            budgetRecommend: genProductData(1000),
             budgetData: {},
         }
     },

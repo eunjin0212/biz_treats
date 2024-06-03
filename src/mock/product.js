@@ -20,7 +20,7 @@ const productKeywords = [
     'Home & Kids', 
 ]
 
-export const genBudgetMockData = (length = 10) => {
+export const genProductData = (length = 10) => {
     return Array.from({ length }).map((_, idx) => ({
         brand: productBrands[getRandom(0, productBrands.length - 1)].label,
         name: productNames[getRandom(0, productNames.length - 1)],

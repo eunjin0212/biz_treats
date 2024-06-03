@@ -1,7 +1,7 @@
 <script>
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart';
-import { genBudgetMockData } from '@/mock/budget';
+import { genProductData } from '@/mock/product';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -73,31 +73,9 @@ export default {
             selectedFilter: {
                 min: 0,
                 max: 0,
-                keyword: 'Chicken'
             },
-            categoryFilter: [
-                { label: 'ALL', icon: 'AllSvg', textClass: '' },
-                { label: 'eWallet', icon: '', textClass: '' },
-                { label: 'Grocery & Essentials', icon: '', textClass: '' },
-                { label: 'Fast Food', icon: '', textClass: 'text-nowrap' },
-                { label: 'Casual Resto', icon: '', textClass: '' },
-                { label: 'Bread & Dessert', icon: '', textClass: '' },
-                { label: 'Drugstore & Wellness', icon: '', textClass: '-tracking-[0.14px]' },
-                { label: 'Beauty & Lifestyle', icon: '', textClass: '' },
-                { label: 'Transpo & Travel', icon: '', textClass: '' },
-                { label: 'Digital & Appliance', icon: '', textClass: '' },
-                { label: 'Home & Kids', icon: '', textClass: '' },
-            ],
-            budgetFilter: [
-                { label: 'Below P50', min: 0, max: 50 },
-                { label: 'P51~P100', min: 51, max: 100 },
-                { label: 'P101~P300', min: 101, max: 300 },
-                { label: 'P301~P500', min: 301, max: 500 },
-                { label: 'P501 and UP', min: 501, max: 99999 },
-            ],
-            budgetRecommend: genBudgetMockData(100),
+            resultData: genProductData(100),
             budgetData: {},
-            keyword: ['Chicken', 'Meal', 'Drinks']
         }
     },
     methods: {
