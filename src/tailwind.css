@@ -1012,12 +1012,12 @@ body {
 }
 
 @layer components {
-    .main-section {
-        @apply w-full min-w-[1440px]
+    section.main-section {
+        @apply w-full min-w-[1120px]
     }
 
-    .main-section__wrapper {
-        @apply w-[1440px] mx-auto
+    div.main-section__wrapper {
+        @apply w-[1120px] mx-auto
     }
 
     h1.main-section__title {
@@ -1079,7 +1079,7 @@ body {
     }
 
     ul.product>li>.product__detail .buttons>button {
-        @apply h-9 px-4.5 border border-blue-05 text-blue-05 text-[13px] font-medium leading-4 last-of-type:inline-flex last-of-type:items-center last-of-type:gap-1.5 last-of-type:flex-grow last-of-type:justify-center
+        @apply h-9 px-4.5 border border-blue-05 text-blue-05 text-[13px] font-medium leading-4 last-of-type:inline-flex last-of-type:items-center last-of-type:gap-1.5 last-of-type:flex-grow last-of-type:justify-center 
     }
 }
 
@@ -1140,5 +1140,21 @@ body {
 @layer components {
     .see-all-btn {
         @apply flex justify-center items-center gap-2 rounded-md border border-[#E5E5E5] py-4 bg-white-20 text-[#979797] text-base -tracking-wide font-medium h-14 w-[480px] mx-auto
+    }
+}
+
+@layer components {
+    .accordion-container {
+      @apply border border-[#1211271F] rounded-xl px-6 py-7
+    }
+    .accordion-title {
+        @apply flex gap-6
+    }
+    .accordion-title > strong {
+        @apply text-[#606060] text-lg leading-6 font-bold font-poppins
+    }
+    .accordion-title > span {
+        @apply text-[#1211278F] font-normal text-sm leading-6 font-poppins
+
     }
 }

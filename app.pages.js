@@ -138,4 +138,8 @@ module.exports = {
         title: 'search',
         path: '/search',
     },
+    'productDetail': {
+        title: 'productDetail',
+        path: '/productDetail',
+    },
 }
