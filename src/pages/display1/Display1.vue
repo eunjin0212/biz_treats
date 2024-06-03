@@ -15,6 +15,8 @@ import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 import AllSvg from '@/assets/icons/AllSvg.vue'
+import RetrySvg from '@/assets/icons/RetrySvg.vue'
+
 
 export default {
     components: {
@@ -30,6 +32,7 @@ export default {
         ReadSvg,
         AllSvg,
         ProductCartSvg,
+        RetrySvg,
     },
     data() {
         return {
@@ -70,8 +73,9 @@ export default {
                 },
             ],
             selectedFilter: {
-                budget: 0,
-                category: 'ALL'
+                min: 0,
+                max: 0,
+                keyword: 'Chicken'
             },
             categoryFilter: [
                 { label: 'ALL', icon: 'AllSvg', textClass: '' },
@@ -93,8 +97,9 @@ export default {
                 { label: 'P301~P500', min: 301, max: 500 },
                 { label: 'P501 and UP', min: 501, max: 99999 },
             ],
-            budgetRecommend: genBudgetMockData(1000),
+            budgetRecommend: genBudgetMockData(100),
             budgetData: {},
+            keyword: ['Chicken', 'Meal', 'Drinks']
         }
     },
     methods: {
@@ -122,6 +127,9 @@ export default {
                 this.alertOpen = false
             }
         },
+        async getData() {
+            // get data with filter
+        }
     },
     watch: {
         dropdown() {
@@ -145,11 +153,7 @@ export default {
         },
     },
     mounted() {
-        const budgetOriginArray = (min = 0, max = 50) => this.budgetRecommend.filter((item) => item.sale_price >= min && item.sale_price < max)
-        this.budgetData = this.budgetFilter.reduce((obj, data) => {
-            obj[data.min] = budgetOriginArray(data.min, data.max)
-            return obj
-        }, {})
+        this.getData()
     },
 }
 </script>
@@ -281,21 +285,42 @@ export default {
           class="text-[#6E6E6E] font-bold text-[32px] leading-[56px] -tracking-wide text-center py-[30px] border-b-2 border-b-[#CECECE] w-[1120px] mx-auto"
         >Display1</h1>
         <ul class="w-[1120px] mx-auto bg-white-20">
-            <li class="border-b border-b-[#EAEAEA] py-2">
-                <strong class="inline-block w-32 pl-6 text-[#696969] font-semibold text-sm">Price</strong>
+            <li class="border-b border-b-[#EAEAEA] py-2 flex items-center">
+                <strong class="inline-block w-32 min-w-32 pl-6 text-[#696969] font-semibold text-sm">Price</strong>
+                <label class="!inline-flex !flex-row items-center input !gap-1.5">
+                    <input class="w-[136px]" v-model="selectedFilter.min" />
+                    <span class="text-gray-04">~</span>
+                    <input class="w-[136px]" v-model="selectedFilter.max"/>
+                </label>
             </li>
-            <li class="border-b border-b-[#EAEAEA] py-2">
+            <li class="border-b border-b-[#EAEAEA] py-3">
                 <strong class="inline-block w-32 pl-6 text-[#696969] font-semibold text-sm">Keyword</strong>
+                <div class="inline-flex items-center gap-2.5">
+                    <span
+                      v-for="item in keyword"
+                      :key="item"
+                      :data-active="item === selectedFilter.keyword"
+                      @click="() => {
+                        selectedFilter.keyword = item
+                      }"
+                      class="cursor-pointer text-nowrap border border-[#DBDBDB] h-8 min-w-[84px] text-center px-[23px] py-[5px] rounded-3xl text-xs leading-[22px] font-medium font-poppins text-[#7D7D7D] hover:text-white-20 hover:bg-blue-05 hover:border-blue-05 data-[active=true]:text-white-20 data-[active=true]:bg-blue-05 data-[active=true]:border-blue-05"
+                    >{{ item }}</span>
+                </div>
             </li>
-            <li class="pr-3.5 py-2 text-right border-b border-b-gray-07">
-                <button>Search</button>
+            <li class="pr-3.5 py-2 border-b border-b-gray-07 flex justify-end items-center gap-3">
+                <button class="w-10 h-10 p-0.5 border rounded border-blue-05 hover:bg-sky-50 text-blue-05" @click="() => {
+                    selectedFilter.keyword = keyword[0]
+                    selectedFilter.min = 0
+                    selectedFilter.max = 0
+                }"><RetrySvg /></button>
+                <button class="w-[157px] h-10 border border-blue-05 rounded py-2 px-4 hover:bg-sky-50 text-blue-05">Search</button>
             </li>
         </ul>
         <section class="pt-4 pb-40 main-section budget-section bg-white-18">
             <div class="main-section__wrapper w-[1120px]">
                 <ul class="mb-12 product">
                     <li
-                      v-for="(item, index) in budgetData[selectedFilter.budget]"
+                      v-for="(item, index) in budgetRecommend"
                       :key="index"
                     >
                         <figure class="relative">
