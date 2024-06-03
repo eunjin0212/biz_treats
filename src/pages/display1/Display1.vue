@@ -71,8 +71,8 @@ export default {
                 },
             ],
             selectedFilter: {
-                min: 0,
-                max: 0,
+                min: '',
+                max: '',
                 keyword: 'Chicken'
             },
             displayData: genProductData(100),
@@ -266,9 +266,9 @@ export default {
             <li class="border-b border-b-[#EAEAEA] py-2 flex items-center">
                 <strong class="inline-block w-32 min-w-32 pl-6 text-[#696969] font-semibold text-sm">Price</strong>
                 <label class="!inline-flex !flex-row items-center input !gap-1.5">
-                    <input class="w-[136px]" v-model="selectedFilter.min" />
+                    <input class="w-[136px]" v-model="selectedFilter.min" placeholder="Low" />
                     <span class="text-gray-04">~</span>
-                    <input class="w-[136px]" v-model="selectedFilter.max"/>
+                    <input class="w-[136px]" v-model="selectedFilter.max" placeholder="High" />
                 </label>
             </li>
             <li class="border-b border-b-[#EAEAEA] py-3">

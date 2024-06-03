@@ -15,6 +15,7 @@ import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 import RetrySvg from '@/assets/icons/RetrySvg.vue'
+import { getParams } from '@/modules/search';
 
 
 export default {
@@ -71,11 +72,10 @@ export default {
                 },
             ],
             selectedFilter: {
-                min: 0,
-                max: 0,
+                min: '',
+                max: '',
             },
             resultData: genProductData(100),
-            budgetData: {},
         }
     },
     methods: {
@@ -105,7 +105,8 @@ export default {
         },
         async handleSearch() {
             // get data with filter
-        }
+        },
+        getParams,
     },
     watch: {
         dropdown() {
@@ -257,29 +258,15 @@ export default {
         </nav>
         <h1
           class="text-[#6E6E6E] font-bold text-[32px] leading-[56px] -tracking-wide text-center py-[30px] border-b-2 border-b-[#CECECE] w-[1120px] mx-auto"
-        >Display1</h1>
+        >Search result<strong class="text-blue-05 font-bold text-3xl leading-[56px] -tracking-wide ml-3">“{{ getParams()[1] }}”</strong></h1>
         <ul class="w-[1120px] mx-auto bg-white-20">
             <li class="border-b border-b-[#EAEAEA] py-2 flex items-center">
                 <strong class="inline-block w-32 min-w-32 pl-6 text-[#696969] font-semibold text-sm">Price</strong>
                 <label class="!inline-flex !flex-row items-center input !gap-1.5">
-                    <input class="w-[136px]" v-model="selectedFilter.min" />
+                    <input class="w-[136px]" v-model="selectedFilter.min"  placeholder="Low" />
                     <span class="text-gray-04">~</span>
-                    <input class="w-[136px]" v-model="selectedFilter.max"/>
+                    <input class="w-[136px]" v-model="selectedFilter.max" placeholder="High" />
                 </label>
-            </li>
-            <li class="border-b border-b-[#EAEAEA] py-3">
-                <strong class="inline-block w-32 pl-6 text-[#696969] font-semibold text-sm">Keyword</strong>
-                <div class="inline-flex items-center gap-2.5">
-                    <span
-                      v-for="item in keyword"
-                      :key="item"
-                      :data-active="item === selectedFilter.keyword"
-                      @click="() => {
-                        selectedFilter.keyword = item
-                      }"
-                      class="cursor-pointer text-nowrap border border-[#DBDBDB] h-8 min-w-[84px] text-center px-[23px] py-[5px] rounded-3xl text-xs leading-[22px] font-medium font-poppins text-[#7D7D7D] hover:text-white-20 hover:bg-blue-05 hover:border-blue-05 data-[active=true]:text-white-20 data-[active=true]:bg-blue-05 data-[active=true]:border-blue-05"
-                    >{{ item }}</span>
-                </div>
             </li>
             <li class="pr-3.5 py-2 border-b border-b-gray-07 flex justify-end items-center gap-3">
                 <button class="w-10 h-10 p-0.5 border rounded border-blue-05 hover:bg-sky-50 text-blue-05" @click="() => {
@@ -294,7 +281,7 @@ export default {
             <div class="main-section__wrapper w-[1120px]">
                 <ul class="mb-12 product">
                     <li
-                      v-for="(item, index) in budgetRecommend"
+                      v-for="(item, index) in resultData"
                       :key="index"
                     >
                         <figure class="relative">
