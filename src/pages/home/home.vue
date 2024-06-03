@@ -2,7 +2,7 @@
 import "keen-slider/keen-slider.min.css";
 import KeenSlider from "keen-slider";
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
-import { cartData } from '@/mock/cart';
+import { cartData } from '@/mock/cart.js';
 import { genKeywordMockData, genBrandsMockData, genBudgetMockData } from '@/mock/home';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
@@ -283,6 +283,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+@keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />

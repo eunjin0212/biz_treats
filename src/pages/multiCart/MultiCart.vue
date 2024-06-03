@@ -3,6 +3,7 @@ import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { cartData } from '@/mock/cart.js'
 import { excelToArray } from '@/modules/excelToArray.js'
+import { handleSearch } from '@/modules/search.js';
 import downloadXlsx from '@/modules/downloadXlsx.js'
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
@@ -175,7 +176,8 @@ export default {
             }
 
             window.location.href = '/completed'
-        }
+        },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -250,6 +252,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />

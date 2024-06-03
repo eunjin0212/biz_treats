@@ -1,8 +1,9 @@
 <script>
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
-import { cartData } from '@/mock/cart';
-import { genProductMockData } from '@/mock/brand';
+import { cartData } from '@/mock/cart.js';
+import { genProductMockData } from '@/mock/brand.js';
 import { alertData } from '@/mock/alertData.js'
+import { getParams } from '@/modules/search.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -68,7 +69,7 @@ export default {
                 },
             ],
             products: genProductMockData(100),
-            window,
+            getParams,
         }
     },
     methods: {
@@ -131,6 +132,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+@keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -245,8 +247,8 @@ export default {
             <div class="flex border bg-white-20 border-white-10 w-[1120px] h-[150px] mx-auto">
                 <img
                   class="w-[250px] py-5 h-full border-r border-r-white-10 object-contain"
-                  :src="`/assets/images/brand_${window.location.search.split('=')[1]}.png`"
-                  :alt="`path/images/assets/brand_${window.location.search.split('=')[1]}.png`"
+                  :src="`/assets/images/brand_${getParams()[1]}.png`"
+                  :alt="`path/images/assets/brand_${getParams()[1]}.png`"
                 />
                 <div class="flex flex-col justify-center ml-8">
                     <p class="text-[28px] leading-8 font-semibold -tracking-wide text-[#6C6C6C]">Jollibee</p>

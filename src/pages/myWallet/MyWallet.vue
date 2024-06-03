@@ -2,6 +2,8 @@
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { rows } from '@/mock/pointHistory.js'
+import { cartData } from '@/mock/cart.js';
+import { handleSearch } from '@/modules/search.js';
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -23,7 +25,6 @@ import CalendarSvg from '@/assets/icons/CalendarSvg.vue';
 import FileDownloadSvg from '@/assets/icons/FileDownloadSvg.vue';
 import ChevronLeftSvg from '@/assets/icons/ChevronLeftSvg.vue';
 import ChevronRightSvg from '@/assets/icons/ChevronRightSvg.vue';
-import { cartData } from '@/mock/cart';
 
 export default {
     components: {
@@ -132,27 +133,28 @@ export default {
             this.alertOpen = !this.alertOpen
         },
         handleGlobalDropdown(e) {
-          const { parentNode } = e.target
+            const { parentNode } = e.target
             if (parentNode !== this.$refs.dropdownRef && !this.$refs.dropdownOptsRef.contains(parentNode)) {
                 this.dropdown = false
             }
         },
         handleGlobalAlert(e) {
-          const { parentNode } = e.target
+            const { parentNode } = e.target
             if (parentNode !== this.$refs.alertRef && !this.$refs.alertWrapperRef.contains(parentNode)) {
                 this.alertOpen = false
             }
         },
+        handleSearch,
     },
-    watch:{
-        dropdown(){
+    watch: {
+        dropdown() {
             if (this.dropdown) {
                 window.addEventListener('click', this.handleGlobalDropdown)
                 return
             }
             window.removeEventListener('click', this.handleGlobalDropdown)
         },
-        alertOpen(){
+        alertOpen() {
             if (this.alertOpen) {
                 window.addEventListener('click', this.handleGlobalAlert)
                 return
@@ -192,6 +194,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -251,7 +254,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
+                <button
+                  class="header-btn inline-flex ml-4.5"
+                  @click="() => handleCartLocation()"
+                >
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
                         cartData.length }}</span>
@@ -259,7 +265,10 @@ export default {
                 <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
-                        <button @click="handleDropdown" ref="dropdownRef">
+                        <button
+                          @click="handleDropdown"
+                          ref="dropdownRef"
+                        >
                             <span>
                                 10000 points
                             </span>
@@ -372,7 +381,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold rounded gap-1 leading-4 bg-white-19 w-fit text-green-01 -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -384,7 +393,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold text-red-05 rounded gap-1 leading-4 bg-white-19 w-fit -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded text-red-05 bg-white-19 w-fit -tracking-wide"
                         >
                             <DownSvg /> 37.8%
                         </span>
@@ -396,7 +405,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold rounded gap-1 leading-4 bg-white-19 w-fit text-green-01 -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -450,6 +459,7 @@ export default {
                             <input
                               type="text"
                               placeholder="Search for Treats"
+                              @keypress.enter="() => handleSearch(search)"
                               name="search"
                               v-model="filters.tableSearch"
                             />

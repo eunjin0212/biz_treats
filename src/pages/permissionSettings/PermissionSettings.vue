@@ -2,6 +2,8 @@
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { users } from '@/mock/permissionSettings.js'
 import { alertData } from '@/mock/alertData.js'
+import { cartData } from '@/mock/cart.js';
+import { handleSearch } from '@/modules/search.js';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -12,7 +14,6 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
-import { cartData } from '@/mock/cart';
 
 export default {
     components: {
@@ -114,6 +115,7 @@ export default {
             const findRow = this.userList.find((user) => id === user.id)
             this.userPermission = findRow.permissions
         },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -169,6 +171,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -228,7 +231,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
+                <button
+                  class="header-btn inline-flex ml-4.5"
+                  @click="() => handleCartLocation()"
+                >
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
                         cartData.length }}</span>
@@ -336,8 +342,10 @@ export default {
                               :key="permission.value"
                               class="border-b border-b-white-10 flex items-center w-full px-6 py-[22px]"
                             >
-                                <label class="inline-block w-48 mr-10 text-sm font-semibold min-w-48 font-manrope text-slate-01">{{ permission.label }}</label>
-                                <div class="w-full grid grid-cols-2">
+                                <label
+                                  class="inline-block w-48 mr-10 text-sm font-semibold min-w-48 font-manrope text-slate-01"
+                                >{{ permission.label }}</label>
+                                <div class="grid w-full grid-cols-2">
                                     <label
                                       v-for="opt in permission.options"
                                       :key="opt.label"
@@ -350,7 +358,8 @@ export default {
                                           :value="opt.value"
                                           :checked="userPermission[permission.value] === opt.value"
                                         />
-                                        <span class="text-sm font-medium font-manrope text-[#84818A]">{{ opt.label }}</span>
+                                        <span class="text-sm font-medium font-manrope text-[#84818A]">{{ opt.label
+                                            }}</span>
                                     </label>
                                 </div>
                             </li>

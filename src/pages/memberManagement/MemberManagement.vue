@@ -1,7 +1,8 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
-import { cartData } from '@/mock/cart';
+import { cartData } from '@/mock/cart.js';
 import { alertData } from '@/mock/alertData.js'
+import { handleSearch } from '@/modules/search.js';
 import { rows } from '@/mock/memberManagement.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -148,7 +149,7 @@ export default {
         },
         handleClick() {
             window.location.href = '/login'
-        },        
+        },
         handleCartLocation() {
             window.location.href = '/multiCart'
         },
@@ -176,6 +177,7 @@ export default {
         handleSave(event) {
             event.preventDefault();
         },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -225,6 +227,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -284,7 +287,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
+                <button
+                  class="header-btn inline-flex ml-4.5"
+                  @click="() => handleCartLocation()"
+                >
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
                         cartData.length }}</span>
@@ -405,7 +411,7 @@ export default {
                                           @input="(e) => row[column.field] = e.target.value"
                                           :value="row[column.field]"
                                           :class="column.field === 'name' ? 'w-24 -ml-4' : 'w-[130px]'"
-                                          class="px-2 py-3 text-xs border rounded-lg leading-6 border-white-02 bg-white-20 focus:ring-0 focus-visible:border-white-02 focus-within:border-white-02"
+                                          class="px-2 py-3 text-xs leading-6 border rounded-lg border-white-02 bg-white-20 focus:ring-0 focus-visible:border-white-02 focus-within:border-white-02"
                                         />
                                     </div>
                                     <!-- balance -->
@@ -457,7 +463,7 @@ export default {
                                         </button>
                                         <button
                                           v-else-if="row[column.field] === 'save'"
-                                          class="py-2 text-xs font-semibold text-blue-05 border rounded-lg leading-6 bg-white-20 border-white-02 px-9"
+                                          class="py-2 text-xs font-semibold leading-6 border rounded-lg text-blue-05 bg-white-20 border-white-02 px-9"
                                           @click="() => row[column.field] = 'editable'"
                                         >
                                             Save
@@ -574,7 +580,10 @@ export default {
                         </button>
                     </h2>
                     <hr class="border-white-10 !m-0" />
-                    <form class="flex flex-col pt-8 pb-3 gap-6 font-inter" @submit="handleSave">
+                    <form
+                      class="flex flex-col gap-6 pt-8 pb-3 font-inter"
+                      @submit="handleSave"
+                    >
                         <fieldset
                           class="mx-6 modal-form__label-input"
                           v-for="form in modalForm"
@@ -629,7 +638,7 @@ export default {
                             />
                         </fieldset>
                         <hr class="border-white-10" />
-                        <div class="flex items-center justify-end pr-6 -mt-3 gap-2">
+                        <div class="flex items-center justify-end gap-2 pr-6 -mt-3">
                             <button
                               type="button"
                               class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-secondary-04-light border-white-10"

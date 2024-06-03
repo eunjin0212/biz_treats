@@ -2,6 +2,8 @@
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { rows } from '@/mock/pointsTopUpManagement.js'
+import { cartData } from '@/mock/cart.js';
+import { handleSearch } from '@/modules/search.js';
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -19,7 +21,6 @@ import ChevronLeftSvg from '@/assets/icons/ChevronLeftSvg.vue';
 import ChevronRightSvg from '@/assets/icons/ChevronRightSvg.vue';
 import InfoSvg from '@/assets/icons/InfoSvg.vue';
 import CardWalletSvg from '@/assets/icons/CardWalletSvg.vue';
-import { cartData } from '@/mock/cart';
 
 export default {
     components: {
@@ -142,6 +143,7 @@ export default {
                 this.alertOpen = false
             }
         },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -191,6 +193,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -250,7 +253,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
+                <button
+                  class="header-btn inline-flex ml-4.5"
+                  @click="() => handleCartLocation()"
+                >
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
                         cartData.length }}</span>

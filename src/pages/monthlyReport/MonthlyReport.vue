@@ -2,6 +2,8 @@
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { monthlyReportRows } from '@/mock/monthlyReport.js'
+import { cartData } from '@/mock/cart.js';
+import { handleSearch } from '@/modules/search.js';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -19,7 +21,6 @@ import ChevronLeftSvg from '@/assets/icons/ChevronLeftSvg.vue';
 import ChevronRightSvg from '@/assets/icons/ChevronRightSvg.vue';
 import CloseSvg from '@/assets/icons/CloseSvg.vue';
 import CheckSvg from '@/assets/icons/CheckSvg.vue'
-import { cartData } from '@/mock/cart';
 
 export default {
     components: {
@@ -120,7 +121,7 @@ export default {
                     key: 'account',
                     listOptions: [
                         { label: 'Sena ABC Kim(sena@sharetreats.com)', checked: false },
-                        { label: 'Sena ABC Kim(sena@sharetreats.com)',checked: false },
+                        { label: 'Sena ABC Kim(sena@sharetreats.com)', checked: false },
                         { label: 'Sena ABC Kim(sena@sharetreats.com)', checked: false },
                         { label: 'Sena ABC Kim(sena@sharetreats.com)', checked: false },
                         { label: 'Sena ABC Kim(sena@sharetreats.com)', checked: false },
@@ -172,6 +173,7 @@ export default {
         handleExtract(event) {
             event.preventDefault();
         },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -221,6 +223,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -280,7 +283,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
+                <button
+                  class="header-btn inline-flex ml-4.5"
+                  @click="() => handleCartLocation()"
+                >
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
                         cartData.length }}</span>
@@ -377,7 +383,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold rounded gap-1 leading-4 bg-white-19 w-fit text-green-01 -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -389,7 +395,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold text-red-05 rounded gap-1 leading-4 bg-white-19 w-fit -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded text-red-05 bg-white-19 w-fit -tracking-wide"
                         >
                             <DownSvg /> 37.8%
                         </span>
@@ -401,7 +407,7 @@ export default {
                             <span class="text-sm font-bold leading-5 text-gray-06 font-poppins">Points</span>
                         </div>
                         <span
-                          class="flex items-center p-1 text-xs font-bold rounded gap-1 leading-4 bg-white-19 w-fit text-green-01 -tracking-wide"
+                          class="flex items-center gap-1 p-1 text-xs font-bold leading-4 rounded bg-white-19 w-fit text-green-01 -tracking-wide"
                         >
                             <UpSvg /> 37.8%
                         </span>
@@ -547,7 +553,7 @@ export default {
                     </h2>
                     <hr class="border-white-10 !m-0" />
                     <form
-                      class="flex flex-col pt-8 pb-3 gap-5 font-inter"
+                      class="flex flex-col gap-5 pt-8 pb-3 font-inter"
                       @submit="handleExtract"
                     >
                         <fieldset
@@ -585,11 +591,13 @@ export default {
                                 <label
                                   class="px-4.5 mt-3 checkbox"
                                   @click.prevent="() => {
-                                    form.listOptions = form.listOptions.map(row => ({ ...row, checked: !form.listOptions.every((row) => row.checked) }))
-                                  }"
+                        form.listOptions = form.listOptions.map(row => ({ ...row, checked: !form.listOptions.every((row) => row.checked) }))
+                    }"
                                 >
                                     <span :class="{ 'active': form.listOptions.every((row) => row.checked) }">
-                                        <CheckSvg :class="form.listOptions.every((row) => row.checked) ? 'text-white-20' : 'hidden'" />
+                                        <CheckSvg
+                                          :class="form.listOptions.every((row) => row.checked) ? 'text-white-20' : 'hidden'"
+                                        />
                                     </span>
                                     <input
                                       type="checkbox"
@@ -604,23 +612,21 @@ export default {
                                 >
                                     <li
                                       class="py-3 px-4.5 border-b border-b-white-10"
-                                      :class="{'last-of-type:border-0': form.listOptions.length > 4}"
+                                      :class="{ 'last-of-type:border-0': form.listOptions.length > 4 }"
                                       :key="opt.label"
                                       v-for="opt in form.listOptions"
                                     >
                                         <label
                                           class="checkbox"
                                           @click.prevent="() => {
-                                            opt.checked = !opt.checked
-                                          }"
+                        opt.checked = !opt.checked
+                    }"
                                         >
                                             <span
                                               :class="{ 'active': opt.checked }"
                                               class="mr-2"
                                             >
-                                                <CheckSvg 
-                                                  :class="opt.checked ? 'text-white-20' : 'hidden'"
-                                                />
+                                                <CheckSvg :class="opt.checked ? 'text-white-20' : 'hidden'" />
                                             </span>
                                             <input
                                               type="checkbox"
@@ -633,7 +639,7 @@ export default {
                             </div>
                         </fieldset>
                         <hr class="border-white-10" />
-                        <div class="flex items-center justify-end pr-6 -mt-1 gap-2">
+                        <div class="flex items-center justify-end gap-2 pr-6 -mt-1">
                             <button
                               @click="() => handleModal(false)"
                               type="button"

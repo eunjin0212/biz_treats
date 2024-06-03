@@ -3,6 +3,7 @@ import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.j
 import { alertData } from '@/mock/alertData.js'
 import { doneRows } from '@/mock/treatsHistory.js'
 import { cartData } from '@/mock/cart.js'
+import { handleSearch } from '@/modules/search.js';
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -85,7 +86,7 @@ export default {
             tabOptions: ['Done', 'Reserved Schedule'],
         }
     },
-    methods: {       
+    methods: {
         handleCartLocation() {
             window.location.href = '/multiCart'
         },
@@ -122,27 +123,28 @@ export default {
             this.alertOpen = !this.alertOpen
         },
         handleGlobalDropdown(e) {
-          const { parentNode } = e.target
+            const { parentNode } = e.target
             if (parentNode !== this.$refs.dropdownRef && !this.$refs.dropdownOptsRef.contains(parentNode)) {
                 this.dropdown = false
             }
         },
         handleGlobalAlert(e) {
-          const { parentNode } = e.target
+            const { parentNode } = e.target
             if (parentNode !== this.$refs.alertRef && !this.$refs.alertWrapperRef.contains(parentNode)) {
                 this.alertOpen = false
             }
         },
+        handleSearch,
     },
-    watch:{
-        dropdown(){
+    watch: {
+        dropdown() {
             if (this.dropdown) {
                 window.addEventListener('click', this.handleGlobalDropdown)
                 return
             }
             window.removeEventListener('click', this.handleGlobalDropdown)
         },
-        alertOpen(){
+        alertOpen() {
             if (this.alertOpen) {
                 window.addEventListener('click', this.handleGlobalAlert)
                 return
@@ -182,6 +184,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -241,7 +244,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
+                <button
+                  class="header-btn inline-flex ml-4.5"
+                  @click="() => handleCartLocation()"
+                >
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
                         cartData.length }}</span>
@@ -249,7 +255,10 @@ export default {
                 <div class="ml-4 btn-group">
                     <button class="border-r border-r-[#197298]">Wallet Name</button>
                     <div class="dropdown border-l border-l-[#60D0FF]">
-                        <button @click="handleDropdown" ref="dropdownRef">
+                        <button
+                          @click="handleDropdown"
+                          ref="dropdownRef"
+                        >
                             <span>
                                 10000 points
                             </span>

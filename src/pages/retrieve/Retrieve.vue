@@ -2,6 +2,8 @@
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { transferRows, retrieveRows } from '@/mock/pointsTransferRetrieve.js'
+import { cartData } from '@/mock/cart.js';
+import { handleSearch } from '@/modules/search.js';
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -19,7 +21,6 @@ import InfoSvg from '@/assets/icons/InfoSvg.vue';
 import CardWalletSvg from '@/assets/icons/CardWalletSvg.vue';
 import PrevPageSvg from '@/assets/icons/PrevPageSvg.vue';
 import CheckSvg from '@/assets/icons/CheckSvg.vue';
-import { cartData } from '@/mock/cart';
 
 export default {
     components: {
@@ -150,6 +151,7 @@ export default {
                 this.alertOpen = false
             }
         },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -202,6 +204,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -261,7 +264,10 @@ export default {
                         </ul>
                     </aside>
                 </div>
-                <button class="header-btn inline-flex ml-4.5" @click="() => handleCartLocation()">
+                <button
+                  class="header-btn inline-flex ml-4.5"
+                  @click="() => handleCartLocation()"
+                >
                     <CartSvg />
                     <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
                         cartData.length }}</span>
@@ -418,7 +424,11 @@ export default {
                                           v-model="row[column.field]"
                                         />
                                     </label>
-                                    <div v-else-if="column.field === 'status'" :class="statusStyle[row[column.field]]" class="rounded-md text-stone-03 font-semibold text-xs w-[65px] h-7 inline-flex justify-center items-center">
+                                    <div
+                                      v-else-if="column.field === 'status'"
+                                      :class="statusStyle[row[column.field]]"
+                                      class="rounded-md text-stone-03 font-semibold text-xs w-[65px] h-7 inline-flex justify-center items-center"
+                                    >
                                         {{ statusLabel[row[column.field]] }}
                                     </div>
                                     <div
@@ -430,7 +440,7 @@ export default {
                                     <div v-else-if="['amount', 'notes'].includes(column.field)">
                                         <label class="input">
                                             <input
-                                              :class="{'!text-red-06': column.field === 'amount' && row.selected && row.status === 'resigned'}"
+                                              :class="{ '!text-red-06': column.field === 'amount' && row.selected && row.status === 'resigned' }"
                                               v-model="row[column.field]"
                                               type="text"
                                               :disabled="!row.selected"
@@ -490,7 +500,7 @@ export default {
                     <div class="flex items-center mt-2.5 mb-3 flex-nowrap">
                         <hr class="flex-grow border-white-10">
                         <span
-                          class="inline-block w-40 mx-3 text-sm font-semibold tracking-wide text-center text-blue-05 leading-6 text-nowrap"
+                          class="inline-block w-40 mx-3 text-sm font-semibold leading-6 tracking-wide text-center text-blue-05 text-nowrap"
                         >
                             Total Amount : {{ totalAmount.toLocaleString() }}P
                         </span>
@@ -503,7 +513,7 @@ export default {
                         *Lack of points to transfer. Please recheck it.
                     </span>
                     <hr class="border-white-10" />
-                    <div class="flex items-center justify-end pt-3 pr-6 gap-2">
+                    <div class="flex items-center justify-end gap-2 pt-3 pr-6">
                         <button
                           class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-secondary-04-light border-white-10"
                         >Cancel</button>

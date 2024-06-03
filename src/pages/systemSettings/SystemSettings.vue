@@ -1,6 +1,8 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
+import { cartData } from '@/mock/cart.js';
+import { handleSearch } from '@/modules/search.js';
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -17,7 +19,6 @@ import CalendarSvg from '@/assets/icons/CalendarSvg.vue';
 import CautionSvg from '@/assets/icons/CautionSvg.vue';
 import CheckSvg from '@/assets/icons/CheckSvg.vue'
 import TableCalendarSvg from '@/assets/icons/TableCalendarSvg.vue'
-import { cartData } from '@/mock/cart';
 
 export default {
     components: {
@@ -165,7 +166,8 @@ export default {
         handleRowDate() {
             this.rows[0].date = moment(event.target.value).format('DD/MM/YYYY')
             this.displayRowDate = moment(event.target.value).format('MM/DD/YYYY')
-        }
+        },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -215,6 +217,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -359,7 +362,7 @@ export default {
                         <small class="text-xs font-normal leading-5 text-slate-01">{{ item.description }}</small>
                         <span
                           v-if="item?.caution"
-                          class="text-xs font-normal text-pink-04 leading-5"
+                          class="text-xs font-normal leading-5 text-pink-04"
                         >{{ item.caution }}</span>
                     </div>
                 </div>
@@ -511,7 +514,7 @@ export default {
                     </h2>
                     <hr class="border-white-10 !m-0" />
                     <form
-                      class="flex flex-col pt-8 pb-3 gap-5 font-inter"
+                      class="flex flex-col gap-5 pt-8 pb-3 font-inter"
                       @submit="handleRequest"
                     >
                         <fieldset
@@ -559,7 +562,7 @@ export default {
                             </label>
                         </fieldset>
                         <div class="bg-[#EF466F14] mx-4.5 px-5 py-3.5 rounded-lg">
-                            <p class="inline-flex items-center mb-3 text-sm font-medium text-pink-03 gap-2 leading-4">
+                            <p class="inline-flex items-center gap-2 mb-3 text-sm font-medium leading-4 text-pink-03">
                                 <CautionSvg />
                                 After delegation, the request cannot be undone.
                             </p>
@@ -582,7 +585,7 @@ export default {
                             </label>
                         </div>
                         <hr class="border-white-10" />
-                        <div class="flex items-center justify-end pr-6 -mt-1 gap-2">
+                        <div class="flex items-center justify-end gap-2 pr-6 -mt-1">
                             <button
                               @click="() => handleModal(false)"
                               type="button"

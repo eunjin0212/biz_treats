@@ -1,5 +1,6 @@
 <script>
 import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
+import { handleSearch } from '@/modules/search.js'
 import { alertData } from '@/mock/alertData.js'
 import { cartData } from '@/mock/cart.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
@@ -136,6 +137,7 @@ export default {
                 this.alertOpen = false
             }
         },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -171,6 +173,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -312,7 +315,7 @@ export default {
                     </fieldset>
                 </form>
                 <hr class="!mx-0 !mb-0" />
-                <div class="flex items-center justify-end pt-3 pr-6 gap-2">
+                <div class="flex items-center justify-end gap-2 pt-3 pr-6">
                     <button
                       class="outline-0 w-[120px] h-12 rounded-lg text-[15px] leading-6 font-bold bg-white-19 border-2 text-[#9A9FA5] hover:bg-secondary-04-light border-white-10"
                     >Cancel</button>

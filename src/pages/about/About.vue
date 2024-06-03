@@ -1,5 +1,6 @@
 <script>
 import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
+import { handleSearch } from '@/modules/search.js'
 import { cartData } from '@/mock/cart.js'
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
@@ -70,6 +71,7 @@ export default {
                 this.alertOpen = false
             }
         },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -105,6 +107,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />

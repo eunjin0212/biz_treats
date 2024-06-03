@@ -1,8 +1,9 @@
 <script>
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
-import { cartData } from '@/mock/cart';
-import { genBrandsMockData } from '@/mock/brand';
+import { cartData } from '@/mock/cart.js';
+import { genBrandsMockData } from '@/mock/brand.js';
 import { alertData } from '@/mock/alertData.js'
+import { handleSearch } from '@/modules/search.js';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -117,6 +118,7 @@ export default {
         handleBrandClick(id) {
             window.location.href = `/brandsDetail?id=${id}`
         },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -152,13 +154,17 @@ export default {
     <header class="service-header">
         <div class="!w-[1120px]">
             <nav>
-                <a href="/" class="!mr-5">
+                <a
+                  href="/"
+                  class="!mr-5"
+                >
                     <img src="/assets/images/biz_treats_log.png" />
                 </a>
                 <div class="search-input !w-[442px]">
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -316,7 +322,9 @@ export default {
                               height="228"
                               class="object-contain h-[228px] rounded-2xl"
                             />
-                            <figcaption class="text-center mt-5 pt-2 pb-2.5 w-full border-t border-b border-b-[#CACACA] border-t-[#CACACA]">
+                            <figcaption
+                              class="text-center mt-5 pt-2 pb-2.5 w-full border-t border-b border-b-[#CACACA] border-t-[#CACACA]"
+                            >
                                 <strong
                                   class="block text-[#626262] mb-2 font-semibold text-[22px] leading-6 -tracking-wide"
                                 >{{ item.brand }}</strong>

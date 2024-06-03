@@ -1,7 +1,7 @@
 <script>
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
-import { cartData } from '@/mock/cart';
-import { genProductData } from '@/mock/product';
+import { cartData } from '@/mock/cart.js';
+import { genProductData } from '@/mock/product.js';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -148,6 +148,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+@keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />

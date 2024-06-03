@@ -1,8 +1,9 @@
 <script>
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
-import { cartData } from '@/mock/cart';
-import { genProductData } from '@/mock/product';
+import { cartData } from '@/mock/cart.js';
+import { genProductData } from '@/mock/product.js';
 import { alertData } from '@/mock/alertData.js'
+import { handleSearch } from '@/modules/search.js';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -122,6 +123,7 @@ export default {
                 this.alertOpen = false
             }
         },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -157,13 +159,17 @@ export default {
     <header class="service-header">
         <div class="!w-[1120px]">
             <nav>
-                <a href="/" class="!mr-5">
+                <a
+                  href="/"
+                  class="!mr-5"
+                >
                     <img src="/assets/images/biz_treats_log.png" />
                 </a>
                 <div class="search-input !w-[442px]">
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -327,13 +333,13 @@ export default {
             <div class="main-section__wrapper w-[1120px]">
                 <ul class="mb-12 product">
                     <li
-                        v-for="(item, index) in budgetData[selectedFilter.budget]"
-                        :key="index"
+                      v-for="(item, index) in budgetData[selectedFilter.budget]"
+                      :key="index"
                     >
                         <figure class="relative">
                             <img
-                                :src="item.img"
-                                :alt="item.img"
+                              :src="item.img"
+                              :alt="item.img"
                             />
                             <figcaption v-if="item.is_soldout">
                                 <span>SOLD OUT</span>

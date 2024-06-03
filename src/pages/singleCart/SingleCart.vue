@@ -2,6 +2,7 @@
 import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { singleCartData, cartData } from '@/mock/cart.js'
+import { handleSearch } from '@/modules/search.js';
 import moment from 'moment';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -138,7 +139,8 @@ export default {
         handleDelete(idx) {
             this.isFormOpen = this.orderData[0].recipient.length
             this.orderData[0].recipient.splice(idx, 1)
-        }
+        },
+        handleSearch,
     },
     watch: {
         dropdown() {
@@ -213,6 +215,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
