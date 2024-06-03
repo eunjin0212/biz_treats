@@ -14,7 +14,6 @@ import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
-import AllSvg from '@/assets/icons/AllSvg.vue'
 import RetrySvg from '@/assets/icons/RetrySvg.vue'
 
 
@@ -30,7 +29,6 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
-        AllSvg,
         ProductCartSvg,
         RetrySvg,
     },
@@ -77,28 +75,7 @@ export default {
                 max: 0,
                 keyword: 'Chicken'
             },
-            categoryFilter: [
-                { label: 'ALL', icon: 'AllSvg', textClass: '' },
-                { label: 'eWallet', icon: '', textClass: '' },
-                { label: 'Grocery & Essentials', icon: '', textClass: '' },
-                { label: 'Fast Food', icon: '', textClass: 'text-nowrap' },
-                { label: 'Casual Resto', icon: '', textClass: '' },
-                { label: 'Bread & Dessert', icon: '', textClass: '' },
-                { label: 'Drugstore & Wellness', icon: '', textClass: '-tracking-[0.14px]' },
-                { label: 'Beauty & Lifestyle', icon: '', textClass: '' },
-                { label: 'Transpo & Travel', icon: '', textClass: '' },
-                { label: 'Digital & Appliance', icon: '', textClass: '' },
-                { label: 'Home & Kids', icon: '', textClass: '' },
-            ],
-            budgetFilter: [
-                { label: 'Below P50', min: 0, max: 50 },
-                { label: 'P51~P100', min: 51, max: 100 },
-                { label: 'P101~P300', min: 101, max: 300 },
-                { label: 'P301~P500', min: 301, max: 500 },
-                { label: 'P501 and UP', min: 501, max: 99999 },
-            ],
-            budgetRecommend: genBudgetMockData(100),
-            budgetData: {},
+            displayData: genBudgetMockData(100),
             keyword: ['Chicken', 'Meal', 'Drinks']
         }
     },
@@ -320,7 +297,7 @@ export default {
             <div class="main-section__wrapper w-[1120px]">
                 <ul class="mb-12 product">
                     <li
-                      v-for="(item, index) in budgetRecommend"
+                      v-for="(item, index) in displayData"
                       :key="index"
                     >
                         <figure class="relative">
