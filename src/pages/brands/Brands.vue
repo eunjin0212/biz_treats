@@ -141,7 +141,6 @@ export default {
     },
     mounted() {
         this.brandsData = this.categoryFilter.reduce((obj, data) => {
-            console.log(data.label)
             const originArray = this.brands.filter((item) => item.keyword === data.label)
             obj[data.label] = data.label === 'ALL' ? this.brands : originArray
             return obj
