@@ -294,8 +294,8 @@ export default {
                 <button class="w-[157px] h-10 border border-blue-05 rounded py-2 px-4 hover:bg-sky-50 text-blue-05">Search</button>
             </li>
         </ul>
-        <section class="pt-4 pb-40 main-section budget-section bg-white-18">
-            <div class="main-section__wrapper w-[1120px]">
+        <section class="pt-4 pb-40 main-section display-section bg-white-18">
+            <div class="main-section__wrapper">
                 <ul class="mb-12 product">
                     <li
                       v-for="(item, index) in displayData"

@@ -305,8 +305,8 @@ export default {
             </ul>
         </div>
         <hr class="border-t-2 border-t-[#CECECE] w-[1120px] mx-auto" />
-        <section class="pt-5 pb-40 main-section budget-section bg-white-18">
-            <div class="main-section__wrapper w-[1120px]">
+        <section class="pt-5 pb-40 main-section bg-white-18">
+            <div class="main-section__wrapper">
                 <ul class="grid grid-cols-[repeat(3,minmax(344px,344px))] gap-x-11 gap-y-9">
                     <li
                       v-for="(item, idx) in brandsData[selectedFilter.category]"

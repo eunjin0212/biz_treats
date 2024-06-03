@@ -243,7 +243,7 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
-        <section class="pt-4 pb-40 main-section budget-section bg-white-18">
+        <section class="pt-4 pb-40 main-section bg-white-18">
             <div class="flex border bg-white-20 border-white-10 w-[1120px] h-[150px] mx-auto">
                 <img
                   class="w-[250px] py-5 h-full border-r border-r-white-10 object-contain"
@@ -256,7 +256,7 @@ export default {
                 </div>
             </div>
             <hr class="border-t border-t-gray-07 w-[1120px] mx-auto mt-6 mb-2.5" />
-            <div class="main-section__wrapper w-[1120px]">
+            <div class="main-section__wrapper">
                 <div class="text-right pb-3.5 flex items-center justify-end">
                     <span class="mr-2 text-sm font-medium leading-4 text-slate-01">
                         Sort By

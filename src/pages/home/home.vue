@@ -394,7 +394,7 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
-        <section class="main-section main-section bg-white-17 h-[430px] pt-7">
+        <section class="main-section bg-white-17 h-[430px] pt-7">
             <aside class="relative w-full h-full overflow-hidden main-banner">
                 <ul
                   class="flex h-[327px] w-full select-none keen-slider"
@@ -441,7 +441,7 @@ export default {
             </aside>
         </section>
         <section class="pt-24 main-section keyword-section bg-white-17">
-            <div class="main-section__wrapper w-[1121px]">
+            <div class="main-section__wrapper">
                 <div class="flex items-center justify-between">
                     <h1 class="main-section__title">
                         <p class="flex items-center mb-2 h-fit">
@@ -520,7 +520,7 @@ export default {
             </div>
         </section>
         <section class="pt-[75px] pb-[60px] main-section best-brands-section bg-white-20">
-            <div class="main-section__wrapper w-[1121px]">
+            <div class="main-section__wrapper">
                 <h1 class="main-section__title">
                     <p class="flex items-center gap-2 h-fit">
                         BEST BRANDS
@@ -600,7 +600,7 @@ export default {
             </a>
         </section>
         <section class="pt-[51px] pb-[65px] main-section budget-section bg-white-17">
-            <div class="main-section__wrapper w-[1121px]">
+            <div class="main-section__wrapper">
                 <div class="flex justify-between">
                     <h1 class="main-section__title">
                         <p class="flex items-center mb-2 h-fit">

@@ -330,7 +330,7 @@ export default {
         </div>
         <hr class="border-t-2 border-t-[#CECECE] w-[1120px] mx-auto" />
         <section class="pt-4 pb-40 main-section budget-section bg-white-18">
-            <div class="main-section__wrapper w-[1120px]">
+            <div class="main-section__wrapper">
                 <ul class="mb-12 product">
                     <li
                       v-for="(item, index) in budgetData[selectedFilter.budget]"

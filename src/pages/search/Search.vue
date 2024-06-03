@@ -3,6 +3,7 @@ import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart.js';
 import { genProductData } from '@/mock/product.js';
 import { alertData } from '@/mock/alertData.js'
+import { getParams } from '@/modules/search.js';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -15,7 +16,6 @@ import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 import RetrySvg from '@/assets/icons/RetrySvg.vue'
-import { getParams } from '@/modules/search';
 
 
 export default {
@@ -277,8 +277,8 @@ export default {
                 <button class="w-[157px] h-10 border border-blue-05 rounded py-2 px-4 hover:bg-sky-50 text-blue-05">Search</button>
             </li>
         </ul>
-        <section class="pt-4 pb-40 main-section budget-section bg-white-18">
-            <div class="main-section__wrapper w-[1120px]">
+        <section class="pt-4 pb-40 main-section search-section bg-white-18">
+            <div class="main-section__wrapper">
                 <ul class="mb-12 product">
                     <li
                       v-for="(item, index) in resultData"
