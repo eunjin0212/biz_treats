@@ -134,4 +134,8 @@ module.exports = {
         title: 'Display1',
         path: '/display1',
     },
+    'search': {
+        title: 'search',
+        path: '/search',
+    },
 }
