@@ -148,7 +148,7 @@ export default {
                     <input
                       type="text"
                       placeholder="Search for Treats"
-@keypress.enter="() => handleSearch(search)"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -266,9 +266,17 @@ export default {
             <li class="border-b border-b-[#EAEAEA] py-2 flex items-center">
                 <strong class="inline-block w-32 min-w-32 pl-6 text-[#696969] font-semibold text-sm">Price</strong>
                 <label class="!inline-flex !flex-row items-center input !gap-1.5">
-                    <input class="w-[136px]" v-model="selectedFilter.min" placeholder="Low" />
+                    <input
+                      class="w-[136px]"
+                      v-model="selectedFilter.min"
+                      placeholder="Low"
+                    />
                     <span class="text-gray-04">~</span>
-                    <input class="w-[136px]" v-model="selectedFilter.max" placeholder="High" />
+                    <input
+                      class="w-[136px]"
+                      v-model="selectedFilter.max"
+                      placeholder="High"
+                    />
                 </label>
             </li>
             <li class="border-b border-b-[#EAEAEA] py-3">
@@ -280,18 +288,24 @@ export default {
                       :data-active="item === selectedFilter.keyword"
                       @click="() => {
                         selectedFilter.keyword = item
-                      }"
+                    }"
                       class="cursor-pointer text-nowrap border border-[#DBDBDB] h-8 min-w-[84px] text-center px-[23px] py-[5px] rounded-3xl text-xs leading-[22px] font-medium font-poppins text-[#7D7D7D] hover:text-white-20 hover:bg-blue-05 hover:border-blue-05 data-[active=true]:text-white-20 data-[active=true]:bg-blue-05 data-[active=true]:border-blue-05"
                     >{{ item }}</span>
                 </div>
             </li>
             <li class="pr-3.5 py-2 border-b border-b-gray-07 flex justify-end items-center gap-3">
-                <button class="w-10 h-10 p-0.5 border rounded border-blue-05 hover:bg-sky-50 text-blue-05" @click="() => {
-                    selectedFilter.keyword = keyword[0]
-                    selectedFilter.min = 0
-                    selectedFilter.max = 0
-                }"><RetrySvg /></button>
-                <button class="w-[157px] h-10 border border-blue-05 rounded py-2 px-4 hover:bg-sky-50 text-blue-05">Search</button>
+                <button
+                  class="w-10 h-10 p-0.5 border rounded border-blue-05 hover:bg-sky-50 text-blue-05"
+                  @click="() => {
+                        selectedFilter.keyword = keyword[0]
+                        selectedFilter.min = 0
+                        selectedFilter.max = 0
+                    }"
+                >
+                    <RetrySvg />
+                </button>
+                <button
+                  class="w-[157px] h-10 border border-blue-05 rounded py-2 px-4 hover:bg-sky-50 text-blue-05">Search</button>
             </li>
         </ul>
         <section class="pt-4 pb-40 main-section display-section bg-white-18">
@@ -301,7 +315,10 @@ export default {
                       v-for="(item, index) in displayData"
                       :key="index"
                     >
-                        <figure class="relative">
+                        <figure
+                          class="relative"
+                          @click="() => goProductDetail(index)"
+                        >
                             <img
                               :src="item.img"
                               :alt="item.img"

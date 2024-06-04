@@ -3,8 +3,9 @@ import "keen-slider/keen-slider.min.css";
 import KeenSlider from "keen-slider";
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart.js';
-import { genKeywordMockData, genBrandsMockData, genBudgetMockData } from '@/mock/home';
+import { genKeywordMockData, genBrandsMockData, genBudgetMockData } from '@/mock/home.js';
 import { alertData } from '@/mock/alertData.js'
+import { goProductDetail } from '@/modules/product.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -178,6 +179,7 @@ export default {
                 return result;
             }, []);
         },
+        goProductDetail,
     },
     watch: {
         dropdown() {
@@ -276,14 +278,17 @@ export default {
     <header class="service-header">
         <div class="!w-[1120px]">
             <nav>
-                <a href="/" class="!mr-5">
+                <a
+                  href="/"
+                  class="!mr-5"
+                >
                     <img src="/assets/images/biz_treats_log.png" />
                 </a>
                 <div class="search-input !w-[442px]">
                     <input
                       type="text"
                       placeholder="Search for Treats"
-@keypress.enter="() => handleSearch(search)"
+                      @keypress.enter="() => handleSearch(search)"
                       name="search"
                       v-model="search"
                     />
@@ -476,7 +481,10 @@ export default {
                               v-for="(item, idx) in data"
                               :key="idx"
                             >
-                                <figure class="relative">
+                                <figure
+                                  class="relative"
+                                  @click="() => goProductDetail(idx)"
+                                >
                                     <img
                                       :src="item.img"
                                       :alt="item.img"
@@ -582,7 +590,10 @@ export default {
                     <RightArrowSvg />
                 </button>
             </aside>
-            <a class="see-all-btn" href="/brands">
+            <a
+              class="see-all-btn"
+              href="/brands"
+            >
                 See All Brand
                 <svg
                   width="9"
@@ -634,7 +645,10 @@ export default {
                               v-for="(item, idx) in data"
                               :key="idx"
                             >
-                                <figure class="relative">
+                                <figure
+                                  class="relative"
+                                  @click="() => goProductDetail(idx)"
+                                >
                                     <img
                                       :src="item.img"
                                       :alt="item.img"
@@ -675,7 +689,10 @@ export default {
                         <RightArrowSvg />
                     </button>
                 </aside>
-                <a href="/budget" class="see-all-btn">See More
+                <a
+                  href="/budget"
+                  class="see-all-btn"
+                >See More
                     <svg
                       width="9"
                       height="14"

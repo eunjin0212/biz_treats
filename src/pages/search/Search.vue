@@ -4,6 +4,7 @@ import { cartData } from '@/mock/cart.js';
 import { genProductData } from '@/mock/product.js';
 import { alertData } from '@/mock/alertData.js'
 import { getParams } from '@/modules/search.js';
+import { goProductDetail } from '@/modules/product.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -107,6 +108,7 @@ export default {
             // get data with filter
         },
         getParams,
+        goProductDetail,
     },
     watch: {
         dropdown() {
@@ -258,23 +260,38 @@ export default {
         </nav>
         <h1
           class="text-[#6E6E6E] font-bold text-[32px] leading-[56px] -tracking-wide text-center py-[30px] border-b-2 border-b-[#CECECE] w-[1120px] mx-auto"
-        >Search result<strong class="text-blue-05 font-bold text-3xl leading-[56px] -tracking-wide ml-3">“{{ getParams()[1] }}”</strong></h1>
+        >Search result<strong class="text-blue-05 font-bold text-3xl leading-[56px] -tracking-wide ml-3">“{{
+                        getParams()[1] }}”</strong></h1>
         <ul class="w-[1120px] mx-auto bg-white-20">
             <li class="border-b border-b-[#EAEAEA] py-2 flex items-center">
                 <strong class="inline-block w-32 min-w-32 pl-6 text-[#696969] font-semibold text-sm">Price</strong>
                 <label class="!inline-flex !flex-row items-center input !gap-1.5">
-                    <input class="w-[136px]" v-model="selectedFilter.min"  placeholder="Low" />
+                    <input
+                      class="w-[136px]"
+                      v-model="selectedFilter.min"
+                      placeholder="Low"
+                    />
                     <span class="text-gray-04">~</span>
-                    <input class="w-[136px]" v-model="selectedFilter.max" placeholder="High" />
+                    <input
+                      class="w-[136px]"
+                      v-model="selectedFilter.max"
+                      placeholder="High"
+                    />
                 </label>
             </li>
             <li class="pr-3.5 py-2 border-b border-b-gray-07 flex justify-end items-center gap-3">
-                <button class="w-10 h-10 p-0.5 border rounded border-blue-05 hover:bg-sky-50 text-blue-05" @click="() => {
-                    selectedFilter.keyword = keyword[0]
-                    selectedFilter.min = 0
-                    selectedFilter.max = 0
-                }"><RetrySvg /></button>
-                <button class="w-[157px] h-10 border border-blue-05 rounded py-2 px-4 hover:bg-sky-50 text-blue-05">Search</button>
+                <button
+                  class="w-10 h-10 p-0.5 border rounded border-blue-05 hover:bg-sky-50 text-blue-05"
+                  @click="() => {
+                        selectedFilter.keyword = keyword[0]
+                        selectedFilter.min = 0
+                        selectedFilter.max = 0
+                    }"
+                >
+                    <RetrySvg />
+                </button>
+                <button
+                  class="w-[157px] h-10 border border-blue-05 rounded py-2 px-4 hover:bg-sky-50 text-blue-05">Search</button>
             </li>
         </ul>
         <section class="pt-4 pb-40 main-section search-section bg-white-18">
@@ -284,7 +301,10 @@ export default {
                       v-for="(item, index) in resultData"
                       :key="index"
                     >
-                        <figure class="relative">
+                        <figure
+                          class="relative"
+                          @click="() => goProductDetail(index)"
+                        >
                             <img
                               :src="item.img"
                               :alt="item.img"

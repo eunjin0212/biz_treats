@@ -4,6 +4,7 @@ import { cartData } from '@/mock/cart.js';
 import { genProductData } from '@/mock/product.js';
 import { alertData } from '@/mock/alertData.js'
 import { handleSearch } from '@/modules/search.js';
+import { goProductDetail } from '@/modules/product.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -124,6 +125,7 @@ export default {
             }
         },
         handleSearch,
+        goProductDetail,
     },
     watch: {
         dropdown() {
@@ -336,7 +338,10 @@ export default {
                       v-for="(item, index) in budgetData[selectedFilter.budget]"
                       :key="index"
                     >
-                        <figure class="relative">
+                        <figure
+                          class="relative"
+                          @click="() => goProductDetail(index)"
+                        >
                             <img
                               :src="item.img"
                               :alt="item.img"
