@@ -1,85 +1,20 @@
 <script>
-import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
-import { cartData } from '@/mock/cart.js';
-import { alertData } from '@/mock/alertData.js'
-import SearchSvg from '@/assets/icons/SearchSvg.vue';
-import BellSvg from '@/assets/icons/BellSvg.vue';
-import CartSvg from '@/assets/icons/CartSvg.vue';
-import DropdownSvg from '@/assets/icons/DropdownSvg.vue';
-import WalletSvg from '@/assets/icons/WalletSvg.vue';
-import SwitchSvg from '@/assets/icons/SwitchSvg.vue';
-import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
-import AlertSvg from '@/assets/icons/AlertSvg.vue';
-import PointSvg from '@/assets/icons/PointSvg.vue';
-import ReadSvg from '@/assets/icons/ReadSvg.vue';
+import { companyWebsiteMenu, menus, snsMenu } from '@/constants/components.js';
 
 export default {
-    components: {
-        SearchSvg,
-        BellSvg,
-        CartSvg,
-        DropdownSvg,
-        WalletSvg,
-        SwitchSvg,
-        SignOutSvg,
-        AlertSvg,
-        PointSvg,
-        ReadSvg,
-    },
     data() {
         return {
-            navMenu,
             snsMenu,
             menus,
-            lnbMenu,
-            search: '',
-            dropdown: false,
-            alertOpen: false,
-            alertData,
-            cartData,
+            companyWebsiteMenu,
         }
     },
     methods: {
-        handleClick() {
-            window.location.href = '/login'
-        },
-        handleCartLocation() {
-            window.location.href = '/multiCart'
-        },
-        handleDropdown() {
-            this.dropdown = !this.dropdown
-        },
-        handleAlert() {
-            this.alertOpen = !this.alertOpen
-        },
-        handleGlobalDropdown(e) {
-            const { parentNode } = e.target
-            if (parentNode !== this.$refs.dropdownRef && !this.$refs.dropdownOptsRef.contains(parentNode)) {
-                this.dropdown = false
-            }
-        },
-        handleGlobalAlert(e) {
-            const { parentNode } = e.target
-            if (parentNode !== this.$refs.alertRef && !this.$refs.alertWrapperRef.contains(parentNode)) {
-                this.alertOpen = false
-            }
+        handleClick(url = 'inquiry') {
+            window.location.href = url
         },
     },
     watch: {
-        dropdown() {
-            if (this.dropdown) {
-                window.addEventListener('click', this.handleGlobalDropdown)
-                return
-            }
-            window.removeEventListener('click', this.handleGlobalDropdown)
-        },
-        alertOpen() {
-            if (this.alertOpen) {
-                window.addEventListener('click', this.handleGlobalAlert)
-                return
-            }
-            window.removeEventListener('click', this.handleGlobalAlert)
-        },
     },
     computed: {
         matchPath: () => {
@@ -89,136 +24,33 @@ export default {
 }
 </script>
 <template>
-    <header class="service-header">
-        <div>
-            <nav>
+    <header class="w-full bg-white-20 border-b border-b-[#EBEBEB] py-2.5">
+        <nav class="flex items-center justify-between w-[1120px] mx-auto">
+            <div class="flex items-center gap-3">
                 <a href="/">
-                    <img src="/assets/images/biz_treats_log.png" />
+                    <img src="/assets/images/biz_treats_log.png" class="h-12" />
                 </a>
-                <div class="search-input">
-                    <input
-                      type="text"
-                      placeholder="Search for Treats"
-                      @keypress.enter="() => handleSearch(search)"
-                      name="search"
-                      v-model="search"
-                    />
-                    <SearchSvg />
-                </div>
-                <div class="relative">
-                    <button
-                      class="header-btn"
-                      ref="alertRef"
-                      @click="handleAlert"
-                    >
-                        <BellSvg />
-                        <span class="badge">{{ alertData.length }}</span>
-                    </button>
-                    <aside
-                      class="alert-wrapper"
-                      ref="alertWrapperRef"
-                      :class="alertOpen ? 'block' : 'hidden'"
-                    >
-                        <div class="alert-header">
-                            <h1>Notification</h1>
-                            <p>
-                                <span>
-                                    That’s all your notifications from the last 14days.
-                                </span>
-                                <button>
-                                    Mark all as read
-                                </button>
-                            </p>
-                        </div>
-                        <hr />
-                        <ul>
-                            <li
-                              v-for="(alert, idx) in alertData"
-                              :key="idx"
-                            >
-                                <div>
-                                    <span :class="alert.type === 'alert' ? 'bg-[#FCB1E7]' : 'bg-[#A7E5FF]'">
-                                        <AlertSvg v-if="alert.type === 'alert'" />
-                                        <PointSvg v-else />
-                                    </span>
-                                    <div>
-                                        <p>
-                                            <span>{{ alert.title }}</span>
-                                            <span>({{ alert.date }})</span>
-                                        </p>
-                                        <span>{{ alert.description }}</span>
-                                    </div>
-                                    <span
-                                      v-if="alert.read"
-                                      class="alert-check"
-                                    >
-                                        <ReadSvg />
-                                    </span>
-                                </div>
-                            </li>
-                        </ul>
-                    </aside>
-                </div>
-                <button
-                  class="header-btn inline-flex ml-4.5"
-                  @click="() => handleCartLocation()"
+                <a
+                  v-for="menu in Object.values(companyWebsiteMenu).flat()"
+                  :href="menu.path"
+                  :key="menu.title"
+                  class="w-[140px] text-center block text-base -tracking-wide text-black-100 font-medium"
+                  v-show="!menu?.hide"
                 >
-                    <CartSvg />
-                    <span class="text-[15px] leading-5 -tracking-[0.323px] font-bold font-inter ml-4 mr-1.5">{{
-                        cartData.length }}</span>
-                </button>
-                <div class="ml-4 btn-group">
-                    <button class="border-r border-r-[#197298]">Wallet Name</button>
-                    <div class="dropdown border-l border-l-[#60D0FF]">
-                        <button
-                          @click="handleDropdown"
-                          ref="dropdownRef"
-                        >
-                            <span>
-                                10000 points
-                            </span>
-                            <DropdownSvg />
-                        </button>
-                        <div
-                          class="dropdown-opts"
-                          ref="dropdownOptsRef"
-                          :class="dropdown ? 'block' : 'hidden'"
-                        >
-                            <a href="/myWallet">
-                                <WalletSvg />My Wallet
-                            </a>
-                            <a href="/chooseWallet">
-                                <SwitchSvg />Switching Wallet
-                            </a>
-                            <a href="/login">
-                                <SignOutSvg />Log out
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
+                    {{ menu.title }}
+                </a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="/inquiry" class="w-[140px] text-center block text-base -tracking-wide text-black-100 font-medium">
+                    Inquiry
+                </a>
+                <a href="login" class="text-base font-medium text-center border rounded-md border-white-03 py-3 bg-blue-05 hover:bg-blue-06 text-white-20 -tracking-wide w-[148px] h-12">
+                    Log in
+                </a>
+            </div>
+        </nav>
     </header>
-    <main class="bg-white-17 flex w-[1228px] mx-auto">
-        <aside class="lnb service-lnb">
-            <ul>
-                <li
-                  v-for="lnb in lnbMenu"
-                  :key="lnb.title"
-                >
-                    <div>{{ lnb.title }}</div>
-                    <hr />
-                    <a
-                      v-for="children in lnb.children"
-                      :key="children.title"
-                      :href="children.path"
-                      :class="{ 'bg-white-15 !text-black-200': matchPath(children.path) }"
-                    >
-                        {{ children.title }}
-                    </a>
-                </li>
-            </ul>
-        </aside>
+    <main class="bg-white-17 flex w-[1220px] mx-auto h-56">
         <section>
         </section>
     </main>
@@ -267,7 +99,7 @@ export default {
                 </div>
             </aside>
         </div>
-        <hr />
+        <hr class="w-[1120px] mx-auto" />
         <p>
             Copyright © SHARE TREATS. All rights reserved.
         </p>

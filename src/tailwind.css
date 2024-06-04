@@ -283,7 +283,7 @@ body {
     }
 
     footer.service-footer>div {
-        @apply w-[1228px] mx-auto
+        @apply w-[1120px] mx-auto
     }
 
     footer.service-footer>div aside {
@@ -331,7 +331,7 @@ body {
     }
 
     footer.service-footer>p {
-        @apply w-[1228px] mx-auto text-sm font-medium text-[theme(colors.slate.02)] pt-[30px] pb-[34px]
+        @apply w-[1120px] mx-auto text-sm font-medium text-[theme(colors.slate.02)] pt-[30px] pb-[34px]
     }
 }
 

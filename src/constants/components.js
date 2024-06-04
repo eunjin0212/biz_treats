@@ -59,6 +59,8 @@ const companyWebsiteNav = {
     },
 }
 
+export const companyWebsiteMenu = Object.values(companyWebsiteNav).flat()
+
 const headerNav = {
     ...companyWebsiteNav,
     index: {
