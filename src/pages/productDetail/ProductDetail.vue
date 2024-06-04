@@ -16,6 +16,8 @@ import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 import TabSearchSvg from '@/assets/icons/TabSearchSvg.vue';
+import AccordionSvg from '@/assets/icons/AccordionSvg.vue';
+import LocationSvg from '@/assets/icons/LocationSvg.vue';
 
 export default {
     components: {
@@ -31,6 +33,8 @@ export default {
         ReadSvg,
         ProductCartSvg,
         TabSearchSvg,
+        AccordionSvg,
+        LocationSvg,
     },
     data() {
         return {
@@ -78,6 +82,64 @@ export default {
             tabs: ['Description', 'Participating Stores'],
             tab: 'Description',
             storeSearch: '',
+            accordionData: [
+                {
+                    title: 'Aklan',
+                    description: 'Location 10',
+                    active: false,
+                    children: [
+                        {
+                            title: 'What is BIZ TREATS?',
+                            icon: 'LocationSvg',
+                            content: 'Bihi Road, Kumintang Ibaba Batangas',
+                        },
+                        {
+                            title: 'Are there any contacts for additional inquiries?',
+                            icon: 'LocationSvg',
+                            content: 'Bihi Road, Kumintang Ibaba Batangas',
+                        },
+                    ],
+                },
+                {
+                    title: 'Bataan',
+                    description: 'Location 10',
+                    active: false,
+                    children: [
+                        {
+                            title: 'How can we tie-up to Biz Treats?',
+                            icon: 'LocationSvg',
+                            content: 'Bihi Road, Kumintang Ibaba Batangas',
+                        },
+                    ],
+                },
+                {
+                    title: 'Batangas',
+                    description: 'Location 10',
+                    active: false,
+                    children: [
+                        {
+                            title: 'THE COFFEE BEAN & TEA LEAF - BATANGAS MEDICAL CENTER',
+                            icon: 'LocationSvg',
+                            content: 'Bihi Road, Kumintang Ibaba Batangas',
+                        },
+                        {
+                            title: 'THE COFFEE BEAN & TEA LEAF - SM CITY STO. TOMAS',
+                            icon: 'LocationSvg',
+                            content: 'Loc 1087 SM City St. Tomas Maharlika Highway, Barangay San Bartolome, 4234, City of Sto.Tomas',
+                        },
+                        {
+                            title: 'THE COFFEE BEAN & TEA LEAF - SM STORE BATANGAS',
+                            icon: 'LocationSvg',
+                            content: '(The SM Store- Ground Floor) SM City Batangas, Pallocan Kanluran, Batangas City 4200',
+                        },
+                        {
+                            title: 'THE COFFEE BEAN & TEA LEAF - SM STORE STO. TOMAS',
+                            icon: 'LocationSvg',
+                            content: 'Ground Floor SM Store, Sto Tomas',
+                        },
+                    ],
+                },
+            ],
         }
     },
     methods: {
@@ -109,6 +171,17 @@ export default {
             // get data with filter
         },
         getParams,
+        handleToggle(accordion) {
+            const index = this.accordionData.findIndex((data) => data.title === accordion.title)
+
+            this.accordionData.forEach((data) => {
+                if (data.title !== accordion.title) {
+                    data.active = false
+                }
+            })
+
+            this.accordionData[index].active = !this.accordionData[index].active
+        }
     },
     watch: {
         dropdown() {
@@ -299,9 +372,7 @@ export default {
                     </dd>
                 </dl>
             </div>
-            <div
-              class="flex items-center row bg-[#F3F5F7] border-b border-b-blue-05"
-            >
+            <div class="flex items-center row bg-[#F3F5F7] border-b border-b-blue-05">
                 <div
                   v-for="value in tabs"
                   :key="value"
@@ -411,12 +482,44 @@ export default {
                         >Search</button>
                     </div>
                 </div>
-                <div class="bg-white-20 py-3.5 px-11 border border-white-15 border-t-0">
-                    <div class="accordion-container">
-                        <p class="accordion-title">
-                            <strong>title</strong>
-                            <span>description</span>
+                <div class="bg-white-20 py-3.5 px-11 border border-white-15 border-t-0 flex flex-col gap-3.5">
+                    <div
+                      class="accordion-container"
+                      v-for="accordion in accordionData"
+                      :key="accordion.title"
+                    >
+                        <p
+                          class="accordion-title group"
+                          :data-active="accordion.active"
+                          @click="() => handleToggle(accordion)"
+                        >
+                            <strong>{{ accordion.title }}</strong>
+                            <span>{{ accordion.description }}</span>
+                            <AccordionSvg class="group-data-[active=true]:rotate-180" />
                         </p>
+                        <ul
+                          v-if="accordion.active"
+                        >
+                            <li
+                              v-for="(child, idx) in accordion.children"
+                              :key="child.title"
+                              :class="{ 
+                                'border-b mb-[38px]': idx === accordion.children.length - 1,
+                                'pt-9': idx === 0,
+                              }"
+                              class="border-t px-[30px] pt-5 pb-3.5 flex items-start gap-2.5"
+                            >
+                                <component
+                                  v-if="child?.icon"
+                                  :is="child?.icon"
+                                  class="pt-1"
+                                ></component>
+                                <div class="flex flex-col">
+                                    <strong class="text-base font-medium leading-6 text-blue-05 font-poppins">{{ child.title }}</strong>
+                                    <span class="text-[#606060] font-poppins text-sm leading-6 font-normal">{{ child.content }}</span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </template>

@@ -1145,16 +1145,18 @@ body {
 
 @layer components {
     .accordion-container {
-      @apply border border-[#1211271F] rounded-xl px-6 py-7
+      @apply border border-[#1211271F] rounded-xl
     }
     .accordion-title {
-        @apply flex gap-6
+        @apply flex gap-6 relative cursor-pointer py-7 pl-6
     }
     .accordion-title > strong {
         @apply text-[#606060] text-lg leading-6 font-bold font-poppins
     }
     .accordion-title > span {
         @apply text-[#1211278F] font-normal text-sm leading-6 font-poppins
-
+    }
+    .accordion-title > svg {
+        @apply absolute w-6 h-4 right-[42px] top-8 text-[#999999] transition-transform
     }
 }

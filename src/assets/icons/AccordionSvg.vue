@@ -8,7 +8,7 @@
     >
         <path
           d="M13 1L7 7L1 1"
-          stroke="#CCD2E3"
+          stroke="currentColor"
           stroke-width="2"
         />
     </svg>

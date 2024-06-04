@@ -303,7 +303,7 @@ export default {
                   :key="accordion.title"
                 >
                     <h3
-                      class="pb-3 mt-6 text-base font-bold border-b leading-5 accordion__section-title text-main border-b-gray-02"
+                      class="pb-3 mt-6 text-base font-bold leading-5 border-b accordion__section-title text-main border-b-gray-02"
                     >{{ accordion.title }}</h3>
                     <div
                       class="accordion__section-content"
@@ -314,7 +314,7 @@ export default {
                           @click="() => handleToggle(content)"
                           class="py-4 cursor-pointer text-[#495057] border-b border-b-[#F0F2F4] inline-flex items-center justify-between w-full pr-5"
                         >{{ content.title }}
-                            <AccordionSvg />
+                            <AccordionSvg class="text-[#CCD2E3]" />
                         </h4>
                         <div
                           class="px-3 pt-3.5 pb-8 font-normal leading-3.4 text-[13px] text-neutral-500 bg-white-18 hidden h-0 transition-all"
