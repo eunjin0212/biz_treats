@@ -301,7 +301,7 @@ export default {
                 <hr class="border-t-gray-07" />
             </h4>
         </div>
-        <div class="w-full pt-1 bg-white-18 min-w-[1440px] sticky top-[68px] z-20">
+        <div class="w-[1120px] mx-auto pt-1 bg-white-18 sticky top-[68px] z-20 border-b border-b-[#CECECE]">
             <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center">
                 <li
                   v-for="category in categoryFilter"
@@ -330,7 +330,7 @@ export default {
                 </li>
             </ul>
         </div>
-        <hr class="border-t-2 border-t-[#CECECE] w-[1120px] mx-auto" />
+        <hr class="border-t-1 border-t-[#CECECE] w-[1120px] mx-auto" />
         <section class="pt-4 pb-40 main-section budget-section bg-white-18">
             <div class="main-section__wrapper">
                 <ul class="mb-12 product">

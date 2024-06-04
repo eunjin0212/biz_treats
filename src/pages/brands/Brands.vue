@@ -265,7 +265,7 @@ export default {
         </div>
     </header>
     <main class="flex flex-col w-full mx-auto">
-        <nav class="w-full main-menu min-w-[1440px] mb-6.5">
+        <nav class="w-full main-menu min-w-[1440px] mb-4.5">
             <div>
                 <a
                   :class="{ 'active-main-menu': matchPath(menu.path) }"
@@ -275,8 +275,8 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
-        <div class="w-full bg-white-18 min-w-[1440px] sticky top-0 z-20">
-            <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center">
+        <div class="bg-white-18 w-[1120px] mx-auto sticky top-0 z-20 border-b border-b-[#CECECE]">
+            <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center pt-2">
                 <li
                   v-for="category in categoryFilter"
                   :key="category.label"
@@ -304,7 +304,7 @@ export default {
                 </li>
             </ul>
         </div>
-        <hr class="border-t-2 border-t-[#CECECE] w-[1120px] mx-auto" />
+        <hr class="border-t-1 border-t-[#CECECE] w-[1120px] mx-auto" />
         <section class="pt-5 pb-40 main-section bg-white-18">
             <div class="main-section__wrapper">
                 <ul class="grid grid-cols-[repeat(3,minmax(344px,344px))] gap-x-11 gap-y-9">
