@@ -1,5 +1,5 @@
 <script>
-import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
+import { snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { cartData } from '@/mock/cart.js';
 import { wallets } from '@/mock/wallets.js'
@@ -42,7 +42,6 @@ export default {
             lastPage: Math.ceil(wallets.length / rowPerPage), // 마지막 페이지
         }
         return {
-            navMenu,
             snsMenu,
             menus,
             myPageLnbMenu,

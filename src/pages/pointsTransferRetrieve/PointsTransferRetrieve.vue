@@ -1,5 +1,5 @@
 <script>
-import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
+import {  snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { managementRows } from '@/mock/pointsTransferRetrieve.js'
 import { cartData } from '@/mock/cart.js';
@@ -58,7 +58,7 @@ export default {
             tableSearch: '',
         }
         return {
-            navMenu,
+            
             snsMenu,
             menus,
             myPageLnbMenu,

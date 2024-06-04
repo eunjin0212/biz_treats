@@ -1,5 +1,5 @@
 <script>
-import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
+import {  snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { cartData } from '@/mock/cart.js';
 import { handleSearch } from '@/modules/search.js';
@@ -69,7 +69,7 @@ export default {
             agree: false,
         }
         return {
-            navMenu,
+            
             snsMenu,
             menus,
             myPageLnbMenu,

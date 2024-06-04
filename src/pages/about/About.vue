@@ -1,5 +1,5 @@
 <script>
-import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
+import { snsMenu, menus, lnbMenu } from '@/constants/components.js';
 import { handleSearch } from '@/modules/search.js'
 import { cartData } from '@/mock/cart.js'
 import { alertData } from '@/mock/alertData.js'
@@ -35,7 +35,6 @@ export default {
     },
     data() {
         return {
-            navMenu,
             snsMenu,
             menus,
             lnbMenu,

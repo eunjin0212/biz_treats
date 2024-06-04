@@ -1,5 +1,5 @@
 <script>
-import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
+import { snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { handleSearch } from '@/modules/search.js'
 import { alertData } from '@/mock/alertData.js'
 import { cartData } from '@/mock/cart.js'
@@ -38,7 +38,6 @@ export default {
             confirm_password: '',
         }
         return {
-            navMenu,
             snsMenu,
             menus,
             myPageLnbMenu,

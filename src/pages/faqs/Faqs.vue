@@ -1,5 +1,5 @@
 <script>
-import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
+import {  snsMenu, menus, lnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { cartData } from '@/mock/cart.js';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
@@ -30,7 +30,7 @@ export default {
     },
     data() {
         return {
-            navMenu,
+            
             snsMenu,
             menus,
             lnbMenu,

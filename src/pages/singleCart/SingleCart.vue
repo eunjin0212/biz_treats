@@ -1,5 +1,5 @@
 <script>
-import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
+import {  snsMenu, menus, lnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { singleCartData, cartData } from '@/mock/cart.js'
 import { handleSearch } from '@/modules/search.js';
@@ -61,7 +61,7 @@ export default {
             { label: 'Notes', value: 'notes', contentClass: 'w-[634px]', class: 'col-span-4 grid-cols-[150px_auto]', placeholder: 'EnterPO / Ref#', type: 'text' },
         ]
         return {
-            navMenu,
+            
             snsMenu,
             menus,
             lnbMenu,

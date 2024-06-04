@@ -1,5 +1,5 @@
 <script>
-import { navMenu, snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
+import {  snsMenu, menus, myPageLnbMenu } from '@/constants/components.js';
 import { users } from '@/mock/permissionSettings.js'
 import { alertData } from '@/mock/alertData.js'
 import { cartData } from '@/mock/cart.js';
@@ -38,7 +38,7 @@ export default {
             permission_settings: '0',
         }
         return {
-            navMenu,
+            
             snsMenu,
             menus,
             myPageLnbMenu,

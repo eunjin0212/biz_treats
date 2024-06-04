@@ -1,5 +1,5 @@
 <script>
-import { snsMenu, menus, navMenu } from '@/constants/components.js';
+import { snsMenu, menus } from '@/constants/components.js';
 
 export default {
     data() {
@@ -9,7 +9,6 @@ export default {
             confirmPw: '',
         }
         return {
-            navMenu,
             snsMenu,
             menus,
             formModel,
@@ -62,7 +61,6 @@ export default {
             </a>
             <strong class="text-base leading-[22px] font-semibold text-[#4E4E4E]">
                 Password set up
-
             </strong>
         </nav>
     </header>

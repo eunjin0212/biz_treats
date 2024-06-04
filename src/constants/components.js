@@ -40,10 +40,10 @@ export const menus = [
     },
 ]
 
-const headerNav = {
+const companyWebsiteNav = {
     index: {
         title: 'Home',
-        path: '/'
+        path: '/home'
     },
     'about': {
         title: 'About us',
@@ -56,6 +56,14 @@ const headerNav = {
     'contact': {
         title: 'Contact us',
         path: '/contact'
+    },
+}
+
+const headerNav = {
+    ...companyWebsiteNav,
+    index: {
+        title: 'Home',
+        path: '/'
     },
     'inquiry': {
         title: 'Inquiry',

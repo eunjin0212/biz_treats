@@ -1,5 +1,5 @@
 <script>
-import { navMenu, snsMenu, menus, lnbMenu } from '@/constants/components.js';
+import {  snsMenu, menus, lnbMenu } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { cartData } from '@/mock/cart.js'
 import { excelToArray } from '@/modules/excelToArray.js'
@@ -69,7 +69,7 @@ export default {
             },
         }
         return {
-            navMenu,
+            
             snsMenu,
             menus,
             lnbMenu,
