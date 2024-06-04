@@ -142,4 +142,8 @@ module.exports = {
         title: 'productDetail',
         path: '/productDetail',
     },
+    'error404': {
+        title: 'error404',
+        path: '/error404',
+    },
 }

@@ -11,6 +11,7 @@ function loadPages() {
     const pEnums = pEnum.split('/')
     const lastPage = pEnums[pEnums.length-1]
 
+    console.log(pEnum)
     outPage[pEnum] = {
       entry: pEnum === 'index' ? './src/main.js' : `./src/pages/${pEnum}/${lastPage}.js`,
       template: pageInfo.template || 'public/templates/default.html',
@@ -59,5 +60,12 @@ module.exports = {
       }
     }
   },
-  transpileDependencies: true
+  transpileDependencies: true,
+  devServer: {
+    historyApiFallback: {
+      rewrites: [
+        { from: /./, to: '/error404' }
+      ]
+    }
+  }
 }

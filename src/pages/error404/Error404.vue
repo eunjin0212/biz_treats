@@ -39,9 +39,6 @@ export default {
         }
     },
     methods: {
-        handleClick() {
-            window.location.href = '/login'
-        },
         handleCartLocation() {
             window.location.href = '/multiCart'
         },
@@ -193,20 +190,20 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-white-17 flex w-[1240px] mx-auto justify-center gap-3 pt-[46px] pb-[70px]">
+    <main class="bg-white-17 flex w-[1240px] mx-auto justify-center gap-3 py-12">
         <section
-          class="w-[612px] h-[628px] bg-white-20 rounded-lg bg-center bg-[url('@/assets/icons/completed_bg.svg')] text-center pt-[58px]"
+          class="w-[612px] h-[628px] bg-white-20 rounded-lg bg-center text-center pt-[85px] shadow-[21px_27px_50px_-8px_#D4B2B22B]"
         >
             <img
-              src="@/assets/icons/completed_check.svg"
+              src="@/assets/icons/error.svg"
               alt="completed_check"
-              class="mx-auto mb-2"
+              class="mx-auto mb-6"
             />
-            <strong class="block mb-10 text-2xl font-bold text-blue-05 font-poppins">You’re order has been
-                completed!</strong>
+            <strong class="block mb-2 text-[28px] leading-[42px] font-bold text-blue-05 font-dmsans">Result Not Found</strong>
+            <span class="block text-[#9E9E9E] mb-10 text-lg font-medium font-dmsans">Please try again with another<br>keywords or maybe use generic term</span>
             <button
               class="bg-blue-05 w-[342px] h-16 text-white-20 font-bold text-base leading-6 font-poppins rounded-lg hover:bg-blue-06"
-            >Go to Treats Sending History</button>
+            >Try Again</button>
         </section>
     </main>
     <footer class="service-footer">
