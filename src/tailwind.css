@@ -1160,3 +1160,16 @@ body {
         @apply absolute w-6 h-4 right-[42px] top-8 text-[#999999] transition-transform
     }
 }
+
+
+@layer components {
+    .category-filter {
+        @apply flex flex-col items-center cursor-pointer h-[90px] max-w-[50px]
+    }
+    .category-filter > div { /* img container */
+        @apply text-nowrap rounded-full w-[50px] h-[50px] min-h-[50px]
+    }
+    .category-filter > span {
+        @apply font-roboto relative h-10 inline-flex flex-col justify-between pt-1 text-[11px] text-center leading-[11px] font-normal -tracking-[0.12px] text-[#858E96] 
+    }
+}

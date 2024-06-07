@@ -84,6 +84,7 @@ export default {
             ],
             brands: genBrandsMockData(100),
             brandsData: {},
+            isSticky: false,
         }
     },
     methods: {
@@ -115,6 +116,11 @@ export default {
             window.location.href = `/brandsDetail?id=${id}`
         },
         handleSearch,
+        handleScroll() {
+            const stickyDiv = this.$refs.stickyDiv;
+            console.log(window.scrollY, stickyDiv.offsetTop)
+            this.isSticky = window.scrollY >= stickyDiv.offsetTop;
+        },
     },
     watch: {
         dropdown() {
@@ -143,6 +149,10 @@ export default {
             obj[data.label] = data.label === 'ALL' ? this.brands : originArray
             return obj
         }, {})
+        window.addEventListener('scroll', this.handleScroll);
+    },
+    beforeUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
     },
 }
 </script>
@@ -271,29 +281,34 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
-        <div class="bg-white-17 w-[1120px] mx-auto sticky top-0 z-20 border-b border-b-[#CECECE]">
+        <div
+          class="min-w-[1120px] w-full mx-auto pt-1 sticky top-0 z-20"
+          :class="isSticky ? 'bg-white-20 border-b border-b-[#CECECE]' : 'bg-white-17'"
+          ref="stickyDiv"
+        >
             <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center">
                 <li
                   v-for="category in categoryFilter"
                   :key="category.label"
                   :data-active="category.label === selectedFilter.category"
-                  class="flex flex-col items-center cursor-pointer group h-[90px] max-w-[50px]"
+                  class="category-filter group"
                   @click="() => {
                         selectedFilter.category = category.label;
                     }"
                 >
-                    <div
-                      class="text-nowrap rounded-full w-[50px] h-[50px] min-h-[50px]"
-                    >
+                    <div>
                         <img
                           v-if="category.label === selectedFilter.category"
                           :src="`/assets/icons/${category?.icon}_on.png`"
                         />
-                        <img v-else :src="`/assets/icons/${category?.icon}_off.png`" />
+                        <img
+                          v-else
+                          :src="`/assets/icons/${category?.icon}_off.png`"
+                        />
                     </div>
                     <span
                       :class="category.textClass"
-                      class="font-roboto relative h-10 inline-flex flex-col justify-between pt-1 text-[11px] text-center leading-[18px] font-normal -tracking-[0.12px] group-data-[active=true]:font-semibold text-[#858E96] group-data-[active=true]:text-blue-05 group-data-[active=true]:before:content-[''] group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-[2px] group-data-[active=true]:before:bg-blue-05"
+                      class="group-data-[active=true]:font-semibold group-data-[active=true]:text-blue-05 group-data-[active=true]:before:content-[''] group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-[2px] group-data-[active=true]:before:bg-blue-05"
                     >
                         {{ category.label }}
                     </span>

@@ -105,6 +105,7 @@ export default {
                 lastPage: 100,
             },
             loading: false,
+            isSticky: false,
         }
     },
     methods: {
@@ -147,7 +148,12 @@ export default {
                 // error handle
                 this.loading = false
             }
-        }
+        },
+        handleScroll() {
+            const stickyDiv = this.$refs.stickyDiv;
+            console.log(window.scrollY, stickyDiv.offsetTop)
+            this.isSticky = (window.scrollY + 68) >= stickyDiv.offsetTop;
+        },
     },
     watch: {
         dropdown() {
@@ -187,10 +193,12 @@ export default {
             }
         );
 
-        this.observer.observe(target)
+        this.observer.observe(target);
+        window.addEventListener('scroll', this.handleScroll);
     },
     beforeUnmount() {
         this.observer.disconnect();
+        window.removeEventListener('scroll', this.handleScroll);
     },
 }
 </script>
@@ -338,18 +346,22 @@ export default {
                 <hr class="border-t-gray-07" />
             </h4>
         </div>
-        <div class="w-[1120px] mx-auto pt-1 bg-white-17 sticky top-[68px] z-20 border-b border-b-[#CECECE]">
+        <div
+          class="min-w-[1120px] w-full mx-auto pt-1 sticky top-[68px] z-20"
+          :class="isSticky ? 'bg-white-20 border-b border-b-[#CECECE]' : 'bg-white-17'"
+          ref="stickyDiv"
+        >
             <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center">
                 <li
                   v-for="category in categoryFilter"
                   :key="category.label"
                   :data-active="category.label === selectedFilter.category"
-                  class="flex flex-col items-center cursor-pointer group h-[90px] max-w-[50px]"
+                  class="category-filter group"
                   @click="() => {
                         selectedFilter.category = category.label;
                     }"
                 >
-                    <div class="text-nowrap rounded-full w-[50px] h-[50px] min-h-[50px]">
+                    <div>
                         <img
                           v-if="category.label === selectedFilter.category"
                           :src="`/assets/icons/${category?.icon}_on.png`"
@@ -361,7 +373,7 @@ export default {
                     </div>
                     <span
                       :class="category.textClass"
-                      class="font-roboto relative h-10 inline-flex flex-col justify-between pt-1 text-[11px] text-center leading-[18px] font-normal -tracking-[0.12px] group-data-[active=true]:font-semibold text-[#858E96] group-data-[active=true]:text-blue-05 group-data-[active=true]:before:content-[''] group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-[2px] group-data-[active=true]:before:bg-blue-05"
+                      class="group-data-[active=true]:font-semibold group-data-[active=true]:text-blue-05 group-data-[active=true]:before:content-[''] group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-[2px] group-data-[active=true]:before:bg-blue-05"
                     >
                         {{ category.label }}
                     </span>
@@ -397,7 +409,8 @@ export default {
                             </dd>
                             <dd class="buttons">
                                 <button>
-                                    <CartCardSvg />Buy Now</button>
+                                    <CartCardSvg />Buy Now
+                                </button>
                                 <button>
                                     <ProductCartSvg />Add to Cart
                                 </button>
