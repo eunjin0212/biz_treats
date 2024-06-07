@@ -14,8 +14,6 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
-import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
-import AllSvg from '@/assets/icons/AllSvg.vue'
 
 export default {
     components: {
@@ -29,8 +27,6 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
-        AllSvg,
-        ProductCartSvg,
     },
     data() {
         return {
@@ -74,17 +70,17 @@ export default {
                 category: 'ALL'
             },
             categoryFilter: [
-                { label: 'ALL', icon: 'AllSvg', textClass: '' },
-                { label: 'eWallet', icon: '', textClass: '' },
-                { label: 'Grocery & Essentials', icon: '', textClass: '' },
-                { label: 'Fast Food', icon: '', textClass: 'text-nowrap' },
-                { label: 'Casual Resto', icon: '', textClass: '' },
-                { label: 'Bread & Dessert', icon: '', textClass: '' },
-                { label: 'Drugstore & Wellness', icon: '', textClass: '-tracking-[0.14px]' },
-                { label: 'Beauty & Lifestyle', icon: '', textClass: '' },
-                { label: 'Transpo & Travel', icon: '', textClass: '' },
-                { label: 'Digital & Appliance', icon: '', textClass: '' },
-                { label: 'Home & Kids', icon: '', textClass: '' },
+                { label: 'ALL', icon: 'all', textClass: '' },
+                { label: 'eWallet', icon: 'ewallet', textClass: '' },
+                { label: 'Grocery & Essentials', icon: 'grocery_essentials', textClass: '' },
+                { label: 'Fast Food', icon: 'fast_food', textClass: 'text-nowrap' },
+                { label: 'Casual Resto', icon: 'casual_resto', textClass: '' },
+                { label: 'Bread & Dessert', icon: 'bread_dessert', textClass: '' },
+                { label: 'Drugstore & Wellness', icon: 'drugstore', textClass: '-tracking-[0.14px]' },
+                { label: 'Beauty & Lifestyle', icon: 'beauty_lifestyle', textClass: '' },
+                { label: 'Transpo & Travel', icon: 'transpo_travel', textClass: '' },
+                { label: 'Digital & Appliance', icon: 'digital_appliance', textClass: '' },
+                { label: 'Home & Kids', icon: 'home_kids', textClass: '' },
             ],
             brands: genBrandsMockData(100),
             brandsData: {},
@@ -275,8 +271,8 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
-        <div class="bg-white-18 w-[1120px] mx-auto sticky top-0 z-20 border-b border-b-[#CECECE]">
-            <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center pt-2">
+        <div class="bg-white-17 w-[1120px] mx-auto sticky top-0 z-20 border-b border-b-[#CECECE]">
+            <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center">
                 <li
                   v-for="category in categoryFilter"
                   :key="category.label"
@@ -287,17 +283,17 @@ export default {
                     }"
                 >
                     <div
-                      class="text-nowrap border border-[#858E96] rounded-full p-3 w-[50px] h-[50px] min-h-[50px] group-data-[active=true]:border-blue-05 group-hover:border-blue-05"
+                      class="text-nowrap rounded-full w-[50px] h-[50px] min-h-[50px]"
                     >
-                        <component
-                          v-if="category?.icon"
-                          :is="category?.icon"
-                          class="text-[#858E96] group-data-[active=true]:text-blue-05 group-hover:text-blue-05"
-                        ></component>
+                        <img
+                          v-if="category.label === selectedFilter.category"
+                          :src="`/assets/icons/${category?.icon}_on.png`"
+                        />
+                        <img v-else :src="`/assets/icons/${category?.icon}_off.png`" />
                     </div>
                     <span
                       :class="category.textClass"
-                      class="font-roboto relative h-10 inline-flex flex-col justify-between pt-1 text-[11px] text-center leading-[18px] font-normal -tracking-[0.12px] group-data-[active=true]:font-semibold text-[#858E96] group-hover:text-blue-05 group-data-[active=true]:text-blue-05 group-data-[active=true]:before:content-[''] group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-[2px] group-data-[active=true]:before:bg-blue-05"
+                      class="font-roboto relative h-10 inline-flex flex-col justify-between pt-1 text-[11px] text-center leading-[18px] font-normal -tracking-[0.12px] group-data-[active=true]:font-semibold text-[#858E96] group-data-[active=true]:text-blue-05 group-data-[active=true]:before:content-[''] group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-[2px] group-data-[active=true]:before:bg-blue-05"
                     >
                         {{ category.label }}
                     </span>
@@ -305,7 +301,7 @@ export default {
             </ul>
         </div>
         <hr class="border-t-1 border-t-[#CECECE] w-[1120px] mx-auto" />
-        <section class="pt-5 pb-40 main-section bg-white-18">
+        <section class="pt-5 pb-40 main-section bg-white-17">
             <div class="main-section__wrapper">
                 <ul class="grid grid-cols-[repeat(3,minmax(344px,344px))] gap-x-11 gap-y-9">
                     <li
