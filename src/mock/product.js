@@ -22,7 +22,7 @@ const productKeywords = [
 
 export const genProductData = (length = 10) => {
     return Array.from({ length }).map((_, idx) => ({
-        brand: productBrands[getRandom(0, productBrands.length - 1)].label,
+        brand: productBrands[getRandom(0, productBrands.length - 1)],
         name: productNames[getRandom(0, productNames.length - 1)],
         sale_price: getRandom(0, 1000),
         price: getRandom(0, 1000),

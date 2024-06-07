@@ -16,7 +16,7 @@ import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
-import AllSvg from '@/assets/icons/AllSvg.vue'
+import LoadingSvg from '@/assets/icons/LoadingSvg.vue';
 
 export default {
     components: {
@@ -30,8 +30,8 @@ export default {
         AlertSvg,
         PointSvg,
         ReadSvg,
-        AllSvg,
         ProductCartSvg,
+        LoadingSvg,
     },
     data() {
         return {
@@ -76,17 +76,17 @@ export default {
                 category: 'ALL'
             },
             categoryFilter: [
-                { label: 'ALL', icon: 'AllSvg', textClass: '' },
-                { label: 'eWallet', icon: '', textClass: '' },
-                { label: 'Grocery & Essentials', icon: '', textClass: '' },
-                { label: 'Fast Food', icon: '', textClass: 'text-nowrap' },
-                { label: 'Casual Resto', icon: '', textClass: '' },
-                { label: 'Bread & Dessert', icon: '', textClass: '' },
-                { label: 'Drugstore & Wellness', icon: '', textClass: '-tracking-[0.14px]' },
-                { label: 'Beauty & Lifestyle', icon: '', textClass: '' },
-                { label: 'Transpo & Travel', icon: '', textClass: '' },
-                { label: 'Digital & Appliance', icon: '', textClass: '' },
-                { label: 'Home & Kids', icon: '', textClass: '' },
+                { label: 'ALL', icon: 'all', textClass: '' },
+                { label: 'eWallet', icon: 'ewallet', textClass: '' },
+                { label: 'Grocery & Essentials', icon: 'grocery_essentials', textClass: '' },
+                { label: 'Fast Food', icon: 'fast_food', textClass: 'text-nowrap' },
+                { label: 'Casual Resto', icon: 'casual_resto', textClass: '' },
+                { label: 'Bread & Dessert', icon: 'bread_dessert', textClass: '' },
+                { label: 'Drugstore & Wellness', icon: 'drugstore', textClass: '-tracking-[0.14px]' },
+                { label: 'Beauty & Lifestyle', icon: 'beauty_lifestyle', textClass: '' },
+                { label: 'Transpo & Travel', icon: 'transpo_travel', textClass: '' },
+                { label: 'Digital & Appliance', icon: 'digital_appliance', textClass: '' },
+                { label: 'Home & Kids', icon: 'home_kids', textClass: '' },
             ],
             budgetFilter: [
                 { label: 'Below P50', min: 0, max: 50 },
@@ -95,8 +95,14 @@ export default {
                 { label: 'P301~P500', min: 301, max: 500 },
                 { label: 'P501 and UP', min: 501, max: 99999 },
             ],
-            budgetRecommend: genProductData(1000),
-            budgetData: {},
+            budgetData: [],
+            observer: null,
+            pagination: {
+                page: 1,
+                perPage: 8,
+                lastPage: 100,
+            },
+            loading: false,
         }
     },
     methods: {
@@ -126,6 +132,20 @@ export default {
         },
         handleSearch,
         goProductDetail,
+        async getProductList() {
+            if (this.loading) return;
+            try {
+              this.loading = true;
+                setTimeout(() => {
+                    this.budgetData = [...this.budgetData, ...genProductData(this.pagination.perPage)]
+                    this.loading = false
+                }, 1000);
+                this.pagination.page += 1
+            } catch (error) {
+                // error handle
+                this.loading = false
+            }
+        }
     },
     watch: {
         dropdown() {
@@ -149,11 +169,26 @@ export default {
         },
     },
     mounted() {
-        const budgetOriginArray = (min = 0, max = 50) => this.budgetRecommend.filter((item) => item.sale_price >= min && item.sale_price < max)
-        this.budgetData = this.budgetFilter.reduce((obj, data) => {
-            obj[data.min] = budgetOriginArray(data.min, data.max)
-            return obj
-        }, {})
+        this.getProductList()
+        const target = this.$refs.sentinel
+        this.observer = new IntersectionObserver(
+            (entries) => {
+                if (!entries[0].isIntersecting) return;
+                if (this.pagination.lastPage === this.pagination.page) {
+                    this.observer.unobserve(target)
+                    return
+                }
+                this.getProductList()
+            },
+            {
+                threshold: 0,
+            }
+        );
+
+        this.observer.observe(target)
+    },
+    beforeUnmount() {
+        this.observer.disconnect();
     },
 }
 </script>
@@ -272,7 +307,7 @@ export default {
         </div>
     </header>
     <main class="flex flex-col w-full mx-auto">
-        <nav class="w-full main-menu min-w-[1440px]">
+        <nav class="w-full main-menu min-w-[1120px]">
             <div>
                 <a
                   :class="{ 'active-main-menu': matchPath(menu.path) }"
@@ -282,7 +317,7 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
-        <div class="w-full py-3 bg-white-20 min-w-[1440px] sticky top-0 z-20">
+        <div class="w-full py-3 bg-white-20 min-w-[1120px] sticky top-0 z-20">
             <ul class="flex gap-2.5 w-[1120px] mx-auto">
                 <li
                   :data-active="filter.min === selectedFilter.budget"
@@ -295,13 +330,13 @@ export default {
                 >{{ filter.label }}</li>
             </ul>
         </div>
-        <div class="w-full bg-white-18 min-w-[1440px]">
+        <div class="w-full bg-white-17 min-w-[1120px]">
             <h4 class="pt-6 mb-4 text-[#696969] text-base leading-8 -tracking-tight font-bold w-[1120px] mx-auto">
                 Sort by Category
                 <hr class="border-t-gray-07" />
             </h4>
         </div>
-        <div class="w-[1120px] mx-auto pt-1 bg-white-18 sticky top-[68px] z-20 border-b border-b-[#CECECE]">
+        <div class="w-[1120px] mx-auto pt-1 bg-white-17 sticky top-[68px] z-20 border-b border-b-[#CECECE]">
             <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center">
                 <li
                   v-for="category in categoryFilter"
@@ -312,18 +347,19 @@ export default {
                         selectedFilter.category = category.label;
                     }"
                 >
-                    <div
-                      class="text-nowrap border border-[#858E96] rounded-full p-3 w-[50px] h-[50px] min-h-[50px] group-data-[active=true]:border-blue-05 group-hover:border-blue-05"
-                    >
-                        <component
-                          v-if="category?.icon"
-                          :is="category?.icon"
-                          class="text-[#858E96] group-data-[active=true]:text-blue-05 group-hover:text-blue-05"
-                        ></component>
+                    <div class="text-nowrap rounded-full w-[50px] h-[50px] min-h-[50px]">
+                        <img
+                          v-if="category.label === selectedFilter.category"
+                          :src="`/assets/icons/${category?.icon}_on.png`"
+                        />
+                        <img
+                          v-else
+                          :src="`/assets/icons/${category?.icon}_off.png`"
+                        />
                     </div>
                     <span
                       :class="category.textClass"
-                      class="font-roboto relative h-10 inline-flex flex-col justify-between pt-1 text-[11px] text-center leading-[18px] font-normal -tracking-[0.12px] group-data-[active=true]:font-semibold text-[#858E96] group-hover:text-blue-05 group-data-[active=true]:text-blue-05 group-data-[active=true]:before:content-[''] group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-[2px] group-data-[active=true]:before:bg-blue-05"
+                      class="font-roboto relative h-10 inline-flex flex-col justify-between pt-1 text-[11px] text-center leading-[18px] font-normal -tracking-[0.12px] group-data-[active=true]:font-semibold text-[#858E96] group-data-[active=true]:text-blue-05 group-data-[active=true]:before:content-[''] group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-[2px] group-data-[active=true]:before:bg-blue-05"
                     >
                         {{ category.label }}
                     </span>
@@ -331,11 +367,11 @@ export default {
             </ul>
         </div>
         <hr class="border-t-1 border-t-[#CECECE] w-[1120px] mx-auto" />
-        <section class="pt-4 pb-40 main-section budget-section bg-white-18">
+        <section class="pt-4 pb-40 main-section budget-section bg-white-17">
             <div class="main-section__wrapper">
                 <ul class="mb-12 product">
                     <li
-                      v-for="(item, index) in budgetData[selectedFilter.budget]"
+                      v-for="(item, index) in budgetData"
                       :key="index"
                     >
                         <figure
@@ -366,6 +402,17 @@ export default {
                         </dl>
                     </li>
                 </ul>
+                <div
+                  ref="sentinel"
+                  class="w-full h-px bg-transparent"
+                ></div>
+                <div
+                  v-show="loading"
+                  class="flex items-center justify-center w-full bg-transparent"
+                >
+                    <LoadingSvg />
+                    Loading...
+                </div>
             </div>
         </section>
     </main>
