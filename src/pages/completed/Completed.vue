@@ -2,6 +2,7 @@
 import { snsMenu, menus } from '@/constants/components.js';
 import { alertData } from '@/mock/alertData.js'
 import { cartData } from '@/mock/cart.js'
+import { handleSearch } from '@/modules/search.js';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -62,6 +63,7 @@ export default {
                 this.alertOpen = false
             }
         },
+        handleSearch,
     },
     watch: {
         dropdown() {

@@ -459,7 +459,6 @@ export default {
                             <input
                               type="text"
                               placeholder="Search for Treats"
-                              @keypress.enter="() => handleSearch(search)"
                               name="search"
                               v-model="filters.tableSearch"
                             />

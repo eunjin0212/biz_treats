@@ -3,7 +3,7 @@ import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart.js';
 import { genProductData } from '@/mock/product.js';
 import { alertData } from '@/mock/alertData.js'
-import { getParams } from '@/modules/search.js';
+import { getParams, handleSearch } from '@/modules/search.js';
 import { goProductDetail } from '@/modules/product.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -114,10 +114,8 @@ export default {
                 this.alertOpen = false
             }
         },
-        async handleSearch() {
-            // get data with filter
-        },
         getParams,
+        handleSearch,
         goProductDetail,
         async getProductList() {
             if (this.loading) return;

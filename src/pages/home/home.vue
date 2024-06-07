@@ -6,6 +6,7 @@ import { cartData } from '@/mock/cart.js';
 import { genKeywordMockData, genBrandsMockData, genBudgetMockData } from '@/mock/home.js';
 import { alertData } from '@/mock/alertData.js'
 import { goProductDetail } from '@/modules/product.js'
+import { handleSearch } from '@/modules/search.js';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -182,6 +183,7 @@ export default {
             }, []);
         },
         goProductDetail,
+        handleSearch,
     },
     watch: {
         dropdown() {
