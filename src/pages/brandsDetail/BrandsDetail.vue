@@ -15,6 +15,7 @@ import SignOutSvg from '@/assets/icons/SignOutSvg.vue';
 import AlertSvg from '@/assets/icons/AlertSvg.vue';
 import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
+import LoadingSvg from '@/assets/icons/LoadingSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 
 export default {
@@ -30,6 +31,7 @@ export default {
         PointSvg,
         ReadSvg,
         ProductCartSvg,
+        LoadingSvg,
     },
     data() {
         return {
@@ -69,8 +71,15 @@ export default {
                     content: ['Refund will be made approximately within 10 business days depending on the payment issuer’s process once <br> the refund is confirmed by our CS.'],
                 },
             ],
-            products: genProductMockData(100),
+            products: [],
             getParams,
+            observer: null,
+            pagination: {
+                page: 1,
+                perPage: 8,
+                lastPage: 100,
+            },
+            loading: false,
         }
     },
     methods: {
@@ -99,6 +108,20 @@ export default {
             }
         },
         goProductDetail,
+        async getProductList() {
+            if (this.loading) return;
+            try {
+                this.loading = true;
+                setTimeout(() => {
+                    this.products = [...this.products, ...genProductMockData(this.pagination.perPage)]
+                    this.loading = false
+                }, 1000);
+                this.pagination.page += 1
+            } catch (error) {
+                // error handle
+                this.loading = false
+            }
+        }
     },
     watch: {
         dropdown() {
@@ -120,6 +143,28 @@ export default {
         matchPath: () => {
             return (path) => path === window.location.pathname
         },
+    },
+    mounted() {
+        this.getProductList()
+        const target = this.$refs.sentinel
+        this.observer = new IntersectionObserver(
+            (entries) => {
+                if (!entries[0].isIntersecting) return;
+                if (this.pagination.lastPage === this.pagination.page) {
+                    this.observer.unobserve(target)
+                    return
+                }
+                this.getProductList()
+            },
+            {
+                threshold: 0,
+            }
+        );
+
+        this.observer.observe(target)
+    },
+    beforeUnmount() {
+        this.observer.disconnect();
     },
 }
 </script>
@@ -304,6 +349,17 @@ export default {
                         </dl>
                     </li>
                 </ul>
+                <div
+                  ref="sentinel"
+                  class="w-full h-px bg-transparent"
+                ></div>
+                <div
+                  v-show="loading"
+                  class="flex items-center justify-center w-full bg-transparent"
+                >
+                    <LoadingSvg />
+                    Loading...
+                </div>
             </div>
         </section>
     </main>

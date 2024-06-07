@@ -2,6 +2,8 @@
 import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart.js';
 import { genProductData } from '@/mock/product.js';
+import { goProductDetail } from '@/modules/product.js'
+import { handleSearch } from '@/modules/search.js';
 import { alertData } from '@/mock/alertData.js'
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
@@ -15,7 +17,7 @@ import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 import RetrySvg from '@/assets/icons/RetrySvg.vue'
-
+import LoadingSvg from '@/assets/icons/LoadingSvg.vue';
 
 export default {
     components: {
@@ -31,6 +33,7 @@ export default {
         ReadSvg,
         ProductCartSvg,
         RetrySvg,
+        LoadingSvg,
     },
     data() {
         return {
@@ -75,8 +78,15 @@ export default {
                 max: '',
                 keyword: 'Chicken'
             },
-            displayData: genProductData(100),
-            keyword: ['Chicken', 'Meal', 'Drinks']
+            displayData: [],
+            keyword: ['Chicken', 'Meal', 'Drinks'],
+            observer: null,
+            pagination: {
+                page: 1,
+                perPage: 8,
+                lastPage: 100,
+            },
+            loading: false,
         }
     },
     methods: {
@@ -104,8 +114,21 @@ export default {
                 this.alertOpen = false
             }
         },
-        async getData() {
-            // get data with filter
+        handleSearch,
+        goProductDetail,
+        async getProductList() {
+            if (this.loading) return;
+            try {
+                this.loading = true;
+                setTimeout(() => {
+                    this.displayData = [...this.displayData, ...genProductData(this.pagination.perPage)]
+                    this.loading = false
+                }, 1000);
+                this.pagination.page += 1
+            } catch (error) {
+                // error handle
+                this.loading = false
+            }
         }
     },
     watch: {
@@ -130,7 +153,26 @@ export default {
         },
     },
     mounted() {
-        this.getData()
+        this.getProductList()
+        const target = this.$refs.sentinel
+        this.observer = new IntersectionObserver(
+            (entries) => {
+                if (!entries[0].isIntersecting) return;
+                if (this.pagination.lastPage === this.pagination.page) {
+                    this.observer.unobserve(target)
+                    return
+                }
+                this.getProductList()
+            },
+            {
+                threshold: 0,
+            }
+        );
+
+        this.observer.observe(target)
+    },
+    beforeUnmount() {
+        this.observer.disconnect();
     },
 }
 </script>
@@ -343,6 +385,17 @@ export default {
                         </dl>
                     </li>
                 </ul>
+                <div
+                  ref="sentinel"
+                  class="w-full h-px bg-transparent"
+                ></div>
+                <div
+                  v-show="loading"
+                  class="flex items-center justify-center w-full bg-transparent"
+                >
+                    <LoadingSvg />
+                    Loading...
+                </div>
             </div>
         </section>
     </main>

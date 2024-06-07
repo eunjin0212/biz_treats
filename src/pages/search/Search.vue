@@ -17,7 +17,7 @@ import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 import RetrySvg from '@/assets/icons/RetrySvg.vue'
-
+import LoadingSvg from '@/assets/icons/LoadingSvg.vue';
 
 export default {
     components: {
@@ -33,6 +33,7 @@ export default {
         ReadSvg,
         ProductCartSvg,
         RetrySvg,
+        LoadingSvg,
     },
     data() {
         return {
@@ -76,7 +77,14 @@ export default {
                 min: '',
                 max: '',
             },
-            resultData: genProductData(100),
+            resultData: [],
+            observer: null,
+            pagination: {
+                page: 1,
+                perPage: 8,
+                lastPage: 100,
+            },
+            loading: false,
         }
     },
     methods: {
@@ -109,6 +117,42 @@ export default {
         },
         getParams,
         goProductDetail,
+        async getProductList() {
+            if (this.loading) return;
+            try {
+                this.loading = true;
+                setTimeout(() => {
+                    this.resultData = [...this.resultData, ...genProductData(this.pagination.perPage)]
+                    this.loading = false
+                }, 1000);
+                this.pagination.page += 1
+            } catch (error) {
+                // error handle
+                this.loading = false
+            }
+        }
+    },
+    mounted() {
+        this.getProductList()
+        const target = this.$refs.sentinel
+        this.observer = new IntersectionObserver(
+            (entries) => {
+                if (!entries[0].isIntersecting) return;
+                if (this.pagination.lastPage === this.pagination.page) {
+                    this.observer.unobserve(target)
+                    return
+                }
+                this.getProductList()
+            },
+            {
+                threshold: 0,
+            }
+        );
+
+        this.observer.observe(target)
+    },
+    beforeUnmount() {
+        this.observer.disconnect();
     },
     watch: {
         dropdown() {
@@ -329,6 +373,17 @@ export default {
                         </dl>
                     </li>
                 </ul>
+                <div
+                  ref="sentinel"
+                  class="w-full h-px bg-transparent"
+                ></div>
+                <div
+                  v-show="loading"
+                  class="flex items-center justify-center w-full bg-transparent"
+                >
+                    <LoadingSvg />
+                    Loading...
+                </div>
             </div>
         </section>
     </main>

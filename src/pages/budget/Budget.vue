@@ -135,7 +135,7 @@ export default {
         async getProductList() {
             if (this.loading) return;
             try {
-              this.loading = true;
+                this.loading = true;
                 setTimeout(() => {
                     this.budgetData = [...this.budgetData, ...genProductData(this.pagination.perPage)]
                     this.loading = false
