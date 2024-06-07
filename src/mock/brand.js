@@ -14,17 +14,17 @@ export const genBrandsMockData = (length = 10) => {
         'Home & Kids',
     ]
     const brands = [
-        { label: 'Shawa wama', img: '/assets/images/go.png', },
-        { label: 'GrabFood', img: '/assets/images/olive_garden.png', },
-        { label: 'McDonald’s', img: '/assets/images/pricelocq.png', },
+        { label: 'ideal vision', img: '/assets/images/brands_0.png', },
+        { label: 'CINNABON', img: '/assets/images/brands_1.png', },
     ]
     return Array.from({ length }).map((_, idx) => {
+        const brandsItem = brands[getRandom(0, brands.length - 1)]
         return {
             id: idx,
-            brand: brands[getRandom(0, brands.length - 1)].label,
+            brand: brandsItem.label,
             locations: 12300,
             keyword: keywords[getRandom(0, keywords.length - 1)],
-            img: brands[getRandom(0, brands.length - 1)].img
+            img: brandsItem.img
         }
     })
 }
