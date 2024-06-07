@@ -24,6 +24,7 @@ import CoinSvg from '@/assets/icons/CoinSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 import RightArrowSvg from '@/assets/icons/RightArrowSvg.vue';
 import LeftArrowSvg from '@/assets/icons/LeftArrowSvg.vue';
+import CartCardSvg from '@/assets/icons/CartCardSvg.vue';
 
 export default {
     components: {
@@ -45,6 +46,7 @@ export default {
         ProductCartSvg,
         RightArrowSvg,
         LeftArrowSvg,
+        CartCardSvg,
     },
     data() {
         return {
@@ -501,9 +503,10 @@ export default {
                                         <s class="product__price-origin">P{{ item.price }}</s>
                                     </dd>
                                     <dd class="buttons">
-                                        <button>Buy Now</button>
                                         <button>
-                                            <ProductCartSvg /> Add to Cart
+                                            <CartCardSvg />Buy Now</button>
+                                        <button>
+                                            <ProductCartSvg />Add to Cart
                                         </button>
                                     </dd>
                                 </dl>

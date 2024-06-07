@@ -17,6 +17,7 @@ import PointSvg from '@/assets/icons/PointSvg.vue';
 import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 import LoadingSvg from '@/assets/icons/LoadingSvg.vue';
+import CartCardSvg from '@/assets/icons/CartCardSvg.vue';
 
 export default {
     components: {
@@ -32,6 +33,7 @@ export default {
         ReadSvg,
         ProductCartSvg,
         LoadingSvg,
+        CartCardSvg,
     },
     data() {
         return {
@@ -394,9 +396,10 @@ export default {
                                 <s class="product__price-origin">P{{ item.price }}</s>
                             </dd>
                             <dd class="buttons">
-                                <button>Buy Now</button>
                                 <button>
-                                    <ProductCartSvg /> Add to Cart
+                                    <CartCardSvg />Buy Now</button>
+                                <button>
+                                    <ProductCartSvg />Add to Cart
                                 </button>
                             </dd>
                         </dl>

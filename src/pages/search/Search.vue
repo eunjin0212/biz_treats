@@ -18,6 +18,7 @@ import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 import RetrySvg from '@/assets/icons/RetrySvg.vue'
 import LoadingSvg from '@/assets/icons/LoadingSvg.vue';
+import CartCardSvg from '@/assets/icons/CartCardSvg.vue';
 
 export default {
     components: {
@@ -34,6 +35,7 @@ export default {
         ProductCartSvg,
         RetrySvg,
         LoadingSvg,
+        CartCardSvg,
     },
     data() {
         return {
@@ -145,7 +147,7 @@ export default {
                 this.getProductList()
             },
             {
-                threshold: 0,
+                threshold: 0,   
             }
         );
 
@@ -365,9 +367,10 @@ export default {
                                 <s class="product__price-origin">P{{ item.price }}</s>
                             </dd>
                             <dd class="buttons">
-                                <button>Buy Now</button>
                                 <button>
-                                    <ProductCartSvg /> Add to Cart
+                                    <CartCardSvg />Buy Now</button>
+                                <button>
+                                    <ProductCartSvg />Add to Cart
                                 </button>
                             </dd>
                         </dl>

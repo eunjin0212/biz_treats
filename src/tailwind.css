@@ -1035,7 +1035,7 @@ body {
     }
 
     ul.product>li>figure {
-        @apply h-[216px] px-[theme(spacing[6.5])] py-[theme(spacing[0.5])]
+        @apply h-[216px] px-7.5 py-1 border-b border-b-white-10 cursor-grab
     }
 
     ul.product>li>figure>img {
@@ -1059,7 +1059,7 @@ body {
     }
 
     ul.product>li>.product__detail .product__name {
-        @apply text-[15px] leading-[17px] -tracking-wide font-normal text-zinc-05
+        @apply text-[15px] leading-[17px] -tracking-wide font-normal text-zinc-05 cursor-grab
     }
 
     ul.product>li>.product__detail .product__price {
@@ -1079,7 +1079,7 @@ body {
     }
 
     ul.product>li>.product__detail .buttons>button {
-        @apply h-9 px-4.5 border border-blue-05 text-blue-05 text-[13px] font-medium leading-4 hover:bg-sky-50 last-of-type:inline-flex last-of-type:items-center last-of-type:gap-1.5 last-of-type:flex-grow last-of-type:justify-center 
+        @apply h-9 px-3 border border-blue-05 text-blue-05 text-[13px] font-medium leading-4 w-1/2 hover:bg-sky-50 inline-flex justify-center items-center gap-1.5 text-nowrap
     }
 }
 
