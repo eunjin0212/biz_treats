@@ -17,6 +17,7 @@ import ReadSvg from '@/assets/icons/ReadSvg.vue';
 import ProductCartSvg from '@/assets/icons/ProductCartSvg.vue';
 import TabSearchSvg from '@/assets/icons/TabSearchSvg.vue';
 import AccordionSvg from '@/assets/icons/AccordionSvg.vue';
+import CartCardSvg from '@/assets/icons/CartCardSvg.vue';
 import LocationSvg from '@/assets/icons/LocationSvg.vue';
 
 export default {
@@ -35,6 +36,7 @@ export default {
         TabSearchSvg,
         AccordionSvg,
         LocationSvg,
+        CartCardSvg,
     },
     data() {
         return {
@@ -332,7 +334,7 @@ export default {
             </div>
         </nav>
         <section class="pt-4 mb-40 bg-white-18 w-[1120px] mx-auto">
-            <div class="flex items-center justify-center py-16 mb-4 bg-white-20">
+            <div class="flex items-center justify-center py-16 mb-4 border bg-white-20 border-white-15">
                 <figure class="overflow-hidden relative border rounded-lg border-white-00 w-[370px] h-[370px] p-9">
                     <img
                       :src="`path/assets/img_${getParams()[1]}.png`"
@@ -362,12 +364,14 @@ export default {
                     <hr class="border-t-[#EDEDED] mt-[22px] mb-3">
                     <dd class="flex items-center gap-2">
                         <button
-                          class="py-4 px-6.5 min-w-[134px] border border-blue-05 text-blue-05 text-base font-medium leading-5 hover:bg-sky-50"
-                        >Buy Now</button>
-                        <button
-                          class="inline-flex items-center justify-center flex-grow bg-blue-05 py-4 px-6.5 text-white-20 min-w-56"
+                          class="inline-flex items-center justify-center py-3 px-6.5 w-1/2 border border-blue-05 text-blue-05 text-base font-medium leading-5 hover:bg-sky-50"
                         >
-                            <ProductCartSvg class="w-6 h-6 mr-3 text-white-20" /> Add to Cart
+                            <CartCardSvg class="w-7.5 h-7.5 mr-1.5" />Buy Now
+                        </button>
+                        <button
+                          class="inline-flex items-center justify-center py-3 px-6.5 w-1/2 border border-blue-05 text-blue-05 text-base font-medium leading-5 hover:bg-sky-50"
+                        >
+                            <ProductCartSvg class="w-7.5 h-7.5 mr-1.5" />Add to Cart
                         </button>
                     </dd>
                 </dl>
@@ -478,7 +482,7 @@ export default {
                             />
                         </label>
                         <button
-                          class="w-[158px] min-w-[158px] rounded-md bg-blue-05 text-white-20 py-3.5 px-8 font-medium text-base leading-6 font-poppins"
+                          class="w-[158px] min-w-[158px] rounded-md bg-blue-05 text-white-20 py-3.5 px-8 font-medium text-base leading-6 font-poppins hover:bg-blue-06"
                         >Search</button>
                     </div>
                 </div>
@@ -497,16 +501,14 @@ export default {
                             <span>{{ accordion.description }}</span>
                             <AccordionSvg class="group-data-[active=true]:rotate-180" />
                         </p>
-                        <ul
-                          v-if="accordion.active"
-                        >
+                        <ul v-if="accordion.active">
                             <li
                               v-for="(child, idx) in accordion.children"
                               :key="child.title"
-                              :class="{ 
-                                'border-b mb-[38px]': idx === accordion.children.length - 1,
-                                'pt-9': idx === 0,
-                              }"
+                              :class="{
+                        'border-b mb-[38px]': idx === accordion.children.length - 1,
+                        'pt-9': idx === 0,
+                    }"
                               class="border-t px-[30px] pt-5 pb-3.5 flex items-start gap-2.5"
                             >
                                 <component
@@ -515,8 +517,10 @@ export default {
                                   class="pt-1"
                                 ></component>
                                 <div class="flex flex-col">
-                                    <strong class="text-base font-medium leading-6 text-blue-05 font-poppins">{{ child.title }}</strong>
-                                    <span class="text-[#606060] font-poppins text-sm leading-6 font-normal">{{ child.content }}</span>
+                                    <strong class="text-base font-medium leading-6 text-blue-05 font-poppins">{{
+                        child.title }}</strong>
+                                    <span class="text-[#606060] font-poppins text-sm leading-6 font-normal">{{
+                        child.content }}</span>
                                 </div>
                             </li>
                         </ul>
