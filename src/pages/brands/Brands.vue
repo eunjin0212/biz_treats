@@ -337,9 +337,9 @@ export default {
                               class="text-center mt-5 pt-2 pb-2.5 w-full border-t border-b border-b-[#CACACA] border-t-[#CACACA]"
                             >
                                 <strong
-                                  class="block text-[#626262] mb-2 font-semibold text-[22px] leading-6 -tracking-wide"
+                                  class="block text-[#626262] mb-1 font-semibold text-xl leading-6 -tracking-wide"
                                 >{{ item.brand }}</strong>
-                                <span class="text-[#909090] -tracking-wide leading-[18px] text-[15px] font-normal">{{
+                                <span class="text-[#909090] -tracking-wide leading-[18px] text-[13px] font-normal">{{
                         item.locations.toLocaleString() }} Locations</span>
                             </figcaption>
                         </figure>
