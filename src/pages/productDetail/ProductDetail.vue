@@ -3,7 +3,7 @@ import { snsMenu, menus, mainMenu } from '@/constants/components.js';
 import { cartData } from '@/mock/cart.js';
 import { genProductData } from '@/mock/product.js';
 import { alertData } from '@/mock/alertData.js'
-import { getParams } from '@/modules/search.js';
+import { getParams, handleSearch } from '@/modules/search.js';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 import BellSvg from '@/assets/icons/BellSvg.vue';
 import CartSvg from '@/assets/icons/CartSvg.vue';
@@ -169,9 +169,6 @@ export default {
                 this.alertOpen = false
             }
         },
-        async handleSearch() {
-            // get data with filter
-        },
         getParams,
         handleToggle(accordion) {
             const index = this.accordionData.findIndex((data) => data.title === accordion.title)
@@ -183,7 +180,8 @@ export default {
             })
 
             this.accordionData[index].active = !this.accordionData[index].active
-        }
+        },
+        handleSearch,
     },
     watch: {
         dropdown() {
