@@ -1085,7 +1085,7 @@ body {
 
 @layer components {
     button.banner-nav__btn {
-        @apply p-4 rounded-full bg-white-20 border border-[#E6E6E6] shadow-[0_4px_8px_0_#0000000A] absolute top-1/2 -mt-[74px]
+        @apply p-4 rounded-full bg-white-20 border border-[#E6E6E6] shadow-[0_4px_8px_0_#0000000A] absolute top-1/2 -mt-[74px] hover:bg-secondary-04-light cursor-pointer
     }
     button.banner-nav__btn.left {
         @apply -left-20

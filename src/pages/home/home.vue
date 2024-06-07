@@ -427,7 +427,7 @@ export default {
                 </ul>
                 <div class="flex items-center justify-center w-48 pt-4 mx-auto">
                     <span
-                      class="p-[11px] rounded-full bg-white-20 shadow-[0_4px_8px_0_#00000015] cursor-pointer"
+                      class="p-[11px] rounded-full hover:bg-white-20/10 bg-white-20 shadow-[0_4px_8px_0_#00000015] cursor-pointer"
                       v-if="mainSlider"
                       @click="mainSlider.prev()"
                     >
@@ -438,7 +438,7 @@ export default {
                     <span class="text-[#C8CAD2] text-xl leading-7 font-medium select-none mx-1.5">/</span>
                     <span class="text-[#C8CAD2] text-xl leading-7 font-medium select-none mr-4">{{ totalSlider }}</span>
                     <span
-                      class="p-[11px] rounded-full bg-white-20 shadow-[0_4px_8px_0_#00000015] cursor-pointer"
+                      class="p-[11px] rounded-full hover:bg-white-20/10 bg-white-20 shadow-[0_4px_8px_0_#00000015] cursor-pointer"
                       v-if="mainSlider"
                       @click="mainSlider.next()"
                     >
