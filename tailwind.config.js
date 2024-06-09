@@ -11,6 +11,9 @@ module.exports = {
                 'height': 'height',
                 'spacing': 'margin, padding',
             },
+            backgroundImage: {
+                'gradient-90': 'linear-gradient(90deg, #31AFE4 0%, #1B617E 100%)'
+            },
             spacing: {
                 '0.5': '0.125rem', // 2px
                 '1.5': '0.375rem', // 6px

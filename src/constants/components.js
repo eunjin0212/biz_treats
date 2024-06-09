@@ -43,19 +43,19 @@ export const menus = [
 const companyWebsiteNav = {
     index: {
         title: 'Home',
-        path: '/home'
+        path: 'home',
     },
     'about': {
         title: 'About us',
-        path: '/about'
+        path: 'about'
     },
     'brands': {
         title: 'Brands',
-        path: '/brands'
+        path: 'brands'
     },
     'contact': {
         title: 'Contact us',
-        path: '/contact'
+        path: 'contact'
     },
 }
 
