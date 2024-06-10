@@ -506,7 +506,8 @@ export default {
                                     </dd>
                                     <dd class="buttons">
                                         <button>
-                                            <CartCardSvg />Buy Now</button>
+                                            <CartCardSvg />Buy Now
+                                        </button>
                                         <button>
                                             <ProductCartSvg />Add to Cart
                                         </button>
@@ -670,7 +671,9 @@ export default {
                                         <s class="product__price-origin">P{{ item.price }}</s>
                                     </dd>
                                     <dd class="buttons">
-                                        <button>Buy Now</button>
+                                        <button>
+                                            <CartCardSvg />Buy Now
+                                        </button>
                                         <button>
                                             <ProductCartSvg /> Add to Cart
                                         </button>

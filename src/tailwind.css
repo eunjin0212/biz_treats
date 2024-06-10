@@ -1079,9 +1079,8 @@ body {
     }
 
     ul.product>li>.product__detail .buttons>button {
-        @apply h-9 px-3 border border-blue-05 text-blue-05 text-[13px] font-medium leading-4 w-1/2 hover:bg-sky-50 inline-flex justify-center items-center gap-1.5 text-nowrap
-    }
-}
+        @apply h-9 px-2.5 border border-blue-05 text-blue-05 text-[13px] font-medium leading-4 w-1/2 min-w-[calc(50%-6px)] hover:bg-sky-50 inline-flex justify-center items-center gap-1.5 text-nowrap
+    }}
 
 @layer components {
     button.banner-nav__btn {
