@@ -170,6 +170,7 @@ module.exports = {
                 poppins: ["Poppins", "sans-serif"],
                 manrope: ["Manrope", "sans-serif"],
                 dmsans: ["DM Sans", "sans-serif"],
+                firasans: ["Fira Sans", "sans-serif"],
             },
         },
         screens: {
