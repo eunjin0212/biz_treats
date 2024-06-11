@@ -1161,7 +1161,6 @@ body {
     }
 }
 
-
 @layer components {
     .category-filter {
         @apply flex flex-col items-center cursor-pointer h-[90px] max-w-[50px]
@@ -1173,3 +1172,24 @@ body {
         @apply font-roboto relative h-10 inline-flex flex-col justify-between pt-1 text-[11px] text-center leading-[11px] font-normal -tracking-[0.12px] text-[#858E96] 
     }
 }
+
+@keyframes appear {
+    from {
+      opacity: 0;
+    }
+  
+    to{
+      opacity: 1;
+    }
+  }
+
+@keyframes appear_from_bottom {
+    0%{
+      transform: translateY(20px);
+      opacity: 0;
+    }
+  
+    100%{
+      opacity: 1;
+    }
+  }

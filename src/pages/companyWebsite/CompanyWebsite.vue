@@ -227,6 +227,21 @@ export default {
         }, {})
 
         this.startAutoSlide();
+
+        const scrollEventHandler = () => {
+            const windowHeight = window.innerHeight
+            const el = document.querySelector('.about-wrapper')
+
+            if (el.getBoundingClientRect().top < windowHeight - 200) {
+                setTimeout(() => {
+                    el.style.animation = 'appear_from_bottom ease 0.5s'
+                    el.style.opacity = 1
+                }, 100)
+                window.removeEventListener('scroll', scrollEventHandler)
+            }
+        }
+        
+        window.addEventListener('scroll', scrollEventHandler)
     },
     beforeUnmount() {
         this.stopAutoSlide();
@@ -324,7 +339,7 @@ export default {
                             Digital Treats
                         </strong>
                     </h1>
-                    <ul class="absolute flex gap-5">
+                    <ul class="absolute flex gap-5 about-wrapper">
                         <li
                           v-for="item in digitalTreats"
                           :key="item.description"
