@@ -81,19 +81,19 @@ export default {
                 {
                     label: 'BizTreats',
                     url: 'https://www.youtube.com/embed/yee0UOng9NM?si=4uQ7PM8QnukbOaEo?autoplay=1&loop=1&playlist=yee0UOng9NM',
-                    title: 'Share Treats was able to give us a digital solution',
+                    title: 'Share Treats was able to give us a digital solution1',
                     description: 'Loyalty Engagement, AXA Philippines',
                 },
                 {
                     label: 'BizReward',
                     url: 'https://www.youtube.com/embed/yee0UOng9NM?si=4uQ7PM8QnukbOaEo?autoplay=1&loop=1&playlist=yee0UOng9NM',
-                    title: 'Share Treats was able to give us a digital solution',
+                    title: 'Share Treats was able to give us a digital solution2',
                     description: 'Loyalty Engagement, AXA Philippines',
                 },
                 {
                     label: 'Biz API',
                     url: 'https://www.youtube.com/embed/yee0UOng9NM?si=4uQ7PM8QnukbOaEo?autoplay=1&loop=1&playlist=yee0UOng9NM',
-                    title: 'Share Treats was able to give us a digital solution',
+                    title: 'Share Treats was able to give us a digital solution3',
                     description: 'Loyalty Engagement, AXA Philippines',
                 },
             ],
