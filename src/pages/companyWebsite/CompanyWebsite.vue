@@ -136,7 +136,8 @@ export default {
                     titleClass: 'text-[#00C9BD]',
                     description: 'You may now start sending gifts to your employees.',
                 },
-            ]
+            ],
+            isScroll: false,
         }
     },
     methods: {
@@ -145,7 +146,7 @@ export default {
         },
         handleScroll(id = 'home') {
             const target = document.getElementById(id)
-            window.scrollTo(0, target.offsetTop)
+            window.scrollTo(0, target.offsetTop - 68) // header height
             this.currentActive = id
         },
         genBanner(originArr, chunkSize = 8) {
@@ -217,7 +218,7 @@ export default {
             const currentIdx = this.satisfiedClients.findIndex((item) => item.label === label)
             const nextIdx = currentIdx === this.satisfiedClients.length - 1 ? 0 : currentIdx + 1
             this.selectedFilter.clients = this.satisfiedClients[nextIdx].label
-        }
+        },
     },
     mounted() {
         this.bestBrandData = this.bestBrand.reduce((obj, data) => {
@@ -228,20 +229,27 @@ export default {
 
         this.startAutoSlide();
 
+        const elements = document.querySelectorAll('.animation-wrapper')
         const scrollEventHandler = () => {
-            const windowHeight = window.innerHeight
-            const el = document.querySelector('.about-wrapper')
+            elements.forEach((el) => {
+                const windowHeight = window.innerHeight
 
-            if (el.getBoundingClientRect().top < windowHeight - 200) {
-                setTimeout(() => {
-                    el.style.animation = 'appear_from_bottom ease 0.5s'
-                    el.style.opacity = 1
-                }, 100)
-                window.removeEventListener('scroll', scrollEventHandler)
-            }
+                if (el.getBoundingClientRect().top < windowHeight - 200) {
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                    }, 300)
+                    // window.removeEventListener('scroll', scrollEventHandler)
+                }
+            })
         }
 
+        // for header scroll ui
+        const handleHeader = () => {
+            const stickyDiv = this.$refs.stickyDiv;
+            this.isScroll = stickyDiv ? window.scrollY >= stickyDiv.offsetTop : false;
+        }
         window.addEventListener('scroll', scrollEventHandler)
+        window.addEventListener('scroll', handleHeader)
     },
     beforeUnmount() {
         this.stopAutoSlide();
@@ -257,7 +265,11 @@ export default {
 }
 </script>
 <template>
-    <header class="w-full bg-white-20 border-b border-b-[#EBEBEB] py-2.5">
+    <header
+      :class="{ 'backdrop-saturate-[1.5] backdrop-blur-[20px] bg-white-20/60 border-b border-b-[#EBEBEB]': isScroll }"
+      class="bg-white-20 w-full py-2.5 sticky left-0 right-0 top-0 z-10"
+      ref="stickyDiv"
+    >
         <nav class="flex items-center justify-between w-[1120px] mx-auto">
             <ul class="flex items-center gap-3">
                 <li>
@@ -339,47 +351,52 @@ export default {
                             Digital Treats
                         </strong>
                     </h1>
-                    <ul class="absolute flex gap-5 about-wrapper">
-                        <li
-                          v-for="item in digitalTreats"
-                          :key="item.description"
-                          class="pt-9 pl-12 bg-white-20 rounded-2xl shadow-[0px_25px_40px_0px_#0000000D] w-[360px] h-[186px]"
-                        >
-                            <p class="text-[#183B56] font-poppins font-medium text-[40px] leading-[46px] mb-3.5">
-                                {{ item.digital.toLocaleString() }}+
-                            </p>
-                            <span
-                              :class="item.color"
-                              class="block w-12 h-1 mb-2"
-                            ></span>
-                            <small class="font-poppins text-xl leading-[26px] text-[#5D6180]">
-                                {{ item.description }}
-                            </small>
-                        </li>
-                    </ul>
+                    <div class="animation-wrapper">
+                        <ul class="absolute flex gap-5">
+                            <li
+                              v-for="item in digitalTreats"
+                              :key="item.description"
+                              class="pt-9 pl-12 bg-white-20 rounded-2xl shadow-[0px_25px_40px_0px_#0000000D] w-[360px] h-[186px]"
+                            >
+                                <p class="text-[#183B56] font-poppins font-medium text-[40px] leading-[46px] mb-3.5">
+                                    {{ item.digital.toLocaleString() }}+
+                                </p>
+                                <span
+                                  :class="item.color"
+                                  class="block w-12 h-1 mb-2"
+                                ></span>
+                                <small class="font-poppins text-xl leading-[26px] text-[#5D6180]">
+                                    {{ item.description }}
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="bg-white-20 pt-[135px] pb-20">
                 <div class="w-[1158px] mx-auto">
                     <h1 class="text-[#183B56] font-black text-[50px] leading-[52px] mb-[42px]">Our Success Stories</h1>
-                    <ul class="flex gap-5">
-                        <li
-                          v-for="item in successStories"
-                          :key="item.title"
-                          class="py-14 px-6 rounded-xl shadow-[0px_20px_50px_0px_#12112714] w-[264px]"
-                        >
-                            <component
-                              :is="item.icon"
-                              class="mb-6"
-                            />
-                            <strong class="block mb-4 text-xl font-bold font-poppins text-black-400">
-                                {{ item.title }}
-                            </strong>
-                            <small class="font-normal text-[13px] leading-6 font-poppins text-[#1211278F]">
-                                {{ item.description }}
-                            </small>
-                        </li>
-                    </ul>
+                    <div class="animation-wrapper">
+                        <ul class="flex gap-5">
+                            <li
+                              v-for="item in successStories"
+                              :key="item.title"
+                              class="py-14 px-6 rounded-xl shadow-[0px_20px_50px_0px_#12112714] w-[264px]"
+                            >
+                                <component
+                                  :is="item.icon"
+                                  class="mb-6"
+                                />
+                                <strong class="block mb-4 text-xl font-bold font-poppins text-black-400">
+                                    {{ item.title }}
+                                </strong>
+                                <small class="font-normal text-[13px] leading-6 font-poppins text-[#1211278F]">
+                                    {{ item.description }}
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -398,7 +415,7 @@ export default {
                     </button>
                 </div>
                 <aside class="flex items-center gap-[34px]">
-                    <div>
+                    <div class="animation-wrapper">
                         <iframe
                           width="560"
                           height="315"
@@ -445,7 +462,7 @@ export default {
             <div class="w-[1300px] mx-auto">
                 <h1 class="px-[71px] text-[#183B56] font-bold text-[40px] leading-[64px]">How It Works</h1>
                 <div
-                  class="px-[71px] h-[556px] bg-[url('@/assets/images/how_it_works.png')] bg-no-repeat bg-[length:1212px_414px] bg-[left_20px_top] -mt-3"
+                  class="animation-wrapper px-[71px] h-[556px] bg-[url('@/assets/images/how_it_works.png')] bg-no-repeat bg-[length:1212px_414px] bg-[left_20px_top] -mt-3"
                 >
                     <ul class="relative h-full">
                         <li
@@ -470,7 +487,8 @@ export default {
           id="brands"
         >
             <div class="w-[1158px] mx-auto">
-                <h1 class="text-[#183B56] font-bold text-[40px] leading-[64px]">Our Merchant Partners</h1>
+                <h1 class="text-[#183B56] font-bold text-[40px] leading-[64px] animation-wrapper">Our Merchant Partners
+                </h1>
                 <ul class="inline-flex gap-2.5 w-[1058px] flex-wrap mt-9">
                     <li
                       :data-active="filter === selectedFilter.brand"
@@ -479,9 +497,9 @@ export default {
                       v-for="filter in brandFilter"
                       :key="filter"
                       @click="() => {
-                    mainSliderCurrent = 0
-                    selectedFilter.brand = filter
-                }"
+        mainSliderCurrent = 0
+        selectedFilter.brand = filter
+    }"
                     >{{ filter }}</li>
                 </ul>
             </div>
@@ -548,7 +566,7 @@ export default {
               class="w-[1270px] pl-[101px] mx-auto h-full py-[124px] bg-[url('@/assets/images/contact_bg.png')] bg-[left_top_38px] bg-no-repeat bg-contain"
             >
                 <aside class="flex gap-[30px]">
-                    <div>
+                    <div class="animation-wrapper">
                         <iframe
                           width="566"
                           height="311"
@@ -577,10 +595,10 @@ export default {
             </div>
         </section>
         <section class="bg-gradient-90-2">
-            <div class="w-[1280px] mx-auto bg-[url('@/assets/images/get_started_bg.png')] bg-no-repeat bg-[right_bottom_-30px] bg-[length:88px_88px]">
-                <div
-                  class="w-[1158px] mx-auto h-60 flex items-center justify-center gap-14"
-                >
+            <div
+              class="w-[1280px] mx-auto bg-[url('@/assets/images/get_started_bg.png')] bg-no-repeat bg-[right_bottom_-30px] bg-[length:88px_88px]"
+            >
+                <div class="w-[1158px] mx-auto h-60 flex items-center justify-center gap-14">
                     <span class="text-white-20 font-normal text-[32px] leading-10 font-roboto inline-block">
                         The
                         <strong class="font-bold">most customizable Digital Treats platform</strong>for building<br>

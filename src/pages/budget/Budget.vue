@@ -151,7 +151,6 @@ export default {
         },
         handleScroll() {
             const stickyDiv = this.$refs.stickyDiv;
-            console.log(window.scrollY, stickyDiv.offsetTop)
             this.isSticky = (window.scrollY + 68) >= stickyDiv.offsetTop;
         },
     },
