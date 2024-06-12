@@ -379,7 +379,7 @@ export default {
                         Foster Relationships with<br>
                         your employees and customers
                     </p>
-                    <button class="text-base font-bold leading-5 rounded-md text-white-20 bg-blue-05 py-4 px-[50px]">
+                    <button class="text-base font-bold leading-5 rounded-md text-white-20 bg-blue-05 py-4 px-[50px] hover:bg-blue-06">
                         Get Started
                     </button>
                 </div>
