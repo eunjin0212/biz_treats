@@ -240,7 +240,7 @@ export default {
                 window.removeEventListener('scroll', scrollEventHandler)
             }
         }
-        
+
         window.addEventListener('scroll', scrollEventHandler)
     },
     beforeUnmount() {
@@ -574,6 +574,22 @@ export default {
                         </small>
                     </div>
                 </aside>
+            </div>
+        </section>
+        <section class="bg-gradient-90-2">
+            <div class="w-[1280px] mx-auto bg-[url('@/assets/images/get_started_bg.png')] bg-no-repeat bg-[right_bottom_-30px] bg-[length:88px_88px]">
+                <div
+                  class="w-[1158px] mx-auto h-60 flex items-center justify-center gap-14"
+                >
+                    <span class="text-white-20 font-normal text-[32px] leading-10 font-roboto inline-block">
+                        The
+                        <strong class="font-bold">most customizable Digital Treats platform</strong>for building<br>
+                        <strong class="font-bold">your online business.</strong>
+                    </span>
+                    <button
+                      class="rounded-[60px] border-2 border-white-20 text-white-20 h-[72px] px-[46px] hover:bg-white-02-light"
+                    >GET STARTED</button>
+                </div>
             </div>
         </section>
     </main>

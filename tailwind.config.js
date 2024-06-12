@@ -12,7 +12,8 @@ module.exports = {
                 'spacing': 'margin, padding',
             },
             backgroundImage: {
-                'gradient-90': 'linear-gradient(90deg, #31AFE4 0%, #1B617E 100%)'
+                'gradient-90': 'linear-gradient(90deg, #31AFE4 0%, #1B617E 100%)',
+                'gradient-90-2': 'linear-gradient(90deg, #0BC0EB 0%, #1AA1C1 100%)'
             },
             spacing: {
                 '0.5': '0.125rem', // 2px
