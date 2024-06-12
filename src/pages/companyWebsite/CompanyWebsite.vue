@@ -238,7 +238,6 @@ export default {
                     setTimeout(() => {
                         el.classList.add('visible');
                     }, 300)
-                    // window.removeEventListener('scroll', scrollEventHandler)
                 }
             })
         }
@@ -250,6 +249,30 @@ export default {
         }
         window.addEventListener('scroll', scrollEventHandler)
         window.addEventListener('scroll', handleHeader)
+
+        // 마지막 동영상 자동 재생 
+        // 브라우저 정책상 자동재생 하려면 소리를 없애야 함
+        const videoContainer = document.querySelector('.video-container');
+        const videoIframe = this.$refs.videoIframe;
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const autoplayUrl = "https://www.youtube.com/embed/yee0UOng9NM?autoplay=1&loop=1&playlist=yee0UOng9NM&controls=1&mute=1";
+                    videoIframe.src = autoplayUrl;
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        observer.observe(videoContainer);
     },
     beforeUnmount() {
         this.stopAutoSlide();
@@ -422,7 +445,7 @@ export default {
                           :src="clientsData.url"
                           title="YouTube video player"
                           frameborder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
                           referrerpolicy="strict-origin-when-cross-origin"
                           allowfullscreen
                           class="rounded-[10px]"
@@ -565,15 +588,16 @@ export default {
             <div
               class="w-[1270px] pl-[101px] mx-auto h-full py-[124px] bg-[url('@/assets/images/contact_bg.png')] bg-[left_top_38px] bg-no-repeat bg-contain"
             >
-                <aside class="flex gap-[30px]">
+                <aside class="flex gap-[30px] video-container">
                     <div class="animation-wrapper">
                         <iframe
+                          ref="videoIframe"
                           width="566"
                           height="311"
-                          src="https://www.youtube.com/embed/yee0UOng9NM?si=4uQ7PM8QnukbOaEo?autoplay=1&loop=1&playlist=yee0UOng9NM&controls=0"
+                          src="https://www.youtube.com/embed/yee0UOng9NM?si=4uQ7PM8QnukbOaEo?controls=0"
                           title="YouTube video player"
                           frameborder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
                           referrerpolicy="strict-origin-when-cross-origin"
                           allowfullscreen
                           class="rounded-[10px]"
