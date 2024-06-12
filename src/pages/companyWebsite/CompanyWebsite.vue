@@ -40,16 +40,22 @@ export default {
                     digital: 0,
                     description: 'Clients & Partners',
                     color: 'bg-[#7CD8FF]',
+                    limited: 500,
+                    unit: 1, // 몇 개씩 올라갈 것인지
                 },
                 {
                     digital: 0,
                     description: 'Participating stores',
                     color: 'bg-[#FF8B63]',
+                    limited: 15000,
+                    unit: 10,
                 },
                 {
                     digital: 0,
                     description: 'Treats Served',
                     color: 'bg-[#70C217]',
+                    limited: 50000000,
+                    unit: 100,
                 },
             ],
             successStories: [
@@ -77,6 +83,7 @@ export default {
             bestBrand: genBrandsMockData(100),
             bestBrandData: {},
             bestBrandSliderCurrent: 0,
+            // 영상 목록
             satisfiedClients: [
                 {
                     label: 'BizTreats',
@@ -219,6 +226,21 @@ export default {
             const nextIdx = currentIdx === this.satisfiedClients.length - 1 ? 0 : currentIdx + 1
             this.selectedFilter.clients = this.satisfiedClients[nextIdx].label
         },
+        startNumberAnimation() {
+            const updateDigital = setInterval(() => {
+                let allFinished = true; // Flag to check if all digitals have reached their limits
+                this.digitalTreats.forEach((item) => {
+                    if (item.digital < item.limited) {
+                        item.digital += item.unit;
+                        allFinished = false;
+                    }
+                });
+
+                if (allFinished) {
+                    clearInterval(updateDigital); // Stop the interval if all digitals have reached their limits
+                }
+            }, 100); // Interval for updating the numbers
+        },
     },
     mounted() {
         this.bestBrandData = this.bestBrand.reduce((obj, data) => {
@@ -237,6 +259,9 @@ export default {
                 if (el.getBoundingClientRect().top < windowHeight - 200) {
                     setTimeout(() => {
                         el.classList.add('visible');
+                        if (el.classList.contains('digital-treats-cards')) {
+                            this.startNumberAnimation()
+                        }
                     }, 300)
                 }
             })
@@ -250,7 +275,7 @@ export default {
         window.addEventListener('scroll', scrollEventHandler)
         window.addEventListener('scroll', handleHeader)
 
-        // 마지막 동영상 자동 재생 
+        // Contact us video auto play 
         // 브라우저 정책상 자동재생 하려면 소리를 없애야 함
         const videoContainer = document.querySelector('.video-container');
         const videoIframe = this.$refs.videoIframe;
@@ -374,7 +399,9 @@ export default {
                             Digital Treats
                         </strong>
                     </h1>
-                    <div class="animation-wrapper">
+                    <div
+                      class="animation-wrapper digital-treats-cards"
+                    >
                         <ul class="absolute flex gap-5">
                             <li
                               v-for="item in digitalTreats"
