@@ -118,7 +118,6 @@ export default {
         handleSearch,
         handleScroll() {
             const stickyDiv = this.$refs.stickyDiv;
-            console.log(window.scrollY, stickyDiv.offsetTop)
             this.isSticky = window.scrollY >= stickyDiv.offsetTop;
         },
     },
