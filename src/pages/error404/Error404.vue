@@ -200,11 +200,14 @@ export default {
               alt="completed_check"
               class="mx-auto mb-6"
             />
-            <strong class="block mb-2 text-[28px] leading-[42px] font-bold text-blue-05 font-dmsans">Result Not Found</strong>
-            <span class="block text-[#9E9E9E] mb-10 text-lg font-medium font-dmsans">Please try again with another<br>keywords or maybe use generic term</span>
-            <button
-              class="bg-blue-05 w-[342px] h-16 text-white-20 font-bold text-base leading-6 font-poppins rounded-lg hover:bg-blue-06"
-            >Try Again</button>
+            <strong class="block mb-2 text-[28px] leading-[42px] font-bold text-blue-05 font-dmsans">Result Not
+                Found</strong>
+            <span class="block text-[#9E9E9E] mb-10 text-lg font-medium font-dmsans">Please try again with
+                another<br>keywords or maybe use generic term</span>
+            <a
+              href="/home"
+              class="inline-flex items-center justify-center bg-blue-05 w-[342px] h-14 text-white-20 font-bold text-base leading-6 font-poppins rounded-lg hover:bg-blue-06"
+            >Try Again</a>
         </section>
     </main>
     <footer class="service-footer">
