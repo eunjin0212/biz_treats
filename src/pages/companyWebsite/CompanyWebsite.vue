@@ -80,7 +80,7 @@ export default {
                     icon: 'MarketingSvg',
                 },
             ],
-            bestBrand: genBrandsMockData(100),
+            bestBrand: genBrandsMockData(12),
             bestBrandData: {},
             bestBrandSliderCurrent: 0,
             // 영상 목록
@@ -182,6 +182,10 @@ export default {
         },
         nextSlide() {
             const brandLength = this.bestBrandData[this.selectedFilter.brand].length;
+            if (brandLength <= 1) {
+                this.stopAutoSlide()
+                return;
+            }
             this.isTransitioning = true;
             this.bestBrandSliderCurrent++;
             if (this.bestBrandSliderCurrent >= brandLength) {
@@ -315,7 +319,7 @@ export default {
 <template>
     <header
       :class="{ 'backdrop-saturate-[1.5] backdrop-blur-[20px] bg-white-20/60 border-b border-b-[#EBEBEB]': isScroll }"
-      class="bg-white-20 w-full py-2.5 sticky left-0 right-0 top-0 z-10"
+      class="bg-white-20 w-full py-2.5 fixed left-0 right-0 top-0 z-10"
       ref="stickyDiv"
     >
         <nav class="flex items-center justify-between w-[1120px] mx-auto">
@@ -361,7 +365,7 @@ export default {
             </div>
         </nav>
     </header>
-    <main class="flex flex-col">
+    <main class="flex flex-col pt-[68px]">
         <section
           class="bg-[url('@/assets/images/company_website_bg.png')] bg-no-repeat bg-center bg-cover w-full pt-[45px] pb-6"
           id="home"
@@ -425,7 +429,7 @@ export default {
             </div>
             <div class="bg-white-20 pt-[135px] pb-20">
                 <div class="w-[1158px] mx-auto">
-                    <h1 class="text-[#183B56] font-black text-[50px] leading-[52px] mb-[42px]">Our Success Stories</h1>
+                    <h1 class="text-[#183B56] font-bold text-[40px] leading-[48px] mb-[42px]">Our Success Stories</h1>
                     <div class="animation-wrapper">
                         <ul class="flex gap-5">
                             <li
