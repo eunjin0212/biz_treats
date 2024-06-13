@@ -181,11 +181,7 @@ export default {
             clearInterval(this.sliderInterval);
         },
         nextSlide() {
-            const brandLength = this.bestBrandData[this.selectedFilter.brand].length;
-            if (brandLength <= 1) {
-                this.stopAutoSlide()
-                return;
-            }
+            const brandLength = this.bestBrandData[this.selectedFilter.brand]?.length;
             this.isTransitioning = true;
             this.bestBrandSliderCurrent++;
             if (this.bestBrandSliderCurrent >= brandLength) {
@@ -253,17 +249,19 @@ export default {
             return obj
         }, {})
 
-        this.startAutoSlide();
+        if (this.bestBrandData[this.selectedFilter.brand]?.length > 1) {
+            this.startAutoSlide();
+        }
 
         const elements = document.querySelectorAll('.animation-wrapper')
         const scrollEventHandler = () => {
             elements.forEach((el) => {
                 const windowHeight = window.innerHeight
-
-                if (el.getBoundingClientRect().top < windowHeight + 100) {
+                const isDigitalEl = el.classList.contains('digital-treats-cards')
+                if (el.getBoundingClientRect().top < windowHeight + (isDigitalEl ? 1500 : 100)) {
                     setTimeout(() => {
                         el.classList.add('visible');
-                        if (el.classList.contains('digital-treats-cards')) {
+                        if (isDigitalEl) {
                             this.startNumberAnimation()
                         }
                     }, 300)
@@ -383,7 +381,9 @@ export default {
                         Foster Relationships with<br>
                         your employees and customers
                     </p>
-                    <button class="text-base font-bold leading-5 rounded-md text-white-20 bg-blue-05 py-4 px-[50px] hover:bg-blue-06">
+                    <button
+                      class="text-base font-bold leading-5 rounded-md text-white-20 bg-blue-05 py-4 px-[50px] hover:bg-blue-06"
+                    >
                         Get Started
                     </button>
                 </div>
@@ -403,9 +403,7 @@ export default {
                             Digital Treats
                         </strong>
                     </h1>
-                    <div
-                      class="animation-wrapper digital-treats-cards"
-                    >
+                    <div class="animation-wrapper digital-treats-cards">
                         <ul class="absolute flex gap-5">
                             <li
                               v-for="item in digitalTreats"
@@ -568,8 +566,8 @@ export default {
                       :key="index"
                       :style="{ transform: `translateX(-${bestBrandSliderCurrent * 100}%)` }"
                       @transitionend="onTransitionEnd"
-                      @mouseover="pauseSlide"
-                      @mouseleave="resumeSlide"
+                      @mouseover="() => bestBrandData[selectedFilter.brand].length > 1 && pauseSlide"
+                      @mouseleave="() => bestBrandData[selectedFilter.brand].length > 1 && resumeSlide"
                     >
                         <li
                           v-for="(item, idx) in data"
@@ -599,14 +597,22 @@ export default {
                 </div>
                 <button
                   class="banner-nav__btn left"
-                  @click="() => { prevSlide(); restartSlide(); }"
+                  @click="() => {
+        if (bestBrandData[selectedFilter.brand]?.length > 1) {
+            prevSlide(); restartSlide();
+        }
+    }"
                 >
                     <LeftArrowSvg class="text-[#878787]" />
                 </button>
                 <button
                   :disabled="bestBrandSliderCurrent >= bestBrandData[selectedFilter.brand]?.length - 1"
                   class="banner-nav__btn right"
-                  @click="() => { nextSlide(); restartSlide(); }"
+                  @click="() => {
+        if (bestBrandData[selectedFilter.brand]?.length > 1) {
+            nextSlide(); restartSlide();
+        }
+    }"
                 >
                     <RightArrowSvg class="text-[#878787]" />
                 </button>
