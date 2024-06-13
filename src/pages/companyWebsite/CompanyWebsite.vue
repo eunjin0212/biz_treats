@@ -41,21 +41,21 @@ export default {
                     description: 'Clients & Partners',
                     color: 'bg-[#7CD8FF]',
                     limited: 500,
-                    unit: 1, // 몇 개씩 올라갈 것인지
+                    unit: 100, // 몇 개씩 올라갈 것인지
                 },
                 {
                     digital: 0,
                     description: 'Participating stores',
                     color: 'bg-[#FF8B63]',
                     limited: 15000,
-                    unit: 10,
+                    unit: 1000,
                 },
                 {
                     digital: 0,
                     description: 'Treats Served',
                     color: 'bg-[#70C217]',
                     limited: 50000000,
-                    unit: 100,
+                    unit: 1000000,
                 },
             ],
             successStories: [
@@ -256,7 +256,7 @@ export default {
             elements.forEach((el) => {
                 const windowHeight = window.innerHeight
 
-                if (el.getBoundingClientRect().top < windowHeight) {
+                if (el.getBoundingClientRect().top < windowHeight + 100) {
                     setTimeout(() => {
                         el.classList.add('visible');
                         if (el.classList.contains('digital-treats-cards')) {
