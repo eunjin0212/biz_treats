@@ -1,5 +1,5 @@
 <script>
-import { snsMenu, menus, mainMenu } from '@/constants/components.js';
+import { snsMenu, menus, mainMenu, categoryFilter } from '@/constants/components.js';
 import { cartData } from '@/mock/cart.js';
 import { genBrandsMockData } from '@/mock/brand.js';
 import { alertData } from '@/mock/alertData.js'
@@ -69,19 +69,7 @@ export default {
             selectedFilter: {
                 category: 'ALL'
             },
-            categoryFilter: [
-                { label: 'ALL', icon: 'all', textClass: '' },
-                { label: 'eWallet', icon: 'ewallet', textClass: '' },
-                { label: 'Grocery & Essentials', icon: 'grocery_essentials', textClass: '' },
-                { label: 'Fast Food', icon: 'fast_food', textClass: 'text-nowrap' },
-                { label: 'Casual Resto', icon: 'casual_resto', textClass: '' },
-                { label: 'Bread & Dessert', icon: 'bread_dessert', textClass: '' },
-                { label: 'Drugstore & Wellness', icon: 'drugstore', textClass: '-tracking-[0.14px]' },
-                { label: 'Beauty & Lifestyle', icon: 'beauty_lifestyle', textClass: '' },
-                { label: 'Transpo & Travel', icon: 'transpo_travel', textClass: '' },
-                { label: 'Digital & Appliance', icon: 'digital_appliance', textClass: '' },
-                { label: 'Home & Kids', icon: 'home_kids', textClass: '' },
-            ],
+            categoryFilter,
             brands: genBrandsMockData(100),
             brandsData: {},
             isSticky: false,
