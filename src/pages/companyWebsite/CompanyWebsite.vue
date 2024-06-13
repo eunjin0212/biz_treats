@@ -256,7 +256,7 @@ export default {
             elements.forEach((el) => {
                 const windowHeight = window.innerHeight
 
-                if (el.getBoundingClientRect().top < windowHeight - 200) {
+                if (el.getBoundingClientRect().top < windowHeight) {
                     setTimeout(() => {
                         el.classList.add('visible');
                         if (el.classList.contains('digital-treats-cards')) {
@@ -323,7 +323,7 @@ export default {
                 <li>
                     <a href="/">
                         <img
-                          src="/assets/images/biz_treats_log.png"
+                          src="/assets/images/biztreats_logo.svg"
                           class="h-12"
                         />
                     </a>
@@ -667,7 +667,7 @@ export default {
             <aside>
                 <div>
                     <img
-                      src="/assets/images/biz_treats_log.png"
+                      src="/assets/images/biztreats_logo.svg"
                       alt="footer-log"
                     />
                     <h4>
