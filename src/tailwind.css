@@ -1194,3 +1194,14 @@ body {
 .animation-wrapper.visible {
     animation: appearFromBottom 0.5s forwards; /* 애니메이션 추가 */
 }
+
+.sticky-container {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    z-index: 20;
+}
+
+.sticky-container.active {
+    background-color: #ffffff; /* Adjust with your actual variable */
+    border-bottom: 1px solid #CECECE;
+}

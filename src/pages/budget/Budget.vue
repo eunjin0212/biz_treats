@@ -84,7 +84,7 @@ export default {
                 { label: 'Fast Food', icon: 'fast_food', textClass: 'text-nowrap' },
                 { label: 'Casual Resto', icon: 'casual_resto', textClass: '' },
                 { label: 'Bread & Dessert', icon: 'bread_dessert', textClass: '' },
-                { label: 'Drugstore & Wellness', icon: 'drugstore', textClass: '-tracking-[0.14px]' },
+                { label: 'Drugstore & Wellness', icon: 'drugstore', textClass: '!-tracking-[0.14px]' },
                 { label: 'Beauty & Lifestyle', icon: 'beauty_lifestyle', textClass: '' },
                 { label: 'Transpo & Travel', icon: 'transpo_travel', textClass: '' },
                 { label: 'Digital & Appliance', icon: 'digital_appliance', textClass: '' },
@@ -105,7 +105,7 @@ export default {
                 lastPage: 100,
             },
             loading: false,
-            isSticky: false,
+            isScroll: false,
         }
     },
     methods: {
@@ -151,7 +151,9 @@ export default {
         },
         handleScroll() {
             const stickyDiv = this.$refs.stickyDiv;
-            this.isSticky = (window.scrollY + 68) >= stickyDiv.offsetTop;
+            if (stickyDiv) {
+                this.isScroll = (window.scrollY + 68) >= stickyDiv.offsetTop;
+            }
         },
     },
     watch: {
@@ -326,7 +328,7 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
-        <div class="w-full py-3 bg-white-20 min-w-[1120px] sticky top-0 z-20">
+        <div class="w-full py-3 bg-white-20 min-w-[1120px] sticky top-0 z-20 sticky-container">
             <ul class="flex gap-2.5 w-[1120px] mx-auto">
                 <li
                   :data-active="filter.min === selectedFilter.budget"
@@ -346,8 +348,8 @@ export default {
             </h4>
         </div>
         <div
-          class="min-w-[1120px] w-full mx-auto pt-1 sticky top-[68px] z-20"
-          :class="isSticky ? 'bg-white-20 border-b border-b-[#CECECE]' : 'bg-white-17'"
+          class="min-w-[1120px] w-full mx-auto pt-1 sticky top-[68px] z-20 bg-white-17 sticky-container"
+          :class="{ 'active': isScroll }"
           ref="stickyDiv"
         >
             <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center">
