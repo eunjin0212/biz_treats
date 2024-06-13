@@ -215,11 +215,11 @@ export const mainMenu = [
 export const categoryFilter = [
   { label: 'ALL', icon: 'all', textClass: '' },
   { label: 'eWallet', icon: 'ewallet', textClass: '' },
-  { label: 'Grocery & Essentials', icon: 'grocery_essentials', textClass: '!-tracking-[0.14px] min-w-14' },
+  { label: 'Grocery & Essentials', icon: 'grocery_essentials', textClass: '!-tracking-[0.14px] min-w-[60px]' },
   { label: 'Fast Food', icon: 'fast_food', textClass: 'text-nowrap' },
   { label: 'Casual Resto', icon: 'casual_resto', textClass: '' },
   { label: 'Bread & Dessert', icon: 'bread_dessert', textClass: '' },
-  { label: 'Drugstore & Wellness', icon: 'drugstore', textClass: '!-tracking-[0.14px] min-w-14' },
+  { label: 'Drugstore & Wellness', icon: 'drugstore', textClass: '!-tracking-[0.14px] min-w-[60px]' },
   { label: 'Beauty & Lifestyle', icon: 'beauty_lifestyle', textClass: '' },
   { label: 'Transpo & Travel', icon: 'transpo_travel', textClass: '' },
   { label: 'Digital & Appliance', icon: 'digital_appliance', textClass: '' },
