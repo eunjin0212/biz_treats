@@ -1,6 +1,8 @@
 <script>
 import { companyWebsiteMenu, menus, snsMenu } from '@/constants/components.js';
 import { genBrandsMockData } from '@/mock/home.js';
+import "keen-slider/keen-slider.min.css";
+import KeenSlider from "keen-slider";
 import ResourcesSvg from '@/assets/icons/ResourcesSvg.vue'
 import RecruitmentSvg from '@/assets/icons/RecruitmentSvg.vue'
 import SalesSvg from '@/assets/icons/SalesSvg.vue'
@@ -40,7 +42,7 @@ export default {
                     digital: 0,
                     description: 'Clients & Partners',
                     color: 'bg-[#7CD8FF]',
-                    limited: 500,
+                    limited: 500, // 어디까지 올라갈 것인지
                     unit: 100, // 몇 개씩 올라갈 것인지
                 },
                 {
@@ -80,9 +82,9 @@ export default {
                     icon: 'MarketingSvg',
                 },
             ],
-            bestBrand: genBrandsMockData(12),
+            bestBrand: genBrandsMockData(24), // 12개가 한 페이지
             bestBrandData: {},
-            bestBrandSliderCurrent: 0,
+
             // 영상 목록
             satisfiedClients: [
                 {
@@ -121,9 +123,6 @@ export default {
                 'Digital & Appliance',
                 'Home & Kids',
             ],
-            sliderInterval: null,
-            isTransitioning: false,
-            isPaused: false,
             worksData: [
                 {
                     title: 'Sign-up by email',
@@ -145,17 +144,21 @@ export default {
                 },
             ],
             isScroll: false,
+            brandSlider: null,
+            bestBrandSliderCurrent: 0,
         }
     },
     methods: {
         handleClick(url = 'inquiry') {
             window.location.href = url
         },
+
         handleScroll(id = 'home') {
             const target = document.getElementById(id)
             window.scrollTo(0, target.offsetTop - 68) // header height
             this.currentActive = id
         },
+
         genBanner(originArr, chunkSize = 8) {
             return originArr.reduce((result, item, index) => {
                 const chunkIndex = Math.floor(index / chunkSize);
@@ -169,53 +172,15 @@ export default {
                 return result;
             }, []);
         },
-        startAutoSlide() {
-            this.stopAutoSlide();
-            this.sliderInterval = setInterval(() => {
-                if (!this.isPaused) {
-                    this.nextSlide();
-                }
-            }, 3000);
+
+        async getBrandData() {
+            this.bestBrandData = this.bestBrand.reduce((obj, data) => {
+              const originArray = this.bestBrand.filter((item) => item.keyword === data.keyword)
+              obj[data.keyword] = data.keyword === 'ALL' ? this.genBanner(this.bestBrand, 12) : this.genBanner(originArray, 12)
+              return obj
+            }, {})
         },
-        stopAutoSlide() {
-            clearInterval(this.sliderInterval);
-        },
-        nextSlide() {
-            const brandLength = this.bestBrandData[this.selectedFilter.brand]?.length;
-            this.isTransitioning = true;
-            this.bestBrandSliderCurrent++;
-            if (this.bestBrandSliderCurrent >= brandLength) {
-                setTimeout(() => {
-                    this.isTransitioning = false;
-                    this.bestBrandSliderCurrent = 0;
-                }, 300); // 애니메이션 시간
-            }
-        },
-        prevSlide() {
-            const brandLength = this.bestBrandData[this.selectedFilter.brand].length;
-            this.isTransitioning = true;
-            this.bestBrandSliderCurrent--;
-            if (this.bestBrandSliderCurrent < 0) {
-                setTimeout(() => {
-                    this.isTransitioning = false;
-                    this.bestBrandSliderCurrent = brandLength - 1;
-                }, 300); // 애니메이션 시간
-            }
-        },
-        pauseSlide() {
-            this.isPaused = true;
-            this.stopAutoSlide(); // 버튼 클릭시 자동 슬라이딩 정지
-        },
-        resumeSlide() {
-            this.isPaused = false;
-            this.startAutoSlide(); // 마우스가 슬라이드를 벗어나면 자동 슬라이딩 시작
-        },
-        restartSlide() {
-            this.pauseSlide();
-            setTimeout(() => {
-                this.resumeSlide();
-            }, 3000); // 3초 후 자동 슬라이딩 재시작
-        },
+
         prevTab(label = 'BizTreats') {
             const currentIdx = this.satisfiedClients.findIndex((item) => item.label === label)
             const prevIdx = currentIdx === 0 ? this.satisfiedClients.length - 1 : currentIdx >= this.satisfiedClients.length ? 0 : currentIdx - 1
@@ -226,9 +191,10 @@ export default {
             const nextIdx = currentIdx === this.satisfiedClients.length - 1 ? 0 : currentIdx + 1
             this.selectedFilter.clients = this.satisfiedClients[nextIdx].label
         },
+
         startNumberAnimation() {
             const updateDigital = setInterval(() => {
-                let allFinished = true; // Flag to check if all digitals have reached their limits
+                let allFinished = true;
                 this.digitalTreats.forEach((item) => {
                     if (item.digital < item.limited) {
                         item.digital += item.unit;
@@ -237,24 +203,16 @@ export default {
                 });
 
                 if (allFinished) {
-                    clearInterval(updateDigital); // Stop the interval if all digitals have reached their limits
+                    clearInterval(updateDigital);
                 }
-            }, 100); // Interval for updating the numbers
+            }, 100);
         },
-    },
-    mounted() {
-        this.bestBrandData = this.bestBrand.reduce((obj, data) => {
-            const originArray = this.bestBrand.filter((item) => item.keyword === data.keyword)
-            obj[data.keyword] = data.keyword === 'ALL' ? this.genBanner(this.bestBrand, 12) : this.genBanner(originArray, 12)
-            return obj
-        }, {})
 
-        if (this.bestBrandData[this.selectedFilter.brand]?.length > 1) {
-            this.startAutoSlide();
-        }
-
-        const elements = document.querySelectorAll('.animation-wrapper')
-        const scrollEventHandler = () => {
+        handleHeaderSrcoll() {
+            const stickyDiv = this.$refs.stickyDiv;
+            this.isScroll = stickyDiv ? window.scrollY >= stickyDiv.offsetTop : false;
+        },
+        handleScrollEvent (elements) {
             elements.forEach((el) => {
                 const windowHeight = window.innerHeight
                 const isDigitalEl = el.classList.contains('digital-treats-cards')
@@ -268,14 +226,55 @@ export default {
                 }
             })
         }
+    },
+    mounted() {
+        this.brandSlider = new KeenSlider(this.$refs.mainSlider, {
+            loop: true,
+            initial: this.bestBrandSliderCurrent,
+            drag: false,
+            rubberband: false,
+            slides: null,
+            selector: '.brand-wrapper > .brand',
+            slideChanged: (s) => {
+                this.bestBrandSliderCurrent = s.track.details.rel
+            },
+        }, [
+            (slider) => {
+                let timeout
+                let mouseOver = false
+                function clearNextTimeout() {
+                    clearTimeout(timeout)
+                }
+                function nextTimeout() {
+                    clearTimeout(timeout)
+                    if (mouseOver) return
+                    if (slider.track.details?.slides.length <= 1) return // 아이템이 한 페이지만 있을 경우
+                    timeout = setTimeout(() => {
+                        slider.next()
+                    }, 5000)
+                }
+                slider.on("created", () => {
+                    slider.container.addEventListener("mouseover", () => {
+                        mouseOver = true
+                        clearNextTimeout()
+                    })
+                    slider.container.addEventListener("mouseout", () => {
+                        mouseOver = false
+                        nextTimeout()
+                    })
+                    nextTimeout()
+                })
+                slider.on("dragStarted", clearNextTimeout)
+                slider.on("animationEnded", nextTimeout)
+                slider.on("updated", nextTimeout)
+            },
+        ]);
 
+        
         // for header scroll ui
-        const handleHeader = () => {
-            const stickyDiv = this.$refs.stickyDiv;
-            this.isScroll = stickyDiv ? window.scrollY >= stickyDiv.offsetTop : false;
-        }
-        window.addEventListener('scroll', scrollEventHandler)
-        window.addEventListener('scroll', handleHeader)
+        const elements = document.querySelectorAll('.animation-wrapper')
+        window.addEventListener('scroll', () => this.handleScrollEvent(elements))
+        window.addEventListener('scroll', this.handleHeaderSrcoll)
 
         // Contact us video auto play 
         // 브라우저 정책상 자동재생 하려면 소리를 없애야 함
@@ -302,11 +301,15 @@ export default {
         observer.observe(videoContainer);
     },
     beforeUnmount() {
-        this.stopAutoSlide();
+        if (this.brandSlider) this.brandSlider.destroy();
+    },
+    beforeMount() {
+        this.getBrandData()
     },
     computed: {
-        dots() {
-            return this.bestBrandData[this.selectedFilter.brand]?.length
+        totalSliderCount() {
+            const total = this.brandSlider ? this.brandSlider.track.details?.slides.length : 0
+            return total
         },
         clientsData() {
             return this.satisfiedClients.find((item) => item.label === this.selectedFilter.clients)
@@ -448,7 +451,6 @@ export default {
                             </li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -558,16 +560,12 @@ export default {
             <aside
               class="w-[1158px] relative border border-white-13 shadow-[0_4px_8px_0_#0000000A] mx-auto h-[460px] mb-10 mt-5"
             >
-                <div class="flex overflow-hidden brand-wrapper">
+                <div class="flex overflow-hidden brand-wrapper keen-slider" ref="mainSlider">
                     <ul
-                      class="transition-all brand"
-                      :class="{ 'transition-none': !isTransitioning }"
+                      class="keen-slider__slide brand"
+                      :class="`number-slide${index + 1}`"
                       v-for="(data, index) in bestBrandData[selectedFilter.brand]"
                       :key="index"
-                      :style="{ transform: `translateX(-${bestBrandSliderCurrent * 100}%)` }"
-                      @transitionend="onTransitionEnd"
-                      @mouseover="() => bestBrandData[selectedFilter.brand].length > 1 && pauseSlide"
-                      @mouseleave="() => bestBrandData[selectedFilter.brand].length > 1 && resumeSlide"
                     >
                         <li
                           v-for="(item, idx) in data"
@@ -587,32 +585,27 @@ export default {
                 </div>
                 <div class="flex justify-center gap-2 mt-7">
                     <span
-                      v-for="dot in dots"
+                      v-for="dot in totalSliderCount"
                       :key="dot"
                       class="w-3.5 h-3.5 block rounded-full cursor-pointer"
-                      @click="() => bestBrandSliderCurrent = dot - 1"
+                      @click="brandSlider.moveToIdx(dot)"
                       :class="(dot - 1) === bestBrandSliderCurrent ? 'bg-blue-05' : 'bg-white-08'"
                     >
                     </span>
                 </div>
                 <button
                   class="banner-nav__btn left"
-                  @click="() => {
-        if (bestBrandData[selectedFilter.brand]?.length > 1) {
-            prevSlide(); restartSlide();
-        }
-    }"
+                  :disabled="totalSliderCount <= 1"
+                  v-if="brandSlider"
+                  @click="() => brandSlider.prev()"
                 >
                     <LeftArrowSvg class="text-[#878787]" />
                 </button>
                 <button
-                  :disabled="bestBrandSliderCurrent >= bestBrandData[selectedFilter.brand]?.length - 1"
+                  :disabled="totalSliderCount <= 1"
                   class="banner-nav__btn right"
-                  @click="() => {
-        if (bestBrandData[selectedFilter.brand]?.length > 1) {
-            nextSlide(); restartSlide();
-        }
-    }"
+                  v-if="brandSlider"
+                  @click="() => brandSlider.next()"
                 >
                     <RightArrowSvg class="text-[#878787]" />
                 </button>
