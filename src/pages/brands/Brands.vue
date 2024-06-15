@@ -72,7 +72,7 @@ export default {
             categoryFilter,
             brands: genBrandsMockData(100),
             brandsData: {},
-            isSticky: false,
+            isScroll: false,
         }
     },
     methods: {
@@ -104,9 +104,9 @@ export default {
             window.location.href = `/brandsDetail?id=${id}`
         },
         handleSearch,
-        handleScroll() {
-            const stickyDiv = this.$refs.stickyDiv;
-            this.isSticky = window.scrollY >= stickyDiv.offsetTop;
+        headerScroll() {
+            const stickyDiv = document.getElementById('stickyDiv');
+            this.isScroll = stickyDiv ? (window.scrollY + 68) >= stickyDiv.offsetTop : false;
         },
     },
     watch: {
@@ -136,10 +136,10 @@ export default {
             obj[data.label] = data.label === 'ALL' ? this.brands : originArray
             return obj
         }, {})
-        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('scroll', () => this.headerScroll());
     },
     beforeUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('scroll', () => this.headerScroll());
     },
 }
 </script>
@@ -270,8 +270,8 @@ export default {
         </nav>
         <div
           class="min-w-[1120px] w-full mx-auto pt-1 sticky top-0 z-20"
-          :class="isSticky ? 'bg-white-20 border-b border-b-[#CECECE]' : 'bg-white-17'"
-          ref="stickyDiv"
+          :class="isScroll ? 'bg-white-20 border-b border-b-[#CECECE]' : 'bg-white-17'"
+          id="stickyDiv"
         >
             <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center">
                 <li

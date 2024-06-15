@@ -208,8 +208,8 @@ export default {
             }, 100);
         },
 
-        handleHeaderSrcoll() {
-            const stickyDiv = this.$refs.stickyDiv;
+        handleHeaderScroll() {
+            const stickyDiv = document.getElementById('stickyDiv');
             this.isScroll = stickyDiv ? window.scrollY >= stickyDiv.offsetTop : false;
         },
         handleScrollEvent (elements) {
@@ -274,7 +274,7 @@ export default {
         // for header scroll ui
         const elements = document.querySelectorAll('.animation-wrapper')
         window.addEventListener('scroll', () => this.handleScrollEvent(elements))
-        window.addEventListener('scroll', this.handleHeaderSrcoll)
+        window.addEventListener('scroll', this.handleHeaderScroll)
 
         // Contact us video auto play 
         // 브라우저 정책상 자동재생 하려면 소리를 없애야 함
@@ -321,7 +321,7 @@ export default {
     <header
       :class="{ 'backdrop-saturate-[1.5] backdrop-blur-[20px] bg-white-20/60 border-b border-b-[#EBEBEB]': isScroll }"
       class="bg-white-20 w-full py-2.5 fixed left-0 right-0 top-0 z-10"
-      ref="stickyDiv"
+      id="stickyDiv"
     >
         <nav class="flex items-center justify-between w-[1120px] mx-auto">
             <ul class="flex items-center gap-3">

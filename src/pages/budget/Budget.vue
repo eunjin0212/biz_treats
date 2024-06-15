@@ -137,11 +137,9 @@ export default {
                 this.loading = false
             }
         },
-        handleScroll() {
-            const stickyDiv = this.$refs.stickyDiv;
-            if (stickyDiv) {
-                this.isScroll = (window.scrollY + 68) >= stickyDiv.offsetTop;
-            }
+        headerScroll() {
+            const stickyDiv = document.getElementById('stickyDiv');
+            this.isScroll = stickyDiv ? (window.scrollY + 68) >= stickyDiv.offsetTop : false;
         },
     },
     watch: {
@@ -183,11 +181,11 @@ export default {
         );
 
         this.observer.observe(target);
-        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('scroll', this.headerScroll);
     },
     beforeUnmount() {
         this.observer.disconnect();
-        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('scroll', this.headerScroll);
     },
 }
 </script>
@@ -336,9 +334,9 @@ export default {
             </h4>
         </div>
         <div
-          class="min-w-[1120px] w-full mx-auto pt-1 sticky top-[68px] z-20 bg-white-17 sticky-container"
-          :class="{ 'active': isScroll }"
-          ref="stickyDiv"
+          class="min-w-[1120px] w-full mx-auto pt-1 sticky top-[68px] z-20"
+          :class="isScroll ? 'bg-white-20 border-b border-b-[#CECECE]' : 'bg-white-17'"
+          id="stickyDiv"
         >
             <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center">
                 <li
