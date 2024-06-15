@@ -191,9 +191,9 @@ export default {
             </nav>
         </div>
     </header>
-    <main class="bg-white-17 flex w-[1240px] mx-auto justify-center gap-3 py-12">
+    <main class="bg-white-17 flex w-[1240px] mx-auto justify-center gap-3 py-6">
         <section
-          class="w-[612px] h-[628px] bg-white-20 rounded-lg bg-center text-center pt-[85px] shadow-[21px_27px_50px_-8px_#D4B2B22B]"
+          class="w-[612px] h-[500px] bg-white-20 rounded-lg bg-center text-center pt-10 shadow-[21px_27px_50px_-8px_#D4B2B22B]"
         >
             <img
               src="@/assets/icons/error.svg"
@@ -202,11 +202,11 @@ export default {
             />
             <strong class="block mb-2 text-[28px] leading-[42px] font-bold text-blue-05 font-dmsans">Result Not
                 Found</strong>
-            <span class="block text-[#9E9E9E] mb-10 text-lg font-medium font-dmsans">Please try again with
+            <span class="block text-[#9E9E9E] mb-10 text-lg font-light font-dmsans">Please try again with
                 another<br>keywords or maybe use generic term</span>
             <a
               href="/home"
-              class="inline-flex items-center justify-center bg-blue-05 w-[342px] h-14 text-white-20 font-bold text-base leading-6 font-poppins rounded-lg hover:bg-blue-06"
+              class="inline-flex items-center justify-center bg-blue-05 w-[342px] h-14 text-white-20 font-medium text-base leading-6 font-poppins rounded-lg hover:bg-blue-06"
             >Try Again</a>
         </section>
     </main>
