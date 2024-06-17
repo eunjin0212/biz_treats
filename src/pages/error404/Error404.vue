@@ -198,11 +198,11 @@ export default {
             <img
               src="@/assets/icons/error.svg"
               alt="completed_check"
-              class="mx-auto mb-6"
+              class="mx-auto mb-6 w-[200px]"
             />
             <strong class="block mb-2 text-[28px] leading-[42px] font-bold text-blue-05 font-dmsans">Result Not
                 Found</strong>
-            <span class="block text-[#9E9E9E] mb-10 text-lg font-light font-dmsans">Please try again with
+            <span class="block text-[#9E9E9E] mb-5 text-lg font-light font-dmsans">Please try again with
                 another<br>keywords or maybe use generic term</span>
             <a
               href="/home"
