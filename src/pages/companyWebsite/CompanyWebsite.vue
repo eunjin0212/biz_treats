@@ -323,7 +323,7 @@ export default {
       class="bg-white-20 w-full py-2.5 fixed left-0 right-0 top-0 z-10"
       id="stickyDiv"
     >
-        <nav class="flex items-center justify-between w-[1120px] mx-auto">
+        <nav class="flex items-center justify-between w-full max-w-[1120px] mx-auto">
             <ul class="flex items-center gap-3">
                 <li>
                     <a href="/">
