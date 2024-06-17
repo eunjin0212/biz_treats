@@ -296,13 +296,13 @@ export default {
                 <h2><span class="!bg-green-03"></span>Permission Settings</h2>
                 <div class="flex h-[738px]">
                     <div class="border-t border-r border-r-white-10 border-t-white-10">
-                        <h3 class="text-[15px] font-semibold leading-6 text-slate-01 p-3.5 bg-[#FAFAFA]">Member List
+                        <h3 class="text-[15px] font-semibold leading-6 text-slate-01 p-3.5 bg-white-20 border-b border-b-white-10">Member List
                         </h3>
                         <ul class="h-[calc(738px-52px)] pr-4.5 pl-3.5 overflow-y-scroll">
                             <li
                               v-for="user in userList"
                               :key="user.name"
-                              class="py-1 mb-1 border-b border-b-white-10"
+                              class="py-1 mb-1 border-t border-t-white-10 first-of-type:border-t-0"
                             >
                                 <button
                                   class="flex items-center justify-between py-3 px-2 w-[266px] rounded-md hover:bg-[#F5F5F5]"
@@ -334,13 +334,13 @@ export default {
                       class="flex-grow border-t border-t-white-10"
                       @submit="handleSubmit"
                     >
-                        <h3 class="text-[15px] font-semibold leading-6 text-slate-01 p-3.5 bg-[#FAFAFA]">Permission List
+                        <h3 class="text-[15px] font-semibold leading-6 text-slate-01 p-3.5 bg-white-20">Permission List
                         </h3>
                         <ul>
                             <li
                               v-for="permission in permissionList"
                               :key="permission.value"
-                              class="border-b border-b-white-10 flex items-center w-full px-6 py-[22px]"
+                              class="border-t border-t-white-10 last-of-type:border-b last-of-type:border-b-white-10 flex items-center w-full px-6 py-[22px]"
                             >
                                 <label
                                   class="inline-block w-48 mr-10 text-sm font-semibold min-w-48 font-manrope text-slate-01"
