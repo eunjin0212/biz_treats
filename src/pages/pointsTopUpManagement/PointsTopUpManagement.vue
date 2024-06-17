@@ -444,7 +444,7 @@ export default {
                                     </a>
                                     <div
                                       :class="statusStyle[row[column.field]]"
-                                      class="font-semibold text-center rounded-md h-7 py-0.5 text-stone-03 leading-6"
+                                      class="font-semibold text-center rounded-md h-7 py-0.5 text-white-20 leading-6"
                                       v-else-if="column.field === 'status'"
                                     >
                                         {{ row[column.field] }}

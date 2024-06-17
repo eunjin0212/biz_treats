@@ -76,10 +76,6 @@ export default {
                 { label: 'Notes', field: 'notes', class: '' },
             ],
             data: transferRows.map((row) => ({ ...row, selected: false })).slice(pagination.page - 1, rowPerPage),
-            typeStyle: {
-                Deduct: 'text-red-06',
-                'Top-up': 'text-blue-05',
-            },
             statusStyle: {
                 active: 'bg-blue-03 w-16',
                 resigned: 'bg-red-04 w-16',
@@ -427,7 +423,7 @@ export default {
                                     <div
                                       v-else-if="column.field === 'status'"
                                       :class="statusStyle[row[column.field]]"
-                                      class="rounded-md text-stone-03 font-semibold text-xs w-[65px] h-7 inline-flex justify-center items-center"
+                                      class="rounded-md text-white-20 font-semibold text-xs w-[65px] h-7 inline-flex justify-center items-center"
                                     >
                                         {{ statusLabel[row[column.field]] }}
                                     </div>

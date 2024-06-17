@@ -77,10 +77,6 @@ export default {
                 { label: 'Note', field: 'note', class: '' },
             ],
             data: managementRows.slice(pagination.page - 1, rowPerPage),
-            typeStyle: {
-                Deduct: 'text-red-06',
-                'Top-up': 'text-blue-05',
-            },
             statusStyle: {
                 Request: 'bg-blue-03 w-16',
                 Complete: 'bg-green-02 w-16',

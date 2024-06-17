@@ -496,7 +496,7 @@ export default {
                                     <div
                                       :class="typeStyle[row[column.field]]"
                                       v-if="column.field === 'type'"
-                                      class="py-[2px] px-2 rounded-md text-[#4E4E4E] leading-6 font-semibold w-fit"
+                                      class="py-[2px] px-2 rounded-md text-white-20 leading-6 font-semibold w-fit"
                                     >
                                         {{ row[column.field] }}
                                     </div>

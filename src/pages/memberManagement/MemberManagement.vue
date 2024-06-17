@@ -427,7 +427,7 @@ export default {
                                     >
                                         <!-- exclude canceled invite row -->
                                         <span
-                                          class="text-stone-04 text-xs leading-6 font-semibold rounded-md px-3 py-[2px]"
+                                          class="text-white-20 text-xs leading-6 font-semibold rounded-md px-3 py-[2px]"
                                           :class="statusClass[row[column.field]]"
                                           v-if="['cancel', 'editable', 'none'].includes(row.button)"
                                         >
