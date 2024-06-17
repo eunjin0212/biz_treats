@@ -1,7 +1,11 @@
 <script>
 import { snsMenu, menus, navMenu } from '@/constants/components.js';
+import InquirySvg from '@/assets/icons/InquirySvg.vue'
 
 export default {
+    components: {
+        InquirySvg,
+    },
     data() {
         const formModel = {
             companyName: '',
@@ -108,32 +112,64 @@ export default {
             const body = document.getElementsByTagName('body')[0]
             body.className = ''
         }
+    },
+    computed: {
+        matchPath: () => {
+            return (path) => path === window.location.pathname
+        }
     }
 }
 </script>
 <template>
-    <header class="header">
-        <nav>
-            <a href="/">
-                <img src="/assets/images/biz_treats_log.png" />
-            </a>
-            <a
-              v-for="menu in navMenu"
-              :href="menu.path"
-              :key="menu.title"
-              v-show="!menu?.hide"
-            >
-                {{ menu.title }}
-            </a>
+    <header class="bg-white-20 w-full py-2.5">
+        <nav class="flex items-center justify-between w-full max-w-[1120px] mx-auto">
+            <ul class="flex items-center gap-3 w-fit">
+                <li>
+                    <a href="/">
+                        <img
+                          src="/assets/images/biztreats_logo.svg"
+                          class="h-12"
+                        />
+                    </a>
+                </li>
+                <li
+                  class="w-[140px] inline-flex justify-center items-center group cursor-pointer"
+                  v-for="menu in Object.values(navMenu).flat()"
+                  :key="menu.title"
+                  v-show="!menu?.hide"
+                  :data-active="matchPath(menu.path)"
+                >
+
+                    <a
+                      class="w-fit block text-base -tracking-wide text-black-100 font-medium relative group-data-[active=true]:before:content-[''] group-data-[active=true]:before:bg-blue-05 group-data-[active=true]:before:w-full group-data-[active=true]:before:h-px group-data-[active=true]:before:absolute group-data-[active=true]:before:bottom-0 group-data-[active=true]:before:left-0 group-data-[active=true]:text-blue-05 group-hover:text-blue-05 group-hover:before:content-[''] group-hover:before:bg-blue-05 group-hover:before:w-full group-hover:before:h-px group-hover:before:absolute group-hover:before:bottom-0 group-hover:before:left-0"
+                      
+                      :href="menu.path"
+                    >
+                        {{ menu.title }}
+                    </a>
+                </li>
+            </ul>
+            <div class="inline-flex items-center gap-3">
+                <a
+                  href="/inquiry"
+                  class="w-[140px] text-base -tracking-wide text-blue-05 border border-blue-05 py-3 rounded-md inline-flex items-center font-medium h-12 gap-1 justify-center hover:bg-sky-50"
+                >
+                    <InquirySvg class="" />
+                    Inquiry
+                </a>
+                <a
+                  href="login"
+                  class="text-base font-medium text-center border rounded-md border-white-03 py-3 bg-blue-05 hover:bg-blue-06 text-white-20 -tracking-wide w-[148px] h-12"
+                >
+                    Log in
+                </a>
+            </div>
         </nav>
-        <button @click="handleClick">
-            Log in
-        </button>
     </header>
-    <main>
+    <main class="pb-12 pt-7 bg-[url('@/assets/images/company_website_bg.png')] bg-no-repeat bg-center bg-cover">
         <form
           @submit="handleSubmit"
-          class="form !mx-auto !w-[637px] !max-w-[637px] !py-7 mt-7 mb-12"
+          class="form !mx-auto !w-[637px] !max-w-[637px] !py-7"
         >
             <div>
                 <img
@@ -143,7 +179,7 @@ export default {
                 <h3>
                     Inquiry
                 </h3>
-                <p class="text-center">
+                <p class="text-center !mt-0.5 mb-4">
                     Join Biz Treats now! You can treat your with bulk at once.
                 </p>
             </div>
@@ -235,49 +271,52 @@ export default {
             <button class="mt-4">Inquiry</button>
         </form>
     </main>
-    <footer class="footer">
-        <aside>
-            <div>
-                <img
-                  src="/assets/images/biz_treats_log.png"
-                  alt="footer-log"
-                />
-                <h4>
-                    {{ snsMenu.title }}
-                </h4>
+    <footer class="service-footer">
+        <div>
+            <aside>
                 <div>
-                    <a
-                      v-for="sns in snsMenu.children"
-                      :key="sns.name"
-                    >
-                        <img
-                          :src="sns.icon"
-                          :alt="sns.name"
-                        />
-                    </a>
+                    <img
+                      src="/assets/images/biztreats_logo.svg"
+                      alt="footer-log"
+                    />
+                    <h4>
+                        {{ snsMenu.title }}
+                    </h4>
+                    <div>
+                        <a
+                          v-for="sns in snsMenu.children"
+                          :key="sns.name"
+                        >
+                            <img
+                              :src="sns.icon"
+                              :alt="sns.name"
+                            />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div
-              v-for="menu in menus"
-              :key="menu.title"
-            >
-                <h4>
-                    {{ menu.title }}
-                </h4>
-                <template
-                  v-for="sub in menu.children"
-                  :key="sub.title"
+                <div
+                  v-for="menu in menus"
+                  :key="menu.title"
                 >
-                    <a
-                      :href="sub.link"
-                      :target="sub.target"
-                      :alt="sub.name"
+                    <h4>
+                        {{ menu.title }}
+                    </h4>
+                    <template
+                      v-for="sub in menu.children"
+                      :key="sub.title"
                     >
-                        {{ sub.name }}
-                    </a>
-                </template>
-            </div>
-        </aside>
+                        <a
+                          :href="sub.link"
+                          :target="sub.target"
+                          :alt="sub.name"
+                        >
+                            {{ sub.name }}
+                        </a>
+                    </template>
+                </div>
+            </aside>
+        </div>
+        <hr class="w-[1120px] mx-auto" />
         <p>
             Copyright © SHARE TREATS. All rights reserved.
         </p>
@@ -292,7 +331,7 @@ export default {
             >
                 <h1 class="text-main font-bold text-[22px] leading-10 -tracking-wider mb-3">Thanks for reaching out.
                 </h1>
-                <p class="text-sm font-normal text-center leading-6 font-poppins text-slate-02">
+                <p class="text-sm font-normal leading-6 text-center font-poppins text-slate-02">
                     Our CS team will contact you as soonest.<br>
                     When your account creation is complete,<br>
                     you can receive an alert by email.

@@ -280,7 +280,7 @@ body {
 /* service footer */
 @layer components {
     footer.service-footer {
-        @apply relative bottom-0 left-0 bg-[theme(colors.white.20)] w-full max-w-[1440px] border-t border-t-[theme(colors.white.05)]
+        @apply relative bottom-0 left-0 bg-[theme(colors.white.20)] w-full border-t border-t-[theme(colors.white.05)]
     }
 
     footer.service-footer>div {
