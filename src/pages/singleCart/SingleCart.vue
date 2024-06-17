@@ -335,7 +335,7 @@ export default {
                             <img
                               :src="cart.product_img"
                               :alt="cart.name"
-                              class="w-20 h-20 border border-gray-10"
+                              class="w-[120px] h-[120px] border border-gray-10"
                             />
                             <ul class="inline-flex flex-col w-full gap-1">
                                 <li class="font-medium text-[13px] leading-4 text-black-100">{{ cart.brand }}</li>

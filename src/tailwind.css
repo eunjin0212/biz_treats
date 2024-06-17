@@ -342,7 +342,7 @@ body {
 /* search input */
 @layer components {
     div.search-input {
-        @apply py-[13px] pl-[13px] pr-5 mr-[82px] flex items-center justify-between h-12 w-full max-w-[500px] border-2 border-[theme(colors.white.08)] bg-[theme(colors.white.11)] rounded-[9px]
+        @apply py-[13px] pl-[13px] pr-5 mr-[82px] flex items-center justify-between h-12 w-full max-w-[500px] border border-[theme(colors.white.08)] bg-[theme(colors.white.11)] rounded-[9px]
     }
 
     div.search-input input {
@@ -353,7 +353,7 @@ body {
 /* header bell, cart button */
 @layer components {
     button.header-btn {
-        @apply py-3 px-3.5 rounded-xl border-2 border-[theme(colors.white.10)] hover:bg-[#6F767E10]
+        @apply py-3 px-3.5 rounded-xl border border-[theme(colors.white.10)] hover:bg-[#6F767E10]
     }
 }
 
