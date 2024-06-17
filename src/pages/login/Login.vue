@@ -74,97 +74,99 @@ export default {
         </button>
     </header>
     <main class="background">
-        <section>
-            <p>
-                Digital Treats For Your Business
-            </p>
-            <span>
-                Foster Relationships with your Employees and Customers
-            </span>
-            <img src="/assets/images/bg.png" />
-        </section>
-        <form
-          class="form !gap-3"
-          @submit="handleSubmit"
-        >
-            <div>
-                <img
-                  src="/assets/images/biz_treats_log.png"
-                  alt="header-log"
-                />
-                <h3>
-                    Log In
-                </h3>
-            </div>
-            <label
-              v-for="form in formData"
-              :key="form.label"
-              class="input"
-            >
+        <div>
+            <section>
+                <p>
+                    Digital Treats For Your Business
+                </p>
                 <span>
-                    {{ form.label }}
+                    Foster Relationships with your Employees and Customers
                 </span>
-                <input
-                  :type="form.type"
-                  :label="form.label"
-                  :name="form.name"
-                  :placeholder="form.placeholder"
-                  v-model="formModel[form.key]"
-                  @input="(e) => handleUpdate(form.key, e.target.value)"
-                  autocomplete="on"
-                />
-            </label>
-            <div
-              class="checkbox my-2.5"
-              @click.prevent="() => {
+                <img src="/assets/images/bg.png" />
+            </section>
+            <form
+              class="form !gap-3"
+              @submit="handleSubmit"
+            >
+                <div>
+                    <img
+                      src="/assets/images/biz_treats_log.png"
+                      alt="header-log"
+                    />
+                    <h3>
+                        Log In
+                    </h3>
+                </div>
+                <label
+                  v-for="form in formData"
+                  :key="form.label"
+                  class="input"
+                >
+                    <span>
+                        {{ form.label }}
+                    </span>
+                    <input
+                      :type="form.type"
+                      :label="form.label"
+                      :name="form.name"
+                      :placeholder="form.placeholder"
+                      v-model="formModel[form.key]"
+                      @input="(e) => handleUpdate(form.key, e.target.value)"
+                      autocomplete="on"
+                    />
+                </label>
+                <div
+                  class="checkbox my-2.5"
+                  @click.prevent="() => {
                 rememberAccount = !rememberAccount;
             }"
-            >
-                <input
-                  id="remember"
-                  type="checkbox"
-                  :value="rememberAccount"
-                  name="remember"
-                  class="hidden"
-                />
-                <span :class="rememberAccount ? 'border-blue-09 bg-blue-09' : 'border-neutral-300 bg-white'">
-                    <CheckSvg :class="rememberAccount ? 'text-white-20' : 'hidden'" />
-                </span>
-                <label for="remember">
-                    Remember this account
-                </label>
-            </div>
-            <div class="mb-5 recaptcha">
-                <div
-                  class="checkbox"
-                  @click.prevent="() => {
-                    reCaptcha = !reCaptcha;
-                  }"
                 >
                     <input
-                      id="reCaptcha"
+                      id="remember"
                       type="checkbox"
-                      :value="reCaptcha"
-                      name="reCaptcha"
+                      :value="rememberAccount"
+                      name="remember"
+                      class="hidden"
                     />
-                    <span :class="reCaptcha ? 'border-blue-09 bg-blue-09' : 'border-neutral-300 bg-white'">
-                        <CheckSvg :class="reCaptcha ? 'text-white-20' : 'hidden'" />
+                    <span :class="rememberAccount ? 'border-blue-09 bg-blue-09' : 'border-neutral-300 bg-white'">
+                        <CheckSvg :class="rememberAccount ? 'text-white-20' : 'hidden'" />
                     </span>
-                    <label for="reCaptcha">
-                        I'm not a robot
+                    <label for="remember">
+                        Remember this account
                     </label>
                 </div>
-                <img
-                  src="/assets/icons/reCAPTCHA_logo.svg"
-                  alt="reCAPTCHA_logo"
-                />
-            </div>
-            <button type="submit">Login</button>
-            <a
-              href="/password"
-              class="text-secondary-03 text-xs tracking-[0.1px] mt-3"
-            >Forgot your password? Click here!</a>
-        </form>
+                <div class="mb-5 recaptcha">
+                    <div
+                      class="checkbox"
+                      @click.prevent="() => {
+                reCaptcha = !reCaptcha;
+            }"
+                    >
+                        <input
+                          id="reCaptcha"
+                          type="checkbox"
+                          :value="reCaptcha"
+                          name="reCaptcha"
+                        />
+                        <span :class="reCaptcha ? 'border-blue-09 bg-blue-09' : 'border-neutral-300 bg-white'">
+                            <CheckSvg :class="reCaptcha ? 'text-white-20' : 'hidden'" />
+                        </span>
+                        <label for="reCaptcha">
+                            I'm not a robot
+                        </label>
+                    </div>
+                    <img
+                      src="/assets/icons/reCAPTCHA_logo.svg"
+                      alt="reCAPTCHA_logo"
+                    />
+                </div>
+                <button type="submit">Login</button>
+                <a
+                  href="/password"
+                  class="text-secondary-03 text-xs tracking-[0.1px] mt-3"
+                >Forgot your password? Click here!</a>
+            </form>
+        </div>
     </main>
     <footer class="footer">
         <aside>

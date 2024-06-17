@@ -24,11 +24,14 @@ body {
 /* background */
 @layer components {
     main.background {
-        @apply flex bg-gradient-to-t to-[#7ACFF3] from-[#259DD0] min-h-[calc(100vh-93px)] min-w-[1228px] justify-between items-center
+        @apply bg-gradient-to-t to-[#7ACFF3] from-[#259DD0] w-full pt-7 pb-12
+    }
+    main.background > div {
+        @apply flex justify-between items-center w-[1228px] mx-auto
     }
 
     main.background section {
-        @apply flex flex-col items-center justify-center w-2/4 ml-28
+        @apply flex flex-col items-center justify-center w-2/4 mr-[132px]
     }
 
     main.background section p {
@@ -40,7 +43,7 @@ body {
     }
 
     main.background section img {
-        @apply mt-5 w-[586px] h-48
+        @apply mt-5 min-w-[586px] w-[586px] h-48
     }
 }
 
@@ -125,7 +128,7 @@ body {
 /* form */
 @layer components {
     form.form {
-        @apply py-7 px-[46px] w-full gap-1 mr-[150px] max-w-[450px] bg-[theme(colors.white.20)] flex flex-col items-center rounded shadow-[0px_12px_24px_0px_#00000014]
+        @apply py-7 px-[46px] w-full gap-1 max-w-[450px] min-w-[450px] bg-[theme(colors.white.20)] flex flex-col items-center rounded shadow-[0px_12px_24px_0px_#00000014]
     }
 
     form.form>div:first-of-type {

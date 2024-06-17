@@ -38,15 +38,17 @@ export default {
         </button>
     </header>
     <main class="background">
-        <section>
-            <p>
-                Digital Treats For Your Business
-            </p>
-            <span>
-                Foster Relationships with your Employees and Customers
-            </span>
-            <img src="/assets/images/bg.png" />
-        </section>
+        <div>
+            <section>
+                <p>
+                    Digital Treats For Your Business
+                </p>
+                <span>
+                    Foster Relationships with your Employees and Customers
+                </span>
+                <img src="/assets/images/bg.png" />
+            </section>
+        </div>
     </main>
     <footer class="footer">
         <aside>

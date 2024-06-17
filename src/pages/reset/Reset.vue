@@ -65,56 +65,58 @@ export default {
         </nav>
     </header>
     <main class="background">
-        <section>
-            <p>
-                Digital Treats For Your Business
-            </p>
-            <span>
-                Foster Relationships with your Employees and Customers
-            </span>
-            <img src="/assets/images/bg.png" />
-        </section>
-        <form
-          class="form !gap-3"
-          @submit="handleSubmit"
-        >
-            <div>
-                <img
-                  src="/assets/images/biz_treats_log.png"
-                  alt="header-log"
-                />
-                <h3>
-                    Welcome to Biz Treats!
-                </h3>
+        <div>
+            <section>
                 <p>
-                    Please set your password in order to access the service.
+                    Digital Treats For Your Business
                 </p>
-            </div>
-            <label
-              v-for="form in formData"
-              :key="form.label"
-              class="input"
-            >
                 <span>
-                    {{ form.label }}
+                    Foster Relationships with your Employees and Customers
                 </span>
-                <input
-                  :type="form.type"
-                  :name="form.name"
-                  :placeholder="form.placeholder"
-                  v-model="formModel[form.key]"
-                  :disabled="form.disabled"
-                  @input="(e) => handleUpdate(form.key, e.target.value)"
-                  autocomplete="on"
-                />
-            </label>
-            <button
-              class="mt-10"
-              type="submit"
+                <img src="/assets/images/bg.png" />
+            </section>
+            <form
+              class="form !gap-3"
+              @submit="handleSubmit"
             >
-                Submit
-            </button>
-        </form>
+                <div>
+                    <img
+                      src="/assets/images/biz_treats_log.png"
+                      alt="header-log"
+                    />
+                    <h3>
+                        Welcome to Biz Treats!
+                    </h3>
+                    <p>
+                        Please set your password in order to access the service.
+                    </p>
+                </div>
+                <label
+                  v-for="form in formData"
+                  :key="form.label"
+                  class="input"
+                >
+                    <span>
+                        {{ form.label }}
+                    </span>
+                    <input
+                      :type="form.type"
+                      :name="form.name"
+                      :placeholder="form.placeholder"
+                      v-model="formModel[form.key]"
+                      :disabled="form.disabled"
+                      @input="(e) => handleUpdate(form.key, e.target.value)"
+                      autocomplete="on"
+                    />
+                </label>
+                <button
+                  class="mt-10"
+                  type="submit"
+                >
+                    Submit
+                </button>
+            </form>
+        </div>
     </main>
     <footer class="footer">
         <aside>
