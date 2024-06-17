@@ -417,7 +417,7 @@ export default {
                                     >
                                         {{ row[column.field] }}
                                         <button
-                                          class="border border-white-02 rounded-lg bg-white px-[21px] py-1.5 text-main font-semibold leading-6 hover:bg-white-02-light"
+                                          class="bg-white-20 border border-white-02 rounded-lg bg-white px-[21px] py-1.5 text-main font-semibold leading-6 hover:bg-white-02-light"
                                         >
                                             Download
                                         </button>

@@ -440,7 +440,7 @@ export default {
                                         {{ row[column.field] }}
                                         <button
                                           @click="() => handleModal(true)"
-                                          class="flex gap-2 items-center h-10 px-3 py-2 border border-white-02 rounded text-gray-05 hover:bg-[#A9A9A920] text-sm leading-5 font-semibold font-manrope float-right"
+                                          class="bg-white-20 flex gap-2 items-center h-10 px-3 py-2 border border-white-02 rounded text-gray-05 hover:bg-[#A9A9A920] text-sm leading-5 font-semibold font-manrope float-right"
                                         >
                                             <FileDownloadSvg /> Excel Download
                                         </button>
