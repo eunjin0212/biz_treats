@@ -173,7 +173,7 @@ export default {
         >
             <div>
                 <img
-                  src="/assets/images/biz_treats_log.png"
+                  src="/assets/images/biztreats_logo.svg"
                   alt="header-log"
                 />
                 <h3>

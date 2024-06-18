@@ -194,7 +194,7 @@ export default {
         <div>
             <nav>
                 <a href="/">
-                    <img src="/assets/images/biz_treats_log.png" />
+                    <img src="/assets/images/biztreats_logo.svg" />
                 </a>
                 <div class="search-input">
                     <input
@@ -528,7 +528,7 @@ export default {
             <aside>
                 <div>
                     <img
-                      src="/assets/images/biz_treats_log.png"
+                      src="/assets/images/biztreats_logo.svg"
                       alt="footer-log"
                     />
                     <h4>

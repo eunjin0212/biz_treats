@@ -197,7 +197,7 @@ export default {
                   href="/"
                   class="!mr-5"
                 >
-                    <img src="/assets/images/biz_treats_log.png" />
+                    <img src="/assets/images/biztreats_logo.svg" />
                 </a>
                 <div class="search-input !w-[442px]">
                     <input
@@ -424,7 +424,7 @@ export default {
             <aside>
                 <div>
                     <img
-                      src="/assets/images/biz_treats_log.png"
+                      src="/assets/images/biztreats_logo.svg"
                       alt="footer-log"
                     />
                     <h4>
