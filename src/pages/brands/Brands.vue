@@ -106,7 +106,7 @@ export default {
         handleSearch,
         headerScroll() {
             const stickyDiv = document.getElementById('stickyDiv');
-            this.isScroll = stickyDiv ? (window.scrollY + 68) >= stickyDiv.offsetTop : false;
+            this.isScroll = stickyDiv ? window.scrollY >= stickyDiv.offsetTop : false;
         },
     },
     watch: {
@@ -136,10 +136,11 @@ export default {
             obj[data.label] = data.label === 'ALL' ? this.brands : originArray
             return obj
         }, {})
-        window.addEventListener('scroll', () => this.headerScroll());
+        
+        window.addEventListener('scroll', this.headerScroll);
     },
     beforeUnmount() {
-        window.removeEventListener('scroll', () => this.headerScroll());
+        window.removeEventListener('scroll', this.headerScroll);
     },
 }
 </script>
@@ -151,7 +152,7 @@ export default {
                   href="/"
                   class="!mr-5"
                 >
-                    <img src="/assets/images/biz_treats_log.png" />
+                    <img src="/assets/images/biztreats_logo.svg" />
                 </a>
                 <div class="search-input !w-[442px]">
                     <input
@@ -340,7 +341,7 @@ export default {
             <aside>
                 <div>
                     <img
-                      src="/assets/images/biz_treats_log.png"
+                      src="/assets/images/biztreats_logo.svg"
                       alt="footer-log"
                     />
                     <h4>
