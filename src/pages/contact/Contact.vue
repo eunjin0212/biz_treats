@@ -20,22 +20,27 @@ export default {
 </script>
 <template>
     <header class="header">
-        <nav>
-            <a href="/">
-                <img src="/assets/images/biz_treats_log.png" />
-            </a>
-            <a
-              v-for="menu in navMenu"
-              :href="menu.path"
-              :key="menu.title"
-              v-show="!menu?.hide"
-            >
-                {{ menu.title }}
-            </a>
-        </nav>
-        <button @click="handleClick">
-            Log in
-        </button>
+        <div>
+            <nav>
+                <a href="/">
+                    <img src="/assets/images/biztreats_logo.svg" />
+                </a>
+                <template
+                  v-for="menu in navMenu"
+                  :key="menu.title"
+                >
+                    <a
+                      :href="menu.path"
+                      v-if="!menu?.hide"
+                    >
+                        {{ menu.title }}
+                    </a>
+                </template>
+            </nav>
+            <button @click="handleClick">
+                Contact
+            </button>
+        </div>
     </header>
     <main class="background">
         <div>
@@ -50,49 +55,52 @@ export default {
             </section>
         </div>
     </main>
-    <footer class="footer">
-        <aside>
-            <div>
-                <img
-                  src="/assets/images/biz_treats_log.png"
-                  alt="footer-log"
-                />
-                <h4>
-                    {{ snsMenu.title }}
-                </h4>
+    <footer class="service-footer">
+        <div>
+            <aside>
                 <div>
-                    <a
-                      v-for="sns in snsMenu.children"
-                      :key="sns.name"
-                    >
-                        <img
-                          :src="sns.icon"
-                          :alt="sns.name"
-                        />
-                    </a>
+                    <img
+                      src="/assets/images/biztreats_logo.svg"
+                      alt="footer-log"
+                    />
+                    <h4>
+                        {{ snsMenu.title }}
+                    </h4>
+                    <div>
+                        <a
+                          v-for="sns in snsMenu.children"
+                          :key="sns.name"
+                        >
+                            <img
+                              :src="sns.icon"
+                              :alt="sns.name"
+                            />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div
-              v-for="menu in menus"
-              :key="menu.title"
-            >
-                <h4>
-                    {{ menu.title }}
-                </h4>
-                <template
-                  v-for="sub in menu.children"
-                  :key="sub.title"
+                <div
+                  v-for="menu in menus"
+                  :key="menu.title"
                 >
-                    <a
-                      :href="sub.link"
-                      :target="sub.target"
-                      :alt="sub.name"
+                    <h4>
+                        {{ menu.title }}
+                    </h4>
+                    <template
+                      v-for="sub in menu.children"
+                      :key="sub.title"
                     >
-                        {{ sub.name }}
-                    </a>
-                </template>
-            </div>
-        </aside>
+                        <a
+                          :href="sub.link"
+                          :target="sub.target"
+                          :alt="sub.name"
+                        >
+                            {{ sub.name }}
+                        </a>
+                    </template>
+                </div>
+            </aside>
+        </div>
+        <hr class="w-[1120px] mx-auto" />
         <p>
             Copyright © SHARE TREATS. All rights reserved.
         </p>

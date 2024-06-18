@@ -57,7 +57,7 @@ export default {
     <header class="header">
         <nav class="!gap-2">
             <a href="/">
-                <img src="/assets/images/biz_treats_log.png" />
+                <img src="/assets/images/biztreats_logo.svg" />
             </a>
             <strong class="text-base leading-[22px] font-semibold text-[#4E4E4E]">
                 Password set up
@@ -81,7 +81,7 @@ export default {
             >
                 <div>
                     <img
-                      src="/assets/images/biz_treats_log.png"
+                      src="/assets/images/biztreats_logo.svg"
                       alt="header-log"
                     />
                     <h3>
