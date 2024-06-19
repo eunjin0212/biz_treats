@@ -94,6 +94,7 @@ export default {
             },
             loading: false,
             isScroll: false,
+            headerObserver: null,
         }
     },
     methods: {
@@ -137,10 +138,11 @@ export default {
                 this.loading = false
             }
         },
-        headerScroll() {
-            const stickyDiv = document.getElementById('stickyDiv');
-            this.isScroll = stickyDiv ? (window.scrollY + 68) >= stickyDiv.offsetTop : false;
-        },
+        headerScroll(entries) {
+            entries.forEach(entry => {
+                this.isScroll = !entry.isIntersecting;
+            });
+        }
     },
     watch: {
         dropdown() {
@@ -181,11 +183,18 @@ export default {
         );
 
         this.observer.observe(target);
-        window.addEventListener('scroll', this.headerScroll);
+
+        // header scroll observe
+        this.headerObserver = new IntersectionObserver(this.headerScroll, {
+            root: null,
+            threshold: 1.0
+        });
+        const stickyDiv = document.getElementById('headerScroll');
+        this.headerObserver.observe(stickyDiv);
     },
     beforeUnmount() {
         this.observer.disconnect();
-        window.removeEventListener('scroll', this.headerScroll);
+        this.headerObserver.disconnect();
     },
 }
 </script>
@@ -327,6 +336,7 @@ export default {
                 >{{ filter.label }}</li>
             </ul>
         </div>
+        <div id="headerScroll"></div>
         <div class="w-full bg-white-17 min-w-[1120px]">
             <h4 class="pt-6 mb-4 text-[#696969] text-base leading-8 -tracking-tight font-bold w-[1120px] mx-auto">
                 Sort by Category
@@ -367,7 +377,10 @@ export default {
                 </li>
             </ul>
         </div>
-        <hr class="border-t-1 border-t-[#CECECE] w-[1120px] mx-auto" />
+        <hr
+          class="border-t-1 border-t-[#CECECE] w-[1120px] mx-auto"
+          v-if="!isScroll"
+        />
         <section class="pt-4 pb-40 main-section budget-section bg-white-17">
             <div class="main-section__wrapper">
                 <ul class="mb-12 product">

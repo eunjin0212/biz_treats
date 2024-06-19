@@ -73,6 +73,7 @@ export default {
             brands: genBrandsMockData(100),
             brandsData: {},
             isScroll: false,
+            headerObserver: null,
         }
     },
     methods: {
@@ -104,9 +105,10 @@ export default {
             window.location.href = `/brandsDetail?id=${id}`
         },
         handleSearch,
-        headerScroll() {
-            const stickyDiv = document.getElementById('stickyDiv');
-            this.isScroll = stickyDiv ? window.scrollY >= stickyDiv.offsetTop : false;
+        headerScroll(entries) {
+            entries.forEach(entry => {
+                this.isScroll = !entry.isIntersecting;
+            });
         },
     },
     watch: {
@@ -136,11 +138,17 @@ export default {
             obj[data.label] = data.label === 'ALL' ? this.brands : originArray
             return obj
         }, {})
-        
-        window.addEventListener('scroll', this.headerScroll);
+
+        // header scroll observe
+        this.headerObserver = new IntersectionObserver(this.headerScroll, {
+            root: null,
+            threshold: 1.0
+        });
+        const stickyDiv = document.getElementById('headerScroll');
+        this.headerObserver.observe(stickyDiv);
     },
     beforeUnmount() {
-        window.removeEventListener('scroll', this.headerScroll);
+        this.headerObserver.disconnect();
     },
 }
 </script>
@@ -269,6 +277,7 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
+        <div id="headerScroll"></div>
         <div
           class="min-w-[1120px] w-full mx-auto pt-1 sticky top-0 z-20"
           :class="isScroll ? 'bg-white-20 border-b border-b-[#CECECE]' : 'bg-white-17'"
@@ -325,8 +334,8 @@ export default {
                               class="text-center mt-5 pt-2 pb-2.5 w-full border-t border-b border-b-[#CACACA] border-t-[#CACACA]"
                             >
                                 <strong
-                                  class="block text-[#626262] mb-1 font-semibold text-xl leading-6 -tracking-wide"
-                                >{{ item.brand }}</strong>
+                                  class="block text-[#626262] mb-1 font-semibold text-xl leading-6 -tracking-wide">{{
+                        item.brand }}</strong>
                                 <span class="text-[#909090] -tracking-wide leading-[18px] text-[13px] font-normal">{{
                         item.locations.toLocaleString() }} Locations</span>
                             </figcaption>
