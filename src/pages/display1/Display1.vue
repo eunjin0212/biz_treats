@@ -293,7 +293,7 @@ export default {
         </div>
     </header>
     <main class="flex flex-col w-full mx-auto">
-        <nav class="w-full main-menu min-w-[1440px]">
+        <nav class="main-menu">
             <div>
                 <a
                   :class="{ 'active-main-menu': matchPath(menu.path) }"

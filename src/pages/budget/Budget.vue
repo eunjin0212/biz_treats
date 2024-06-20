@@ -313,7 +313,7 @@ export default {
         </div>
     </header>
     <main class="flex flex-col w-full mx-auto">
-        <nav class="w-full main-menu min-w-[1120px]">
+        <nav class="main-menu">
             <div>
                 <a
                   :class="{ 'active-main-menu': matchPath(menu.path) }"
@@ -323,7 +323,7 @@ export default {
                 >{{ menu.title }}</a>
             </div>
         </nav>
-        <div class="w-full py-3 bg-white-20 min-w-[1120px] sticky top-0 z-20 sticky-container">
+        <div class="w-full py-3 bg-white-20 min-w-[1120px] sticky top-0 z-20">
             <ul class="flex gap-2.5 w-[1120px] mx-auto">
                 <li
                   :data-active="filter.min === selectedFilter.budget"
@@ -344,16 +344,16 @@ export default {
             </h4>
         </div>
         <div
-          class="min-w-[1120px] w-full mx-auto pt-1 sticky top-[68px] z-20"
+          class="main-category !top-[68px]"
           :class="isScroll ? 'bg-white-20 border-b border-b-[#CECECE]' : 'bg-white-17'"
           id="stickyDiv"
         >
-            <ul class="flex gap-[54px] w-[1120px] mx-auto justify-center">
+            <ul>
                 <li
                   v-for="category in categoryFilter"
                   :key="category.label"
                   :data-active="category.label === selectedFilter.category"
-                  class="category-filter group"
+                  class="group"
                   @click="() => {
                         selectedFilter.category = category.label;
                     }"
